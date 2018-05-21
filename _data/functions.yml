@@ -1,0 +1,39 @@
+exec-interactive:
+  label: Interactive
+  description: It executes interactive commands that may be exploited to break out from restricted shells.
+
+exec-non-interactive:
+  label: Non-interactive
+  description: It executes non-interactive commands that may be exploited to break out from restricted shells.
+
+suid-enabled:
+  label: SUID
+  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor.
+
+suid-limited:
+  label: Limited SUID
+  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. Its functioning depends on the default operating systems system shell and tipically works only on Debian Linux.
+
+sudo-enabled:
+  label: Sudo
+  description: It runs in privileged contexts and may be used to escalate or maintain privileges if enabled on `sudo`.
+
+download:
+  label: Download
+  description: It can download remote files.
+
+upload:
+  label: Upload
+  description: It can exfiltrate files on the network.
+
+bind-shell:
+  label: Bind shell
+  description: It can bind a shell to a local port to allow remote network access.
+
+reverse-shell:
+  label: Reverse shell
+  description: It can send back a reverse shell to a listening attacker to open a remote network access.
+
+load-library:
+  label: Library load
+  description: It loads shared libraries that may be used to run code in the binary execution context.

@@ -1,0 +1,57 @@
+<input id="bin-search" type="text" placeholder="Filter by name, just start typing..."/>
+
+<div id="bin-table-wrapper">
+<table id="bin-table">
+<thead>
+<tr>
+    <th>Binary</th>
+    <th>Functions</th>
+</tr>
+</thead>
+<tbody>
+{% for file in site.gtfobins %}
+<tr>
+    <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name path=file.path %}</a></td>
+    <td>{% include function_list.html bin=file %}</td>
+</tr>
+{% endfor %}
+</tbody>
+<tfoot>
+<tr><td id="search-message" colspan="2">No binary matches...</td></tr>
+</tfoot>
+</table>
+</div>
+
+<script>
+ var searchBox = document.querySelector('#bin-search');
+ var searchMessage = document.querySelector('#search-message');
+ searchMessage.style.display = 'none';
+
+ // ensure height during filtering
+ var binTableWrapper = document.querySelector('#bin-table-wrapper');
+ binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
+
+ searchBox.addEventListener('input', function () {
+     var query = searchBox.value.toLowerCase().trim();
+     var noResults = true;
+
+     document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
+         var binName = row.firstElementChild.firstElementChild.innerText;
+         if (binName.indexOf(query) !== -1) {
+             row.style.display = '';
+             noResults = false;
+         } else {
+             row.style.display = 'none';
+         }
+     });
+
+     searchMessage.style.display = noResults ? '' : 'none';
+ });
+
+ addEventListener('keydown', function (event) {
+     if (event.key.toLowerCase().match(/^[a-z]$/)) {
+         searchBox.focus();
+     }
+ });
+
+</script>

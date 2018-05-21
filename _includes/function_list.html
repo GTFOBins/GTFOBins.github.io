@@ -1,0 +1,6 @@
+<ul class="function-list">
+{% for function in include.bin.functions %}
+{% assign type = function[0] %}
+<li><a href="{{ include.bin.url }}#{{ type }}">{{ site.data.functions[type].label }}</a></li>
+{% endfor %}
+</ul>

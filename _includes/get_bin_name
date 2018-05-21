@@ -1,0 +1,1 @@
+{% assign fn_parts = include.path | split: '/' | last | split: '.'  %}{% assign fn_parts_size = fn_parts | size %}{% if fn_parts_size < 3 %}{{- fn_parts[0] -}}{% else %}{{- fn_parts[0] -}}.{{- fn_parts[1] -}}{% endif %}

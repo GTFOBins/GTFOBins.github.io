@@ -1,0 +1,117 @@
+---
+---
+
+$accent: #bf0707;
+$lighter: #fff4f4;
+$hover: #ff0000;
+
+// layout
+
+@media (min-width: 1000px) {
+    body {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+// common tags
+
+body {
+    font-family: sans, sans-serif;
+}
+
+code {
+    padding: 0.15em 0.25em;
+    border-radius: 0.25em;
+    color: $accent;
+    background: $lighter;
+}
+
+pre {
+    background: $lighter;
+    padding: 1em;
+    overflow-x: auto;
+
+    code {
+        padding: 0;
+        border-radius: 0;
+    }
+}
+
+a:link, a:visited {
+    color: $accent;
+}
+
+a:hover {
+    color: $hover;
+}
+
+// fragment targets
+
+*:target {
+    border-left: 5px solid $accent;
+    padding-left: 5px;
+}
+
+// binary list and search
+
+#bin-search {
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#bin-table {
+    width: 100%;
+
+    th, td {
+        padding: 0.2em 1em;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    #search-message {
+        text-align: center;
+        padding: 1em;
+    }
+}
+
+// function description
+
+.function-list {
+    font-size: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        margin: 0.05em 0;
+        border: 1px solid $accent;
+
+        a:link, a:visited {
+            color: $accent;
+            text-decoration: none;
+        }
+
+        &:hover, a:hover {
+            color: $hover;
+            border-color: $hover;
+        }
+    }
+}
+
+// classes
+
+.bin-name {
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.function-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+}

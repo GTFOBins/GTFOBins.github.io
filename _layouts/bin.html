@@ -1,0 +1,46 @@
+---
+layout: common
+---
+
+{% capture bin_name %}{% include get_bin_name path=page.path %}{% endcapture %}
+
+{% include page_title.html title=bin_name %}
+
+{% include function_list.html bin=page %}
+
+{{ page.description | markdownify }}
+
+{% for function in page.functions %}
+
+{% assign function_name = function[0] %}
+{% assign examples = function[1] %}
+
+<h2 id="{{ function_name }}" class="function-name">
+{{- site.data.functions[function_name].label -}}
+</h2>
+
+{{ site.data.functions[function_name].description | markdownify }}
+
+{% for example in examples %}
+
+<div class="example">
+{{ example.description | markdownify }}
+
+{% capture code %}
+{%- if function_name == 'suid-enabled' or function_name == 'suid-limited' %}
+cp $(which {{ bin_name }}) .
+sudo chown 0 ./{{ bin_name }}
+sudo chmod +s ./{{ bin_name }}
+{% endif %}
+{{ example.code }}
+{% endcapture %}
+
+<pre><code>
+{{- code | strip -}}
+</code></pre>
+
+</div>
+
+{% endfor %}
+
+{% endfor %}
