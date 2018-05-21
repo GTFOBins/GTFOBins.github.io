@@ -3,7 +3,7 @@ layout: page
 title: GTFOBins
 ---
 
-GTFOBins is a curated list of Unix binaries that can be leveraged by an attacker to bypass system security restrictions.
+GTFOBins is a curated list of Unix binaries that can be exploited by an attacker to bypass local security restrictions.
 
 This was inspired by the [LOLBins and LOLScripts](https://github.com/api0cradle/LOLBAS) project for Windows environment.
 
