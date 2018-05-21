@@ -12,7 +12,7 @@ suid-enabled:
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. Its functioning depends on the default operating systems system shell and tipically works only on Debian Linux.
+  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. Its functioning depends on if the default operating systems system shell drop the SUID privileges, and usually only works on Debian Linux.
 
 sudo-enabled:
   label: Sudo
