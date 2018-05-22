@@ -104,7 +104,29 @@ a:hover {
     }
 }
 
-// classes
+// bin examples
+
+.examples {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    counter-reset: item;
+
+    .example:not(:only-child) {
+        display: table-row;
+
+        &:before {
+            display: table-cell;
+            font-size: 0.8rem;
+            width: 2em;
+            text-align: center;
+            counter-increment: item;
+            content: counter(item) ".";
+        }
+    }
+}
+
+// other classes
 
 .bin-name {
     font-family: monospace;
@@ -114,4 +136,13 @@ a:hover {
 .function-name {
     font-size: 1.4rem;
     font-weight: bold;
+}
+
+.github-buttons {
+    float: right;
+
+    // avoid displaying the link text during loading
+    a.github-button {
+        visibility: hidden;
+    }
 }
