@@ -12,11 +12,11 @@ suid-enabled:
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. It only works if the default system shell doesn't drop the SUID privileges, which is usually only valid for Debian Linux systems.
+  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. This works if the default system shell doesn't drop the SUID privileges, which is usually only valid for Debian Linux systems.
 
 sudo-enabled:
   label: Sudo
-  description: It runs in privileged contexts and may be used to escalate or maintain privileges if enabled on `sudo`.
+  description: It runs in privileged context and may be used to escalate or maintain privileges if enabled on `sudo`.
 
 download:
   label: Download
