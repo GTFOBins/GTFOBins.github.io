@@ -21,6 +21,8 @@ layout: common
 
 {{ site.data.functions[function_name].description | markdownify }}
 
+<div class="examples">
+
 {% for example in examples %}
 
 <div class="example">
@@ -42,5 +44,7 @@ sudo chmod +s ./{{ bin_name }}
 </div>
 
 {% endfor %}
+
+</div>
 
 {% endfor %}
