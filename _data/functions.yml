@@ -37,3 +37,11 @@ reverse-shell:
 load-library:
   label: Library load
   description: It loads shared libraries that may be used to run code in the binary execution context.
+
+bind-shell-non-interactive:
+  label: Non-interactive bind shell
+  description: It can bind a non-interactive shell to a local port to allow remote network access.
+
+reverse-shell-non-interactive:
+  label: Non-interactive reverse shell
+  description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
