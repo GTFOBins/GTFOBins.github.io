@@ -57,7 +57,8 @@
  });
 
  addEventListener('keydown', function (event) {
-     if (event.key.toLowerCase().match(/^[\/a-z]$/)) {
+     if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
+         !(event.ctrlKey || event.altKey || event.metaKey)) {
          searchBox.focus();
      }
  });
