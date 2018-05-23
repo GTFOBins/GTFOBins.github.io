@@ -1,4 +1,4 @@
-<input id="bin-search" type="text" placeholder="Filter by name, just start typing..."/>
+<input id="bin-search" type="text" placeholder="Filter binaries by name (e.g., 'ftp') or by function (e.g., '/shell')"/>
 
 <div id="bin-table-wrapper">
 <table id="bin-table">
@@ -33,11 +33,19 @@
 
  searchBox.addEventListener('input', function () {
      var query = searchBox.value.toLowerCase().trim();
+     var queryType = query[0];
      var noResults = true;
 
+     if (queryType === '/') {
+         query = query.slice(1);
+     }
+
      document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
-         var binName = row.firstElementChild.firstElementChild.innerText;
-         if (binName.indexOf(query) !== -1) {
+         var binName = row.children[0].firstElementChild.innerText.toLowerCase();
+         var functions = row.children[1].firstElementChild.innerText.toLowerCase();
+         var against = (queryType === '/' ? functions : binName);
+
+         if (against.indexOf(query) !== -1) {
              row.style.display = '';
              noResults = false;
          } else {
@@ -49,7 +57,7 @@
  });
 
  addEventListener('keydown', function (event) {
-     if (event.key.toLowerCase().match(/^[a-z]$/)) {
+     if (event.key.toLowerCase().match(/^[\/a-z]$/)) {
          searchBox.focus();
      }
  });
