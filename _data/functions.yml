@@ -8,11 +8,11 @@ exec-non-interactive:
 
 suid-enabled:
   label: SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor.
+  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. The `-p` option may be useless or even wrong for certain distributions like Debian that runs in privileged mode by default.
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or  maintain the privileges working as a SUID backdoor. This works if the default system shell doesn't drop the SUID privileges, which is usually only valid for Debian Linux systems.
+  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. This works if the default system shell doesn't drop the SUID privileges, which is usually only valid for Debian Linux systems (if that's the case don't use the `-p` option).
 
 sudo-enabled:
   label: Sudo
