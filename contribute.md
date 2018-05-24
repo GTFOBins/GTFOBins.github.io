@@ -37,9 +37,10 @@ Vendor software is accepted as well as standard Unix binaries. Binaries and tech
 Before sending a pull request of a new binary or function, ensure the following:
 
 1. Verify the function works on at least one type of modern Unix system.
-2. Classifying SUID-related functions may be tricky because they depend on how the default shell behaves on different systems (i.e. Ubuntu vs. Debian) and how the external command is called (i.e. `exec()` family vs. `system()`). Check how the binary behaves:
-   - The function is considered `suid-enabled` if runs external commands with SUID privileges on Ubuntu Linux.
-   - The function is considered `suid-limited` if runs external commands with SUID privileges on Debian but it drops the privileges on Ubuntu Linux.
+2. Classifying SUID-related functions is tricky because they depend on the default shell (i.e. Debian `/bin/sh` doesn't drop the privileges, other Linux default shells do it) and on how the external command is called (i.e. `exec()` family vs. `system()` calls). Here an helpful check:
+   - The function is `suid-enabled` if runs external commands on Ubuntu Linux maintaining the SUID privileges.
+   - The function is `suid-limited` if runs external commands on Debian maintaining the SUID privileges, but it drops them on Ubuntu Linux.
+   - The function is not `suid-*` flagged if drops the privileges in Debian Linux.
 3. Verify `sudo-enabled` function runs external commands under the `sudo` privileged context.
 
 Pull requests adding new functions in `_data/functions.yml` are allowed and subjected to project maintainers vetting.
