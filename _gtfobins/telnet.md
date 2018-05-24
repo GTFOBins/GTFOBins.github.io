@@ -32,5 +32,5 @@ functions:
         ./telnet $RHOST $RPORT
         ^]
         !/bin/sh
-      
+
 ---
