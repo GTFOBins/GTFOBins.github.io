@@ -14,5 +14,5 @@ functions:
   suid-limited:
     - code: |-
         ./less /etc/profile
-        !/bin/sh -p
+        !/bin/sh
 ---

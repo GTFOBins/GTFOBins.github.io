@@ -11,5 +11,5 @@ functions:
   suid-limited:
     - code: |-
         ./ed
-        !/bin/sh -p
+        !/bin/sh
 ---

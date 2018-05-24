@@ -11,5 +11,5 @@ functions:
   suid-limited:
     - code: |-
         TERM= ./more /etc/profile
-        !/bin/sh -p
+        !/bin/sh
 ---

