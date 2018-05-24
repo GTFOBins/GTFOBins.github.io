@@ -46,11 +46,29 @@ a:hover {
     color: $hover;
 }
 
-// fragment targets
+// permalink on headings
 
-*:target {
-    border-left: 5px solid $accent;
-    padding-left: 5px;
+h2, h3, h4, h5, h5 {
+    .permalink {
+        margin-left: 5px;
+        text-decoration: none;
+        visibility: hidden;
+
+        &::before {
+            content: "#";
+        }
+    }
+
+    &:target {
+        border-left: 5px solid $accent;
+        padding-left: 5px;
+    }
+
+    &:hover {
+        .permalink {
+            visibility: visible;
+        }
+    }
 }
 
 // binary list and search
