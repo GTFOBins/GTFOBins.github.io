@@ -3,21 +3,21 @@ functions:
   exec-non-interactive:
     - code: |
         TF=$(mktemp)
-        CMD="touch /tmp/unrestricted"
+        CMD="id"
         echo "$CMD" > "$TF"
         chmod +x "$TF"
         scp -S $TF x y:
   sudo-enabled:
     - code: |
         TF=$(mktemp)
-        CMD="touch /tmp/unrestricted"
+        CMD="id"
         echo "$CMD" > "$TF"
         chmod +x "$TF"
         sudo scp -S $TF x y:
   suid-limited:
     - code: |
         TF=$(mktemp)
-        CMD="touch /tmp/unrestricted"
+        CMD="id"
         echo "$CMD" > "$TF"
         chmod +x "$TF"
         ./scp -S $TF a b:
