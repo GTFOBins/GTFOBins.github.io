@@ -5,9 +5,7 @@ title: Contribute
 
 ## Structure
 
-Each GTFO binary is defined in a file in the `_gtfobins/` folder named as `<binary name>.md`, such file consists only of a [YAML] front matter which describes the binary and its functions.
-
-[YAML]: http://yaml.org/
+Each GTFO binary is defined in a file in the [`_gtfobins/`] folder named as `<binary name>.md`, such file consists only of a [YAML] front matter which describes the binary and its functions.
 
 The full syntax is the following:
 
@@ -25,9 +23,9 @@ functions:
   ...
 ```
 
-Where `FUNCTION` is one of the values described in the `_data/functions.yml` file.
+Where `FUNCTION` is one of the values described in the [`_data/functions.yml`] file.
 
-Feel free to use any file in the `_gtfobins/` folder as an example.
+Feel free to use any file in the [`_gtfobins/`] folder as an example.
 
 Pull request process
 --------------------
@@ -43,4 +41,8 @@ Before sending a pull request of a new binary or function, ensure the following:
    - The function is not `suid-*` flagged if drops the privileges in Debian Linux.
 3. Verify `sudo-enabled` function runs external commands under the `sudo` privileged context.
 
-Pull requests adding new functions in `_data/functions.yml` are allowed and subjected to project maintainers vetting.
+Pull requests adding new functions in [`_data/functions.yml`] are allowed and subjected to project maintainers vetting.
+
+[YAML]: http://yaml.org/
+[`_gtfobins/`]: https://github.com/GTFOBins/GTFOBins.github.io/tree/master/_gtfobins
+[`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml
