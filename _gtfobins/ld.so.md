@@ -7,7 +7,7 @@ description: |
   /lib64/ld-linux-x86-64.so.2
   ```
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: /lib/ld.so /bin/sh
   sudo-enabled:
     - code: sudo /lib/ld.so /bin/sh

@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: csh
   sudo-enabled:
     - code: sudo csh

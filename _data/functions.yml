@@ -1,9 +1,9 @@
-exec-interactive:
-  label: Interactive
+execute-interactive:
+  label: Interactive execute
   description: It executes interactive commands that may be exploited to break out from restricted shells.
 
-exec-non-interactive:
-  label: Non-interactive
+execute-non-interactive:
+  label: Non-interactive execute
   description: It executes non-interactive commands that may be exploited to break out from restricted shells.
 
 suid-enabled:
@@ -26,17 +26,13 @@ upload:
   label: Upload
   description: It can exfiltrate files on the network.
 
-bind-shell:
-  label: Bind shell
+bind-shell-interactive:
+  label: Interactive bind shell
   description: It can bind a shell to a local port to allow remote network access.
 
-reverse-shell:
-  label: Reverse shell
+reverse-shell-interactive:
+  label: Interactive reverse shell
   description: It can send back a reverse shell to a listening attacker to open a remote network access.
-
-load-library:
-  label: Library load
-  description: It loads shared libraries that may be used to run code in the binary execution context.
 
 bind-shell-non-interactive:
   label: Non-interactive bind shell
@@ -45,3 +41,7 @@ bind-shell-non-interactive:
 reverse-shell-non-interactive:
   label: Non-interactive reverse shell
   description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
+
+load-library:
+  label: Library load
+  description: It loads shared libraries that may be used to run code in the binary execution context.

@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: ash
   sudo-enabled:
     - code: sudo ash

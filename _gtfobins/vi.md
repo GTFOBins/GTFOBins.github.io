@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: vi -c ':!/bin/sh'
     - code: |
         vi

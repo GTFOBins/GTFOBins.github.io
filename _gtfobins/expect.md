@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: expect -c 'spawn /bin/sh;interact'
   sudo-enabled:
     - code: sudo expect -c 'spawn /bin/sh;interact'

@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: |
         TERM= more /etc/profile
         !/bin/sh

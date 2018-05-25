@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: strace -o /dev/null /bin/sh
   sudo-enabled:
     - code: sudo strace -o /dev/null /bin/sh

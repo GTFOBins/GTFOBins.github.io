@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-non-interactive:
+  execute-non-interactive:
     - code: |
         TF=$(mktemp)
         CMD="id"

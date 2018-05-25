@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: dash
   sudo-enabled:
     - code: sudo dash

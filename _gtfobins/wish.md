@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: |
         wish
         exec /bin/sh <@stdin >@stdout 2>@stderr

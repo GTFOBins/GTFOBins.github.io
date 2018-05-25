@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: taskset 1 /bin/sh
   sudo-enabled:
     - code: sudo taskset 1 /bin/sh

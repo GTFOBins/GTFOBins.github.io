@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: rpmquery --eval '%{lua:posix.exec("/bin/sh")}'
   sudo-enabled:
     - code: sudo rpmquery --eval '%{lua:posix.exec("/bin/sh")}'

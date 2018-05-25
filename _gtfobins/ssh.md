@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - description: Reconnecting may help bypassing restricted shells.
       code: ssh localhost /bin/bash --noprofile --norc
   download:

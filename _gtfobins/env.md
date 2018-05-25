@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: env /bin/sh
   sudo-enabled:
     - code: sudo env /bin/sh

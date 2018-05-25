@@ -1,6 +1,6 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: find . -exec /bin/sh \; -quit
   sudo-enabled:
     - code: sudo find . -exec /bin/sh \; -quit

