@@ -1,18 +1,18 @@
 execute-interactive:
   label: Interactive execute
-  description: It executes interactive commands that may be exploited to break out from restricted shells.
+  description: It executes interactive commands that may be used to break out from restricted shells.
 
 execute-non-interactive:
   label: Non-interactive execute
-  description: It executes non-interactive commands that may be exploited to break out from restricted shells.
+  description: It executes non-interactive commands that may be used to break out from restricted shells.
 
 suid-enabled:
   label: SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. (Note that passing the `-p` option to the shell may be useless or even wrong for certain distributions like Debian that run in privileged mode by default.)
+  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. Omit the shell `-p` option on systems like Debian that allow to run a SUID shell by default.
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. This works if the default system shell doesn't drop the SUID privileges, which is usually only valid for Debian Linux systems.
+  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. This only works on systems like Debian that allow to run a SUID shell by default.
 
 sudo-enabled:
   label: Sudo
