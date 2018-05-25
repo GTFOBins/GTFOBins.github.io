@@ -90,6 +90,10 @@ h2, h3, h4, h5, h5 {
         text-align: left;
     }
 
+    tbody tr:hover {
+        background: $lighter;
+    }
+
     #search-message {
         text-align: center;
         padding: 1em;
