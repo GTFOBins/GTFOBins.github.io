@@ -5,8 +5,7 @@ functions:
   sudo-enabled:
     - code: watch /usr/bin/id
   suid-enabled:
-    - description: |-
-        If present, maintain the SUID privileges with the `-x` option that uses `exec` instead of `sh -c`.
+    - description: This keeps the SUID privileges only if the `-x` option is present.
       code: watch -x /usr/bin/id
   suid-limited:
     - code: watch /usr/bin/id
