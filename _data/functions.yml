@@ -8,7 +8,7 @@ execute-non-interactive:
 
 suid-enabled:
   label: SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. Omit the shell `-p` option on systems like Debian that allow to run a SUID shell by default.
+  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems like Debian that allow to run a SUID shell by default.
 
 suid-limited:
   label: Limited SUID
