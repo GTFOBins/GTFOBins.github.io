@@ -6,7 +6,7 @@ functions:
     - code: sudo watch /usr/bin/id
   suid-enabled:
     - description: This keeps the SUID privileges only if the `-x` option is present.
-      code: watch -x /usr/bin/id
+      code: ./watch -x /usr/bin/id
   suid-limited:
-    - code: watch /usr/bin/id
+    - code: ./watch /usr/bin/id
 ---
