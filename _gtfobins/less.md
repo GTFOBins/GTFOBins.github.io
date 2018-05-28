@@ -15,4 +15,7 @@ functions:
     - code: |-
         ./less /etc/profile
         !/bin/sh
+  file-read: 
+    - code: |
+        less file_to_read
 ---

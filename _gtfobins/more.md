@@ -12,4 +12,7 @@ functions:
     - code: |-
         TERM= ./more /etc/profile
         !/bin/sh
+  file-read: 
+    - code: |
+        more file_to_read
 ---
