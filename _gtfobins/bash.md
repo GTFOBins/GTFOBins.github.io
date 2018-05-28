@@ -48,5 +48,5 @@ functions:
     - description: It trims trailing newlines.
       code: |
         export LFILE=file_to_read
-        bash -c $'read -r -d \x04 a < "$LFILE"; echo "$a"'
+        bash -c $'read -r -d \x04 < "$LFILE"; echo "$REPLY"'
 ---
