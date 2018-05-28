@@ -17,4 +17,9 @@ functions:
         RPATH=where_to_save
         LPATH=file_to_send
         ssh $HOST "cat > $RPATH" < $LPATH
+  file-read:
+    - description: Read lines from text files (error-based approach).
+    - code: |
+        LFILE=file_to_read
+        ssh -F $LFILE localhost
 ---
