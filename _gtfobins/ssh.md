@@ -2,7 +2,7 @@
 functions:
   execute-interactive:
     - description: Reconnecting may help bypassing restricted shells.
-      code: ssh localhost /bin/bash --noprofile --norc
+      code: ssh localhost $SHELL --noprofile --norc
   download:
     - description: Fetch a remote file from a SSH server.
       code: |
