@@ -49,4 +49,8 @@ functions:
       code: |
         export LFILE=file_to_read
         bash -c $'read -r -d \x04 < "$LFILE"; echo "$REPLY"'
+  file-write:
+    - code: |
+        export LFILE=file_to_write
+        bash -c 'echo data > $LFILE'
 ---
