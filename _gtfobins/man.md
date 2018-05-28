@@ -12,7 +12,7 @@ functions:
     - code: |-
         ./man man
         !/bin/sh
-  file-read: 
+  file-read:
     - code: |
         man file_to_read
 ---

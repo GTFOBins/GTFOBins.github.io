@@ -6,10 +6,10 @@ functions:
     - code: sudo emacs -Q -nw --eval '(term "/bin/sh")'
   suid-enabled:
     - code: ./emacs -Q -nw --eval '(term "/bin/sh -p")'
-  file-read: 
+  file-read:
     - code: |
         emacs file_to_read
-  file-write: 
+  file-write:
     - code: |
         emacs file_to_write
         C-x C-s

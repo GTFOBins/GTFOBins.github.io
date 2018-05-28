@@ -12,10 +12,10 @@ functions:
     - code: |-
         ./ed
         !/bin/sh
-  file-read: 
+  file-read:
     - code: |
         ed file_to_read
-  file-write: 
+  file-write:
     - code: |
         ed file_to_write
         w
