@@ -31,5 +31,4 @@ functions:
     - code: |
         LFILE=file_to_write
         awk -v LFILE=$LFILE 'BEGIN { print "data" > LFILE }'
-
 ---
