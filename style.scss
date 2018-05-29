@@ -7,10 +7,20 @@ $hover: #ff0000;
 
 // layout
 
-@media (min-width: 1000px) {
+$column-width: 800px;
+$grace-space: 200px;
+$layout-break: "(min-width: #{$column-width + $grace-space})";
+
+@media #{$layout-break} {
     body {
-        width: 800px;
+        width: $column-width;
         margin: 0 auto;
+    }
+}
+
+@media not all and #{$layout-break} {
+    .github-corner {
+        display: none;
     }
 }
 
