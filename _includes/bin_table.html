@@ -23,23 +23,20 @@
 </div>
 
 <script>
- var searchBox = document.querySelector('#bin-search');
- var searchMessage = document.querySelector('#search-message');
- searchMessage.style.display = 'none';
+ function filter(query) {
+     // consistently update URL and search box
+     var searchBox = document.getElementById('bin-search');
+     searchBox.value = query;
+     location.hash = query;
 
- // ensure height during filtering
- var binTableWrapper = document.querySelector('#bin-table-wrapper');
- binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
-
- searchBox.addEventListener('input', function () {
-     var query = searchBox.value.toLowerCase().trim();
+     // determine the query type
      var queryType = query[0];
-     var noResults = true;
-
      if (queryType === '/') {
          query = query.slice(1);
      }
 
+     // filter rows
+     var noResults = true;
      document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
          var binName = row.children[0].firstElementChild.innerText.toLowerCase();
          var functions = row.children[1].firstElementChild.innerText.toLowerCase();
@@ -53,14 +50,38 @@
          }
      });
 
-     searchMessage.style.display = noResults ? '' : 'none';
- });
+     // update the search message visibility
+     var searchMessage = document.getElementById('search-message');
+     searchMessage.style.display = noResults ? 'initial' : 'none';
+ }
 
- addEventListener('keydown', function (event) {
-     if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
-         !(event.ctrlKey || event.altKey || event.metaKey)) {
+ (function () {
+     var searchBox = document.getElementById('bin-search');
+
+     // ensure height during filtering
+     var binTableWrapper = document.getElementById('bin-table-wrapper');
+     binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
+
+     // handle user input
+     searchBox.addEventListener('input', function () {
+         var query = searchBox.value.toLowerCase().trim();
+         filter(query);
+     });
+
+     // focus search box on keydown
+     addEventListener('keydown', function (event) {
+         if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
+             !(event.ctrlKey || event.altKey || event.metaKey)) {
+             searchBox.focus();
+         }
+     });
+
+     // filter on load according to the URL
+     var query = decodeURIComponent(location.hash.slice(1));
+     filter(query);
+     if (query) {
+         searchBox.value = query;
          searchBox.focus();
      }
- });
-
+ })();
 </script>
