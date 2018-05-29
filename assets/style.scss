@@ -185,7 +185,8 @@ h2, h3, h4, h5, h5 {
 }
 
 .github-buttons {
-    float: right;
+    display: inline-block;
+    margin-left: 10px;
 
     // avoid displaying the link text during loading
     a.github-button {
