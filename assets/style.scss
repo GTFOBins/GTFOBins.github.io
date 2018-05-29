@@ -16,6 +16,10 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
         width: $column-width;
         margin: 40px auto;
     }
+
+    p {
+        text-align: justify;
+    }
 }
 
 @media not all and #{$layout-break} {
@@ -160,6 +164,15 @@ h2, h3, h4, h5, h5 {
 }
 
 // other classes
+
+.logo {
+    $margin: 20px;
+    float: right;
+    width: 100px;
+    height: 100px;
+    margin-left: $margin;
+    margin-bottom: $margin;
+}
 
 .bin-name {
     font-family: monospace;
