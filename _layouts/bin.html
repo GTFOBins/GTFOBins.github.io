@@ -16,17 +16,14 @@ layout: common
 {% assign examples = function[1] %}
 
 <h2 id="{{ function_name }}" class="function-name">
-{{- site.data.functions[function_name].label -}}
+    {{- site.data.functions[function_name].label -}}
 </h2>
 
 {{ site.data.functions[function_name].description | markdownify }}
 
 <div class="examples">
 
-{% for example in examples %}
-
-<div class="example">
-{{ example.description | markdownify }}
+    {% for example in examples %}
 
 {% capture code %}
 {%- if function_name == 'suid-enabled' or function_name == 'suid-limited' %}
@@ -37,13 +34,12 @@ sudo chmod +s ./{{ bin_name }}
 {{ example.code }}
 {% endcapture %}
 
-<pre><code>
-{{- code | strip -}}
-</code></pre>
+    <div class="example">
+        {{ example.description | markdownify }}
+        <pre><code>{{- code | strip -}}</code></pre>
+    </div>
 
-</div>
-
-{% endfor %}
+    {% endfor %}
 
 </div>
 

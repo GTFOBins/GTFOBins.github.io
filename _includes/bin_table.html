@@ -1,25 +1,25 @@
 <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries by name (e.g., 'ftp') or by function (e.g., '/shell')"/>
 
 <div id="bin-table-wrapper">
-<table id="bin-table">
-<thead>
-<tr>
-    <th>Binary</th>
-    <th>Functions</th>
-</tr>
-</thead>
-<tbody>
-{% for file in site.gtfobins %}
-<tr>
-    <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name path=file.path %}</a></td>
-    <td>{% include function_list.html bin=file %}</td>
-</tr>
-{% endfor %}
-</tbody>
-<tfoot>
-<tr><td id="search-message" colspan="2">No binary matches...</td></tr>
-</tfoot>
-</table>
+    <table id="bin-table">
+        <thead>
+            <tr>
+                <th>Binary</th>
+                <th>Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in site.gtfobins %}
+            <tr>
+                <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name path=file.path %}</a></td>
+                <td>{% include function_list.html bin=file %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><td id="search-message" colspan="2">No binary matches...</td></tr>
+        </tfoot>
+    </table>
 </div>
 
 <script>
