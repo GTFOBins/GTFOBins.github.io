@@ -24,9 +24,7 @@
 
 <script>
  function filter(query) {
-     // consistently update URL and search box
-     var searchBox = document.getElementById('bin-search');
-     searchBox.value = query;
+     // consistently update the URL
      location.hash = query;
 
      // determine the query type
