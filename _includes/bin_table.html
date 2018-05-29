@@ -37,9 +37,11 @@
      var noResults = true;
      document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
          var binName = row.children[0].firstElementChild.innerText.toLowerCase();
-         var functions = row.children[1].firstElementChild.innerText.toLowerCase();
-         var against = (queryType === '/' ? functions : binName);
+         var functions = Array.from(row.children[1].firstElementChild.children)
+                              .map(function (x) { return x.innerText })
+                              .join('\n').toLowerCase();
 
+         var against = (queryType === '/' ? functions : binName);
          if (against.indexOf(query) !== -1) {
              row.style.display = '';
              noResults = false;
