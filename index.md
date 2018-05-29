@@ -11,6 +11,6 @@ This was inspired by the [LOLBins](https://github.com/api0cradle/LOLBAS) project
 
 GTFOBins aims to be a shared project where everyone can [contribute](/contribute/) with additional binaries and techniques.
 
-## List of GTFOBins
+## List of `{{ site.gtfobins | size }}` GTFOBins
 
 {% include bin_table.html %}
