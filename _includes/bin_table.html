@@ -66,11 +66,18 @@
          filter(query);
      });
 
-     // focus search box on keydown
+     // handle shortcuts
      addEventListener('keydown', function (event) {
+         // focus search box on valid keydown
          if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
              !(event.ctrlKey || event.altKey || event.metaKey)) {
              searchBox.focus();
+         }
+         // clear filter on escape
+         else if (event.key === 'Escape') {
+             searchBox.value = '';
+             searchBox.focus();
+             filter('');
          }
      });
 
