@@ -8,15 +8,15 @@ execute-non-interactive:
 
 suid-enabled:
   label: SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems like Debian that allow to run a SUID shell by default.
+  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems like Debian that allow to run a SUID shell by default.
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to escalate or maintain the privileges working as a SUID backdoor. This only works on systems like Debian that allow to run a SUID shell by default.
+  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. This only works on systems like Debian that allow to run a SUID shell by default.
 
 sudo-enabled:
   label: Sudo
-  description: It runs in privileged context and may be used to escalate or maintain privileges if enabled on `sudo`.
+  description: It runs in privileged context and may be used to access the file system, escalate or maintain access with elevated privileges if enabled on `sudo`.
 
 download:
   label: Download
@@ -48,8 +48,8 @@ load-library:
 
 file-read:
   label: File read
-  description: It reads files and may be used to do privileged reads or disclose files outside a restricted filesystem.
+  description: It reads files and may be used to do privileged reads or disclose files outside a restricted file system.
 
 file-write:
   label: File write
-  description: It writes files and may be used to do privileged writes or write files outside a restricted filesystem.
+  description: It writes files and may be used to do privileged writes or write files outside a restricted file system.
