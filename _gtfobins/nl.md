@@ -1,5 +1,7 @@
 ---
 functions:
   file-read:
-    - code: nl -bn -w1 file_to_read
+    - code: |
+        LFILE=file_to_read
+        nl -bn -w1 $LFILE
 ---
