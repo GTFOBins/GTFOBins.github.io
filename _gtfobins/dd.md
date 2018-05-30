@@ -1,7 +1,11 @@
 ---
 functions:
   file-read:
-    - code: dd if=file_to_read
+    - code: |
+        LFILE=file_to_read
+        dd if=LFILE
   file-write:
-    - code: echo "data" | dd of=file_to_write
+    - code: |
+        LFILE=file_to_write
+        echo "data" | dd of=$LFILE
 ---
