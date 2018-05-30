@@ -1,7 +1,8 @@
 ---
 functions:
   file-read:
-    - code: |
+    - description: This prepends a leading space to each line.
+      code: |
         LFILE=file_to_read
-        nl -bn -w1 $LFILE
+        nl -bn -w1 -s '' $LFILE
 ---
