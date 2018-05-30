@@ -2,22 +2,22 @@
 functions:
   execute-non-interactive:
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r 'system(getenv("CMD"));'
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r 'passthru(getenv("CMD"));'
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r 'print(shell_exec(getenv("CMD")));'
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r '$r=array(); exec(getenv("CMD"), $r); print(join(\"\\n\",$r));'
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r '$h=@popen(getenv("CMD"),"r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
     - code: |
-        export CMD="ls /"
+        export CMD="id"
         php -r '$p = array(array("pipe","r"),array("pipe","w"),array("pipe", "w"));$h = @proc_open(getenv("CMD"), $p, $pipes);if($h&&$pipes){while(!feof($pipes[1])) echo(fread($pipes[1],4096));while(!feof($pipes[2])) echo(fread($pipes[2],4096));fclose($pipes[0]);fclose($pipes[1]);fclose($pipes[2]);proc_close($h);}'
   sudo-enabled:
     - code: |
