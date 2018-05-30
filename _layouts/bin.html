@@ -28,8 +28,7 @@ layout: common
 {% capture code %}
 {%- if function_name == 'suid-enabled' or function_name == 'suid-limited' %}
 cp $(which {{ bin_name }}) .
-sudo chown 0 ./{{ bin_name }}
-sudo chmod +s ./{{ bin_name }}
+sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
 {% endif %}
 {{ example.code }}
 {% endcapture %}
