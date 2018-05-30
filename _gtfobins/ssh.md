@@ -18,7 +18,7 @@ functions:
         LPATH=file_to_send
         ssh $HOST "cat > $RPATH" < $LPATH
   file-read:
-    - description: Read lines from text files (error-based approach).
+    - description: The read file content is corrupted by error prints.
       code: |
         LFILE=file_to_read
         ssh -F $LFILE localhost
