@@ -29,8 +29,7 @@ Where `FUNCTION` is one of the values described in the [`_data/functions.yml`] f
 
 Feel free to use any file in the [`_gtfobins/`] folder as an example.
 
-Pull request process
---------------------
+## Pull request process
 
 Vendor software is accepted as well as standard Unix binaries. Binaries and techniques that only works on certain operating systems and versions are accepted and such limitations shall be noted in the `description` field.
 
