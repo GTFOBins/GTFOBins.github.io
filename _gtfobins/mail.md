@@ -9,7 +9,7 @@ functions:
         sudo mail -f /etc/hosts
         !/bin/sh
   suid-limited:
-    - code: |-
+    - code: |
         ./mail -f /etc/hosts
         !/bin/sh
 ---

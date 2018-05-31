@@ -9,7 +9,7 @@ functions:
         sudo man man
         !/bin/sh
   suid-limited:
-    - code: |-
+    - code: |
         ./man man
         !/bin/sh
   file-read:

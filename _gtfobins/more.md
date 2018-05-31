@@ -9,7 +9,7 @@ functions:
         TERM= sudo -E more /etc/profile
         !/bin/sh
   suid-limited:
-    - code: |-
+    - code: |
         TERM= ./more /etc/profile
         !/bin/sh
   file-read:

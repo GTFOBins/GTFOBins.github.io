@@ -12,7 +12,7 @@ functions:
         sudo less /etc/profile
         !/bin/sh
   suid-limited:
-    - code: |-
+    - code: |
         ./less /etc/profile
         !/bin/sh
   file-read:

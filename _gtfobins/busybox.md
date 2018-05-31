@@ -17,8 +17,8 @@ functions:
         LFILE=file_to_write
         busybox sh -c 'echo "data" > $LFILE'
   upload:
-  - description: Serve files in the local folder running an HTTP server.
-    code: |
-      export LPORT=12345
-      busybox httpd -f -p $LPORT -h .
+    - description: Serve files in the local folder running an HTTP server.
+      code: |
+        export LPORT=12345
+        busybox httpd -f -p $LPORT -h .
 ---

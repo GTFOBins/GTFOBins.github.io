@@ -9,7 +9,7 @@ functions:
         sudo ed
         !/bin/sh
   suid-limited:
-    - code: |-
+    - code: |
         ./ed
         !/bin/sh
   file-read:

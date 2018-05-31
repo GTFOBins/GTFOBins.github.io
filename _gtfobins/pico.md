@@ -20,7 +20,7 @@ functions:
         ^T
   suid-enabled:
     - description: After running this exit the editor to see the command output.
-      code: |-
+      code: |
         COMMAND=id
         TF=$(mktemp)
         echo $'#!/bin/sh -p\n'"$COMMAND" > $TF

