@@ -12,7 +12,7 @@ suid-enabled:
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. This only works on systems like Debian that allow to run a SUID shell by default.
+  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. Running `/bin/sh` only works on Debian systems that allow SUID shell execution by default.
 
 sudo-enabled:
   label: Sudo
