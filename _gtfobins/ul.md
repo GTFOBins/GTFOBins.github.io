@@ -1,5 +1,5 @@
 ---
-description: The read file content is corrupted by replacing the occurrences of underscores to terminal sequences.
+description: The read file content is corrupted by replacing occurrences of `$'\b_'` to terminal sequences and by converting tabs to spaces.
 functions:
   sudo-enabled:
     - code: |
