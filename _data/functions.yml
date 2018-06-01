@@ -1,55 +1,84 @@
 execute-interactive:
   label: Interactive execute
-  description: It executes interactive commands that may be used to break out from restricted shells.
+  description: |
+    It executes interactive commands that may be used to break out from
+    restricted shells.
 
 execute-non-interactive:
   label: Non-interactive execute
-  description: It executes non-interactive commands that may be used to break out from restricted shells.
+  description: |
+    It executes non-interactive commands that may be used to break out from
+    restricted shells.
 
 suid-enabled:
   label: SUID
-  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems like Debian that allow to run a SUID shell by default.
+  description: |
+    It runs with the SUID bit set and may be exploited to access the file
+    system, escalate or maintain access with elevated privileges working as a
+    SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems
+    like Debian that allow to run a SUID shell by default.
 
 suid-limited:
   label: Limited SUID
-  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. Running `/bin/sh` only works on Debian systems that allow SUID shell execution by default.
+  description: |
+    It runs with the SUID bit set and may be exploited to access the file
+    system, escalate or maintain access with elevated privileges working as a
+    SUID backdoor. Running `/bin/sh` only works on Debian systems that allow
+    SUID shell execution by default.
 
 sudo-enabled:
   label: Sudo
-  description: It runs in privileged context and may be used to access the file system, escalate or maintain access with elevated privileges if enabled on `sudo`.
+  description: |
+    It runs in privileged context and may be used to access the file system,
+    escalate or maintain access with elevated privileges if enabled on `sudo`.
 
 download:
   label: Download
-  description: It can download remote files.
+  description: |
+    It can download remote files.
 
 upload:
   label: Upload
-  description: It can exfiltrate files on the network.
+  description: |
+    It can exfiltrate files on the network.
 
 bind-shell-interactive:
   label: Interactive bind shell
-  description: It can bind a shell to a local port to allow remote network access.
+  description: |
+    It can bind a shell to a local port to allow remote network access.
 
 reverse-shell-interactive:
   label: Interactive reverse shell
-  description: It can send back a reverse shell to a listening attacker to open a remote network access.
+  description: |
+    It can send back a reverse shell to a listening attacker to open a remote
+    network access.
 
 bind-shell-non-interactive:
   label: Non-interactive bind shell
-  description: It can bind a non-interactive shell to a local port to allow remote network access.
+  description: |
+    It can bind a non-interactive shell to a local port to allow remote network
+    access.
 
 reverse-shell-non-interactive:
   label: Non-interactive reverse shell
-  description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
+  description: |
+    It can send back a non-interactive reverse shell to a listening attacker to
+    open a remote network access.
 
 load-library:
   label: Library load
-  description: It loads shared libraries that may be used to run code in the binary execution context.
+  description: |
+    It loads shared libraries that may be used to run code in the binary
+    execution context.
 
 file-read:
   label: File read
-  description: It reads files and may be used to do privileged reads or disclose files outside a restricted file system.
+  description: |
+    It reads files and may be used to do privileged reads or disclose files
+    outside a restricted file system.
 
 file-write:
   label: File write
-  description: It writes files and may be used to do privileged writes or write files outside a restricted file system.
+  description: |
+    It writes files and may be used to do privileged writes or write files
+    outside a restricted file system.

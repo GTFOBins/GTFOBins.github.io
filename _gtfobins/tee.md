@@ -1,5 +1,6 @@
 ---
-description: It can only append data if the destination exists.
+description: |
+  It can only append data if the destination exists.
 functions:
   sudo-enabled:
     - code: |

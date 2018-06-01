@@ -1,6 +1,7 @@
 ---
 description: |
-  `ld.so` is the Linux dynamic linker/loader, its filename and location might change across distributions. The proper path is can be obtained with:
+  `ld.so` is the Linux dynamic linker/loader, its filename and location might
+  change across distributions. The proper path is can be obtained with:
 
   ```
   $ strings /proc/self/exe | head -1

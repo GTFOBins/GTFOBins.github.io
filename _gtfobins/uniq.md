@@ -1,5 +1,6 @@
 ---
-description: The read file content is corrupted by squashing multiple adjacent lines.
+description: |
+  The read file content is corrupted by squashing multiple adjacent lines.
 functions:
   sudo-enabled:
     - code: |

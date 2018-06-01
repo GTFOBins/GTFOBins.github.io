@@ -1,5 +1,6 @@
 ---
-description: The read file content is corrupted by being sorted.
+description: |
+  The read file content is corrupted by being sorted.
 functions:
   sudo-enabled:
     - code: |
