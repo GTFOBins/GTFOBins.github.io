@@ -11,7 +11,7 @@ functions:
         export CMD="/usr/bin/id"
         sudo puppet apply -e "exec { '$CMD': logoutput => true }"
   file-read:
-    - description: The read file content is corrupted by the `diff` output format.
+    - description: The read file content is corrupted by the `diff` output format. The actual `/usr/bin/diff` command is executed.
       code: |
         export LFILE=file_to_read
         puppet filebucket -l diff /dev/null $LFILE
