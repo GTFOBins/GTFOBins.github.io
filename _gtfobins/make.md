@@ -1,4 +1,18 @@
 ---
+description: |
+  All these examples only work with GNU `make` due to the lack of support of the
+  `--eval` flag. The same can be achieved by using a proper `Makefile` of by
+  passing the content via stdin, that is:
+
+  ```
+  make -s --eval=<commands>
+  ```
+
+  becomes:
+
+  ```
+  make -s -f <(echo <commands>)
+  ```
 functions:
   execute-interactive:
     - code: |
