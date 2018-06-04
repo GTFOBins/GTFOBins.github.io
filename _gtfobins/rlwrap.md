@@ -5,7 +5,7 @@ functions:
   sudo-enabled:
     - code: sudo rlwrap /bin/sh
   suid-enabled:
-    - code: ./rlwrap -H /tmp/y /bin/sh -p
+    - code: ./rlwrap -H /dev/null /bin/sh -p
   file-write:
     - description: This adds timestamps to the output file.
       code: |
