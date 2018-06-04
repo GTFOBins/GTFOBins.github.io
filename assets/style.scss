@@ -152,10 +152,10 @@ h2, h3, h4, h5, h5 {
     margin: 0;
     padding: 0;
 
-    li:not(:only-child) {
+    li {
         display: table-row;
 
-        &:before {
+        &:not(:only-child):before {
             display: table-cell;
             font-size: 0.8rem;
             font-weight: bold;
