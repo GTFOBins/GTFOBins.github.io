@@ -1,9 +1,9 @@
 ---
 functions:
   execute-interactive:
-    - code: flock /tmp /bin/sh
+    - code: flock -u / /bin/sh
   sudo-enabled:
-    - code: sudo flock /tmp /bin/sh
+    - code: sudo flock -u / /bin/sh
   suid-enabled:
-    - code: ./flock /tmp /bin/sh -p
+    - code: ./flock -u / /bin/sh -p
 ---
