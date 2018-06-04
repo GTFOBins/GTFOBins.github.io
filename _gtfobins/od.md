@@ -7,3 +7,4 @@ functions:
     - code: |
         LFILE=file_to_read
         od -An -c -w9999 "$LFILE"
+---
