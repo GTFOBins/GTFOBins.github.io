@@ -21,7 +21,7 @@ layout: common
 
 {{ site.data.functions[function_name].description | markdownify }}
 
-<div class="examples">
+<ul class="examples">
 
     {% for example in examples %}
 
@@ -33,13 +33,13 @@ sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
 {{ example.code }}
 {% endcapture %}
 
-    <div class="example">
+    <li>
         {{ example.description | markdownify }}
         <pre><code>{{- code | strip -}}</code></pre>
-    </div>
+    </li>
 
     {% endfor %}
 
-</div>
+</ul>
 
 {% endfor %}

@@ -149,8 +149,10 @@ h2, h3, h4, h5, h5 {
     width: 100%;
     table-layout: fixed;
     counter-reset: item;
+    margin: 0;
+    padding: 0;
 
-    .example:not(:only-child) {
+    li:not(:only-child) {
         display: table-row;
 
         &:before {
