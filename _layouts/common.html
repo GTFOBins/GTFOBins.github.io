@@ -3,15 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>
-            {{ site.title }}
             {% if page.url != '/' %}
-            |
             {% if page.layout == 'bin' %}
             {{ page.title | downcase }}
             {% else %}
             {{ page.title }}
             {% endif %}
+            |
             {% endif %}
+            {{ site.title }}
         </title>
         <link rel="icon" href="/assets/logo.png">
         <link rel="stylesheet" href="/assets/style.css" type="text/css"/>
