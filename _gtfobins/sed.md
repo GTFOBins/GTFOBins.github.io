@@ -10,8 +10,9 @@ functions:
     - description: GNU version only. Also, this requires `bash`.
       code: sudo sed -n "1e /bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/sh -i'" /etc/hosts
   suid-enabled:
-    - description: GNU version only. Also, this requires `bash`.
-      code: ./sed -n "1e /bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/sh -i'" /etc/hosts
+    - code: |
+        LFILE=file_to_read
+        ./sed -e '' "$LFILE"
   file-read:
     - code: |
         LFILE=file_to_read
