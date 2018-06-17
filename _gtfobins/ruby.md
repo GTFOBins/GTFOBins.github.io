@@ -5,7 +5,7 @@ functions:
   sudo-enabled:
     - code: sudo ruby -e 'exec "/bin/sh"'
   upload:
-    - description: Serve files in the local folder running an HTTP server.
+    - description: Serve files in the local folder running an HTTP server. This requires version 1.9.2 or later.
       code: |
         export LPORT=8888
         ruby -run -e httpd . -p $LPORT

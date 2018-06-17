@@ -29,7 +29,7 @@ functions:
         CMD="/bin/sh"
         ./php -r "system('$CMD');"
   upload:
-    - description: Serve files in the local folder running an HTTP server.
+    - description: Serve files in the local folder running an HTTP server. This requires PHP version 5.4 or later.
       code: |
         LHOST=0.0.0.0
         LPORT=8888
