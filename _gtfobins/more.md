@@ -8,10 +8,9 @@ functions:
     - code: |
         TERM= sudo -E more /etc/profile
         !/bin/sh
-  suid-limited:
+  suid-enabled:
     - code: |
-        TERM= ./more /etc/profile
-        !/bin/sh
+        ./more file_to_read
   file-read:
     - code: |
         more file_to_read
