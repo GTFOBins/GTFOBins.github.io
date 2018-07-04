@@ -1,14 +1,15 @@
 ---
 functions:
   execute-interactive:
-    - code: rlwrap /bin/sh
-  sudo-enabled:
-    - code: sudo rlwrap /bin/sh
-  suid-enabled:
-    - code: ./rlwrap -H /dev/null /bin/sh -p
+  - code: rlwrap /bin/sh
   file-write:
-    - description: This adds timestamps to the output file. This relies on the external `echo` command.
-      code: |
-        LFILE=file_to_write
-        rlwrap -l "$LFILE" echo data
+  - description: This adds timestamps to the output file. This relies on the external
+      `echo` command.
+    code: |
+      LFILE=file_to_write
+      rlwrap -l "$LFILE" echo data
+  suid-enabled:
+  - code: "./rlwrap -H /dev/null /bin/sh -p"
+  sudo-enabled:
+  - code: sudo rlwrap /bin/sh
 ---

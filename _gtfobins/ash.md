@@ -1,13 +1,13 @@
 ---
 functions:
   execute-interactive:
-    - code: ash
-  sudo-enabled:
-    - code: sudo ash
-  suid-enabled:
-    - code: ./ash
+  - code: ash
   file-write:
-    - code: |
-        export LFILE=file_to_write
-        ash -c 'echo data > $LFILE'
+  - code: |
+      export LFILE=file_to_write
+      ash -c 'echo data > $LFILE'
+  suid-enabled:
+  - code: "./ash"
+  sudo-enabled:
+  - code: sudo ash
 ---

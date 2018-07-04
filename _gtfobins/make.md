@@ -5,20 +5,20 @@ description: |
   passing the content via stdin using `-f -`.
 functions:
   execute-interactive:
-    - code: |
-        COMMAND='/bin/sh'
-        make -s --eval=$'x:\n\t-'"$COMMAND"
-  sudo-enabled:
-    - code: |
-        COMMAND='/bin/sh'
-        sudo make -s --eval=$'x:\n\t-'"$COMMAND"
-  suid-enabled:
-    - code: |
-        COMMAND='/bin/sh -p'
-        ./make -s --eval=$'x:\n\t-'"$COMMAND"
+  - code: |
+      COMMAND='/bin/sh'
+      make -s --eval=$'x:\n\t-'"$COMMAND"
   file-write:
-    - description: Requires a newer GNU `make` version.
-      code: |
-        LFILE=file_to_write
-        make -s --eval="\$(file >$LFILE,data)" .
+  - description: Requires a newer GNU `make` version.
+    code: |
+      LFILE=file_to_write
+      make -s --eval="\$(file >$LFILE,data)" .
+  suid-enabled:
+  - code: |
+      COMMAND='/bin/sh -p'
+      ./make -s --eval=$'x:\n\t-'"$COMMAND"
+  sudo-enabled:
+  - code: |
+      COMMAND='/bin/sh'
+      sudo make -s --eval=$'x:\n\t-'"$COMMAND"
 ---

