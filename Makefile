@@ -1,4 +1,4 @@
-.PHONY: serve bundle
+.PHONY: serve serve-public bundle
 
 serve:
 	bundle exec jekyll serve
