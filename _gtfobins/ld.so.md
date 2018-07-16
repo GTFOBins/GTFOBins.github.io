@@ -9,9 +9,9 @@ description: |
   ```
 functions:
   execute-interactive:
-  - code: "/lib/ld.so /bin/sh"
+    - code: /lib/ld.so /bin/sh
   suid-enabled:
-  - code: "./ld.so /bin/sh -p"
+    - code: ./ld.so /bin/sh -p
   sudo-enabled:
-  - code: sudo /lib/ld.so /bin/sh
+    - code: sudo /lib/ld.so /bin/sh
 ---

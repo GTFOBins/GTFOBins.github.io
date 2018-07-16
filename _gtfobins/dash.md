@@ -1,13 +1,13 @@
 ---
 functions:
   execute-interactive:
-  - code: dash
+    - code: dash
   file-write:
-  - code: |
-      export LFILE=file_to_write
-      ash -c 'echo data > $LFILE'
+    - code: |
+        export LFILE=file_to_write
+        ash -c 'echo data > $LFILE'
   suid-enabled:
-  - code: "./dash -p"
+    - code: ./dash -p
   sudo-enabled:
-  - code: sudo dash
+    - code: sudo dash
 ---

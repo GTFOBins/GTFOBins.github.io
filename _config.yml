@@ -1,3 +1,4 @@
+---
 title: GTFOBins
 
 exclude: ['/Gemfile', '/Makefile', '/README.md', '/CONTRIBUTING.md']

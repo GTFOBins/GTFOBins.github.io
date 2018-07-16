@@ -1,4 +1,4 @@
-.PHONY: serve serve-public bundle
+.PHONY: serve serve-public bundle lint
 
 serve:
 	bundle exec jekyll serve
@@ -8,3 +8,6 @@ serve-public:
 
 bundle:
 	bundle install
+
+lint:
+	yamllint . _gtfobins/*.md

@@ -1,9 +1,9 @@
 ---
 functions:
   execute-interactive:
-  - code: zsh
+    - code: zsh
   suid-enabled:
-  - code: "./zsh"
+    - code: ./zsh
   sudo-enabled:
-  - code: sudo zsh
+    - code: sudo zsh
 ---
