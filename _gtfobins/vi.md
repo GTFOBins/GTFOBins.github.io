@@ -9,6 +9,8 @@ functions:
   file-write:
     - code: |
         vi file_to_write
+        idata
+        ^[
         w
   file-read:
     - code: vi file_to_read

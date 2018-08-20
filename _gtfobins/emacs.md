@@ -5,6 +5,7 @@ functions:
   file-write:
     - code: |
         emacs file_to_write
+        data
         C-x C-s
   file-read:
     - code: emacs file_to_read

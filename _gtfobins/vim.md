@@ -9,6 +9,8 @@ functions:
   file-write:
     - code: |
         vim file_to_write
+        idata
+        ^[
         w
   file-read:
     - code: vim file_to_read
