@@ -6,7 +6,7 @@ functions:
     - description: This adds timestamps to the output file. This relies on the external `echo` command.
       code: |
         LFILE=file_to_write
-        rlwrap -l "$LFILE" echo data
+        rlwrap -l "$LFILE" echo DATA
   suid-enabled:
     - code: ./rlwrap -H /dev/null /bin/sh -p
   sudo-enabled:

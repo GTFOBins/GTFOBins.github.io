@@ -3,7 +3,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        echo data | xxd | xxd -r - "$LFILE"
+        echo DATA | xxd | xxd -r - "$LFILE"
   file-read:
     - code: |
         LFILE=file_to_read

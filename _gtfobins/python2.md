@@ -25,7 +25,7 @@ functions:
         export LFILE=file_to_save
         python2 -c 'import urllib as u,os.environ as e;u.urlretrieve(e["URL"], e["LFILE"])'
   file-write:
-    - code: python2 -c 'open("file_to_write","w+").write("data")'
+    - code: python2 -c 'open("file_to_write","w+").write("DATA")'
   file-read:
     - code: python2 -c 'open("file_to_read").read()'
   load-library:

@@ -12,7 +12,7 @@ functions:
   file-write:
     - code: |
         nano file_to_write
-        data
+        DATA
         ^O
   file-read:
     - code: nano file_to_read

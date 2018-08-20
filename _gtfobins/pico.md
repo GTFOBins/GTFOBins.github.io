@@ -12,7 +12,7 @@ functions:
   file-write:
     - code: |
         pico file_to_write
-        data
+        DATA
         ^O
   file-read:
     - code: pico file_to_read

@@ -8,7 +8,7 @@ functions:
     - code: |
         ed file_to_write
         a
-        data
+        DATA
         .
         w
         q

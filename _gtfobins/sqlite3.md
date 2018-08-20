@@ -5,7 +5,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        sqlite3 /dev/null -cmd ".output $LFILE" 'select "data";'
+        sqlite3 /dev/null -cmd ".output $LFILE" 'select "DATA";'
   file-read:
     - code: |
         LFILE=file_to_read

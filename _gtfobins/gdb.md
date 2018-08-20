@@ -11,7 +11,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        gdb -nx -ex "dump value $LFILE \"data\"" -ex quit
+        gdb -nx -ex "dump value $LFILE \"DATA\"" -ex quit
   sudo-enabled:
     - code: sudo gdb -nx -ex '!sh' -ex quit
 ---

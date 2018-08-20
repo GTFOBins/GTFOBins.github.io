@@ -22,7 +22,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        awk -v LFILE=$LFILE 'BEGIN { print "data" > LFILE }'
+        awk -v LFILE=$LFILE 'BEGIN { print "DATA" > LFILE }'
   file-read:
     - code: |
         LFILE=file_to_read

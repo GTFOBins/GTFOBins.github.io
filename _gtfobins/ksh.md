@@ -39,7 +39,7 @@ functions:
   file-write:
     - code: |
         export LFILE=file_to_write
-        ksh -c 'echo data > $LFILE'
+        ksh -c 'echo DATA > $LFILE'
   file-read:
     - description: It trims trailing newlines.
       code: |

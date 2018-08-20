@@ -9,7 +9,7 @@ functions:
     - description: Requires a newer GNU `make` version.
       code: |
         LFILE=file_to_write
-        make -s --eval="\$(file >$LFILE,data)" .
+        make -s --eval="\$(file >$LFILE,DATA)" .
   suid-enabled:
     - code: |
         COMMAND='/bin/sh -p'

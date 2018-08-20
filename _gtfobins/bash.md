@@ -39,7 +39,7 @@ functions:
   file-write:
     - code: |
         export LFILE=file_to_write
-        bash -c 'echo data > $LFILE'
+        bash -c 'echo DATA > $LFILE'
   file-read:
     - description: It trims trailing newlines and it's not binary-safe.
       code: |

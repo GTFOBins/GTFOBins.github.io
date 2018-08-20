@@ -10,7 +10,7 @@ functions:
       code: |
         LFILE=file_to_write
         TF=$(mktemp)
-        echo data > "$TF"
+        echo DATA > "$TF"
         tar c --xform "s@.*@$LFILE@" -OP "$TF" | tar x -P
   file-read:
     - description: This only works for GNU tar.

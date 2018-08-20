@@ -4,14 +4,14 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        shuf -e data -o "$LFILE"
+        shuf -e DATA -o "$LFILE"
   suid-enabled:
     - description:
       code: |
         LFILE=file_to_write
-        ./shuf -e data -o "$LFILE"
+        ./shuf -e DATA -o "$LFILE"
         sudo-enabled:
     - code: |
         LFILE=file_to_write
-        sudo shuf -e data -o "$LFILE"
+        sudo shuf -e DATA -o "$LFILE"
 ---

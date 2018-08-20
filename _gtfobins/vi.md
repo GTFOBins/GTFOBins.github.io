@@ -9,7 +9,7 @@ functions:
   file-write:
     - code: |
         vi file_to_write
-        idata
+        iDATA
         ^[
         w
   file-read:

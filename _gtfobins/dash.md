@@ -5,7 +5,7 @@ functions:
   file-write:
     - code: |
         export LFILE=file_to_write
-        ash -c 'echo data > $LFILE'
+        ash -c 'echo DATA > $LFILE'
   suid-enabled:
     - code: ./dash -p
   sudo-enabled:

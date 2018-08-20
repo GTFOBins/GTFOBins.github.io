@@ -75,11 +75,11 @@ load-library:
 file-read:
   label: File read
   description: |
-    It reads files and may be used to do privileged reads or disclose files
-    outside a restricted file system.
+    It reads data from files, it may be used to do privileged reads or disclose
+    files outside a restricted file system.
 
 file-write:
   label: File write
   description: |
-    It writes files and may be used to do privileged writes or write files
-    outside a restricted file system.
+    It writes data to files, it may be used to do privileged writes or write
+    files outside a restricted file system.

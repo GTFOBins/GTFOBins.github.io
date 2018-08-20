@@ -9,7 +9,7 @@ functions:
   file-write:
     - code: |
         vim file_to_write
-        idata
+        iDATA
         ^[
         w
   file-read:

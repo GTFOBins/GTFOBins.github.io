@@ -12,7 +12,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        busybox sh -c 'echo "data" > $LFILE'
+        busybox sh -c 'echo "DATA" > $LFILE'
   file-read:
     - code: |
         LFILE=file_to_read
