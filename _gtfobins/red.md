@@ -1,20 +1,16 @@
 ---
-description: Short for "restricted ed".
-functions:
-  execute-interactive:
-    - code: |
-        red
-        !/bin/sh
+  description: Read and write files limited to the current directory.
   file-write:
     - code: |
         red file_to_write
+        a
+        data
+        .
         w
-  sudo-enabled:
+        q
+  file-read:
     - code: |
-        sudo red
-        !/bin/sh
-  suid-limited:
-    - code: |
-        ./red
-        !/bin/sh
+        red file_to_read
+        ,p
+        q
 ---
