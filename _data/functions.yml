@@ -24,8 +24,9 @@ suid-limited:
   description: |
     It runs with the SUID bit set and may be exploited to access the file
     system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. Running `/bin/sh` only works on Debian systems that allow
-    SUID shell execution by default.
+    SUID backdoor. Internally it may run commands via `/bin/sh` (without the
+    `-p` option) so it only only works on Debian systems that allow SUID shell
+    execution by default.
 
 sudo-enabled:
   label: Sudo
