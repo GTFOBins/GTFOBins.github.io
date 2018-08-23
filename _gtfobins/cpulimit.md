@@ -6,4 +6,6 @@ functions:
   execute-non-interactive:
     - description: With -b, which is the default, commands are executed in the background
       code: cpulimit -l 100 whoami
+  sudo-enabled:
+    - sudo cpulimit -l 100 -f /bin/sh
 ---
