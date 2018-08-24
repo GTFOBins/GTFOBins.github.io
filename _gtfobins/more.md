@@ -7,7 +7,7 @@ functions:
   file-read:
     - code: more file_to_read
   suid-enabled:
-    - code: "./more file_to_read\n"
+    - code: ./more file_to_read
   sudo-enabled:
     - code: |
         TERM= sudo -E more /etc/profile
