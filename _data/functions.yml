@@ -67,8 +67,8 @@ suid-enabled:
   description: |
     It runs with the SUID bit set and may be exploited to access the file
     system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems
-    like Debian that allow to run a SUID shell by default.
+    SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on systems
+    like Debian that allow the default `sh` shell to run with SUID privileges.
 
 sudo-enabled:
   label: Sudo
@@ -81,6 +81,5 @@ suid-limited:
   description: |
     It runs with the SUID bit set and may be exploited to access the file
     system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. Internally it may run commands via `/bin/sh` (without the
-    `-p` option) so it only only works on Debian systems that allow SUID shell
-    execution by default.
+    SUID backdoor. If it is used to run commands it only works on systems
+    like Debian that allow the default `sh` shell to run with SUID privileges.
