@@ -13,8 +13,8 @@ functions:
     - code: |
         sudo less /etc/profile
         !/bin/sh
-  suid-limited:
+  suid-enabled:
     - code: |
-        ./less /etc/profile
+        ./less file_to_read
         !/bin/sh
 ---

