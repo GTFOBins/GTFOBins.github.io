@@ -11,8 +11,5 @@ functions:
         sudo pg /etc/profile
         !/bin/sh
   suid-enabled:
-    - description:
-      code: |
-        ./pg file_to_read
-        !/bin/sh
+    - code: ./pg file_to_read
 ---

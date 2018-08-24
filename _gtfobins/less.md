@@ -19,7 +19,5 @@ functions:
         sudo less /etc/profile
         !/bin/sh
   suid-enabled:
-    - code: |
-        ./less file_to_read
-        !/bin/sh
+    - code: ./less file_to_read
 ---
