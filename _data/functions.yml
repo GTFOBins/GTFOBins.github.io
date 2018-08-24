@@ -11,6 +11,57 @@ execute-non-interactive:
     It executes non-interactive commands that may be used to break out from
     restricted shells.
 
+reverse-shell-interactive:
+  label: Interactive reverse shell
+  description: |
+    It can send back a reverse shell to a listening attacker to open a remote
+    network access.
+
+reverse-shell-non-interactive:
+  label: Non-interactive reverse shell
+  description: |
+    It can send back a non-interactive reverse shell to a listening attacker to
+    open a remote network access.
+
+bind-shell-interactive:
+  label: Interactive bind shell
+  description: |
+    It can bind a shell to a local port to allow remote network access.
+
+bind-shell-non-interactive:
+  label: Non-interactive bind shell
+  description: |
+    It can bind a non-interactive shell to a local port to allow remote network
+    access.
+
+upload:
+  label: Upload
+  description: |
+    It can exfiltrate files on the network.
+
+download:
+  label: Download
+  description: |
+    It can download remote files.
+
+file-write:
+  label: File write
+  description: |
+    It writes data to files, it may be used to do privileged writes or write
+    files outside a restricted file system.
+
+file-read:
+  label: File read
+  description: |
+    It reads data from files, it may be used to do privileged reads or disclose
+    files outside a restricted file system.
+
+load-library:
+  label: Library load
+  description: |
+    It loads shared libraries that may be used to run code in the binary
+    execution context.
+
 suid-enabled:
   label: SUID
   description: |
@@ -18,6 +69,12 @@ suid-enabled:
     system, escalate or maintain access with elevated privileges working as a
     SUID backdoor. If it is used to run `/bin/sh -p`, omit the `-p` on systems
     like Debian that allow to run a SUID shell by default.
+
+sudo-enabled:
+  label: Sudo
+  description: |
+    It runs in privileged context and may be used to access the file system,
+    escalate or maintain access with elevated privileges if enabled on `sudo`.
 
 suid-limited:
   label: Limited SUID
@@ -28,59 +85,3 @@ suid-limited:
     `-p` option) so it only only works on Debian systems that allow SUID shell
     execution by default.
 
-sudo-enabled:
-  label: Sudo
-  description: |
-    It runs in privileged context and may be used to access the file system,
-    escalate or maintain access with elevated privileges if enabled on `sudo`.
-
-download:
-  label: Download
-  description: |
-    It can download remote files.
-
-upload:
-  label: Upload
-  description: |
-    It can exfiltrate files on the network.
-
-bind-shell-interactive:
-  label: Interactive bind shell
-  description: |
-    It can bind a shell to a local port to allow remote network access.
-
-reverse-shell-interactive:
-  label: Interactive reverse shell
-  description: |
-    It can send back a reverse shell to a listening attacker to open a remote
-    network access.
-
-bind-shell-non-interactive:
-  label: Non-interactive bind shell
-  description: |
-    It can bind a non-interactive shell to a local port to allow remote network
-    access.
-
-reverse-shell-non-interactive:
-  label: Non-interactive reverse shell
-  description: |
-    It can send back a non-interactive reverse shell to a listening attacker to
-    open a remote network access.
-
-load-library:
-  label: Library load
-  description: |
-    It loads shared libraries that may be used to run code in the binary
-    execution context.
-
-file-read:
-  label: File read
-  description: |
-    It reads data from files, it may be used to do privileged reads or disclose
-    files outside a restricted file system.
-
-file-write:
-  label: File write
-  description: |
-    It writes data to files, it may be used to do privileged writes or write
-    files outside a restricted file system.
