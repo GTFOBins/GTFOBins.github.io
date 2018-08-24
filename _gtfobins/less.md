@@ -9,6 +9,11 @@ functions:
         v
   file-read:
     - code: less file_to_read
+  file-write:
+    - code: |
+        echo DATA | less
+        sfile_to_write
+        q
   sudo-enabled:
     - code: |
         sudo less /etc/profile
