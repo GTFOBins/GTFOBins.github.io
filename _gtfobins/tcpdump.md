@@ -7,7 +7,7 @@ functions:
         echo "$COMMAND" > $TF
         chmod +x $TF
         tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z $TF
-  suid-enabled:
+  sudo-enabled:
     - code: |
         COMMAND='id > /tmp/output'
         TF=$(mktemp)
