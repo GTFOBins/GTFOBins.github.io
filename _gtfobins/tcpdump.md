@@ -1,4 +1,5 @@
 ---
+description: These require some traffic to be actually captured.
 functions:
   execute-non-interactive:
     - code: |
