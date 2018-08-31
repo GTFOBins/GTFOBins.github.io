@@ -1,5 +1,8 @@
 ---
+language: python
+python:
+  - 3.6
 install:
-  - pip install --user jsonschema yamllint
+  - pip install jsonschema yamllint
 script:
   - make lint
