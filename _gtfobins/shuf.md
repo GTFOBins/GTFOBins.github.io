@@ -6,8 +6,7 @@ functions:
         LFILE=file_to_write
         shuf -e DATA -o "$LFILE"
   suid-enabled:
-    - description:
-      code: |
+    - code: |
         LFILE=file_to_write
         ./shuf -e DATA -o "$LFILE"
         sudo-enabled:
