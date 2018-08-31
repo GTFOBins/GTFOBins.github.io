@@ -1,5 +1,5 @@
 ---
 install:
-  - pip install --user yamllint
+  - pip install --user jsonschema yamllint
 script:
   - make lint
