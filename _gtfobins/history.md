@@ -1,8 +1,7 @@
 ---
 functions:
   file-write:
-    - description: |
-        Resulting file will contain additional timestamp lines in the format of `#1535795174` for each data line.
+    - description: Resulting file will contain additional timestamp lines in the format of `#1535795174` for each data line.
     - code: |
         LFILE=file_to_write
         HISTIGNORE='history *'
