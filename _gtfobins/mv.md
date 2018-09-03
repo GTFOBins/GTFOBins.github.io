@@ -1,5 +1,5 @@
 ---
-description: This can be used to read or write files outside a restricted file systems or with elevated privileges.
+description: This can be used to move and then read or write files from a restricted file systems or with elevated privileges.
 functions:
   file-write:
     - code: |
