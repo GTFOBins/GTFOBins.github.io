@@ -1,15 +1,9 @@
 ---
 functions:
-  execute-non-interactive:
-    - code: |
-        export PAGER=/usr/bin/id
-        git -p help
+  execute-interactive:
+    - code: PAGER='sh -c "exec sh 0<&1"' git -p help
   sudo-enabled:
-    - code: |
-        export PAGER=/usr/bin/id
-        sudo -E git -p help
+    - code: PAGER='sh -c "exec sh 0<&1"' sudo -E git -p help
   suid-limited:
-    - code: |
-        export PAGER=/usr/bin/id
-        ./git -p help
+    - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---

