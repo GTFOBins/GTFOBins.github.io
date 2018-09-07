@@ -1,5 +1,5 @@
 ---
-description: These require some traffic to be actually captured. Also note that the subprocess is killed when `tcpdump` terminates.
+description: These require some traffic to be actually captured. Also note that the subprocess is immediately sent to the background.
 functions:
   execute-non-interactive:
     - code: |
