@@ -11,13 +11,13 @@ The project collects legitimate functions of Unix binaries that can be abused to
 
 This was inspired by the [LOLBins] project for Windows.
 
-GTFOBins is a [collaborative] project created by [norbemi] and [cyrus-and] where everyone can [contribute] with additional binaries and techniques.
+GTFOBins is a [collaborative] project created by [norbemi] and [cyrus_and] where everyone can [contribute] with additional binaries and techniques.
 
 [functions]: /functions/
 [LOLBins]: https://github.com/api0cradle/LOLBAS
 [collaborative]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
 [contribute]: /contribute/
 [norbemi]: https://twitter.com/norbemi
-[cyrus-and]: https://twitter.com/cyrus_and
+[cyrus_and]: https://twitter.com/cyrus_and
 
 {% include bin_table.html %}
