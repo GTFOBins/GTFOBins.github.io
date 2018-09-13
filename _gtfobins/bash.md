@@ -40,11 +40,24 @@ functions:
     - code: |
         export LFILE=file_to_write
         bash -c 'echo DATA > $LFILE'
+    - description: This adds timestamps to the output file.
+      code: |
+        LFILE=file_to_write
+        HISTIGNORE='history *'
+        history -c
+        DATA
+        history -w $LFILE
   file-read:
     - description: It trims trailing newlines and it's not binary-safe.
       code: |
         export LFILE=file_to_read
         bash -c 'echo "$(<$LFILE)"'
+    - description: The read file content is surrounded by the current history content.
+      code: |
+        LFILE=file_to_read
+        HISTTIMEFORMAT=$'\r\e[K'
+        history -r $LFILE
+        history
   suid-enabled:
     - code: "./bash -p"
   sudo-enabled:
