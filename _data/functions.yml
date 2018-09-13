@@ -76,6 +76,13 @@ sudo-enabled:
     It runs in privileged context and may be used to access the file system,
     escalate or maintain access with elevated privileges if enabled on `sudo`.
 
+capabilities-enabled:
+  label: Capabilities
+  description: |
+    It can manipulate its process UID and in Linux systems it can be set with the
+    `CAP_SETUID` capability to make it work as a backdoor to maintain elevated privileges.
+    This also works if the binary is invoked by another binary with the capability set.
+
 suid-limited:
   label: Limited SUID
   description: |

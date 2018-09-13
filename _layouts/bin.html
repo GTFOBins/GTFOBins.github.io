@@ -30,6 +30,10 @@ layout: common
 cp $(which {{ bin_name }}) .
 sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
 {% endif %}
+{%- if function_name == 'capabilities-enabled' %}
+cp $(which {{ bin_name }}) .
+sudo setcap cap_setuid+ep {{ bin_name }}
+{% endif %}
 {{ example.code }}
 {% endcapture %}
 

