@@ -1,4 +1,4 @@
-<input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries by name (e.g., 'ftp') or by function (e.g., '/shell')"/>
+<input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: <binary> +<function> ..."/>
 
 <div id="bin-table-wrapper">
     <table id="bin-table">
@@ -24,14 +24,12 @@
 
 <script>
  function filter(query) {
+     var queryArray = query.toLowerCase().trim().split(/ *\+/);
+     var binPattern = queryArray[0];
+     var functionPatterns = queryArray.splice(1);
+
      // consistently update the URL
      location.hash = query;
-
-     // determine the query type
-     var queryType = query[0];
-     if (queryType === '/') {
-         query = query.slice(1);
-     }
 
      // filter rows
      var noResults = true;
@@ -39,10 +37,16 @@
          var binName = row.children[0].firstElementChild.innerText.toLowerCase();
          var functions = Array.from(row.children[1].firstElementChild.children)
                               .map(function (x) { return x.innerText })
-                              .join('\n').toLowerCase();
+                              .join('\x00').toLowerCase(); // separator
 
-         var against = (queryType === '/' ? functions : binName);
-         if (against.indexOf(query) !== -1) {
+         var show = (
+             binName.indexOf(binPattern) !== -1 &&
+             functionPatterns.every(function (pattern) {
+                 return functions.indexOf(pattern) !== -1;
+             })
+         );
+
+         if (show) {
              row.style.display = '';
              noResults = false;
          } else {
@@ -64,14 +68,14 @@
 
      // handle user input
      searchBox.addEventListener('input', function () {
-         var query = searchBox.value.toLowerCase().trim();
+         var query = searchBox.value;
          filter(query);
      });
 
      // handle shortcuts
      addEventListener('keydown', function (event) {
          // focus search box on valid keydown
-         if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
+         if (event.key.toLowerCase().match(/^[+a-z]$/) &&
              !(event.ctrlKey || event.altKey || event.metaKey)) {
              searchBox.focus();
          }
