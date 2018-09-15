@@ -61,7 +61,7 @@
                  // check against the pattern
                  var noMatches = true;
                  functionElems.forEach((item) => {
-                     if (item.innerText.toLowerCase().indexOf(pattern) !== -1) {
+                     if (item.innerText.toLowerCase().startsWith(pattern.toLowerCase())) {
                          item.className = 'match';
                          noMatches = false;
                      }
