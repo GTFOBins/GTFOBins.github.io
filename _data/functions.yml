@@ -1,4 +1,6 @@
 ---
+# this is the rendering order of functions
+
 execute-interactive:
   label: Interactive execute
   description: |

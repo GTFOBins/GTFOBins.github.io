@@ -1,6 +1,8 @@
 <ul class="function-list">
-    {% for function in include.bin.functions %}
-    {% assign type = function[0] %}
-    <li><a href="{{ include.bin.url }}#{{ type }}">{{ site.data.functions[type].label }}</a></li>
+    {% for function in site.data.functions %}
+    {% assign function_name = function[0] %}
+    {% if include.bin.functions[function_name] %}
+    <li><a href="{{ include.bin.url }}#{{ function_name }}">{{ site.data.functions[function_name].label }}</a></li>
+    {% endif %}
     {% endfor %}
 </ul>

@@ -10,10 +10,10 @@ layout: common
 
 {{ page.description | markdownify }}
 
-{% for function in page.functions %}
-
+{% for function in site.data.functions %}
 {% assign function_name = function[0] %}
-{% assign examples = function[1] %}
+{% assign examples = page.functions[function_name] %}
+{% if examples %}
 
 <h2 id="{{ function_name }}" class="function-name">
     {{- site.data.functions[function_name].label -}}
@@ -46,4 +46,5 @@ sudo setcap cap_setuid+ep {{ bin_name }}
 
 </ul>
 
+{% endif %}
 {% endfor %}
