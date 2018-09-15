@@ -88,11 +88,23 @@ h2, h3, h4, h5, h5 {
 
 // binary list and search
 
-#bin-search {
-    margin-top: 50px;
-    padding: 0.5em;
-    width: 100%;
-    box-sizing: border-box;
+#bin-search-wrapper {
+    margin: 50px 0;
+    padding: 10px 0;
+
+    #bin-search-filters {
+        text-align: center;
+    }
+
+    #bin-search {
+        margin-top: 25px;
+        padding: 1em;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid $accent;
+        outline-color: $accent;
+    }
 }
 
 #bin-table {

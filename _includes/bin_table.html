@@ -1,4 +1,14 @@
-<input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: <binary> +<function> ..."/>
+<div id="bin-search-wrapper">
+    <ul id="bin-search-filters" class="function-list">
+        {% for function_pair in site.data.functions %}
+        {% assign function_id = function_pair[0] %}
+        {% assign function = function_pair[1] %}
+        <li><a href="#+{{ function.label | downcase }}">{{ function.label }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: <binary> +<function> ..."/>
+</div>
 
 <div id="bin-table-wrapper">
     <table id="bin-table">
@@ -27,9 +37,6 @@
      var queryArray = query.toLowerCase().trim().split(/ *\+/);
      var binPattern = queryArray[0];
      var functionPatterns = queryArray.splice(1);
-
-     // consistently update the URL
-     location.hash = query;
 
      // filter rows
      var noResults = true;
@@ -79,7 +86,18 @@
      searchMessage.style.display = noResults ? 'table-cell' : 'none';
  }
 
- (function () {
+ function applyFilter() {
+     // filter on load according to the URL
+     var searchBox = document.getElementById('bin-search');
+     var query = decodeURIComponent(location.hash.slice(1));
+     filter(query);
+     if (query) {
+         searchBox.value = query;
+         searchBox.focus();
+     }
+ }
+
+ function setup() {
      var searchBox = document.getElementById('bin-search');
 
      // ensure height during filtering
@@ -89,7 +107,7 @@
      // handle user input
      searchBox.addEventListener('input', function () {
          var query = searchBox.value;
-         filter(query);
+         location.hash = query;
      });
 
      // handle shortcuts
@@ -98,21 +116,22 @@
          if (event.key.toLowerCase().match(/^[+a-z]$/) &&
              !(event.ctrlKey || event.altKey || event.metaKey)) {
              searchBox.focus();
+             searchBox.parentElement.scrollIntoView();
          }
          // clear filter on escape
          else if (event.key === 'Escape') {
-             searchBox.value = '';
+             location.hash = searchBox.value = '';
              searchBox.focus();
-             filter('');
+             searchBox.parentElement.scrollIntoView();
          }
      });
 
-     // filter on load according to the URL
-     var query = decodeURIComponent(location.hash.slice(1));
-     filter(query);
-     if (query) {
-         searchBox.value = query;
-         searchBox.focus();
-     }
- })();
+     // handle URL changes
+     window.onhashchange = applyFilter;
+
+     // trigger filter on page load
+     applyFilter();
+ }
+
+ setup();
 </script>
