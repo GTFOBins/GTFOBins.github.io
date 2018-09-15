@@ -10,27 +10,24 @@ layout: common
 
 {{ page.description | markdownify }}
 
-{% for function in site.data.functions %}
-{% assign function_name = function[0] %}
-{% assign examples = page.functions[function_name] %}
-{% if examples %}
+{% for function_pair in site.data.functions %}
+{% assign function_id = function_pair[0] %}
+{% assign function = function_pair[1] %}
+{% assign examples = page.functions[function_id] %}
+{% unless examples %}{% continue %}{% endunless %}
 
-<h2 id="{{ function_name }}" class="function-name">
-    {{- site.data.functions[function_name].label -}}
-</h2>
-
-{{ site.data.functions[function_name].description | markdownify }}
+<h2 id="{{ function_id }}" class="function-name">{{- function.label -}}</h2>
+{{ function.description | markdownify }}
 
 <ul class="examples">
-
     {% for example in examples %}
 
 {% capture code %}
-{%- if function_name == 'suid-enabled' or function_name == 'suid-limited' %}
+{%- if function_id == 'suid-enabled' or function_id == 'suid-limited' %}
 cp $(which {{ bin_name }}) .
 sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
 {% endif %}
-{%- if function_name == 'capabilities-enabled' %}
+{%- if function_id == 'capabilities-enabled' %}
 cp $(which {{ bin_name }}) .
 sudo setcap cap_setuid+ep {{ bin_name }}
 {% endif %}
@@ -43,8 +40,6 @@ sudo setcap cap_setuid+ep {{ bin_name }}
     </li>
 
     {% endfor %}
-
 </ul>
 
-{% endif %}
 {% endfor %}
