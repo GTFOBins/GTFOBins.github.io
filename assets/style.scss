@@ -3,6 +3,7 @@
 
 $accent: #bf0707;
 $lighter: #fff4f4;
+$marked: #ffcccc;
 $hover: #ff0000;
 
 // layout
@@ -142,6 +143,10 @@ h2, h3, h4, h5, h5 {
         a:hover {
             color: $hover;
             border-color: $hover;
+        }
+
+        &.match a {
+            background: $marked;
         }
     }
 }

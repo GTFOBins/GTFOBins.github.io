@@ -34,17 +34,37 @@
      // filter rows
      var noResults = true;
      document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
-         var binName = row.children[0].firstElementChild.innerText.toLowerCase();
-         var functions = Array.from(row.children[1].firstElementChild.children)
-                              .map(function (x) { return x.innerText })
-                              .join('\x00').toLowerCase(); // separator
+         var show = true;
 
-         var show = (
-             binName.indexOf(binPattern) !== -1 &&
-             functionPatterns.every(function (pattern) {
-                 return functions.indexOf(pattern) !== -1;
-             })
-         );
+         var binName = row.children[0].firstElementChild.innerText.toLowerCase();
+         if (binName.indexOf(binPattern) === -1) {
+             show = false;
+         }
+
+         if (show) {
+             var functionElems = Array.from(row.children[1].firstElementChild.children);
+             functionElems.forEach((item) => {
+                 item.className = '';
+             });
+             functionPatterns.forEach((pattern) => {
+                 // skip empty filters
+                 if (!pattern) {
+                     return;
+                 }
+                 // check against the pattern
+                 var noMatches = true;
+                 functionElems.forEach((item) => {
+                     if (item.innerText.toLowerCase().indexOf(pattern) !== -1) {
+                         item.className = 'match';
+                         noMatches = false;
+                     }
+                 });
+                 // no function satisfies the pattern
+                 if (noMatches) {
+                     show = false;
+                 }
+             });
+         }
 
          if (show) {
              row.style.display = '';
