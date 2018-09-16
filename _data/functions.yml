@@ -81,8 +81,8 @@ sudo-enabled:
 capabilities-enabled:
   label: Capabilities
   description: |
-    It can manipulate its process UID and can be used on Linux as a backdoor to maintain  
-    elevated privileges with the `CAP_SETUID` capability set. This also works when executed 
+    It can manipulate its process UID and can be used on Linux as a backdoor to maintain
+    elevated privileges with the `CAP_SETUID` capability set. This also works when executed
     by another binary with the capability set.
 
 suid-limited:
