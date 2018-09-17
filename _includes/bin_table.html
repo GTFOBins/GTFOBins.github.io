@@ -93,7 +93,6 @@
      filter(query);
      if (query) {
          searchBox.value = query;
-         searchBox.focus();
      }
  }
 
@@ -107,7 +106,8 @@
      // handle user input
      searchBox.addEventListener('input', function () {
          var query = searchBox.value;
-         location.hash = query;
+         history.replaceState(null, null, '#' + query);
+         applyFilter();
      });
 
      // handle shortcuts
