@@ -1,8 +1,6 @@
 ---
 description: |
-  More generally, this allows to execute arbitrary Python code.
-
-  See the entries of Python [version 2](/gtfobins/python2/) and [version 3](/gtfobins/python3/).
+  More generally, this allows to execute arbitrary Python code. See the [Python](/gtfobins/python/) functions.
 functions:
   execute-interactive:
     - code: |
