@@ -1,6 +1,4 @@
 ---
-description: |
-  More generally, this allows to execute arbitrary Python code. See the [Python](/gtfobins/python/) functions.
 functions:
   execute-interactive:
     - code: |
