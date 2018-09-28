@@ -36,6 +36,13 @@ functions:
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()' > $TF/setup.py
         easy_install $TF
+  file-write:
+    - description: It needs an absolute local file path.
+      code: |
+        TF=$(mktemp -d)
+        echo "import os;
+        os.execl('$(whereis python)', 'python', '-c', 'open(\"/tmp/file_to_write\",\"w+\").write(\"DATA\")')" > $TF/setup.py
+        easy_install $TF
   file-read:
     - description: The read file content is wrapped within program messages.
       code: |
