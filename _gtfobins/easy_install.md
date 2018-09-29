@@ -51,9 +51,10 @@ functions:
   file-write:
     - description: The file path must be absolute.
       code: |
+        export LFILE=/tmp/file_to_save
         TF=$(mktemp -d)
         echo "import os;
-        os.execl('$(whereis python)', 'python', '-c', 'open(\"/tmp/file_to_write\",\"w+\").write(\"DATA\")')" > $TF/setup.py
+        os.execl('$(whereis python)', 'python', '-c', 'open(\"$LFILE\",\"w+\").write(\"DATA\")')" > $TF/setup.py
         easy_install $TF
   file-read:
     - description: The read file content is wrapped within program messages.

