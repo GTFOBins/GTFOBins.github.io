@@ -2,7 +2,7 @@
 functions:
   execute-interactive:
     - code: |
-        journalctl
+        journalctl --system
         !/bin/sh
   sudo-enabled:
     - code: |
