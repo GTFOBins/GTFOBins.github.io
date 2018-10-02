@@ -1,5 +1,8 @@
 ---
-description: This might not work if run by unprivileged users depending on the system configuration.
+description: |
+  This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+
+  This might not work if run by unprivileged users depending on the system configuration.
 functions:
   execute-interactive:
     - code: |
