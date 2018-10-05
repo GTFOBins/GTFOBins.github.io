@@ -1,48 +1,48 @@
 ---
 # this is the rendering order of functions
 
-execute-interactive:
-  label: Interactive execute
+shell:
+  label: Shell
   description: |
-    It executes interactive commands that may be used to break out from
-    restricted shells.
+    It can be used to break out from restricted environments by spawning an 
+    interactive system shell.
 
-execute-non-interactive:
-  label: Non-interactive execute
+command:
+  label: Command
   description: |
-    It executes non-interactive commands that may be used to break out from
-    restricted shells.
+    It can be used to break out from restricted environments by running 
+    non-interactive system commands.
 
-reverse-shell-interactive:
-  label: Interactive reverse shell
+reverse-shell:
+  label: Reverse shell
   description: |
     It can send back a reverse shell to a listening attacker to open a remote
     network access.
 
-reverse-shell-non-interactive:
-  label: Non-interactive reverse shell
+reverse-non-interactive-shell:
+  label: Reverse non-interactive shell
   description: |
     It can send back a non-interactive reverse shell to a listening attacker to
     open a remote network access.
 
-bind-shell-interactive:
-  label: Interactive bind shell
+bind-shell:
+  label: Bind shell
   description: |
     It can bind a shell to a local port to allow remote network access.
 
-bind-shell-non-interactive:
-  label: Non-interactive bind shell
+bind-non-interactive-shell:
+  label: Bind non-interactive shell
   description: |
     It can bind a non-interactive shell to a local port to allow remote network
     access.
 
-upload:
-  label: Upload
+file-upload:
+  label: File upload
   description: |
     It can exfiltrate files on the network.
 
-download:
-  label: Download
+file-download:
+  label: File download
   description: |
     It can download remote files.
 
@@ -58,13 +58,13 @@ file-read:
     It reads data from files, it may be used to do privileged reads or disclose
     files outside a restricted file system.
 
-load-library:
+library-load:
   label: Library load
   description: |
     It loads shared libraries that may be used to run code in the binary
     execution context.
 
-suid-enabled:
+suid:
   label: SUID
   description: |
     It runs with the SUID bit set and may be exploited to access the file
@@ -72,20 +72,20 @@ suid-enabled:
     SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on systems
     like Debian that allow the default `sh` shell to run with SUID privileges.
 
-sudo-enabled:
+sudo:
   label: Sudo
   description: |
     It runs in privileged context and may be used to access the file system,
     escalate or maintain access with elevated privileges if enabled on `sudo`.
 
-capabilities-enabled:
+capabilities:
   label: Capabilities
   description: |
     It can manipulate its process UID and can be used on Linux as a backdoor to maintain
     elevated privileges with the `CAP_SETUID` capability set. This also works when executed
     by another binary with the capability set.
 
-suid-limited:
+limited-suid:
   label: Limited SUID
   description: |
     It runs with the SUID bit set and may be exploited to access the file
