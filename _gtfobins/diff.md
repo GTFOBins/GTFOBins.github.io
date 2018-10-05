@@ -4,11 +4,11 @@ functions:
     - code: |
         LFILE=file_to_read
         diff --line-format=%L /dev/null $LFILE
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./diff --line-format=%L /dev/null $LFILE
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo diff --line-format=%L /dev/null $LFILE

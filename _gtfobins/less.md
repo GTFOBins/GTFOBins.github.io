@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         less /etc/profile
         !/bin/sh
@@ -14,10 +14,10 @@ functions:
         echo DATA | less
         sfile_to_write
         q
-  sudo-enabled:
+  sudo:
     - code: |
         sudo less /etc/profile
         !/bin/sh
-  suid-enabled:
+  suid:
     - code: ./less file_to_read
 ---

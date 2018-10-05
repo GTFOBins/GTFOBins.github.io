@@ -8,11 +8,11 @@ functions:
     - code: |
         LFILE=file_to_read
         dd if=LFILE
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_write
         echo "data" | ./dd of=$LFILE
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_write
         echo "data" | sudo -E dd of=$LFILE

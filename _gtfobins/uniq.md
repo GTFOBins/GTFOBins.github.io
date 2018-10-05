@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         uniq "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./uniq "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo uniq "$LFILE"

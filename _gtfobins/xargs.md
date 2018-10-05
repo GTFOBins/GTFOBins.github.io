@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - description: GNU version only.
       code: xargs -a /dev/null sh
     - code: echo x | xargs -Iy sh -c 'exec sh 0<&1'
@@ -13,10 +13,10 @@ functions:
       code: |
         LFILE=file_to_read
         xargs -a "$LFILE" -0
-  suid-enabled:
+  suid:
     - description: GNU version only.
       code: ./xargs -a /dev/null sh -p
-  sudo-enabled:
+  sudo:
     - description: GNU version only.
       code: sudo xargs -a /dev/null sh
 ---

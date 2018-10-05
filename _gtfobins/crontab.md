@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-non-interactive:
+  command:
     - description: The commands are executed according to the crontab file edited via the `crontab` utility.
       code: crontab -e
-  sudo-enabled:
+  sudo:
     - description: The commands are executed according to the crontab file edited via the `crontab` utility.
       code: sudo crontab -e
 ---

@@ -1,9 +1,9 @@
 ---
 description: BusyBox may contain many UNIX utilities, run `busybox --list-full` to check what GTFBins binaries are supported. Here some example.
 functions:
-  execute-interactive:
+  shell:
     - code: busybox sh
-  upload:
+  file-upload:
     - description: Serve files in the local folder running an HTTP server.
       code: |
         export LPORT=12345
@@ -16,9 +16,9 @@ functions:
     - code: |
         LFILE=file_to_read
         ./busybox cat "$LFILE"
-  suid-enabled:
+  suid:
     - description: It may drop the SUID privileges depending on the compilation flags and the runtime configuration.
       code: "./busybox sh"
-  sudo-enabled:
+  sudo:
     - code: sudo busybox sh
 ---

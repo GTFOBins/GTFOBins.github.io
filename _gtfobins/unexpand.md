@@ -4,11 +4,11 @@ functions:
     - code: |
         LFILE=file_to_read
         unexpand -t99999999 "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./unexpand -t99999999 "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo unexpand -t99999999 "$LFILE"

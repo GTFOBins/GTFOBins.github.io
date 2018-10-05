@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: emacs -Q -nw --eval '(term "/bin/sh")'
   file-write:
     - code: |
@@ -9,8 +9,8 @@ functions:
         C-x C-s
   file-read:
     - code: emacs file_to_read
-  suid-enabled:
+  suid:
     - code: ./emacs -Q -nw --eval '(term "/bin/sh -p")'
-  sudo-enabled:
+  sudo:
     - code: sudo emacs -Q -nw --eval '(term "/bin/sh")'
 ---

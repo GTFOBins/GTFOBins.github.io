@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         nl -bn -w1 -s '' $LFILE
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./nl -bn -w1 -s '' $LFILE
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo nl -bn -w1 -s '' $LFILE

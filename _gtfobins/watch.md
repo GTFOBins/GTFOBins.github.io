@@ -1,12 +1,12 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: watch -x sh -c 'reset; exec sh 1>&0 2>&0'
-  suid-enabled:
+  suid:
     - description: This keeps the SUID privileges only if the `-x` option is present.
       code: ./watch -x sh -c 'reset; exec sh 1>&0 2>&0'
-  sudo-enabled:
+  sudo:
     - code: sudo watch -x sh -c 'reset; exec sh 1>&0 2>&0'
-  suid-limited:
+  limited-suid:
     - code: ./watch 'reset; exec sh 1>&0 2>&0'
 ---

@@ -4,11 +4,11 @@ description: |
 
   This might not work if run by unprivileged users depending on the system configuration.
 functions:
-  execute-interactive:
+  shell:
     - code: |
         journalctl
         !/bin/sh
-  sudo-enabled:
+  sudo:
     - code: |
         sudo journalctl
         !/bin/sh

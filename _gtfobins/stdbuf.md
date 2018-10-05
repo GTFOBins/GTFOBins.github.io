@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: stdbuf -i0 /bin/sh
-  suid-enabled:
+  suid:
     - code: ./stdbuf -i0 /bin/sh -p
-  sudo-enabled:
+  sudo:
     - code: sudo stdbuf -i0 /bin/sh
 ---

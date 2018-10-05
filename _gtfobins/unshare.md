@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: unshare /bin/sh
-  suid-enabled:
+  suid:
     - code: ./unshare -r /bin/sh
-  sudo-enabled:
+  sudo:
     - code: sudo unshare /bin/sh
 ---

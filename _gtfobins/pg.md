@@ -1,15 +1,15 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         pg /etc/profile
         !/bin/sh
   file-read:
     - code: pg file_to_read
-  sudo-enabled:
+  sudo:
     - code: |
         sudo pg /etc/profile
         !/bin/sh
-  suid-enabled:
+  suid:
     - code: ./pg file_to_read
 ---

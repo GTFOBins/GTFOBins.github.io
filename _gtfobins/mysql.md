@@ -1,10 +1,10 @@
 ---
 description: A valid MySQL server must be available.
 functions:
-  execute-interactive:
+  shell:
     - code: mysql -e '\! /bin/sh'
-  sudo-enabled:
+  sudo:
     - code: sudo mysql -e '\! /bin/sh'
-  suid-limited:
+  limited-suid:
     - code: ./mysql -e '\! /bin/sh'
 ---

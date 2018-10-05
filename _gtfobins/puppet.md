@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         puppet apply -e "exec { '/bin/sh -c \"exec sh -i <$(tty) >$(tty) 2>$(tty)\"': }"
   file-write:
@@ -13,7 +13,7 @@ functions:
       code: |
         export LFILE=file_to_read
         puppet filebucket -l diff /dev/null $LFILE
-  sudo-enabled:
+  sudo:
     - code: |
         sudo puppet apply -e "exec { '/bin/sh -c \"exec sh -i <$(tty) >$(tty) 2>$(tty)\"': }"
 ---

@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         od -An -c -w9999 "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./od -An -c -w9999 "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo od -An -c -w9999 "$LFILE"

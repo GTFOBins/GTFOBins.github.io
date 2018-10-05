@@ -4,11 +4,11 @@ functions:
     - code: |
         LFILE=file_to_read
         tail -c1G "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./tail -c1G "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo tail -c1G "$LFILE"

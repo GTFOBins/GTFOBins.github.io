@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: taskset 1 /bin/sh
-  suid-enabled:
+  suid:
     - code: ./taskset 1 /bin/sh -p
-  sudo-enabled:
+  sudo:
     - code: sudo taskset 1 /bin/sh
 ---

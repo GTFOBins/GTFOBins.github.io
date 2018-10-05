@@ -1,13 +1,13 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: ash
   file-write:
     - code: |
         export LFILE=file_to_write
         ash -c 'echo DATA > $LFILE'
-  suid-enabled:
+  suid:
     - code: "./ash"
-  sudo-enabled:
+  sudo:
     - code: sudo ash
 ---

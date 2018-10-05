@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         fmt -pNON_EXISTING_PREFIX "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./fmt -pNON_EXISTING_PREFIX "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo fmt -pNON_EXISTING_PREFIX "$LFILE"

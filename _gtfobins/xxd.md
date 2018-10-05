@@ -8,11 +8,11 @@ functions:
     - code: |
         LFILE=file_to_read
         xxd "$LFILE" | xxd -r
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./xxd "$LFILE" | xxd -r
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo xxd "$LFILE" | xxd -r

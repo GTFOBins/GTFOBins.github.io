@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_write
         shuf -e DATA -o "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_write
         ./shuf -e DATA -o "$LFILE"
-        sudo-enabled:
+        sudo:
     - code: |
         LFILE=file_to_write
         sudo shuf -e DATA -o "$LFILE"

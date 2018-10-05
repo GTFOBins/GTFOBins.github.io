@@ -1,9 +1,9 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: nice /bin/sh
-  suid-enabled:
+  suid:
     - code: ./nice /bin/sh -p
-  sudo-enabled:
+  sudo:
     - code: sudo nice /bin/sh
 ---

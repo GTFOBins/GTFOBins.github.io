@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_write
         echo DATA | ./tee -a "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_write
         echo DATA | ./tee -a "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_write
         echo DATA | sudo tee -a "$LFILE"

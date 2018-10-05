@@ -4,11 +4,11 @@ functions:
     - code: |
         LFILE=file_to_read
         cut -d "" -f1 "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./cut -d "" -f1 "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo cut -d "" -f1 "$LFILE"

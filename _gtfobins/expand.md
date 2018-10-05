@@ -5,11 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         expand "$LFILE"
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./expand "$LFILE"
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo expand "$LFILE"

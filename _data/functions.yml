@@ -4,13 +4,13 @@
 shell:
   label: Shell
   description: |
-    It can be used to break out from restricted environments by spawning an 
+    It can be used to break out from restricted environments by spawning an
     interactive system shell.
 
 command:
   label: Command
   description: |
-    It can be used to break out from restricted environments by running 
+    It can be used to break out from restricted environments by running
     non-interactive system commands.
 
 reverse-shell:
@@ -19,8 +19,8 @@ reverse-shell:
     It can send back a reverse shell to a listening attacker to open a remote
     network access.
 
-reverse-non-interactive-shell:
-  label: Reverse non-interactive shell
+non-interactive-reverse-shell:
+  label: Non-interactive reverse shell
   description: |
     It can send back a non-interactive reverse shell to a listening attacker to
     open a remote network access.
@@ -30,8 +30,8 @@ bind-shell:
   description: |
     It can bind a shell to a local port to allow remote network access.
 
-bind-non-interactive-shell:
-  label: Bind non-interactive shell
+non-interactive-bind-shell:
+  label: Non-interactive bind shell
   description: |
     It can bind a non-interactive shell to a local port to allow remote network
     access.

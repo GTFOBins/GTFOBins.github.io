@@ -1,6 +1,6 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: vi -c ':!/bin/sh'
     - code: |
         vi
@@ -14,8 +14,8 @@ functions:
         w
   file-read:
     - code: vi file_to_read
-  suid-enabled:
+  suid:
     - code: ./vi -c ':!/bin/sh -p'
-  sudo-enabled:
+  sudo:
     - code: sudo vi -c ':!/bin/sh'
 ---

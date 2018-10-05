@@ -1,13 +1,13 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - code: csh
   file-write:
     - code: |
         export LFILE=file_to_write
         ash -c 'echo DATA > $LFILE'
-  suid-enabled:
+  suid:
     - code: "./csh -b"
-  sudo-enabled:
+  sudo:
     - code: sudo csh
 ---

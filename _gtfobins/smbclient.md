@@ -1,11 +1,11 @@
 ---
 description: A valid SMB/CIFS server must be available.
 functions:
-  execute-interactive:
+  shell:
     - code: |
         smbclient \\ip\share
         !/bin/sh
-  sudo-enabled:
+  sudo:
     - code: |
         sudo smbclient \\ip\share
         !/bin/sh

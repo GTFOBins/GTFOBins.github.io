@@ -8,11 +8,11 @@ functions:
     - code: |
         LFILE=file_to_read
         date -f $LFILE
-  suid-enabled:
+  suid:
     - code: |
         LFILE=file_to_read
         ./date -f $LFILE
-  sudo-enabled:
+  sudo:
     - code: |
         LFILE=file_to_read
         sudo date -f $LFILE

