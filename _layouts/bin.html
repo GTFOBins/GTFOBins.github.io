@@ -23,11 +23,11 @@ layout: common
     {% for example in examples %}
 
 {% capture code %}
-{%- if function_id == 'suid-enabled' or function_id == 'suid-limited' %}
+{%- if function_id == 'suid' or function_id == 'limited-suid' %}
 cp $(which {{ bin_name }}) .
 sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
 {% endif %}
-{%- if function_id == 'capabilities-enabled' %}
+{%- if function_id == 'capabilities' %}
 cp $(which {{ bin_name }}) .
 sudo setcap cap_setuid+ep {{ bin_name }}
 {% endif %}
