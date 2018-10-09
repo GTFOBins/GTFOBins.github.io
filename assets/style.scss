@@ -91,9 +91,27 @@ h2, h3, h4, h5, h5 {
 #bin-search-wrapper {
     margin: 50px 0;
     padding: 10px 0;
+     position: relative; // XXX needed for tooltip sizing
 
     #bin-search-filters {
         text-align: center;
+
+        a:hover:before {
+            content: attr(data-title);
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-top: 1.75em; // XXX below the button
+            margin-left: 10%;
+            margin-right: 10%;
+            padding: 1em;
+            border-radius: 1em;
+            color: $lighter;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+            pointer-events: none;
+        }
     }
 
     #bin-search {
