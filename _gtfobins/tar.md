@@ -2,9 +2,8 @@
 functions:
   shell:
     - code: tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
-  command:
     - description: This only works for GNU tar.
-      code: tar xf /dev/null -I '/bin/sh -c "id 1>&2"'
+      code: tar xf /dev/null -I '/bin/sh -c "sh <&2 1>&2"'
   file-write:
     - description: This only works for GNU tar.
       code: |
