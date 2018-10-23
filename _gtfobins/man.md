@@ -10,8 +10,4 @@ functions:
     - code: |
         sudo man man
         !/bin/sh
-  limited-suid:
-    - code: |
-        ./man man
-        !/bin/sh
 ---
