@@ -1,12 +1,13 @@
 ---
 functions:
   shell:
-    - code: /usr/bin/pic -U
-            .PS
-            sh X sh X
+    - code: |
+        pic -U
+        .PS
+        sh X sh X
   sudo:
-    - code: sudo /usr/bin/pic -U
-            .PS
-            sh X sh X
-
+    - code: |
+        sudo pic -U
+        .PS
+        sh X sh X
 ---
