@@ -24,8 +24,7 @@ layout: common
 
 {% capture code %}
 {%- if function_id == 'suid' or function_id == 'limited-suid' %}
-cp $(which {{ bin_name }}) .
-sudo sh -c 'chown 0 ./{{ bin_name }}; chmod +s ./{{ bin_name }}'
+sudo sh -c 'cp $(which {{ bin_name }}) .; chmod +s ./{{ bin_name }}'
 {% endif %}
 {%- if function_id == 'capabilities' %}
 cp $(which {{ bin_name }}) .
