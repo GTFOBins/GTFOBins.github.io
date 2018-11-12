@@ -1,7 +1,8 @@
 ---
 functions:
   shell:
-    - description: `cpan` lets you execute perl commands with the `! command`.
+    - description: |
+        `cpan` lets you execute perl commands with the `! command`.
       code: |
         cpan
         ! exec '/bin/bash'
