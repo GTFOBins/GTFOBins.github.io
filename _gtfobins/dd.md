@@ -7,7 +7,7 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        dd if=LFILE
+        dd if=$LFILE
   suid:
     - code: |
         LFILE=file_to_write
