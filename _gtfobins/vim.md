@@ -6,7 +6,8 @@ functions:
         vim
         :set shell=/bin/sh
         :shell
-    - code: vim -c ':py import os;os.system("sh")'
+    - description: This requires that vim is compiled with Python support.
+      code: vim -c ':py import os;os.system("sh")'
   file-write:
     - code: |
         vim file_to_write
@@ -20,4 +21,5 @@ functions:
   sudo:
     - code: sudo vim -c ':!/bin/sh'
     - code: sudo vim -c ':py import os;os.system("sh")'
+      description: This requires that vim is compiled with Python support.
 ---

