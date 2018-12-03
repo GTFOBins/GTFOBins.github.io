@@ -6,7 +6,7 @@ functions:
         vi
         :set shell=/bin/sh
         :shell
-    - description: This requires that vi is compiled with Python support.
+    - description: This requires that `vi` is compiled with Python support.
       code: vi -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
   file-write:
     - code: |
@@ -20,6 +20,6 @@ functions:
     - code: ./vi -c ':!/bin/sh -p'
   sudo:
     - code: sudo vi -c ':!/bin/sh'
-    - description: This requires that vi is compiled with Python support.
+    - description: This requires that `vi` is compiled with Python support.
       code: sudo vi -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
 ---
