@@ -14,4 +14,12 @@ functions:
         red file_to_read
         ,p
         q
+  sudo:
+    - code: |
+        sudo red file_to_write
+        a
+        DATA
+        .
+        w
+        q
 ---
