@@ -16,5 +16,5 @@ functions:
         echo 'Dpkg::Pre-Invoke {"/bin/sh;false"}' > $TF
         sudo apt install -c $TF sl
     - description: When the shell exits the `update` command is actually executed.
-      code: sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
+      code: sudo apt update -o APT::Update::Pre-Invoke::=/bin/sh
 ---
