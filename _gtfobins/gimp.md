@@ -1,4 +1,5 @@
 ---
+description: `gimp` hangs after executing the Python code and can be terminated pressing `ctrl-c`.
 functions:
   shell:
     - code: gimp -idf --batch-interpreter=python-fu-eval -b 'import os; os.system("sh")'
