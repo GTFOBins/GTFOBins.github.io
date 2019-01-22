@@ -38,7 +38,6 @@ functions:
         r.urlretrieve(e["URL"], e["LFILE"])'
   file-write:
     - code: |
-        LFILE=file_to_write
         gimp -idf --batch-interpreter=python-fu-eval -b 'open("file_to_write", "wb").write("DATA")'
   file-read:
     - code: gimp -idf --batch-interpreter=python-fu-eval -b 'print(open("file_to_read").read())'
