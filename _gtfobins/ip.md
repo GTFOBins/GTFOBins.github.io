@@ -1,4 +1,6 @@
 ---
+description: |
+  The read file content is corrupted by error prints.
 functions:
   file-read:
     - code: |
