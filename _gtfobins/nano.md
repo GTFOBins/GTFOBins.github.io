@@ -1,6 +1,10 @@
 ---
 functions:
   shell:
+    - code: |
+        nano
+        ^R^X
+        reset; sh 1>&0 2>&0
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
         TF=$(mktemp)
@@ -24,6 +28,10 @@ functions:
         ./nano -s $TF /etc/hosts
         ^T
   sudo:
+    - code: |
+        sudo nano
+        ^R^X
+        reset; sh 1>&0 2>&0
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
         TF=$(mktemp)
