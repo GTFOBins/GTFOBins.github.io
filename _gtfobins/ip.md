@@ -10,8 +10,18 @@ functions:
     - code: |
         LFILE=file_to_read
         ./ip -force -batch "$LFILE"
+    - description: This only works for Linux with CONFIG_NET_NS=y.
+      code: |
+        ./ip netns add foo
+        ./ip netns exec foo /bin/sh -p
+        ./ip netns delete foo
   sudo:
     - code: |
         LFILE=file_to_read
         sudo ip -force -batch "$LFILE"
+    - description: This only works for Linux with CONFIG_NET_NS=y.
+      code: |
+        sudo ip netns add foo
+        sudo ip netns exec foo /bin/sh
+        sudo ip netns delete foo
 ---
