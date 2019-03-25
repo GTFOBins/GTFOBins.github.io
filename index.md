@@ -14,7 +14,7 @@ This was inspired by the [LOLBins] project for Windows.
 GTFOBins is a [collaborative] project created by [norbemi] and [cyrus_and] where everyone can [contribute] with additional binaries and techniques.
 
 [functions]: /functions/
-[LOLBins]: https://github.com/api0cradle/LOLBAS
+[LOLBins]: https://lolbas-project.github.io/
 [collaborative]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
 [contribute]: /contribute/
 [norbemi]: https://twitter.com/norbemi
