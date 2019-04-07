@@ -20,4 +20,9 @@ functions:
         WantedBy=multi-user.target' > $TF
         sudo systemctl link $TF
         sudo systemctl enable --now $TF
+    - description: |
+        Spawn interactive root shell escaping the pager.
+      code: |
+        sudo systemctl
+        !sh
 ---
