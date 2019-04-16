@@ -11,7 +11,7 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        sed -n '1e exec sh 1>&0 /etc/hosts
+        sed -n "1s/.*/DATA/w $LFILE" /etc/hosts
   file-read:
     - code: |
         LFILE=file_to_read
