@@ -12,6 +12,9 @@ functions:
       code: |
         sudo git -p help
         !/bin/sh
+      code: |
+        sudo git help status
+        !/bin/bash
   limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---
