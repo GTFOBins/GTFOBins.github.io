@@ -7,7 +7,7 @@ import yaml
 def parse_yaml(path):
     with open(path) as fs:
         text = fs.read()
-        return yaml.load_all(text)
+        return yaml.load_all(text, Loader=yaml.SafeLoader)
 
 def build_schema():
     function_names = next(parse_yaml('_data/functions.yml')).keys()
