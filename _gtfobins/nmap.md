@@ -55,8 +55,7 @@ functions:
         t:close();' > $TF
         nmap --script=$TF
   file-download:
-    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345
-        < "file_to_send"` on the attacker box to send the file.
+    - description: Fetch remote file sent to a local TCP port. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file.
       code: |
         export LPORT=12345
         export LFILE=file_to_save
