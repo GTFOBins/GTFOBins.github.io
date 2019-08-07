@@ -92,8 +92,7 @@ functions:
           f:write(d);
           io.close(f);'
   file-write:
-    - description: This requires that rvim is compiled with Python support. Prepend `:py3` for Python 3.
-      code: |
+    - code: |
         rvim file_to_write
         iDATA
         ^[
