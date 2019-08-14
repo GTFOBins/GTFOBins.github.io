@@ -3,94 +3,60 @@
 
 shell:
   label: Shell
-  description: |
-    It can be used to break out from restricted environments by spawning an
-    interactive system shell.
+  description: It can be used to break out from restricted environments by spawning an interactive system shell.
 
 command:
   label: Command
-  description: |
-    It can be used to break out from restricted environments by running
-    non-interactive system commands.
+  description: It can be used to break out from restricted environments by running non-interactive system commands.
 
 reverse-shell:
   label: Reverse shell
-  description: |
-    It can send back a reverse shell to a listening attacker to open a remote
-    network access.
+  description: It can send back a reverse shell to a listening attacker to open a remote network access.
 
 non-interactive-reverse-shell:
   label: Non-interactive reverse shell
-  description: |
-    It can send back a non-interactive reverse shell to a listening attacker to
-    open a remote network access.
+  description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
 
 bind-shell:
   label: Bind shell
-  description: |
-    It can bind a shell to a local port to allow remote network access.
+  description: It can bind a shell to a local port to allow remote network access.
 
 non-interactive-bind-shell:
   label: Non-interactive bind shell
-  description: |
-    It can bind a non-interactive shell to a local port to allow remote network
-    access.
+  description: It can bind a non-interactive shell to a local port to allow remote network access.
 
 file-upload:
   label: File upload
-  description: |
-    It can exfiltrate files on the network.
+  description: It can exfiltrate files on the network.
 
 file-download:
   label: File download
-  description: |
-    It can download remote files.
+  description: It can download remote files.
 
 file-write:
   label: File write
-  description: |
-    It writes data to files, it may be used to do privileged writes or write
-    files outside a restricted file system.
+  description: It writes data to files, it may be used to do privileged writes or write files outside a restricted file system.
 
 file-read:
   label: File read
-  description: |
-    It reads data from files, it may be used to do privileged reads or disclose
-    files outside a restricted file system.
+  description: It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system.
 
 library-load:
   label: Library load
-  description: |
-    It loads shared libraries that may be used to run code in the binary
-    execution context.
+  description: It loads shared libraries that may be used to run code in the binary execution context.
 
 suid:
   label: SUID
-  description: |
-    It runs with the SUID bit set and may be exploited to access the file
-    system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on
-    systems like Debian (<= Stretch) that allow the default `sh` shell to run
-    with SUID privileges.
+  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
 
 sudo:
   label: Sudo
-  description: |
-    It runs in privileged context and may be used to access the file system,
-    escalate or maintain access with elevated privileges if enabled on `sudo`.
+  description: It runs in privileged context and may be used to access the file system, escalate or maintain access with elevated privileges if enabled on `sudo`.
 
 capabilities:
   label: Capabilities
-  description: |
-    It can manipulate its process UID and can be used on Linux as a backdoor to maintain
-    elevated privileges with the `CAP_SETUID` capability set. This also works when executed
-    by another binary with the capability set.
+  description: It can manipulate its process UID and can be used on Linux as a backdoor to maintain elevated privileges with the `CAP_SETUID` capability set. This also works when executed by another binary with the capability set.
 
 limited-suid:
   label: Limited SUID
-  description: |
-    It runs with the SUID bit set and may be exploited to access the file
-    system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. If it is used to run commands it only works on systems like
-    Debian (<= Stretch) that allow the default `sh` shell to run with SUID
-    privileges.
+  description: It runs with the SUID bit set and may be exploited to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands it only works on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
