@@ -69,8 +69,9 @@ suid:
   description: |
     It runs with the SUID bit set and may be exploited to access the file
     system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on systems
-    like Debian that allow the default `sh` shell to run with SUID privileges.
+    SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on
+    systems like Debian (<= Stretch) that allow the default `sh` shell to run
+    with SUID privileges.
 
 sudo:
   label: Sudo
@@ -90,5 +91,6 @@ limited-suid:
   description: |
     It runs with the SUID bit set and may be exploited to access the file
     system, escalate or maintain access with elevated privileges working as a
-    SUID backdoor. If it is used to run commands it only works on systems
-    like Debian that allow the default `sh` shell to run with SUID privileges.
+    SUID backdoor. If it is used to run commands it only works on systems like
+    Debian (<= Stretch) that allow the default `sh` shell to run with SUID
+    privileges.
