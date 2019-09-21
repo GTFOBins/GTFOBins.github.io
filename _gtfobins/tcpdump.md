@@ -14,5 +14,5 @@ functions:
         TF=$(mktemp)
         echo "$COMMAND" > $TF
         chmod +x $TF
-        sudo tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z $TF
+        sudo tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z $TF -Z root
 ---
