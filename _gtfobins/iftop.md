@@ -1,8 +1,16 @@
 ---
+description: This requires `iftop` 1.17 and the privilege to capture on some device (specify with `-i` if needed) .
 functions:
+  shell:
+    - code: |
+        iftop
+        !/bin/sh
+  limited-suid:
+    - code: |
+        ./iftop
+        !/bin/sh
   sudo:
-    - description: After getting invoked iftop (>= 1.17), displays network usage details. User can enter and execute commands interactively.
-      code: |
+    - code: |
         sudo iftop
         !/bin/sh
 ---
