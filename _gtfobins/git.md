@@ -12,7 +12,7 @@ functions:
       code: |
         sudo git -p help config
         !/bin/sh
-    - description: The default pager can also be started from any git submodule by using `--help`.
+    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
         sudo git branch --help config
         !/bin/sh
