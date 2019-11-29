@@ -58,6 +58,8 @@ functions:
         HISTTIMEFORMAT=$'\r\e[K'
         history -r $LFILE
         history
+  library-load:
+    - code: bash -c 'enable -f ./lib.so x'
   suid:
     - code: "./bash -p"
   sudo:
