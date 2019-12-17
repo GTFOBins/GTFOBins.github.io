@@ -16,6 +16,10 @@ functions:
       code: |
         sudo git branch --help config
         !/bin/sh
+    - description: This is a test.
+      code: |
+        sudo git branch --help config
+        !/bin/sh
   limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---
