@@ -24,8 +24,6 @@ layout: common
 
 {% capture code %}
 {%- if function_id == 'suid' or function_id == 'limited-suid' %}
-# This example creates a local SUID copy of the binary and runs it to maintain elevated privileges.
-# To exploit an existing SUID binary instead, skip the following command and run it using its full path.
 sudo sh -c 'cp $(which {{ bin_name }}) .; chmod +s ./{{ bin_name }}'
 {% endif %}
 {%- if function_id == 'capabilities' %}
