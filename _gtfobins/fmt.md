@@ -2,15 +2,30 @@
 description: The read file content is not binary-safe.
 functions:
   file-read:
-    - code: |
+    - description: This only works for the GNU version of `fmt`.
+      code: |
         LFILE=file_to_read
-        fmt -p NON_EXISTING_PREFIX "$LFILE"
+        fmt -pNON_EXISTING_PREFIX "$LFILE"
+    - description: This corrupts the output by wrapping very long lines at the given width.
+      code: |
+        LFILE=file_to_read
+        fmt -999 "$LFILE"
   suid:
-    - code: |
+    - description: This only works for the GNU version of `fmt`.
+      code: |
         LFILE=file_to_read
-        ./fmt -p NON_EXISTING_PREFIX "$LFILE"
+        ./fmt -pNON_EXISTING_PREFIX "$LFILE"
+    - description: This corrupts the output by wrapping very long lines at the given width.
+      code: |
+        LFILE=file_to_read
+        ./fmt -999 "$LFILE"
   sudo:
-    - code: |
+    - description: This only works for the GNU version of `fmt`.
+      code: |
         LFILE=file_to_read
-        sudo fmt -p NON_EXISTING_PREFIX "$LFILE"
+        sudo fmt -pNON_EXISTING_PREFIX "$LFILE"
+    - description: This corrupts the output by wrapping very long lines at the given width. 
+      code: |
+        LFILE=file_to_read
+        sudo fmt -999 "$LFILE"
 ---
