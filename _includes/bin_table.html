@@ -106,7 +106,7 @@
      // handle user input
      searchBox.addEventListener('input', function () {
          var query = searchBox.value;
-         history.replaceState(null, null, '#' + query);
+         history.replaceState(null, null, encodeURI('#' + query));
          applyFilter();
      });
 
