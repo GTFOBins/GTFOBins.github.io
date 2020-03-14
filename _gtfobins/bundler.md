@@ -6,6 +6,9 @@ functions:
         bundler help
         !/bin/sh
     - code: |
+        export BUNDLE_GEMFILE=x
+        bundler exec /bin/sh
+    - code: |
         TF=$(mktemp -d)
         touch $TF/Gemfile
         cd $TF
