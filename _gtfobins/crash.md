@@ -12,6 +12,6 @@ functions:
   sudo:
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
-        crash -h
+        sudo crash -h
         !sh
 ---
