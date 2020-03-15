@@ -1,9 +1,10 @@
 ---
 functions:
   file-read:
-    - code: |
+    - description: This is not suitable for binary files.
+      code: |
         LFILE=file_to_read
-        dmesg -F "$LFILE"
+        dmesg -rF "$LFILE"
   shell:
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
