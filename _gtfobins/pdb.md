@@ -1,4 +1,5 @@
 ---
+description: This allows to execute [`python`](/gtfobins/python/) code, other functions may apply.
 functions:
   shell:
     - code: |
