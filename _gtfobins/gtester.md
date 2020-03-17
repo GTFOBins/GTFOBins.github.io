@@ -13,5 +13,5 @@ functions:
         echo '#!/bin/sh' > $TF
         echo '/usr/bin/id' >> $TF
         chmod +x $TF
-        gtester -q $TF
+        sudo gtester -q $TF
 ---
