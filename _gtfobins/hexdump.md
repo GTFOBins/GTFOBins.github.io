@@ -1,4 +1,5 @@
 ---
+description: The output is actually an hex dump.
 functions:
   file-read:
     - code: |
