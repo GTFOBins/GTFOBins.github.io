@@ -1,4 +1,5 @@
 ---
+description: The file is shown in an interactive TUI dialog, thus it is not suitable for binary/too big data.
 functions:
   file-read:
     - code: |
