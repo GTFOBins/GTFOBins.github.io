@@ -1,5 +1,5 @@
 ---
-description: Only strings are returned from the read file.
+description: This only returns ASCII strings, thus it is not suitable for binary files.
 functions:
   file-read:
     - code: |
