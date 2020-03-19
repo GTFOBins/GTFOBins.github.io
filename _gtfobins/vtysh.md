@@ -6,4 +6,3 @@ functions:
         sudo vtysh
         start-shell
 ---
-
