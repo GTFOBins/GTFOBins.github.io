@@ -13,10 +13,9 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         sudo cp $TF $LFILE
-        
   file-read:
     - description: It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system. The path must be absolute.
       code: |
         LFILE=file_to_read
-        cp "$LFILE" /dev/stdout 
+        cp "$LFILE" /dev/stdout
 ---
