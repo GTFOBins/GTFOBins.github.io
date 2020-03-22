@@ -10,5 +10,5 @@ bundle:
 	bundle install
 
 lint:
-	yamllint . _gtfobins/*.md
+	yamllint _gtfobins/*.md
 	scripts/validate-schema.py
