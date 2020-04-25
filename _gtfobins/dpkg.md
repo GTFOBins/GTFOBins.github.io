@@ -9,4 +9,8 @@ functions:
         fpm -n x -s dir -t deb -a all --before-install $TF/x.sh $TF
         ```
       code: sudo dpkg -i x_1.0_all.deb
+  shell:
+    - code: |
+        dpkg -l
+        !/bin/sh    
 ---
