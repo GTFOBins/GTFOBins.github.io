@@ -33,7 +33,7 @@ def build_schema():
             'functions': {
                 'type': 'object',
                 "patternProperties": {
-                    '|'.join(function_names): {'$ref': '#/definitions/examples'}
+                    '^({})$'.format('|'.join(function_names)): {'$ref': '#/definitions/examples'}
                 },
                 'additionalProperties': False
             }
