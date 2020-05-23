@@ -11,7 +11,7 @@ The project collects legitimate functions of Unix binaries that can be abused to
 
 This was inspired by the [LOLBAS][] project for Windows.
 
-GTFOBins is a [collaborative][] project created by [norbemi][] and [cyrus_and][] where everyone can [contribute][] with additional binaries and techniques.
+GTFOBins is a [collaborative][] project created by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and] where everyone can [contribute][] with additional binaries and techniques.
 
 [functions]: /functions/
 [LOLBAS]: https://lolbas-project.github.io/
