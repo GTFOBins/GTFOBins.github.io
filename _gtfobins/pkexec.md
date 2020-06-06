@@ -1,5 +1,5 @@
 ---
 functions:
   sudo:
-    - code: sudo pkexec /bin/bash
+    - code: sudo pkexec /bin/sh
 ---
