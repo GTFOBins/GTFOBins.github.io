@@ -10,6 +10,6 @@ functions:
     - code: ./more file_to_read
   sudo:
     - code: |
-        TERM= sudo -E more /etc/profile
+        TERM= sudo more /etc/profile
         !/bin/sh
 ---
