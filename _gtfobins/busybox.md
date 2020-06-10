@@ -6,7 +6,7 @@ functions:
   file-upload:
     - description: Serve files in the local folder running an HTTP server.
       code: |
-        export LPORT=12345
+        LPORT=12345
         busybox httpd -f -p $LPORT -h .
   file-write:
     - code: |

