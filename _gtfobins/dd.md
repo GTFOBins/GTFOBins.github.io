@@ -15,5 +15,5 @@ functions:
   sudo:
     - code: |
         LFILE=file_to_write
-        echo "data" | sudo -E dd of=$LFILE
+        echo "data" | sudo dd of=$LFILE
 ---

