@@ -16,6 +16,5 @@ functions:
     - code: |
         TF=$(mktemp -d)
         cp /bin/sh $TF/zypper-x
-        export PATH=$TF:$PATH
-        sudo -E zypper x
+        sudo PATH=$TF:$PATH zypper x
 ---
