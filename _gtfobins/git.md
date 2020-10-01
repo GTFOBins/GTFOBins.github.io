@@ -14,10 +14,10 @@ functions:
         mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
         git -C "$TF" commit --allow-empty -m x
   file-read:
-    - code: |
+    - description: The read file content is displayed in `diff` style output format.
+      code: |
         LFILE=file_to_read
         git diff /dev/null $LFILE
-    - description: The read file content is displayed in `diff` style output format.
   sudo:
     - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
