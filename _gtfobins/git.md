@@ -6,6 +6,10 @@ functions:
       code: |
         git help config
         !/bin/sh
+    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+      code: |
+        git branch --help config
+        !/bin/sh
     - description: Git hooks are merely shell scripts and in the following example the hook associated to the `pre-commit` action is used. Any other hook will work, just make sure to be able perform the proper action to trigger it. An existing repository can also be used and moving into the directory works too, i.e., instead of using the `-C` option.
       code: |
         TF=$(mktemp -d)
