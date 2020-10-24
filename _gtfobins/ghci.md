@@ -3,9 +3,9 @@ functions:
   shell:
     - code: |
        ghci
-       Prelude> System.Process.callCommand "/bin/bash"
+       System.Process.callCommand "/bin/sh"
   sudo:
     - code: |
        sudo ghci
-       Prelude> System.Process.callCommand "/bin/bash"
+       System.Process.callCommand "/bin/sh"
 ---
