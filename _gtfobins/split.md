@@ -8,7 +8,7 @@ functions:
         cat $TF*
   command:
     - description: Command execution using an existing or new created file.
-    - code: |
+      code: |
         COMMAND=id
         TF=$(mktemp)
         split --filter=$COMMAND $TF
@@ -23,5 +23,3 @@ functions:
     - code: |
         split --filter=bash /dev/stdin
 ---
-
-
