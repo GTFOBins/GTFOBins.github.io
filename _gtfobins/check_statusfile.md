@@ -5,13 +5,9 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        check_statusfile "$LFILE"
-  suid:
-    - code: |
-        LFILE=file_to_read
-        ./check_statusfile "$LFILE"
+        check_statusfile $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo check_statusfile "$LFILE"
+        sudo check_statusfile $LFILE
 ---

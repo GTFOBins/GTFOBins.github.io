@@ -3,13 +3,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        rev "$LFILE" | rev
+        rev $LFILE | rev
   suid:
     - code: |
         LFILE=file_to_read
-        ./rev "$LFILE" | rev
+        ./rev $LFILE | rev
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo rev "$LFILE" | rev
+        sudo rev $LFILE | rev
 ---

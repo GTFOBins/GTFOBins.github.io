@@ -5,13 +5,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        ss -a -F "$LFILE"
+        ss -a -F $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        ./ss -a -F "$LFILE"
+        ./ss -a -F $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo ss -a -F "$LFILE"
+        sudo ss -a -F $LFILE
 ---

@@ -3,7 +3,7 @@ functions:
   shell:
     - code: |
         ex
-        !/bin/sh
+        !sh
   file-write:
     - code: |
         ex file_to_write
@@ -20,9 +20,9 @@ functions:
   sudo:
     - code: |
         sudo ex
-        !/bin/sh
-  limited-suid:
+        !sh
+  suid:
     - code: |
         ./ex
-        !/bin/sh
+        !sh -p
 ---

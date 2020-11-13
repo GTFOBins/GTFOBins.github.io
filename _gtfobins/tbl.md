@@ -5,13 +5,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        tbl "$LFILE"
+        tbl $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        ./tbl "$LFILE"
+        ./tbl $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo tbl "$LFILE"
+        sudo tbl $LFILE
 ---

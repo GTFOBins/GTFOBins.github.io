@@ -5,13 +5,9 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        check_cups --extra-opts=@"$LFILE"
-  suid:
-    - code: |
-        LFILE=file_to_read
-        ./check_cups --extra-opts=@"$LFILE"
+        check_cups --extra-opts=@$LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo check_cups --extra-opts=@"$LFILE"
+        sudo check_cups --extra-opts=@$LFILE
 ---

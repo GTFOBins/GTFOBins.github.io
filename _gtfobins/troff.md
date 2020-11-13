@@ -5,13 +5,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        troff "$LFILE"
+        troff $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        ./troff "$LFILE"
+        ./troff $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo troff "$LFILE"
+        sudo troff $LFILE
 ---

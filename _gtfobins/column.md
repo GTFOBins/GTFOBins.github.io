@@ -3,13 +3,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        column "$LFILE"
+        column $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        ./column "$LFILE"
+        ./column $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo column "$LFILE"
+        sudo column $LFILE
 ---

@@ -5,13 +5,13 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        xmodmap -v "$LFILE"
+        xmodmap -v $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        ./xmodmap -v "$LFILE"
+        ./xmodmap -v $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo xmodmap -v "$LFILE"
+        sudo xmodmap -v $LFILE
 ---
