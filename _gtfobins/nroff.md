@@ -1,5 +1,10 @@
 ---
 functions:
+  file-read:
+    - description: The read file content is corrupted by arbitrary newlines.
+      code: |
+        LFILE=file_to_read
+        nroff $LFILE
   shell:
     - code: |
         TF=$(mktemp -d)
