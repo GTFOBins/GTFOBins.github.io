@@ -44,6 +44,6 @@ Before sending a pull request of a new binary or function, ensure the following:
 
 Pull requests adding new functions in [`_data/functions.yml`] are allowed and subjected to project maintainers vetting.
 
-[YAML]: http://yaml.org/
+[YAML]: https://yaml.org/
 [`_gtfobins/`]: https://github.com/GTFOBins/GTFOBins.github.io/tree/master/_gtfobins
 [`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml
