@@ -1,6 +1,6 @@
 ---
 description: |
-  The read file content is limited to the first line and corrupted by an error message.
+  The file content is actually parsed so only a part of the first line is returned as a part of an error message.
 functions:
   file-read:
     - code: |
