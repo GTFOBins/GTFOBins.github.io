@@ -1,7 +1,7 @@
 ---
 functions:
   file-read:
-    - description: The read file content is corrupted by arbitrary newlines.
+    - description: The file is typeset and some warning messages may appear.
       code: |
         LFILE=file_to_read
         nroff $LFILE
