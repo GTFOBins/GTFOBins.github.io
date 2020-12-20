@@ -7,7 +7,7 @@ functions:
         split $LFILE $TF
         cat $TF*
   command:
-    - description: Command execution using an existing or new created file.
+    - description: Command execution using an existing or newly created file.
       code: |
         COMMAND=id
         TF=$(mktemp)
@@ -17,9 +17,11 @@ functions:
         COMMAND=id
         echo | split --filter=$COMMAND /dev/stdin
   shell:
-    - code: |
-        split --filter=bash /dev/stdin
+    - description: The shell prompt is not printed.
+      code: |
+        split --filter=/bin/sh /dev/stdin
   sudo:
-    - code: |
-        split --filter=bash /dev/stdin
+    - description: The shell prompt is not printed.
+      code: |
+        split --filter=/bin/sh /dev/stdin
 ---
