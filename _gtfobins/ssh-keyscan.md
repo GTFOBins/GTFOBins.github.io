@@ -1,6 +1,6 @@
 ---
 description: |
-  The read file content is corrupted by error prints.
+  The file content is actually parsed so only a part of each line is returned as a part of an error message.
 functions:
   file-read:
     - code: |
