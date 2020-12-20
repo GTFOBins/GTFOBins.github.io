@@ -1,4 +1,6 @@
 ---
+description: |
+  `column` expects textual data.
 functions:
   file-read:
     - code: |
