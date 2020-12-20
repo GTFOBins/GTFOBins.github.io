@@ -1,6 +1,6 @@
 ---
 description: |
-  The read file content is corrupted by error prints.
+ The file is typeset but text is still readable in the output, alternatively the output can be read with `man -l`.
 functions:
   file-read:
     - code: |
