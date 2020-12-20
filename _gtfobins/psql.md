@@ -1,18 +1,14 @@
 ---
+description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
 functions:
   shell:
     - code: |
         psql
         \?
-        !sh
-  suid:
-    - code: |
-        psql
-        \?
-        !sh -p
+        !/bin/sh
   sudo:
     - code: |
         psql
         \?
-        !sh
+        !/bin/sh
 ---
