@@ -11,12 +11,11 @@ functions:
   file-write:
     - code: |
         LFILE=file_to_write
-        INPUT=output_file
+        INPUT=input_file
         check_log -F $INPUT -O $LFILE
   sudo:
     - code: |
         LFILE=file_to_write
-        INPUT=output_file
-        umask 022
+        INPUT=input_file
         sudo check_log -F $INPUT -O $LFILE
 ---
