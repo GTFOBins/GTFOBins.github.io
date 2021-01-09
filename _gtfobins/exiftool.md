@@ -1,6 +1,6 @@
 ---
 description: |
-  `exiftool` has a functionality to rename files, it can be abused to move files to different paths.
+  If the permissions allow it, files are moved (instead of copied) to the destination.
 functions:
   file-read:
     - code: |
