@@ -4,7 +4,7 @@ functions:
     - code: |
         LFILE=file_to_read
         lwp-request "file://$LFILE"
-  suid:
+  limited-suid:
     - code: |
         LFILE=file_to_read
         ./lwp-request "file://$LFILE"
