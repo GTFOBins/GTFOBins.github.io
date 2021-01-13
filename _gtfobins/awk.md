@@ -28,7 +28,7 @@ functions:
         LFILE=file_to_read
         awk '//' "$LFILE"
   suid:
-    - code: | 
+    - code: |
         LFILE=file_to_read
         awk '//' "$LFILE"
   sudo:
