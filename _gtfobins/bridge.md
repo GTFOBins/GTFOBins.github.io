@@ -1,8 +1,8 @@
 ---
 functions:
   file-read:
-    - description: Outputs the first line of the file, until the first whitespace, to stderr.
+    - description: Outputs the first line of the file (until the first whitespace) inside an error message to stdandard error.
       code: |
         LFILE=file_to_read
-        bridge -b "${LFILE}"
+        bridge -b "$LFILE"
 ---
