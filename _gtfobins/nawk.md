@@ -27,6 +27,10 @@ functions:
     - code: |
         LFILE=file_to_read
         nawk '//' "$LFILE"
+  suid:
+    - code: |
+        LFILE=file_to_read
+        ./nawk '//' "$LFILE"
   sudo:
     - code: sudo nawk 'BEGIN {system("/bin/sh")}'
   limited-suid:

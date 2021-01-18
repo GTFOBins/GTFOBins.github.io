@@ -27,6 +27,10 @@ functions:
     - code: |
         LFILE=file_to_read
         awk '//' "$LFILE"
+  suid:
+    - code: |
+        LFILE=file_to_read
+        ./awk '//' "$LFILE"
   sudo:
     - code: sudo awk 'BEGIN {system("/bin/sh")}'
   limited-suid:

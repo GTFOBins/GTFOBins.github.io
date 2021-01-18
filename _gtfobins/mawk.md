@@ -10,6 +10,10 @@ functions:
     - code: |
         LFILE=file_to_read
         mawk '//' "$LFILE"
+  suid:
+    - code: |
+        LFILE=file_to_read
+        ./mawk '//' "$LFILE"
   sudo:
     - code: sudo mawk 'BEGIN {system("/bin/sh")}'
   limited-suid:

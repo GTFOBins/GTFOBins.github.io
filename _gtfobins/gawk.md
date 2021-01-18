@@ -27,6 +27,10 @@ functions:
     - code: |
         LFILE=file_to_read
         gawk '//' "$LFILE"
+  suid:
+    - code: |
+        LFILE=file_to_read
+        ./gawk '//' "$LFILE"
   sudo:
     - code: sudo gawk 'BEGIN {system("/bin/sh")}'
   limited-suid:

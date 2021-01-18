@@ -17,6 +17,11 @@ functions:
         ed file_to_read
         ,p
         q
+  suid:
+    - code: |
+        ./ed file_to_read
+        ,p
+        q
   sudo:
     - code: |
         sudo ed

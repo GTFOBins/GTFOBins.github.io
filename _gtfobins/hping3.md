@@ -7,7 +7,7 @@ functions:
   suid:
     - code: |
         ./hping3
-        /bin/sh
+        /bin/sh -p
   sudo:
     - code: |
         sudo hping3
