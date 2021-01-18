@@ -19,7 +19,7 @@ functions:
         q
   suid:
     - code: |
-        ed file_to_read
+        ./ed file_to_read
         ,p
         q
   sudo:
