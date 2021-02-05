@@ -1,7 +1,7 @@
 ---
 functions:
   shell:
-    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/man/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/less/), other functions may apply.
       code: |
         bundler help
         !/bin/sh
@@ -26,7 +26,7 @@ functions:
         cd $TF
         bundler install
   sudo:
-    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/man/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/less/), other functions may apply.
       code: |
         sudo bundler help
         !/bin/sh
