@@ -1,6 +1,6 @@
 ---
 functions:
-  shell:  
+  shell:
     - description: Commands can be run if the current user's group is specified, therefore no additional permissions are needed.
       code: |
         GROUPNAME=users
@@ -8,7 +8,7 @@ functions:
   command:
     - description: Commands can be run if the current user's group is specified, therefore no additional permissions are needed.
       code: |
-        COMMAND=whoami   
+        COMMAND=whoami
         GROUPNAME=users
         sg $GROUPNAME -c $COMMAND
   sudo:
