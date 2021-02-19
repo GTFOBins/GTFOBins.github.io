@@ -15,7 +15,7 @@ functions:
         echo '#!/usr/bin/env sh' > $TF
         echo "$COMMAND" >> $TF
         chmod +x $TF
-        openvpn --dev tun0 --script-security 2 --up $TF
+        sudo openvpn --dev tun0 --script-security 2 --up $TF
   command:
     - code: |
         COMMAND='id'
