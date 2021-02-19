@@ -5,7 +5,7 @@ description: |
   Any other Docker Linux image should work, e.g., `debian`.
 functions:
   shell:
-    - description: The resulting is a root shell.
+    - description: The resulting is a root shell on an alpine docker image with mounted host file system. This can be used to edit host /etc/shadow, remove password for root user and change to root user on the host system without password.
       code: docker run -v /:/mnt --rm -it alpine chroot /mnt sh
   file-write:
     - description: Write a file by copying it to a temporary container and back to the target destination on the host.
