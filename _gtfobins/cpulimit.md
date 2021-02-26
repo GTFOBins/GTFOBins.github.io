@@ -9,4 +9,3 @@ functions:
   sudo:
     - code: sudo cpulimit -l 100 -f /bin/sh
 ---
- 
