@@ -3,8 +3,7 @@ description: This invokes the default pager, which is likely to be  [`less`](/gt
 functions:
   shell:
     - code: |
-        man man
-        !/bin/sh
+        man --html='$(sh > /dev/tty)' sh
   file-read:
     - code: man file_to_read
   sudo:
