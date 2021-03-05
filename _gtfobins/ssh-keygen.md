@@ -2,6 +2,11 @@
 functions:
   library-load:
     - description: |
-        The following loads the `/path/to/lib.so` shared object.
-      code: ssh-keygen -D /path/to/lib.so
+      code: ssh-keygen -D ./lib.so
+  sudo:
+    - description: |
+      code: sudo ssh-keygen -D ./lib.so
+  suid:
+    - description: |
+      code: ./ssh-keygen -D ./lib.so
 ---
