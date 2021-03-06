@@ -1,0 +1,38 @@
+---
+description: This reads the contents of file or overwrite to or from the subjected place.
+functions:
+  file-read:
+    - code: |
+        LFILE=file_to_read_or_to_save
+        LFOLDER=folder_location_to_read_or_to_save
+        touch file.txt
+        FOLDER=folder_where_file.txt_is_saved
+        echo $LFILE > /$FOLDER/file.txt
+        cd /$LFOLDER && cpio -o  < /$FOLDER/file.txt 
+  suid:
+    - code: |
+        LFILE=file_to_read_or_to_save
+        LFOLDER=folder_location_to_read_or_to_save
+        touch file.txt
+        FOLDER=folder_where_file.txt_is_saved
+        echo $LFILE > /$FOLDER/file.txt
+        cd /$LFOLDER && cpio -o  < /$FOLDER/file.txt
+
+        # FILE to overwrite
+        cpio -p /$DFOLDER/ < /$FOLDER/file.txt 
+  sudo:
+    - code: |
+        LFILE=file_to_read_or_to_save
+        LFOLDER=folder_location_to_read_or_to_save
+        touch file.txt
+        FOLDER=folder_where_file.txt_is_saved
+        echo $LFILE > /$FOLDER/file.txt
+        cd /$LFOLDER && cpio -o  < /$FOLDER/file.txt
+
+        # FILE to overwrite
+        cpio -p /$DFOLDER/ < /$FOLDER/file.txt 
+---
+
+
+
+
