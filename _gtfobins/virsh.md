@@ -20,7 +20,7 @@ functions:
         EOF
         sudo virsh -c qemu:///system create $TF
         virsh -c qemu:///system destroy x
-  write:
+  file-write:
     - description: This requires the user to be in the `libvirt` group. If the target directory doesn't exist `pool-create-as` must be run with the `--build` option. The destination file permissions can be tuned in the XML file. 
       code: |
         LFILE_DIR=/root
@@ -54,7 +54,7 @@ functions:
         virsh -c qemu:///system vol-create --pool x --file $TF
         virsh -c qemu:///system vol-upload --pool x $LFILE_DIR/$LFILE_NAME data_to_write
         virsh -c qemu:///system pool-destroy x
-  read:
+  file-read:
     - description: This requires the user to be in the `libvirt` group.
       code: |
         LFILE_DIR=/root
