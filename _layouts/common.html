@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <title>
             {% if page.url != '/' %}
-            {% if page.layout == 'bin' %}
-            {{ page.title | downcase }}
-            {% else %}
-            {{ page.title }}
-            {% endif %}
-            |
+                {% if page.layout == 'bin' %}
+                    {% include get_bin_name.html path=page.path %}
+                {% else %}
+                    {{ page.title }}
+                {% endif %}
+                |
             {% endif %}
             {{ site.title }}
         </title>
