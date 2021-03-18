@@ -1,7 +1,13 @@
 ---
 title: GTFOBins
 
-exclude: ['/scripts', '/Gemfile', '/Makefile', '/README.md', '/CONTRIBUTING.md']
+exclude:
+  - '/CONTRIBUTING.md'
+  - '/Gemfile'
+  - '/LICENSE'
+  - '/Makefile'
+  - '/README.md'
+  - '/scripts'
 
 permalink: pretty
 
