@@ -20,10 +20,10 @@
         </thead>
         <tbody>
             {% for file in site.gtfobins %}
-            <tr>
-                <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name.html path=file.path %}</a></td>
-                <td>{% include function_list.html bin=file %}</td>
-            </tr>
+                <tr>
+                    <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name.html path=file.path %}</a></td>
+                    <td>{% include function_list.html bin=file %}</td>
+                </tr>
             {% endfor %}
         </tbody>
         <tfoot>
