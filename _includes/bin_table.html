@@ -41,7 +41,7 @@
         const table = document.querySelector('#bin-table');
 
         // hide the table during the filtering to avoid unnecessary layout reflows
-        table.style.display = 'none';
+        table.classList.add('hidden');
 
         // filter rows
         let noResults = true;
@@ -60,7 +60,7 @@
 
                 // reset functions class
                 for (const item of functionElems) {
-                    item.className = '';
+                    item.classList.remove('match');
                 }
 
                 // try each of the given patterns
@@ -74,7 +74,7 @@
                     let noMatches = true;
                     for (const item of functionElems) {
                         if (item.dataset.name.toLowerCase().match(pattern.toLowerCase())) {
-                            item.className = 'match';
+                            item.classList.add('match');
                             noMatches = false;
                         }
                     }
@@ -88,15 +88,15 @@
 
             // hide or show the row
             if (show) {
-                row.style.display = '';
+                row.classList.remove('hidden');
                 noResults = false;
             } else {
-                row.style.display = 'none';
+                row.classList.add('hidden');
             }
         }
 
         // restore the table visibility
-        table.style.display = '';
+        table.classList.remove('hidden');
 
         // update the search message visibility
         const searchMessage = document.getElementById('search-message');

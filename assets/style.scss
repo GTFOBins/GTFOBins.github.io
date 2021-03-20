@@ -278,6 +278,10 @@ h2, h3, h4, h5, h5 {
 
 // other classes
 
+.hidden {
+    display: none;
+}
+
 .logo {
     $margin: 20px;
     float: right;
