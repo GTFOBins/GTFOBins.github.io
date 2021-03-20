@@ -3,11 +3,11 @@
         {% for function_item in site.data.functions %}
             {% assign function_name = function_item[0] %}
             {% assign function = function_item[1] %}
-            <li><a href="#+{{ function.label | downcase }}" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
+            <li><a href="#/^{{ function.label | downcase }}$" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
         {% endfor %}
     </ul>
 
-    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: <binary> +<function> ..."/>
+    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<binary>][/<function>]..."/>
 </div>
 
 <div id="bin-table-wrapper">
@@ -34,7 +34,7 @@
 
 <script>
  function filter(query) {
-     var queryArray = query.toLowerCase().trim().split(/ *\+/);
+     var queryArray = query.toLowerCase().trim().split(/ *\//);
      var binPattern = queryArray[0];
      var functionPatterns = queryArray.splice(1);
 
@@ -44,7 +44,7 @@
          var show = true;
 
          var binName = row.children[0].firstElementChild.innerText.toLowerCase();
-         if (binName.indexOf(binPattern) === -1) {
+         if (!binName.match(binPattern)) {
              show = false;
          }
 
@@ -61,7 +61,7 @@
                  // check against the pattern
                  var noMatches = true;
                  functionElems.forEach((item) => {
-                     if (item.innerText.toLowerCase().startsWith(pattern.toLowerCase())) {
+                     if (item.innerText.toLowerCase().match(pattern.toLowerCase())) {
                          item.className = 'match';
                          noMatches = false;
                      }
