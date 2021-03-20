@@ -2,11 +2,11 @@
 
 shell:
   label: Shell
-  description: This binary can be used to break out from restricted environments by spawning an interactive system shell.
+  description: This binary can spaw an interactive system shell.
 
 command:
   label: Command
-  description: This binary can be used to break out from restricted environments by running non-interactive system commands.
+  description: This binary can running non-interactive system commands.
 
 reverse-shell:
   label: Reverse shell
