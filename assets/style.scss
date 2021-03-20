@@ -49,6 +49,7 @@ code {
 pre {
     background: $lighter;
     padding: 1em;
+    margin: 1rem 0; // to be coherent with the regular-sized text
     overflow-x: auto;
 
     code {
