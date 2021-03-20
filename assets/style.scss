@@ -61,6 +61,12 @@ dt {
     font-weight: bold;
 }
 
+hr {
+    border: none;
+    height: 1px;
+    background: $foreground;
+}
+
 a:link, a:visited {
     color: $accent;
 }

@@ -48,9 +48,31 @@ layout: common
                         <input type="radio" id="{{ feature_id }}" name="{{ example_id }}" {% if first %}checked{% endif %} />
                         <label for="{{ feature_id }}">{{ feature.label }}</label>
                         <div>
-                            {% comment %} global feature description and optional local description {% endcomment %}
+                            {% comment %} global feature description {% endcomment %}
                             {{ feature.description | markdownify }}
-                            {{ per_feature_info.description | markdownify }}
+
+                            {% comment %} additional per-feature content {% endcomment %}
+                            {% case feature_name %}
+                            {% when "suid" %}
+                                {% if per_feature_info.limited %}
+                                    {{ feature.extra.limited | markdownify }}
+                                {% else %}
+                                    {{ feature.extra.regular | markdownify }}
+                                {% endif %}
+                            {% when "capabilities" %}
+                                <p>The following capabilities are needed:</p>
+                                <ul>
+                                    {% for capability in per_feature_info.list %}
+                                        <li><p><code>{{ capability }}</code></p></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endcase %}
+
+                            {% comment %} optional local description {% endcomment %}
+                            {% if per_feature_info.description %}
+                                <hr/>
+                                {{ per_feature_info.description | markdownify }}
+                            {% endif %}
 
                             {% comment %} use the common code or the specialized per-feature version {% endcomment %}
                             {% capture code %}{% if per_feature_info.code %}{{ per_feature_info.code }}{% else %}{{ example.code }}{% endif %}
