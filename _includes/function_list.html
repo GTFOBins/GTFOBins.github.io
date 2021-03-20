@@ -3,6 +3,8 @@
         {% assign function_name = function_item[0] %}
         {% assign function = function_item[1] %}
         {% unless include.bin.functions contains function_name %}{% continue %}{% endunless %}
-        <li><a href="{{ include.bin.url }}#{{ function_name }}">{{ function.label }}</a></li>
+        <li data-name="{{ function.label}}">
+            <a href="{{ include.bin.url }}#{{ function_name }}">{{ function.label }}</a>
+        </li>
     {% endfor %}
 </ul>

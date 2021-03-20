@@ -20,8 +20,9 @@
         </thead>
         <tbody>
             {% for file in site.gtfobins %}
-                <tr>
-                    <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name.html path=file.path %}</a></td>
+                {% capture bin_name %}{% include get_bin_name.html path=file.path %}{% endcapture %}
+                <tr data-name="{{ bin_name }}">
+                    <td><a href="{{ file.url }}" class="bin-name">{{ bin_name }}</a></td>
                     <td>{% include function_list.html bin=file %}</td>
                 </tr>
             {% endfor %}
@@ -49,8 +50,7 @@
             let show = true;
 
             // if the binary name does not match do not show the row
-            const binName = row.children[0].firstElementChild.innerText.toLowerCase();
-            if (!binName.match(binPattern)) {
+            if (!row.dataset.name.match(binPattern)) {
                 show = false;
             }
             // if there are function filters at least one mush match
@@ -73,7 +73,7 @@
                     // check against the pattern
                     let noMatches = true;
                     for (const item of functionElems) {
-                        if (item.innerText.toLowerCase().match(pattern.toLowerCase())) {
+                        if (item.dataset.name.toLowerCase().match(pattern.toLowerCase())) {
                             item.className = 'match';
                             noMatches = false;
                         }
