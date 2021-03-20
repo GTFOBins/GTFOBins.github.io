@@ -1,6 +1,8 @@
 ---
 ---
 
+$foreground: #000000;
+$background: #ffffff;
 $accent: #bf0707;
 $lighter: #fff4f4;
 $marked: #ffcccc;
@@ -33,6 +35,8 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 
 body {
     font-family: sans, sans-serif;
+    color: $foreground;
+    background: $background;
 }
 
 code {
@@ -51,6 +55,10 @@ pre {
         padding: 0;
         border-radius: 0;
     }
+}
+
+dt {
+    font-weight: bold;
 }
 
 a:link, a:visited {
@@ -201,7 +209,7 @@ h2, h3, h4, h5, h5 {
     & > li {
         display: table-row;
 
-        &:not(:only-child):before {
+        &:before {
             display: table-cell;
             font-size: 0.8rem;
             font-weight: bold;
@@ -210,6 +218,50 @@ h2, h3, h4, h5, h5 {
             counter-increment: item;
             content: "(" counter(item, lower-alpha) ")";
         }
+    }
+}
+
+// feature tabs
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em 0;
+
+    input[type=radio] {
+        display: none;
+
+        &:checked + label {
+            color: $accent;
+            background: $background;
+        }
+
+        &:checked + label + div {
+            display: block;
+        }
+    }
+
+    & > label {
+        font-size: 0.8rem;
+        margin-left: 0.5em;
+        padding: 0.25em 0.5em;
+        border: 1px solid $foreground;
+        border-bottom: none;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+
+        &:hover {
+            color: $hover;
+        }
+    }
+
+    & > div {
+        display: none;
+        flex-basis: 100%;
+        order: 999;
+        padding: 0 1em;
+        border: 1px solid;
     }
 }
 
@@ -227,11 +279,6 @@ h2, h3, h4, h5, h5 {
 .bin-name {
     font-family: monospace;
     font-size: 1.2rem;
-}
-
-.function-name {
-    font-size: 1.4rem;
-    font-weight: bold;
 }
 
 .github-buttons {

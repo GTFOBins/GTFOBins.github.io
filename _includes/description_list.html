@@ -1,0 +1,8 @@
+<dl>
+    {% for object_item in include.objects %}
+        {% assign object_name = object_item[0] %}
+        {% assign object = object_item[1] %}
+        <dt>{{ object.label }}</dt>
+        <dd>{{ object.description | markdownify }}</dd>
+    {% endfor %}
+</dl>

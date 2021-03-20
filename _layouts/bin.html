@@ -2,43 +2,66 @@
 layout: common
 ---
 
+{% comment %} binary title {% endcomment %}
 {% capture bin_name %}{% include get_bin_name.html path=page.path %}{% endcapture %}
-
 {% include page_title.html title=bin_name %}
 
+{% comment %} function list {% endcomment %}
 {% include function_list.html bin=page %}
 
+{% comment %} global binary description {% endcomment %}
 {{ page.description | markdownify }}
 
-{% for function_pair in site.data.functions %}
-{% assign function_id = function_pair[0] %}
-{% assign function = function_pair[1] %}
-{% assign examples = page.functions[function_id] %}
-{% unless examples %}{% continue %}{% endunless %}
+{% comment %} scan all the available functions in order to find those present {% endcomment %}
+{% for function_item in site.data.functions %}
+    {% assign function_name = function_item[0] %}
+    {% assign function = function_item[1] %}
+    {% unless page.functions contains function_name %}{% continue %}{% endunless %}
+    {% assign examples = page.functions[function_name] %}
 
-<h2 id="{{ function_id }}" class="function-name">{{- function.label -}}</h2>
-{{ function.description | markdownify }}
+    {% comment %} function title and global description {% endcomment %}
+    <h2 id="{{ function_name }}" class="function-name">{{- function.label -}}</h2>
+    {{ function.description | markdownify }}
 
-<ul class="examples">
-    {% for example in examples %}
+    {% comment %} list of function examples {% endcomment %}
+    <ul class="examples">
+        {% for example in examples %}
+            <li>
+                {% comment %} build the identifier of this example {% endcomment %}
+                {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
 
-{% capture code %}
-{%- if function_id == 'suid' or function_id == 'limited-suid' %}
-sudo install -m =xs $(which {{ bin_name }}) .
-{% endif %}
-{%- if function_id == 'capabilities' %}
-cp $(which {{ bin_name }}) .
-sudo setcap cap_setuid+ep {{ bin_name }}
-{% endif %}
-{{ example.code | escape }}
-{% endcapture %}
+                {% comment %} example description {% endcomment %}
+                {{ example.description | markdownify }}
 
-    <li>
-        {{ example.description | markdownify }}
-        <pre><code>{{- code | strip -}}</code></pre>
-    </li>
+                {% comment %} list of features for each example {% endcomment %}
+                <div class="features">
+                    {% comment %} scan all the available features in order to find those present falling back to the default {% endcomment %}
+                    {% assign first = true %}
+                    {% for feature_item in site.data.features %}
+                        {% assign feature_name = feature_item[0] %}
+                        {% assign feature = feature_item[1] %}
+                        {% unless example.features contains feature_name or feature_name == "default" %}{% continue %}{% endunless %}
+                        {% assign per_feature_info = example.features[feature_name] %}
 
-    {% endfor %}
-</ul>
+                        {% comment %} feature information {% endcomment %}
+                        {% capture feature_id %}{{ example_id }}-{{ feature_name }}{% endcapture %}
+                        <input type="radio" id="{{ feature_id }}" name="{{ example_id }}" {% if first %}checked{% endif %} />
+                        <label for="{{ feature_id }}">{{ feature.label }}</label>
+                        <div>
+                            {% comment %} global feature description and optional local description {% endcomment %}
+                            {{ feature.description | markdownify }}
+                            {{ per_feature_info.description | markdownify }}
 
+                            {% comment %} use the common code or the specialized per-feature version {% endcomment %}
+                            {% capture code %}{% if per_feature_info.code %}{{ per_feature_info.code }}{% else %}{{ example.code }}{% endif %}
+                            {% endcapture %}
+                            <pre><code>{{- code | escape | strip -}}</code></pre>
+                        </div>
+
+                        {% assign first = false %}
+                    {% endfor %}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endfor %}
