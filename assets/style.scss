@@ -109,7 +109,9 @@ h2, h3, h4, h5, h5 {
     position: relative; // XXX needed for tooltip sizing
 
     #bin-search-filters {
-        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         a {
             background: $lighter;
@@ -173,18 +175,18 @@ h2, h3, h4, h5, h5 {
 // function description
 
 .function-list {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 0.8rem;
     list-style: none;
     padding: 0;
     margin: 0;
 
     li {
-        display: inline-block;
-
         a {
             display: inline-block;
             padding: 0.25em 0.5em;
-            margin: 0.2em 0;
+            margin: 0.2em;
             border: 1px solid $accent;
         }
 
