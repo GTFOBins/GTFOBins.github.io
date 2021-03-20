@@ -121,15 +121,13 @@ h2, h3, h4, h5, h5 {
                 font-size: 0.8rem;
                 display: block;
                 position: absolute;
-                left: 0;
-                right: 0;
+                left: 10%;
+                right: 10%;
                 margin-top: 1.75rem; // XXX below the button
-                margin-left: 10%;
-                margin-right: 10%;
                 padding: 1em;
-                border-radius: 1em;
-                color: $lighter;
-                background: rgba(0, 0, 0, 0.75);
+                color: $background;
+                background: $foreground;
+                border-radius: 0.25em;
                 z-index: 1;
                 pointer-events: none;
             }
