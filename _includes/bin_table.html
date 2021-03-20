@@ -33,105 +33,105 @@
 </div>
 
 <script>
- function filter(query) {
-     var queryArray = query.toLowerCase().trim().split(/ *\//);
-     var binPattern = queryArray[0];
-     var functionPatterns = queryArray.splice(1);
+    function filter(query) {
+        const queryArray = query.toLowerCase().trim().split(/ *\//);
+        const binPattern = queryArray[0];
+        const functionPatterns = queryArray.splice(1);
 
-     // filter rows
-     var noResults = true;
-     document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
-         var show = true;
+        // filter rows
+        let noResults = true;
+        document.querySelectorAll('#bin-table tbody tr').forEach((row) => {
+            let show = true;
 
-         var binName = row.children[0].firstElementChild.innerText.toLowerCase();
-         if (!binName.match(binPattern)) {
-             show = false;
-         }
+            const binName = row.children[0].firstElementChild.innerText.toLowerCase();
+            if (!binName.match(binPattern)) {
+                show = false;
+            }
 
-         if (show) {
-             var functionElems = Array.from(row.children[1].firstElementChild.children);
-             functionElems.forEach((item) => {
-                 item.className = '';
-             });
-             functionPatterns.forEach((pattern) => {
-                 // skip empty filters
-                 if (!pattern) {
-                     return;
-                 }
-                 // check against the pattern
-                 var noMatches = true;
-                 functionElems.forEach((item) => {
-                     if (item.innerText.toLowerCase().match(pattern.toLowerCase())) {
-                         item.className = 'match';
-                         noMatches = false;
-                     }
-                 });
-                 // no function satisfies the pattern
-                 if (noMatches) {
-                     show = false;
-                 }
-             });
-         }
+            if (show) {
+                const functionElems = Array.from(row.children[1].firstElementChild.children);
+                functionElems.forEach((item) => {
+                    item.className = '';
+                });
+                functionPatterns.forEach((pattern) => {
+                    // skip empty filters
+                    if (!pattern) {
+                        return;
+                    }
+                    // check against the pattern
+                    let noMatches = true;
+                    functionElems.forEach((item) => {
+                        if (item.innerText.toLowerCase().match(pattern.toLowerCase())) {
+                            item.className = 'match';
+                            noMatches = false;
+                        }
+                    });
+                    // no function satisfies the pattern
+                    if (noMatches) {
+                        show = false;
+                    }
+                });
+            }
 
-         if (show) {
-             row.style.display = '';
-             noResults = false;
-         } else {
-             row.style.display = 'none';
-         }
-     });
+            if (show) {
+                row.style.display = '';
+                noResults = false;
+            } else {
+                row.style.display = 'none';
+            }
+        });
 
-     // update the search message visibility
-     var searchMessage = document.getElementById('search-message');
-     searchMessage.style.display = noResults ? 'table-cell' : 'none';
- }
+        // update the search message visibility
+        const searchMessage = document.getElementById('search-message');
+        searchMessage.style.display = noResults ? 'table-cell' : 'none';
+    }
 
- function applyFilter() {
-     // filter on load according to the URL
-     var searchBox = document.getElementById('bin-search');
-     var query = decodeURIComponent(location.hash.slice(1));
-     filter(query);
-     if (query) {
-         searchBox.value = query;
-     }
- }
+    function applyFilter() {
+        // filter on load according to the URL
+        const searchBox = document.getElementById('bin-search');
+        const query = decodeURIComponent(location.hash.slice(1));
+        filter(query);
+        if (query) {
+            searchBox.value = query;
+        }
+    }
 
- function setup() {
-     var searchBox = document.getElementById('bin-search');
+    function setup() {
+        const searchBox = document.getElementById('bin-search');
 
-     // ensure height during filtering
-     var binTableWrapper = document.getElementById('bin-table-wrapper');
-     binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
+        // ensure height during filtering
+        const binTableWrapper = document.getElementById('bin-table-wrapper');
+        binTableWrapper.style.height = `${binTableWrapper.clientHeight}px`;
 
-     // handle user input
-     searchBox.addEventListener('input', function () {
-         var query = searchBox.value;
-         history.replaceState(null, null, encodeURI('#' + query));
-         applyFilter();
-     });
+        // handle user input
+        searchBox.addEventListener('input', () => {
+            const query = searchBox.value;
+            history.replaceState(null, null, encodeURI(`#${query}`));
+            applyFilter();
+        });
 
-     // handle shortcuts
-     addEventListener('keydown', function (event) {
-         // focus search box on valid keydown
-         if (event.key.toLowerCase().match(/^[+a-z]$/) &&
-             !(event.ctrlKey || event.altKey || event.metaKey)) {
-             searchBox.focus();
-             searchBox.parentElement.scrollIntoView();
-         }
-         // clear filter on escape
-         else if (event.key === 'Escape') {
-             location.hash = searchBox.value = '';
-             searchBox.focus();
-             searchBox.parentElement.scrollIntoView();
-         }
-     });
+        // handle shortcuts
+        addEventListener('keydown', (event) => {
+            // focus search box on valid keydown
+            if (event.key.toLowerCase().match(/^[+a-z]$/) &&
+                !(event.ctrlKey || event.altKey || event.metaKey)) {
+                searchBox.focus();
+                searchBox.parentElement.scrollIntoView();
+            }
+            // clear filter on escape
+            else if (event.key === 'Escape') {
+                location.hash = searchBox.value = '';
+                searchBox.focus();
+                searchBox.parentElement.scrollIntoView();
+            }
+        });
 
-     // handle URL changes
-     window.onhashchange = applyFilter;
+        // handle URL changes
+        window.onhashchange = applyFilter;
 
-     // trigger filter on page load
-     applyFilter();
- }
+        // trigger filter on page load
+        applyFilter();
+    }
 
- setup();
+    setup();
 </script>
