@@ -12,8 +12,8 @@ suid:
   label: SUID
   description: This function is performed by the superuser if the binary has the SUID bit set and the right ownership because the *effective* privileges are not dropped.
   extra:
-    limited: The binary runs external commands via `system()`-like functions, so it only works on systems like Debian (<= Stretch) where the default shell does not drop SUID privileged.
-    regular: If present, remember to omit the `-p` argument of every `sh` invocation on systems like Debian (<= Stretch) where the default shell does not drop SUID privileged.
+    limited: The binary runs external commands via functions like `system`, so it only works for distributions like Debian (<= Stretch) where the default shell does not drop SUID privileged.
+    regular: If present, remember to omit the `-p` argument of every `sh` invocation on distributions like Debian (<= Stretch) where the default shell does not drop SUID privileged.
 
 capabilities:
   label: Capabilities
