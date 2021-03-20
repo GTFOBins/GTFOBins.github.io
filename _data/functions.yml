@@ -2,44 +2,44 @@
 
 shell:
   label: Shell
-  description: It can be used to break out from restricted environments by spawning an interactive system shell.
+  description: This binary can be used to break out from restricted environments by spawning an interactive system shell.
 
 command:
   label: Command
-  description: It can be used to break out from restricted environments by running non-interactive system commands.
+  description: This binary can be used to break out from restricted environments by running non-interactive system commands.
 
 reverse-shell:
   label: Reverse shell
-  description: It can send back a reverse shell to a listening attacker to open a remote network access.
+  description: This binary can send back an interactive reverse system shell to a listening attacker.
 
 non-interactive-reverse-shell:
   label: Non-interactive reverse shell
-  description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
+  description: This binary can send back a non-interactive reverse system shell to a listening attacker.
 
 bind-shell:
   label: Bind shell
-  description: It can bind a shell to a local port to allow remote network access.
+  description: This binary can bind an interactive system shell to a local port waiting for an attacker to connect.
 
 non-interactive-bind-shell:
   label: Non-interactive bind shell
-  description: It can bind a non-interactive shell to a local port to allow remote network access.
+  description: This binary can bind a non-interactive system shell to a local port waiting for an attacker to connect.
 
 file-upload:
   label: File upload
-  description: It can exfiltrate files on the network.
+  description: This binary can upload local files to a remote location.
 
 file-download:
   label: File download
-  description: It can download remote files.
+  description: This binary can download remote files to a local location.
 
 file-write:
   label: File write
-  description: It writes data to files, it may be used to do privileged writes or write files outside a restricted file system.
+  description: This binary can write data to local files.
 
 file-read:
   label: File read
-  description: It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system.
+  description: This binary can read data from local files.
 
 library-load:
   label: Library load
-  description: It loads shared libraries that may be used to run code in the binary execution context.
+  description: This binary can load shared libraries that may be used to run code in the binary execution context.
