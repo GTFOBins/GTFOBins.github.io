@@ -144,6 +144,12 @@
                     location.hash = searchBox.value = '';
                     searchBox.parentElement.scrollIntoView();
                 }
+            } else if (event.key === 'Enter') {
+                // navigate to the first match
+                const firstMatch = document.querySelector('#bin-table tbody tr:not(.hidden) td a');
+                if (firstMatch) {
+                    firstMatch.click();
+                }
             }
         });
 
