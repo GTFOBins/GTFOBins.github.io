@@ -104,8 +104,8 @@ h2, h3, h4, h5, h5 {
 // binary list and search
 
 #bin-search-wrapper {
-    margin: 50px 0;
-    padding: 10px 0;
+    margin-top: 50px;
+    padding-top: 20px;
     position: relative; // XXX needed for tooltip sizing
 
     #bin-search-filters {
@@ -135,7 +135,7 @@ h2, h3, h4, h5, h5 {
     }
 
     #bin-search {
-        margin-top: 25px;
+        margin: 20px 0;
         padding: 1em;
         font-size: 1rem;
         width: 100%;
