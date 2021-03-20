@@ -37,49 +37,66 @@
         const queryArray = query.toLowerCase().trim().split(/ *\//);
         const binPattern = queryArray[0];
         const functionPatterns = queryArray.splice(1);
+        const table = document.querySelector('#bin-table');
+
+        // hide the table during the filtering to avoid unnecessary layout reflows
+        table.style.display = 'none';
 
         // filter rows
         let noResults = true;
-        document.querySelectorAll('#bin-table tbody tr').forEach((row) => {
+        for (const row of table.querySelectorAll('tbody tr')) {
+            // show the row by default
             let show = true;
 
+            // if the binary name does not match do not show the row
             const binName = row.children[0].firstElementChild.innerText.toLowerCase();
             if (!binName.match(binPattern)) {
                 show = false;
             }
+            // if there are function filters at least one mush match
+            else {
+                // fetch the functions buttons
+                const functionElems = row.children[1].firstElementChild.children;
 
-            if (show) {
-                const functionElems = Array.from(row.children[1].firstElementChild.children);
-                functionElems.forEach((item) => {
+                // reset functions class
+                for (const item of functionElems) {
                     item.className = '';
-                });
-                functionPatterns.forEach((pattern) => {
+                }
+
+                // try each of the given patterns
+                for (const pattern of functionPatterns) {
                     // skip empty filters
                     if (!pattern) {
-                        return;
+                        continue;
                     }
+
                     // check against the pattern
                     let noMatches = true;
-                    functionElems.forEach((item) => {
+                    for (const item of functionElems) {
                         if (item.innerText.toLowerCase().match(pattern.toLowerCase())) {
                             item.className = 'match';
                             noMatches = false;
                         }
-                    });
+                    }
+
                     // no function satisfies the pattern
                     if (noMatches) {
                         show = false;
                     }
-                });
+                }
             }
 
+            // hide or show the row
             if (show) {
                 row.style.display = '';
                 noResults = false;
             } else {
                 row.style.display = 'none';
             }
-        });
+        }
+
+        // restore the table visibility
+        table.style.display = '';
 
         // update the search message visibility
         const searchMessage = document.getElementById('search-message');
