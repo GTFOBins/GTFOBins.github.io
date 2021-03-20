@@ -28,7 +28,7 @@
             {% endfor %}
         </tbody>
         <tfoot>
-            <tr><td id="search-message" colspan="2">No binary matches...</td></tr>
+            <tr><td colspan="2">No matches!</td></tr>
         </tfoot>
     </table>
 </div>
@@ -95,12 +95,19 @@
             }
         }
 
+        // update the message visibility
+        const header = table.querySelector('thead');
+        const footer = table.querySelector('tfoot');
+        if (noResults) {
+            header.classList.add('hidden');
+            footer.classList.remove('hidden');
+        } else {
+            header.classList.remove('hidden');
+            footer.classList.add('hidden');
+        }
+
         // restore the table visibility
         table.classList.remove('hidden');
-
-        // update the search message visibility
-        const searchMessage = document.getElementById('search-message');
-        searchMessage.style.display = noResults ? 'table-cell' : 'none';
     }
 
     function applyFilter() {
