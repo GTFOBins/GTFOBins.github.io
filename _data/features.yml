@@ -2,20 +2,19 @@
 
 default:
   label: Default
-  description: |
-    TODO...
+  description: The function can be performed by any unprivileged user.
 
 sudo:
   label: Sudo
-  description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+  description: If the binary is allowed to run as the superuser by `sudo`, then the acquired privileges are not dropped.
 
 suid:
   label: SUID
-  description: If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor.
+  description: If the binary has the SUID bit set, then the *effective* privileges are not dropped.
   extra:
-    limited: It is used to run commands (e.g., via `system()`-like invocations) so it only works on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
-    regular: If it is used to run `sh -p`, omit the `-p` argument on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
+    limited: It runs external commands via `system()`-like functions, so it only works on systems like Debian (<= Stretch) where the default shell does not drop SUID privileged.
+    regular: If present, remember to omit the `-p` argument of every `sh` invocations on systems like Debian (<= Stretch) where the default shell does not drop SUID privileged.
 
 capabilities:
   label: Capabilities
-  description: If the binary has certain capabilities set then this function is invoked with elevated privileges.
+  description: If the binary has certain capabilities set, then the function is performed bypassing the usual kernel permission checks.
