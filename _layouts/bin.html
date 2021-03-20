@@ -40,7 +40,7 @@ layout: common
                     {% for feature_item in site.data.features %}
                         {% assign feature_name = feature_item[0] %}
                         {% assign feature = feature_item[1] %}
-                        {% unless example.features contains feature_name or feature_name == "default" %}{% continue %}{% endunless %}
+                        {% unless example.features contains feature_name or feature_name == "unprivileged" %}{% continue %}{% endunless %}
                         {% assign per_feature_info = example.features[feature_name] %}
 
                         {% comment %} feature information {% endcomment %}
