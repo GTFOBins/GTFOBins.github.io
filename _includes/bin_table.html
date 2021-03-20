@@ -99,10 +99,6 @@
     function setup() {
         const searchBox = document.getElementById('bin-search');
 
-        // ensure height during filtering
-        const binTableWrapper = document.getElementById('bin-table-wrapper');
-        binTableWrapper.style.height = `${binTableWrapper.clientHeight}px`;
-
         // handle user input
         searchBox.addEventListener('input', () => {
             const query = searchBox.value;

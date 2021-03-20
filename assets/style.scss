@@ -140,25 +140,29 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-#bin-table {
-    width: 100%;
+#bin-table-wrapper {
+    min-height: 100vh;
 
-    th, td {
-        padding: 0.2em 1em;
-    }
+    #bin-table {
+        width: 100%;
 
-    th {
-        text-align: left;
-    }
+        th, td {
+            padding: 0.2em 1em;
+        }
 
-    tbody tr:hover {
-        background: $lighter;
-    }
+        th {
+            text-align: left;
+        }
 
-    #search-message {
-        display: none;
-        text-align: center;
-        padding: 1em;
+        tbody tr:hover {
+            background: $lighter;
+        }
+
+        #search-message {
+            display: none;
+            text-align: center;
+            padding: 1em;
+        }
     }
 }
 
