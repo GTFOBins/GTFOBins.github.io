@@ -154,16 +154,25 @@ h2, h3, h4, h5, h5 {
     #bin-table {
         width: 100%;
 
-        th:nth-child(2) {
-            width: 100%;
-        }
-
-        th, td {
-            padding: 0.2em 1em;
-        }
-
         th {
             text-align: left;
+            padding: 0.5em;
+
+            &:nth-child(2) {
+                width: 100%;
+            }
+        }
+
+        td {
+            &:nth-child(1) a {
+                text-decoration: none;
+                padding: 0.5em;
+                display: block;
+            }
+
+            &:nth-child(2) {
+                padding: 0 0.2em; // so to make the spacing even with function rectangles
+            }
         }
 
         tbody tr:hover {
