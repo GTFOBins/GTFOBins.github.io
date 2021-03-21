@@ -65,12 +65,9 @@ layout: common
                                     {{ feature.extra.regular | markdownify }}
                                 {% endif %}
                             {% when "capabilities" %}
-                                <p>The following capabilities are needed:</p>
-                                <ul>
-                                    {% for capability in per_feature_info.list %}
-                                        <li><p><code>{{ capability }}</code></p></li>
-                                    {% endfor %}
-                                </ul>
+                                {% if per_feature_info.list %}
+                                    <p>The following capabilities are needed: <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
+                                {% endif %}
                             {% endcase %}
 
                             {% comment %} optional local description {% endcomment %}
