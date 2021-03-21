@@ -35,11 +35,13 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 
 body {
     font-family: sans, sans-serif;
+    font-size: 16px;
     color: $foreground;
     background: $background;
 }
 
 code {
+    font-size: 0.8rem;
     padding: 0.15em 0.25em;
     border-radius: 0.25em;
     color: $accent;
@@ -48,6 +50,7 @@ code {
 
 pre {
     background: $lighter;
+    font-size: 0.8rem;
     padding: 1em;
     margin: 1rem 0; // to be coherent with the regular-sized text
     overflow-x: auto;
@@ -165,6 +168,7 @@ h2, h3, h4, h5, h5 {
 
         td {
             &:nth-child(1) a {
+                font-family: monospace;
                 text-decoration: none;
                 padding: 0.5em;
                 display: block;
@@ -303,11 +307,6 @@ h2, h3, h4, h5, h5 {
     height: 100px;
     margin-left: $margin;
     margin-bottom: $margin;
-}
-
-.bin-name {
-    font-family: monospace;
-    font-size: 1.2rem;
 }
 
 .github-buttons {
