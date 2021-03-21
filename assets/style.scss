@@ -283,6 +283,7 @@ h2, h3, h4, h5, h5 {
     & > div {
         display: none;
         flex-basis: 100%;
+        width: 0px; // XXX avoid growing
         order: 999;
         padding: 0 1em;
         border: 1px solid;
