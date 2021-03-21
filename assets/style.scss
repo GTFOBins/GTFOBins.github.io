@@ -121,6 +121,7 @@ h2, h3, h4, h5, h5 {
             &:hover:before {
                 content: attr(data-title);
                 font-size: 0.8rem;
+                text-align: center;
                 display: block;
                 position: absolute;
                 left: 10%;
