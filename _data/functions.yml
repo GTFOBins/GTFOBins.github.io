@@ -2,7 +2,7 @@
 
 shell:
   label: Shell
-  description: This binary can spaw an interactive system shell.
+  description: This binary can spawn an interactive system shell.
 
 command:
   label: Command
