@@ -137,7 +137,7 @@
         // handle shortcuts
         addEventListener('keydown', (event) => {
             // focus search box on valid keydown (search as you type)
-            if (event.key.toLowerCase().match(/^[+a-z]$/) && !(event.ctrlKey || event.altKey || event.metaKey)) {
+            if (event.key.toLowerCase().match(/^[-/_0-9a-z]$/) && !(event.ctrlKey || event.altKey || event.metaKey)) {
                 searchBox.focus();
             } else if (event.key === 'Escape') {
                 // if the search box is already focused and empty scroll to top
