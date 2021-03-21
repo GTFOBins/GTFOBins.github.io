@@ -170,6 +170,7 @@ h2, h3, h4, h5, h5 {
             &:nth-child(1) a {
                 font-family: monospace;
                 text-decoration: none;
+                white-space: nowrap;
                 padding: 0.5em;
                 display: block;
             }
