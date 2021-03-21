@@ -6,6 +6,11 @@ layout: common
 {% capture bin_name %}{% include get_bin_name.html path=page.path %}{% endcapture %}
 {% include page_title.html title=bin_name %}
 
+{% comment %} optional list of aliases {% endcomment %}
+{% if page.aliases %}
+    <p>(Also known as: <code>{{ page.aliases | join: "</code>, <code>"}}</code>)</p>
+{% endif %}
+
 {% comment %} function list {% endcomment %}
 {% include function_list.html bin=page %}
 
