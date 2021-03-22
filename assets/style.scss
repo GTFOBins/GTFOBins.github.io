@@ -73,12 +73,18 @@ hr {
     background: $foreground;
 }
 
-a:link, a:visited {
-    color: $accent;
-}
+a {
+    &:link, &:visited {
+        color: $accent;
+    }
 
-a:hover {
-    color: $hover;
+    &:hover {
+        color: $hover;
+
+        & > *:not(svg) { // XXX not for the GitHub corner
+            color: $hover;
+        }
+    }
 }
 
 // permalink on headings
