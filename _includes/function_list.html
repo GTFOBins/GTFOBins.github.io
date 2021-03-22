@@ -1,10 +1,11 @@
+{% comment %} functions are passed separately so that can be reused for aliases {% endcomment %}
 <ul class="function-list">
     {% for function_item in site.data.functions %}
         {% assign function_name = function_item[0] %}
         {% assign function = function_item[1] %}
-        {% unless include.bin.functions contains function_name %}{% continue %}{% endunless %}
-        <li data-name="{{ function.label}}">
-            <a href="{{ include.bin.url }}#{{ function_name }}">{{ function.label }}</a>
+        {% unless include.functions contains function_name %}{% continue %}{% endunless %}
+        <li data-name="{{ function.label }}">
+            <a href="{{ include.gtfobin.url }}#{{ function_name }}">{{ function.label }}</a>
         </li>
     {% endfor %}
 </ul>

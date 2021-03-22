@@ -19,37 +19,22 @@
             </tr>
         </thead>
         <tbody>
-            {% comment %} XXX '' | split: '' is an hack to create an empty array and the fulter push is not documented {% endcomment %}
+            {% for original_gtfobin in site.gtfobins %}
+                {% comment %} the binary name is the one of the file anyways {% endcomment %}
+                {% capture gtfobin_name %}{% include get_bin_name.html path=original_gtfobin.path %}{% endcapture %}
 
-            {% comment %} build the binary list resolving aliases {% endcomment %}
-            {% assign gtfobins = '' | split: '' %}
-            {% for gtfobin in site.gtfobins %}
-                {% comment %} add the original entry {% endcomment %}
-                {% capture name %}{% include get_bin_name.html path=gtfobin.path %}{% endcapture %}
-                {% assign item = '' | split: '' %}
-                {% assign item = item | push: name %}
-                {% assign item = item | push: gtfobin %}
-                {% assign gtfobins = gtfobins | push: item %}
+                {% comment %} resolve the alias, if provided {% endcomment %}
+                {% if original_gtfobin.alias %}
+                    {% include get_gtfobin.html name=original_gtfobin.alias %}
+                    {% assign gtfobin = return_gtfobin %}
+                {% else %}
+                    {% assign gtfobin = original_gtfobin %}
+                {% endif %}
 
-                {% comment %} add the same entry for each alias {% endcomment %}
-                {% for alias in gtfobin.aliases %}
-                    {% assign item = '' | split: '' %}
-                    {% assign item = item | push: alias %}
-                    {% assign item = item | push: gtfobin %}
-                    {% assign gtfobins = gtfobins | push: item %}
-                {% endfor %}
-            {% endfor %}
-
-            {% comment %} sort the new list by name {% endcomment %}
-            {% assign gtfobins = gtfobins | sort %}
-
-            {% comment %} scan the new list and create the rows {% endcomment %}
-            {% for gtfobin_item in gtfobins %}
-                {% assign gtfobin_name = gtfobin_item[0] %}
-                {% assign gtfobin = gtfobin_item[1] %}
+                {% comment %} render the row {% endcomment %}
                 <tr data-name="{{ gtfobin_name }}">
-                    <td><a href="{{ gtfobin.url }}" class="bin-name">{{ gtfobin_name }}</a></td>
-                    <td>{% include function_list.html bin=gtfobin %}</td>
+                    <td><a href="{{ original_gtfobin.url }}" class="bin-name">{{ gtfobin_name }}</a></td>
+                    <td>{% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}</td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -2,27 +2,35 @@
 layout: common
 ---
 
+{% assign original_gtfobin = page %}
+
 {% comment %} binary title {% endcomment %}
-{% capture bin_name %}{% include get_bin_name.html path=page.path %}{% endcapture %}
+{% capture bin_name %}{% include get_bin_name.html path=original_gtfobin.path %}{% endcapture %}
 {% include page_title.html title=bin_name %}
 
-{% comment %} optional list of aliases {% endcomment %}
-{% if page.aliases %}
-    <p>(Also known as: <code>{{ page.aliases | join: "</code>, <code>"}}</code>)</p>
+{% comment %} resolve the alias {% endcomment %}
+{% if original_gtfobin.alias %}
+    {% include get_gtfobin.html name=original_gtfobin.alias %}
+    {% assign gtfobin = return_gtfobin %}
+
+    {% comment %} render a message about being an alias {% endcomment %}
+    <p>(This is an alias of <a href="{{ gtfobin.url }}"><code>{{ return_gtfobin_name }}</code></a>.)</p>
+{% else %}
+    {% assign gtfobin = original_gtfobin %}
 {% endif %}
 
 {% comment %} function list {% endcomment %}
-{% include function_list.html bin=page %}
+{% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}
 
 {% comment %} global binary description {% endcomment %}
-{{ page.description | markdownify }}
+{{ gtfobin.description | markdownify }}
 
 {% comment %} scan all the available functions in order to find those present {% endcomment %}
 {% for function_item in site.data.functions %}
     {% assign function_name = function_item[0] %}
     {% assign function = function_item[1] %}
-    {% unless page.functions contains function_name %}{% continue %}{% endunless %}
-    {% assign examples = page.functions[function_name] %}
+    {% unless gtfobin.functions contains function_name %}{% continue %}{% endunless %}
+    {% assign examples = gtfobin.functions[function_name] %}
 
     {% comment %} function title and global description {% endcomment %}
     <h2 id="{{ function_name }}" class="function-name">{{- function.label -}}</h2>
