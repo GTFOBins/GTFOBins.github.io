@@ -167,16 +167,14 @@ h2, h3, h4, h5, h5 {
         }
 
         td {
+            padding: 0;
+
             &:nth-child(1) a {
                 font-family: monospace;
                 text-decoration: none;
                 white-space: nowrap;
-                padding: 0.5em;
+                padding: 0 0.5em;
                 display: block;
-            }
-
-            &:nth-child(2) {
-                padding: 0 0.2em; // so to make the spacing even with function rectangles
             }
         }
 
