@@ -7,6 +7,7 @@ $accent: #bf0707;
 $lighter: #fff4f4;
 $marked: #ffcccc;
 $hover: #ff0000;
+$code-font-size: 13px;
 $small-font-size: 14px;
 
 // layout
@@ -42,7 +43,7 @@ body {
 }
 
 code {
-    font-size: $small-font-size;
+    font-size: $code-font-size;
     padding: 0.15em 0.25em;
     border-radius: 0.25em;
     color: $accent;
@@ -51,7 +52,7 @@ code {
 
 pre {
     background: $lighter;
-    font-size: $small-font-size;
+    font-size: $code-font-size;
     padding: 1em;
     margin: 1rem 0; // to be coherent with the regular-sized text
     overflow-x: auto;
