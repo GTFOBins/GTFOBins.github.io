@@ -7,6 +7,7 @@ $accent: #bf0707;
 $lighter: #fff4f4;
 $marked: #ffcccc;
 $hover: #ff0000;
+$small-font-size: 14px;
 
 // layout
 
@@ -41,7 +42,7 @@ body {
 }
 
 code {
-    font-size: 0.8rem;
+    font-size: $small-font-size;
     padding: 0.15em 0.25em;
     border-radius: 0.25em;
     color: $accent;
@@ -50,7 +51,7 @@ code {
 
 pre {
     background: $lighter;
-    font-size: 0.8rem;
+    font-size: $small-font-size;
     padding: 1em;
     margin: 1rem 0; // to be coherent with the regular-sized text
     overflow-x: auto;
@@ -123,7 +124,7 @@ h2, h3, h4, h5, h5 {
 
             &:hover:before {
                 content: attr(data-title);
-                font-size: 0.8rem;
+                font-size: $small-font-size;
                 text-align: center;
                 display: block;
                 position: absolute;
@@ -194,7 +195,7 @@ h2, h3, h4, h5, h5 {
 .function-list {
     display: flex;
     flex-wrap: wrap;
-    font-size: 0.8rem;
+    font-size: $small-font-size;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -238,7 +239,7 @@ h2, h3, h4, h5, h5 {
 
         &:before {
             display: table-cell;
-            font-size: 0.8rem;
+            font-size: $small-font-size;
             font-weight: bold;
             width: 3em;
             text-align: center;
@@ -269,7 +270,7 @@ h2, h3, h4, h5, h5 {
     }
 
     & > label {
-        font-size: 0.8rem;
+        font-size: $small-font-size;
         margin-left: 0.5em;
         padding: 0.25em 0.5em;
         border: 1px solid $foreground;
