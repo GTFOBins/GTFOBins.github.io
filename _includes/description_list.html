@@ -1,8 +1,9 @@
+{% comment %} creates a definition list for functions or features {% endcomment %}
 <dl>
-    {% for object_item in include.objects %}
-        {% assign object_name = object_item[0] %}
-        {% assign object = object_item[1] %}
-        <dt>{{ object.label }}</dt>
-        <dd>{{ object.description | markdownify }}</dd>
+    {% for _object_item in include.objects %}
+        {% assign _object_name = _object_item[0] %}
+        {% assign _object = _object_item[1] %}
+        <dt>{{ _object.label }}</dt>
+        <dd>{{ _object.description | markdownify }}</dd>
     {% endfor %}
 </dl>

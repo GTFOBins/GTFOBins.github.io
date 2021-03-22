@@ -19,4 +19,4 @@ defaults:
   - scope:
       path: '_gtfobins'
     values:
-      layout: bin
+      layout: gtfobin

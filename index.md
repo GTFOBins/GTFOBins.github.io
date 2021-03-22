@@ -22,4 +22,4 @@ If you are looking for Windows binaries you should visit [LOLBAS][].
 [norbemi]: https://twitter.com/norbemi
 [cyrus_and]: https://twitter.com/cyrus_and
 
-{% include bin_table.html %}
+{% include gtfobins_table.html %}

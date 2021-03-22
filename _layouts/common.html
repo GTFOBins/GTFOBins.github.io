@@ -5,7 +5,7 @@
         <title>
             {% if page.url != '/' %}
                 {% if page.layout == 'bin' %}
-                    {% include get_bin_name.html path=page.path %}
+                    {% include get_gtfobin_name.html path=page.path %}
                 {% else %}
                     {{ page.title }}
                 {% endif %}
