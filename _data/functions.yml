@@ -6,7 +6,7 @@ shell:
 
 command:
   label: Command
-  description: This binary can running non-interactive system commands.
+  description: This binary can run non-interactive system commands.
 
 reverse-shell:
   label: Reverse shell
