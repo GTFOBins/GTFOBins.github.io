@@ -163,6 +163,7 @@ h2, h3, h4, h5, h5 {
 
     #bin-table {
         width: 100%;
+        border-spacing: 0;
 
         th {
             text-align: left;
@@ -176,12 +177,18 @@ h2, h3, h4, h5, h5 {
         td {
             padding: 0;
 
-            &:nth-child(1) a {
+            &:nth-child(1) {
                 font-family: monospace;
-                text-decoration: none;
                 white-space: nowrap;
-                padding: 0 0.5em;
-                display: block;
+
+                a {
+                    margin: 0 0.5em;
+                    text-decoration: none;
+                }
+            }
+
+            &:nth-child(2) {
+                padding: 0.2em;
             }
         }
 
