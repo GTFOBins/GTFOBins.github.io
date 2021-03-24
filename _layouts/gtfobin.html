@@ -4,6 +4,9 @@ layout: common
 
 {% assign original_gtfobin = page %}
 
+{% comment %} get the default feature name to use it as default {% endcomment %}
+{% assign default_feature_name = site.data.features | first | first %}
+
 {% comment %} binary title {% endcomment %}
 {% capture gtfobin_name %}{% include get_gtfobin_name.html path=original_gtfobin.path %}{% endcapture %}
 {% include page_title.html title=gtfobin_name %}
@@ -53,7 +56,8 @@ layout: common
                     {% for feature_item in site.data.features %}
                         {% assign feature_name = feature_item[0] %}
                         {% assign feature = feature_item[1] %}
-                        {% unless example.features contains feature_name or feature_name == "unprivileged" %}{% continue %}{% endunless %}
+
+                        {% unless example.features contains feature_name or example.features == nil and feature_name == default_feature_name %}{% continue %}{% endunless %}
                         {% assign per_feature_info = example.features[feature_name] %}
 
                         {% comment %} feature information {% endcomment %}
