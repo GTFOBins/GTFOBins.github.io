@@ -7,7 +7,7 @@
         {% endfor %}
     </ul>
 
-    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<binary>][/<function>]..."/>
+    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
 </div>
 
 <div id="bin-table-wrapper">
@@ -32,7 +32,7 @@
                 {% endif %}
 
                 {% comment %} render the row {% endcomment %}
-                <tr data-name="{{ gtfobin_name }}">
+                <tr data-gtfobin-name="{{ gtfobin_name }}">
                     <td><a href="{{ original_gtfobin.url }}" class="bin-name">{{ gtfobin_name }}</a></td>
                     <td>{% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}</td>
                 </tr>
@@ -46,61 +46,84 @@
 
 <script>
     function filter(query) {
-        const queryArray = query.toLowerCase().trim().split(/ *\//);
-        const binPattern = queryArray[0];
-        const functionPatterns = queryArray.splice(1);
-        const table = document.querySelector('#bin-table');
+        // extract query components
+        const [namePattern, functionPattern, featurePattern] = query.toLowerCase().split('/', 3).map((pattern) => {
+            try {
+                if (pattern) {
+                    return new RegExp(pattern, 'i');
+                } else {
+                    return undefined;
+                }
+            } catch {
+                return undefined;
+            }
+        });
 
         // hide the table during the filtering to avoid unnecessary layout reflows
+        const table = document.querySelector('#bin-table');
         table.classList.add('hidden');
 
         // filter rows
-        let noResults = true;
+        let nResults = 0;
         for (const row of table.querySelectorAll('tbody tr')) {
             // show the row by default
-            let show = true;
+            let showRow = true;
 
             // if the binary name does not match do not show the row
-            if (!row.dataset.name.match(binPattern)) {
-                show = false;
+            if (namePattern && !namePattern.test(row.dataset.gtfobinName)) {
+                showRow = false;
             }
             // if there are function filters at least one mush match
             else {
                 // fetch the functions buttons
                 const functionElems = row.children[1].firstElementChild.children;
 
-                // reset functions class
-                for (const item of functionElems) {
-                    item.classList.remove('match');
+                // reset functions buttons visibility
+                for (const functionElem of functionElems) {
+                    functionElem.classList.remove('match');
+                    delete functionElem.firstElementChild.dataset.matchingFeatures;
                 }
 
-                // try each of the given patterns
-                for (const pattern of functionPatterns) {
-                    // skip empty filters
-                    if (!pattern) {
-                        continue;
-                    }
-
-                    // check against the pattern
-                    let noMatches = true;
-                    for (const item of functionElems) {
-                        if (item.dataset.name.toLowerCase().match(pattern.toLowerCase())) {
-                            item.classList.add('match');
-                            noMatches = false;
+                // skip if empty filters
+                if (functionPattern || featurePattern) {
+                    // test the individual functions
+                    let noMatchingFunctions = true;
+                    for (const functionElem of functionElems) {
+                        // test the function name
+                        const functionMatches = !functionPattern || functionPattern.test(functionElem.dataset.functionName)
+                        if (!functionMatches) {
+                            continue;
                         }
+
+                        // test the features
+                        const featureList = functionElem.dataset.functionFeatures.split(',');
+                        const matchingFeatures = featurePattern
+                            ? featureList.filter((feature) => featurePattern.test(feature))
+                            : featureList;
+                        if (matchingFeatures.length === 0) {
+                            continue;
+                        }
+                        // save the macthing features only if there is a pattern
+                        else if (featurePattern) {
+                            functionElem.firstElementChild.dataset.matchingFeatures = matchingFeatures.join(', ');
+                        }
+
+                        // match if both match
+                        noMatchingFunctions = false;
+                        functionElem.classList.add('match');
                     }
 
-                    // no function satisfies the pattern
-                    if (noMatches) {
-                        show = false;
+                    // no function satisfies the patterns
+                    if (noMatchingFunctions) {
+                        showRow = false;
                     }
                 }
             }
 
             // hide or show the row
-            if (show) {
+            if (showRow) {
                 row.classList.remove('hidden');
-                noResults = false;
+                nResults++;
             } else {
                 row.classList.add('hidden');
             }
@@ -109,7 +132,7 @@
         // update the message visibility
         const header = table.querySelector('thead');
         const footer = table.querySelector('tfoot');
-        if (noResults) {
+        if (nResults === 0) {
             header.classList.add('hidden');
             footer.classList.remove('hidden');
         } else {
@@ -148,7 +171,7 @@
         // handle shortcuts
         addEventListener('keydown', (event) => {
             // focus search box on valid keydown (search as you type)
-            if (event.key.toLowerCase().match(/^[-/_0-9a-z]$/) && !(event.ctrlKey || event.altKey || event.metaKey)) {
+            if (event.key.toLowerCase().match(/^[-_0-9a-z\/]$/) && !event.ctrlKey) {
                 searchBox.focus();
             } else if (event.key === 'Escape') {
                 // if the search box is already focused and empty scroll to top

@@ -235,6 +235,10 @@ h2, h3, h4, h5, h5 {
 
         &.match a {
             background: $marked;
+
+            &[data-matching-features]:after {
+                content: " (" attr(data-matching-features) ")";
+            }
         }
     }
 }

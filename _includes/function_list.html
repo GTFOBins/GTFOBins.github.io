@@ -1,10 +1,16 @@
-{% comment %} functions are passed separately so that can be reused for aliases {% endcomment %}
+{% comment %} build the list of functions along with the provided features {% endcomment %}
 <ul class="function-list">
     {% for _function_item in site.data.functions %}
         {% assign _function_name = _function_item[0] %}
         {% assign _function = _function_item[1] %}
         {% unless include.functions contains _function_name %}{% continue %}{% endunless %}
-        <li data-name="{{ _function.label }}">
+
+        {% comment %} for each function extract the features of its examples {% endcomment %}
+        {% assign _examples = include.functions[_function_name] %}
+        {% include get_features_label.html examples=_examples %}
+
+        {% comment %} functions are passed separately so that can be reused for aliases {% endcomment %}
+        <li data-function-name="{{ _function.label }}" data-function-features="{{ return_features }}">
             <a href="{{ include.gtfobin.url }}#{{ _function_name }}">{{ _function.label }}</a>
         </li>
     {% endfor %}
