@@ -1,11 +1,25 @@
-<div id="bin-search-wrapper">
-    <ul id="bin-search-filters" class="function-list">
-        {% for function_item in site.data.functions %}
-            {% assign function_name = function_item[0] %}
-            {% assign function = function_item[1] %}
-            <li><a href="#/^{{ function.label | downcase }}$" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
-        {% endfor %}
-    </ul>
+<div id="search-toolbox">
+    <fieldset>
+        <legend>Functions</legend>
+        <ul class="search-filters button-list">
+            {% for function_item in site.data.functions %}
+                {% assign function_name = function_item[0] %}
+                {% assign function = function_item[1] %}
+                <li><a href="#/^{{ function.label | downcase }}$" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Features</legend>
+        <ul class="search-filters button-list">
+            {% for feature_item in site.data.features %}
+                {% assign feature_name = feature_item[0] %}
+                {% assign feature = feature_item[1] %}
+                <li><a href="#//^{{ feature.label | downcase }}$" data-title="{{ feature.description | replace: '\n', ' ' }}">{{ feature.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </fieldset>
 
     <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
 </div>

@@ -114,12 +114,21 @@ h2, h3, h4, h5, h5 {
 
 // binary list and search
 
-#bin-search-wrapper {
-    margin-top: 50px;
-    padding-top: 20px;
+#search-toolbox {
+    margin-top: 80px;
     position: relative; // XXX needed for tooltip sizing
 
-    #bin-search-filters {
+    fieldset {
+        border: 1px solid $accent;
+        padding-top: 0;
+
+        legend {
+            font-weight: bold;
+            padding: 0.5em;
+        }
+    }
+
+    .search-filters {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -205,9 +214,9 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-// function description
+// function and features buttons used in both the table and single pages
 
-.function-list {
+.button-list {
     display: flex;
     flex-wrap: wrap;
     font-size: $small-font-size;
