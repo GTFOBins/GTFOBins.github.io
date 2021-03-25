@@ -1,7 +1,7 @@
 <div id="search-toolbox">
     <fieldset>
         <legend>Functions</legend>
-        <ul class="search-filters button-list">
+        <ul class="search-filters tag-list">
             {% for function_item in site.data.functions %}
                 {% assign function_name = function_item[0] %}
                 {% assign function = function_item[1] %}
@@ -12,7 +12,7 @@
 
     <fieldset>
         <legend>Features</legend>
-        <ul class="search-filters button-list">
+        <ul class="search-filters tag-list">
             {% for feature_item in site.data.features %}
                 {% assign feature_name = feature_item[0] %}
                 {% assign feature = feature_item[1] %}
@@ -21,11 +21,11 @@
         </ul>
     </fieldset>
 
-    <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
+    <input type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
 </div>
 
-<div id="bin-table-wrapper">
-    <table id="bin-table">
+<div id="gtfobin-table-wrapper">
+    <table id="gtfobin-table">
         <thead>
             <tr>
                 <th>Binary</th>
@@ -74,7 +74,7 @@
         });
 
         // hide the table during the filtering to avoid unnecessary layout reflows
-        const table = document.querySelector('#bin-table');
+        const table = document.querySelector('#gtfobin-table');
         table.classList.add('hidden');
 
         // filter rows
@@ -160,7 +160,7 @@
 
     function applyFilter() {
         // filter on load according to the URL
-        const searchBox = document.getElementById('bin-search');
+        const searchBox = document.querySelector('#search-toolbox input');
         const query = decodeURIComponent(location.hash.slice(1));
         filter(query);
 
@@ -173,7 +173,7 @@
     }
 
     function setup() {
-        const searchBox = document.getElementById('bin-search');
+        const searchBox = document.querySelector('#search-toolbox input');
 
         // handle user input
         searchBox.addEventListener('input', () => {
@@ -201,7 +201,7 @@
                 }
             } else if (event.key === 'Enter') {
                 // navigate to the first match
-                const firstMatch = document.querySelector('#bin-table tbody tr:not(.hidden) td a');
+                const firstMatch = document.querySelector('#gtfobin-table tbody tr:not(.hidden) td a');
                 if (firstMatch) {
                     firstMatch.click();
                 }

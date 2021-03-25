@@ -157,7 +157,7 @@ h2, h3, h4, h5, h5 {
         }
     }
 
-    #bin-search {
+    input {
         margin: 1rem 0;
         padding: 1em;
         font-size: 1rem;
@@ -168,10 +168,10 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-#bin-table-wrapper {
+#gtfobin-table-wrapper {
     min-height: 100vh;
 
-    #bin-table {
+    #gtfobin-table {
         width: 100%;
         border-spacing: 0;
 
@@ -217,7 +217,7 @@ h2, h3, h4, h5, h5 {
 
 // function and features buttons used in both the table and single pages
 
-.button-list {
+.tag-list {
     display: flex;
     flex-wrap: wrap;
     font-size: $small-font-size;
@@ -253,7 +253,7 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-// bin examples
+// function examples
 
 .examples {
     display: table;
