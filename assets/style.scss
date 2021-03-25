@@ -120,6 +120,7 @@ h2, h3, h4, h5, h5 {
 
     fieldset {
         border: 1px solid $accent;
+        padding: 1rem;
         padding-top: 0;
 
         legend {
@@ -157,7 +158,7 @@ h2, h3, h4, h5, h5 {
     }
 
     #bin-search {
-        margin: 20px 0;
+        margin: 1rem 0;
         padding: 1em;
         font-size: 1rem;
         width: 100%;
