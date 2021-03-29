@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Contributing
+description: Get involved in GTFOBins.
 permalink: /contributing/
 ---
 
