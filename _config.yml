@@ -2,10 +2,10 @@
 title: GTFOBins
 
 exclude:
-  - '/LICENSE'
-  - '/Makefile'
-  - '/README.md'
-  - '/scripts'
+  - /LICENSE
+  - /Makefile
+  - /README.md
+  - /scripts/
 
 permalink: pretty
 
@@ -15,6 +15,6 @@ collections:
 
 defaults:
   - scope:
-      path: '_gtfobins'
+      path: _gtfobins
     values:
       layout: gtfobin
