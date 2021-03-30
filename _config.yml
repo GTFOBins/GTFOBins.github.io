@@ -2,7 +2,6 @@
 title: GTFOBins
 
 exclude:
-  - '/Gemfile'
   - '/LICENSE'
   - '/Makefile'
   - '/README.md'
