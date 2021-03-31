@@ -5,7 +5,7 @@ exclude:
   - /LICENSE
   - /Makefile
   - /README.md
-  - /scripts/
+  - /linter/
 
 permalink: pretty
 

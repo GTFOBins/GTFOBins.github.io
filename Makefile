@@ -1,14 +1,15 @@
-.PHONY: serve serve-public bundle lint
-
+.PHONY: serve
 serve:
 	bundle exec jekyll serve
 
+.PHONY: serve-publicly
 serve-public:
 	bundle exec jekyll serve --host 0.0.0.0
 
+.PHONY: bundle
 bundle:
 	bundle install
 
+.PHONY: lint
 lint:
-	yamllint _gtfobins/*.md
-	scripts/validate-schema.py
+	linter/linter.py
