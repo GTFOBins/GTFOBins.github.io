@@ -18,6 +18,11 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         ./cp $TF $LFILE
+    - description: This can be used to create directories and copy files into them, in this case copying a key into authorized_keys when the .ssh directory did not exist prior.
+      code: |
+        mkdir .ssh
+        echo "<public_key_here>" > .ssh/authorized_keys
+        cp --parents .ssh/authorized_keys /root
   sudo:
     - code: |
         LFILE=file_to_write
