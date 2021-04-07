@@ -2,7 +2,7 @@
 functions:
   shell:
     - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
-  command: 
+  command:
     - code: |
             rpm --pipe '/bin/id > /tmp/result'
             cat /tmp/result
