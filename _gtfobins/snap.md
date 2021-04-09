@@ -9,8 +9,8 @@ functions:
         mkdir -p meta/hooks
         printf '#!/bin/sh\n%s; false' "$COMMAND" >meta/hooks/install
         chmod +x meta/hooks/install
-        fpm -n my-snap -s dir -t snap -a all meta
+        fpm -n x -s dir -t snap -a all meta
         ```
       code: |
-        sudo snap install my-snap_1.0_all.snap --dangerous --devmode
+        sudo snap install x_1.0_all.snap --dangerous --devmode
 ---
