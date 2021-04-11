@@ -21,7 +21,10 @@
         </ul>
     </fieldset>
 
-    <input type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
+    <fieldset>
+        <legend>Filter</legend>
+        <input type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
+    </fieldset>
 </div>
 
 <div id="gtfobin-table-wrapper">
@@ -160,24 +163,26 @@
 
     function applyFilter() {
         // filter on load according to the URL
-        const searchBox = document.querySelector('#search-toolbox input');
+        const searchToolbox = document.querySelector('#search-toolbox');
+        const searchField = searchToolbox.querySelector('input');
         const query = decodeURIComponent(location.hash.slice(1));
         filter(query);
 
         // if there is a filter fill the box and enter search mode
         if (query) {
-            searchBox.value = query;
-            searchBox.focus();
-            searchBox.parentElement.scrollIntoView();
+            searchField.value = query;
+            searchField.focus();
+            searchToolbox.scrollIntoView();
         }
     }
 
     function setup() {
-        const searchBox = document.querySelector('#search-toolbox input');
+        const searchToolbox = document.querySelector('#search-toolbox');
+        const searchField = searchToolbox.querySelector('input');
 
         // handle user input
-        searchBox.addEventListener('input', () => {
-            const query = searchBox.value;
+        searchField.addEventListener('input', () => {
+            const query = searchField.value;
             history.replaceState(null, null, encodeURI(`#${query}`));
             applyFilter();
         });
@@ -186,18 +191,18 @@
         addEventListener('keydown', (event) => {
             // focus search box on valid keydown (search as you type)
             if (event.key.toLowerCase().match(/^[-_0-9a-z\/]$/) && !event.ctrlKey) {
-                searchBox.focus();
+                searchField.focus();
             } else if (event.key === 'Escape') {
                 // if the search box is already focused and empty scroll to top
-                if (document.activeElement === searchBox && searchBox.value === '') {
+                if (document.activeElement === searchField && searchField.value === '') {
                     window.scrollTo(0, 0);
-                    searchBox.blur();
+                    searchField.blur();
                 }
                 // clear filter and enter search mode
                 else {
-                    searchBox.focus();
-                    location.hash = searchBox.value = '';
-                    searchBox.parentElement.scrollIntoView();
+                    searchField.focus();
+                    location.hash = searchField.value = '';
+                    searchToolbox.scrollIntoView();
                 }
             } else if (event.key === 'Enter') {
                 // navigate to the first match
