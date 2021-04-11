@@ -50,4 +50,12 @@ functions:
     - code: |
         CMD="/bin/sh"
         ./php -r "posix_setuid(0); system('$CMD');"
+  file-read:
+    - description: read file and output it on screen.
+      code: |
+        php -r 'readfile("/etc/passwd");'
+  file-write:
+    - description: write data to a file, filename should be absolute.
+      code: |
+        php -r '$write = fopen("/home/FILE-TO-WRITE.txt", "w");$input = "  DATA TO WRITE (Plzsub)  ";fwrite($write, $input);fclose($write);'
 ---
