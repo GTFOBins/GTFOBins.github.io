@@ -19,8 +19,8 @@ functions:
   file-read:
     - description: The file path must be absolute.
       code: |
-        echo "DATA-TO-WRITE" > /tmp/data
-        INPUT=/tmp/data
-        LFILE=file_to_write_absolute_path
-        lwp-download file://$INPUT $LFILE
+        LFILE=file_to_write
+        TF=$(mktemp)
+        echo DATA >$TF
+        lwp-download file://$TF $LFILE
 ---
