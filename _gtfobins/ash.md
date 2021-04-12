@@ -6,6 +6,9 @@ functions:
     - code: |
         export LFILE=file_to_write
         ash -c 'echo DATA > $LFILE'
+  file-read:
+    - code: |
+        ash -c "echo $(</file/to/read.txt)"
   suid:
     - code: "./ash"
   sudo:
