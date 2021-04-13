@@ -1,9 +1,13 @@
 ---
 functions:
   file-read:
-    - code: zsh -c "echo $(</file/to/read.txt)"
+    - code: |
+        export LFILE=file_to_read
+        zsh -c 'echo "$(<$LFILE)"'
   file-write:
-    - code: zsh -c 'echo DATA > /file/to/write.txt'
+    - code: |
+        export LFILE=file_to_write
+        zsh -c 'echo DATA >$LFILE'
   shell:
     - code: zsh
   suid:
