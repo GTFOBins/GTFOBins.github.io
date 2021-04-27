@@ -6,6 +6,12 @@ functions:
         TF=$(mktemp)
         split $LFILE $TF
         cat $TF*
+  file-write:
+    - description: OUTPUT file will be xaa.
+      code: |
+        INPUT=$(mktemp)
+        echo "DATA" > $INPUT
+        split $INPUT 
   command:
     - description: Command execution using an existing or newly created file.
       code: |
