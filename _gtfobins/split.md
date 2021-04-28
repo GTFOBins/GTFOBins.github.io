@@ -29,5 +29,5 @@ functions:
   sudo:
     - description: The shell prompt is not printed.
       code: |
-        split --filter=/bin/sh /dev/stdin
+        sudo split --filter=/bin/sh /dev/stdin
 ---
