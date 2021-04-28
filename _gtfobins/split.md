@@ -12,6 +12,12 @@ functions:
         TF=$(mktemp)
         echo DATA >$TF
         split -b999m $TF
+    - description: GNU version only. Data will be written in the current directory in a file named `xaa.xxx` by default. The input file will be split in multiple smaller files unless the `-b` option is used, pick a value in MB big enough.
+      code: |
+        EXT=.xxx
+        TF=$(mktemp)
+        echo DATA >$TF
+        split -b999m --additional-suffix $EXTENSION $TF
   command:
     - description: Command execution using an existing or newly created file.
       code: |
