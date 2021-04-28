@@ -7,11 +7,11 @@ functions:
         split $LFILE $TF
         cat $TF*
   file-write:
-    - description: Data will be written in the current directory in a file named `xaa` by default.
+    - description: Data will be written in the current directory in a file named `xaa` by default. The input file will be split in multiple smaller files unless the `-b` option is used, pick a value in MB big enough.
       code: |
         TF=$(mktemp)
         echo DATA >$TF
-        split $TF 
+        split -b999m $TF
   command:
     - description: Command execution using an existing or newly created file.
       code: |
