@@ -5,9 +5,6 @@ functions:
     - code: |
         LFILE=file_to_read
         xmore $LFILE
-    - code: |
-        LFILE=file_to_read
-        xmore $LFILE
   suid:
     - code: |
         LFILE=file_to_read
