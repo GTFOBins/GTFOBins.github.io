@@ -1,5 +1,11 @@
 ---
 functions:
+  file-read:
+    - code: |
+        LFILE=file-to-read
+        TF=$(mktemp -u)
+        zip $TF $LFILE
+        unzip -p $TF
   shell:
     - code: |
         TF=$(mktemp -u)

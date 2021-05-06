@@ -5,6 +5,9 @@ functions:
     - code: |
         LFILE=file_to_read
         gzip -f $LFILE -t
+    - code: |
+        LFILE=file_to_read
+        gzip -c $LFILE | gzip -d
   suid:
     - code: |
         LFILE=file_to_read

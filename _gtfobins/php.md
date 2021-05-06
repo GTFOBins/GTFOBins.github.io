@@ -50,4 +50,13 @@ functions:
     - code: |
         CMD="/bin/sh"
         ./php -r "posix_setuid(0); system('$CMD');"
+  file-read:
+    - code: |
+        export LFILE=file_to_read
+        php -r 'readfile(getenv("LFILE"));'
+  file-write:
+    - description: write data to a file, filename should be absolute.
+      code: |
+        export LFILE=file_to_write
+        php -r 'file_put_contents(getenv("LFILE"), "DATA");'
 ---

@@ -17,6 +17,13 @@ functions:
       code: |
         LFILE=/tmp/file_to_read
         curl file://$LFILE
+  file-write:
+    - description: The file path must be absolute.
+      code: |
+        LFILE=file_to_write
+        TF=$(mktemp)
+        echo DATA >$TF
+        curl "file://$TF" -o "$LFILE"
   suid:
     - description: Fetch a remote file via HTTP GET request.
       code: |

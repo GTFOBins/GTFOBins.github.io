@@ -8,8 +8,4 @@ functions:
     - code: |
         LFILE=file_to_read
         sudo lwp-request "file://$LFILE"
-  limited-suid:
-    - code: |
-        LFILE=file_to_read
-        ./lwp-request "file://$LFILE"
 ---
