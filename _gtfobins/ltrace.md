@@ -1,15 +1,12 @@
 ---
 functions:
   file-write:
-    code: |
+    - description: write to a file.
+      code: |
         LFILE=file_to_write
-        WFILE=$(mktemp)
-        echo ":DATA">$WFILE
-        ltrace -s 999 -e fgets --output=$LFILE ltrace --config=$WFILE $(mktemp)
-  file-read:
-    code: |
-        LFILE=file_to_read
-        ltrace --config=$LFILE $(mktemp)
+        TF=$(mktemp)
+        echo ":DATA">$TF
+        ltrace -s 999 -e fgets --output=$LFILE ltrace --config=$TF $(mktemp)
   shell:
     - code: ltrace -b -L /bin/sh
   sudo:
