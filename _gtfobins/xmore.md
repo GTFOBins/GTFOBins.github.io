@@ -1,5 +1,5 @@
 ---
-description: It allows privileged read of a file if it has a special file permission.
+description: The file is displayed in a Xorg window, so it needs a working graphical environment.
 functions:
   file-read:
     - code: |
@@ -8,9 +8,9 @@ functions:
   suid:
     - code: |
         LFILE=file_to_read
-        xmore $LFILE
+        ./xmore $LFILE
   sudo:
     - code: |
         LFILE=file_to_read
-        xmore $LFILE 
+        sudo xmore $LFILE
 ---
