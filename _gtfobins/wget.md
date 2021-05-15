@@ -7,14 +7,14 @@ functions:
         LFILE=file_to_send
         wget --post-file=$LFILE $URL
   file-read:
-    - description: output the file as an error.
+    - description: The file to be read is treated as a list of URLs, one per line, which are actually fetched by `wget`. The content appears, somewhat modified, as error messages, thus this is not suitable to read arbitrary binary data.
       code: |
-        LFILE=file-to-read
+        LFILE=file_to_read
         wget -i $LFILE
   file-write:
-    - description: write data to a file.
+    - description: The data to be written is treated as a list of URLs, one per line, which are actually fetched by `wget`. The data is written, somewhat modified, as error messages, thus this is not suitable to write arbitrary binary data.
       code: |
-        LFILE=file-to-write
+        LFILE=file_to_write
         TF=$(mktemp)
         echo DATA > $TF
         wget -i $TF -o $LFILE
