@@ -1,4 +1,5 @@
 ---
+description: The file is parsed and displayed as a Java `.properties` file, so this may not be suitable to read arbitrary binary data.
 functions:
   file-read:
     - code: |
@@ -7,9 +8,9 @@ functions:
   sudo:
     - code: |
         LFILE=file_to_read
-        msgconv -P $LFILE
+        sudo msgconv -P $LFILE
   suid:
     - code: |
         LFILE=file_to_read
-        msgconv -P $LFILE
+        ./msgconv -P $LFILE
 ---
