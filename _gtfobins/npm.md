@@ -1,6 +1,7 @@
 ---
 functions:
   shell:
+    - code: npm exec /bin/sh
     - code: |
         TF=$(mktemp -d)
         echo '{"scripts": {"preinstall": "/bin/sh"}}' > $TF/package.json
