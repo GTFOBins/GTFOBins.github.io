@@ -1,5 +1,9 @@
 ---
 functions:
+  file-read:
+    - code: |
+        LFILE=file_to_read
+        pic $LFILE
   shell:
     - code: |
         pic -U
