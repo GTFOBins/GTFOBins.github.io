@@ -1,7 +1,7 @@
 ---
 functions:
   file-read:
-    - description: read only first line of file.
+    - description: The file is read and parsed as an `expect` command file, the content of the first invalid line is returned in an error message. Thus, this might not be suitable to read arbitrary binary files.
       code: |
         LFILE=file_to_read
         expect $LFILE
