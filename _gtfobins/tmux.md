@@ -1,7 +1,7 @@
 ---
 functions:
   file-read:
-    - description: The file is read and parsed as an `tmux` command file, the content of the first invalid line is returned in an error message.
+    - description: The file is read and parsed as a `tmux` configuration file, part of the first invalid line is returned in an error message.
       code: |
         LFILE=file_to_read
         tmux -f $LFILE
