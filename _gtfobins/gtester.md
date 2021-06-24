@@ -1,7 +1,8 @@
 ---
 functions:
   file-write:
-    - code: |
+    - description: Data to be written appears in an XML attribute in the output file: `<testbinary path="DATA">`.
+      code: |
         LFILE=file_to_write
         gtester "DATA" -o $LFILE
   shell:
