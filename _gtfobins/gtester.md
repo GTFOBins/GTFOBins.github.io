@@ -1,5 +1,9 @@
 ---
 functions:
+  file-write:
+    - code: |
+        LFILE=file_to_write
+        gtester "DATA" -o $LFILE
   shell:
     - code: |
         TF=$(mktemp)
