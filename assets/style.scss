@@ -170,12 +170,14 @@ h2, h3, h4, h5, h5 {
 
     input {
         // enlarge the click area
-        margin: -1em;
-        padding: 1em;
+        margin: -1rem;
+        padding: 1rem;
         background: transparent;
 
+        // adjust the width due to negative padding
+        width: calc(100% + 2rem);
+
         font-size: 1rem;
-        width: 100%;
         box-sizing: border-box;
         outline: none;
         border: none;
