@@ -2,7 +2,7 @@
 functions:
   sudo:
     - description: |
-        It can be used to overwrite files using a specially crafted SMBIOS file that can be read as a memory device by dmidecode. 
+        It can be used to overwrite files using a specially crafted SMBIOS file that can be read as a memory device by dmidecode.
         Generate the file with [dmiwrite](https://github.com/adamreiser/dmiwrite) and upload it to the target.
           --dump-bin, Will cause dmidecode to write the payload to the destination specified, prepended with 32 null bytes.
           --no-sysfs, If the target system is using an older version of dmidecode, you may need to omit the option.
