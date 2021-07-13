@@ -1,5 +1,5 @@
 ---
-description: If we have sudo rights to run synlink (ln) we can link bash to ln and run bash as root
+description: If we have sudo privileges to run synlink (ln) we can link bash to ln and run bash as root
 functions:
   sudo:
     - code: |
