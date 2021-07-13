@@ -1,21 +1,16 @@
 ---
+description: Dump the bytes of the input file that are different from the NUL byte in a tabular format, hence this may not be suitable to read arbitrary binary files.
 functions:
   file-read:
     - code: |
-        LFILE=file-to-read
-        TEMP=$(mktemp)
-        printf 'A%.0s' {1..999} > $TEMP
-        cmp $LFILE $TEMP -b -n 999 -l
+        LFILE=file_to_read
+        cmp $LFILE /dev/zero -b -l
   suid:
     - code: |
-        LFILE=file-to-read
-        TEMP=$(mktemp)
-        printf 'a%.0s' {1..999} > $TEMP
-        cmp $LFILE $TEMP -b -n 999 -l
+        LFILE=file_to_read
+        ./cmp $LFILE /dev/zero -b -l
   sudo:
     - code: |
-        LFILE=file-to-read
-        TEMP=$(mktemp)
-        printf 'a%.0s' {1..999} > $TEMP
-        sudo cmp $LFILE $TEMP -b -n 999 -l
+        LFILE=file_to_read
+        sudo cmp $LFILE /dev/zero -b -l
 ---
