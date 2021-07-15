@@ -32,4 +32,8 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         sudo cp $TF $LFILE
+    - description: This overrides `cp` itself with a shell (or any other executable) that is to be executed as root, useful in case a `sudo` rule allows to only run `cp` by path. Warning, this is a destructive action.
+      code: |
+        sudo cp /bin/sh /bin/cp
+        sudo cp
 ---
