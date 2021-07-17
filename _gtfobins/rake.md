@@ -1,7 +1,8 @@
 ---
 functions:
   file-read:
-    - code: |
+    - description: The file is actually parsed and the first wrong line is returned in an error message.
+      code: |
         LFILE=file-to-read
         rake -f $LFILE
   shell:
