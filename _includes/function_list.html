@@ -26,9 +26,6 @@
             {% assign _function_name = _function_item[0] %}
             {% assign _function = _function_item[1] %}
 
-            {% comment %} skip recursive inheritance {% endcomment %}
-            {% if _function_name == "inherit" %}{% continue %}{% endif %}
-
             {% comment %} take note of the function name {% endcomment %}
             {% assign _inherited_functions = _inherited_functions | push: _function_name %}
         {% endfor %}
