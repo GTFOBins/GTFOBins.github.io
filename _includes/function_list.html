@@ -1,5 +1,6 @@
 {% comment %} build the list of functions along with the provided features {% endcomment %}
 <ul class="tag-list">
+    {% comment %} render the functions of this binary (not inherited) {% endcomment %}
     {% for _function_item in site.data.functions %}
         {% assign _function_name = _function_item[0] %}
         {% assign _function = _function_item[1] %}
@@ -9,9 +10,38 @@
         {% assign _examples = include.functions[_function_name] %}
         {% include get_features_label.html examples=_examples %}
 
-        {% comment %} functions are passed separately so that can be reused for aliases {% endcomment %}
         <li data-function-name="{{ _function.label }}" data-function-features="{{ return_features }}">
             <a href="{{ include.gtfobin.url }}#{{ _function_name }}">{{ _function.label }}</a>
+        </li>
+    {% endfor %}
+
+    {% comment %} for each example that inherits another binary {% endcomment %}
+    {% assign _inherited_functions = '' | split: '' %}
+    {% for _example in include.functions.inherit %}
+        {% include get_gtfobin.html name=_example.from %}
+        {% assign _gtfobin = return_gtfobin %}
+
+        {% comment %} for each function of the inherited binary {% endcomment %}
+        {% for _function_item in _gtfobin.functions %}
+            {% assign _function_name = _function_item[0] %}
+            {% assign _function = _function_item[1] %}
+
+            {% comment %} skip recursive inheritance {% endcomment %}
+            {% if _function_name == "inherit" %}{% continue %}{% endif %}
+
+            {% comment %} take note of the function name {% endcomment %}
+            {% assign _inherited_functions = _inherited_functions | push: _function_name %}
+        {% endfor %}
+    {% endfor %}
+
+    {% comment %} render the inherited functions of this binary {% endcomment %}
+    {% for _function_item in site.data.functions %}
+        {% assign _function_name = _function_item[0] %}
+        {% assign _function = _function_item[1] %}
+        {% unless _inherited_functions contains _function_name %}{% continue %}{% endunless %}
+
+        <li class="inherit" data-function-name="{{ _function.label }}" data-function-features="">
+            <a href="{{ include.gtfobin.url }}#inherit">{{ _function.label }}</a>
         </li>
     {% endfor %}
 </ul>

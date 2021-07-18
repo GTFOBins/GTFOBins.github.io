@@ -46,6 +46,11 @@ layout: common
                 {% comment %} build the identifier of this example {% endcomment %}
                 {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
 
+                {% comment %} add a link to the inheriting binary {% endcomment %}
+                {% if function_name == "inherit" %}
+                    <p>Inherits from <a href="/gtfobins/{{ example.from }}/"><code>{{ example.from }}</code></a>.</p>
+                {% endif %}
+
                 {% comment %} example description {% endcomment %}
                 {{ example.description | markdownify }}
 

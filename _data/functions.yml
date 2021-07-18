@@ -43,3 +43,7 @@ file-read:
 library-load:
   label: Library load
   description: This binary can load shared libraries that may be used to run code in the binary execution context.
+
+inherit:
+  label: Inherit
+  description: This binary can inherit functions from another.
