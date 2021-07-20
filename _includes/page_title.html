@@ -3,7 +3,11 @@
         <a href="/">..</a> /
     {% endif %}
     {{ include.title }}
+    {% if page.layout == 'gtfobin' %}
+        <a class="small-link" href="https://github.com/GTFOBins/GTFOBins.github.io/blame/master/_gtfobins/{{ include.title }}">YAML</a>
+    {% endif %}
     <div class="github-buttons">
         <a class="github-button" href="https://github.com/GTFOBins/GTFOBins.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star GTFOBins/GTFOBins.github.io on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/GTFOBins/GTFOBins.github.io/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork GTFOBins/GTFOBins.github.io on GitHub">Fork</a>
     </div>
 </h1>

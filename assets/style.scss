@@ -361,10 +361,14 @@ h2, h3, h4, h5, h5 {
 
 .github-buttons {
     display: inline-block;
-    margin-left: 10px;
+    float: right;
 
     // avoid displaying the link text during loading
     a.github-button {
         visibility: hidden;
     }
+}
+
+.small-link {
+    font-size: $small-font-size;
 }
