@@ -37,7 +37,7 @@
         {% assign _function = _function_item[1] %}
         {% unless _inherited_functions contains _function_name %}{% continue %}{% endunless %}
 
-        <li class="inherit" data-function-name="{{ _function.label }}" data-function-features="">
+        <li class="inherit" title="This function is inherited" data-function-name="{{ _function.label }}" data-function-features="">
             <a href="{{ include.gtfobin.url }}#inherit">{{ _function.label }}</a>
         </li>
     {% endfor %}
