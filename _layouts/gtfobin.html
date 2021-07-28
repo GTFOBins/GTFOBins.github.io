@@ -57,6 +57,16 @@ layout: common
                 {% comment %} example description {% endcomment %}
                 {{ example.description | markdownify }}
 
+                {% comment %} additional per-function content {% endcomment %}
+                {% case function_name %}
+                {% when "reverse-shell", "bind-shell" %}
+                    {% if example.tty %}
+                        {{ function.extra.tty | markdownify }}
+                    {% else %}
+                        {{ function.extra.repl | markdownify }}
+                    {% endif %}
+                {% endcase %}
+
                 {% comment %} list of features for each example {% endcomment %}
                 <div class="features">
                     {% comment %} scan all the available features in order to find those present falling back to the default {% endcomment %}
