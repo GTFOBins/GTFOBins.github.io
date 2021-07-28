@@ -26,7 +26,7 @@ layout: common
 {% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}
 
 {% comment %} global binary description {% endcomment %}
-{{ gtfobin.description | markdownify }}
+<div class="description">{{ gtfobin.description | markdownify }}</div>
 
 {% comment %} scan all the available functions in order to find those present {% endcomment %}
 {% for function_item in site.data.functions %}
@@ -55,7 +55,7 @@ layout: common
                 {% endif %}
 
                 {% comment %} example description {% endcomment %}
-                {{ example.description | markdownify }}
+                <div class="description">{{ example.description | markdownify }}</div>
 
                 {% comment %} additional per-function content {% endcomment %}
                 {% case function_name %}
@@ -101,10 +101,7 @@ layout: common
                             {% endcase %}
 
                             {% comment %} optional local description {% endcomment %}
-                            {% if per_feature_info.description %}
-                                <hr/>
-                                {{ per_feature_info.description | markdownify }}
-                            {% endif %}
+                            <div class="description">{{ per_feature_info.description | markdownify }}</div>
 
                             {% comment %} use the common code or the specialized per-feature version {% endcomment %}
                             {% capture code %}{% if per_feature_info.code %}{{ per_feature_info.code }}{% else %}{{ example.code }}{% endif %}
