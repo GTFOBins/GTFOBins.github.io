@@ -6,12 +6,12 @@ functions:
         csplit $LFILE 1
         cat xx01
   file-write:
-    - description: -f flag use PREFIX instead of 'xx', using path like "/tmp/data.txt" as a PREFIX will output the file in /tmp/ with names data.txt00,data.txt01
+    - description: Writes the data to `xx0file_to_write`. If needed, a different prefix can be specified with `-f` (instead of `xx`).
       code: |
-        TEMP=$(mktemp)
-        echo "DATA" > $TEMP
-        LFILE=file-to-write
-        csplit $TEMP 1 -f $LFILE
+        TF=$(mktemp)
+        echo "DATA" > $TF
+        LFILE=file_to_write
+        csplit -z -b "%d$LFILE" $TF 1
   suid:
     - code: |
         LFILE=file_to_read
