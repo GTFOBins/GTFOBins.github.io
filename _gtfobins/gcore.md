@@ -6,7 +6,7 @@ functions:
     - code: |
         # look for an interesting running process and grab its PID
         ps aux | grep root
-        # generate the dump by issuing to gscope the PID
+        # generate the dump by issuing to gcore the PID
         sudo gcore $PID
         # look for interesting information inside the dump
         strings core.$PID
