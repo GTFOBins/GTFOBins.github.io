@@ -4,9 +4,9 @@ functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        genisoimage -q -o - "$LFILE"
+        genisoimage -sort "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo genisoimage -q -o - "$LFILE"
+        sudo genisoimage -sort "$LFILE"
 ---
