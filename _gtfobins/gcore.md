@@ -1,13 +1,10 @@
 ---
-description: It may be used to generate core dumps of one or more running programs. This may lead to sensitive information leakage as passwords.
+description: It can be used to generate core dumps of running processes. Such files often contains sensitive information such as open files content, cryptographic keys, passwords, etc. This command produces a binary file named `core.$PID`, that is then often filtered with `strings` to narrow down relevant information.
 functions:
+  file-read:
+    - code: gcore $PID
   sudo:
-    - description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
-    - code: |
-        # look for an interesting running process and grab its PID
-        ps aux | grep root
-        # generate the dump by issuing to gcore the PID
-        sudo gcore $PID
-        # look for interesting information inside the dump
-        strings core.$PID
+    - code: sudo gcore $PID
+  suid:
+    - code: ./gcore $PID
 ---
