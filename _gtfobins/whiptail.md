@@ -1,16 +1,16 @@
 ---
-description: The file is shown in an interactive TUI dialog, thus it is not suitable for binary/too big data.
+description: The file is shown in an interactive TUI dialog made for displaying text, arrows can be used to scroll long content.
 functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        whiptail --textbox "$LFILE" 20 0
+        whiptail --textbox --scrolltext "$LFILE" 0 0
   suid:
     - code: |
         LFILE=file_to_read
-        ./whiptail --textbox "$LFILE" 20 0
+        ./whiptail --textbox --scrolltext "$LFILE" 0 0
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo whiptail --textbox "$LFILE" 20 0
+        sudo whiptail --textbox --scrolltext "$LFILE" 0 0
 ---
