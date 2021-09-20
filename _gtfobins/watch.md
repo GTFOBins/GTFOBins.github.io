@@ -1,5 +1,9 @@
 ---
 functions:
+  file-read:
+    - code:
+        LFILE=file_to_read
+	watch -x cat "$LFILE"
   shell:
     - code: watch -x sh -c 'reset; exec sh 1>&0 2>&0'
   suid:
