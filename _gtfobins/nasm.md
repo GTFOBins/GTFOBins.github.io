@@ -12,5 +12,5 @@ functions:
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo nasm @$LFILE
+        sudo nasm -@ $LFILE
 ---
