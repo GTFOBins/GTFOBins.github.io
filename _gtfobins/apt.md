@@ -3,12 +3,12 @@ functions:
   shell:
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
-        apt-get changelog apt
+        apt changelog apt
         !/bin/sh
   sudo:
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
       code: |
-        sudo apt-get changelog apt
+        sudo apt changelog apt
         !/bin/sh
     - description: For this to work the target package (e.g., `sl`) must not be installed.
       code: |
