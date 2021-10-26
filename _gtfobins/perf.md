@@ -1,12 +1,12 @@
 ---
 functions:
   shell:
-      code: |
-        perf stat bash -p
+    code: |
+      perf stat /bin/sh
   suid:
-      code: |
-        perf stat bash -p
+    code: |
+      ./perf stat /bin/sh -p
   sudo:
-      code: |
-        sudo perf stat bash -p
+    code: |
+      sudo perf stat /bin/sh
 ---
