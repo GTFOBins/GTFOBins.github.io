@@ -29,6 +29,14 @@ functions:
         RPORT=12345
         LFILE=file_to_save
         socat -u tcp-connect:$RHOST:$RPORT open:$LFILE,creat
+  file-read:
+    - code: |
+        LFILE=file_to_read
+        socat -u "file:$LFILE" -
+  file-write:
+    - code: |
+        LFILE=file_to_write
+        socat -u 'exec:echo DATA' "open:$LFILE,creat"
   sudo:
     - description: The resulting shell is not a proper TTY shell and lacks the prompt.
       code: |
