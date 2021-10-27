@@ -32,7 +32,13 @@ functions:
   file-read:
     - description: Read local files from the system. If the SUID bit is set this can be used to read privileged local files.
       code: |
-        socat stdin exec:'cat /flag'
+        LFILE=file_to_read
+        socat -u "file:$LFILE" -
+  file-write:
+    - description: Write to a local file on the system. If the SUID bit is set this can be used to write to privileged local files.
+      code: |
+      LFILE=file_to_write
+      socat -u 'exec:echo DATA' "open:$LFILE,creat"
   sudo:
     - description: The resulting shell is not a proper TTY shell and lacks the prompt.
       code: |
