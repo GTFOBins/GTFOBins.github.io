@@ -5,6 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         genisoimage -q -o - "$LFILE"
+  suid:
+    - description: The file is parsed, and some of its content is disclosed by the error messages, thus this might not be suitable to read arbitrary data.
+      code: |
+        LFILE=file_to_read
+        ./genisoimage -sort "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
