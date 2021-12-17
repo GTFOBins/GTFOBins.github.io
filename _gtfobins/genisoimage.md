@@ -5,6 +5,11 @@ functions:
     - code: |
         LFILE=file_to_read
         genisoimage -q -o - "$LFILE"
+  suid:
+    - description: Read $LFILE if genisoimage has the setuid bit
+      code: |
+        LFILE=file_to_read
+        genisoimage -sort "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
