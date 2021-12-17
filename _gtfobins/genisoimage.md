@@ -6,10 +6,9 @@ functions:
         LFILE=file_to_read
         genisoimage -q -o - "$LFILE"
   suid:
-    - description: Read $LFILE if genisoimage has the setuid bit
-      code: |
+    - code: |
         LFILE=file_to_read
-        genisoimage -sort "$LFILE"
+        ./genisoimage -q -o - "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
