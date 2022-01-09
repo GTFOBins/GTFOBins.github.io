@@ -1,9 +1,6 @@
 ---
+description: The content is actually parsed by the command, thus it may not be suitable for reading arbitrary files.
 functions:
-  file-read:
-    - code: |
-        LFILE=file_to_read
-        efax -d "$LFILE"
   suid:
     - code: |
         LFILE=file_to_read
