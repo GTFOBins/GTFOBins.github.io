@@ -25,7 +25,7 @@ functions:
         WantedBy=multi-user.target' > $TF
         sudo systemctl link $TF
         sudo systemctl enable --now $TF
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         sudo systemctl
         !sh

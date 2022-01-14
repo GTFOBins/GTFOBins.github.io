@@ -1,12 +1,12 @@
 ---
 functions:
   shell:
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         dpkg -l
         !/bin/sh
   sudo:
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         sudo dpkg -l
         !/bin/sh

@@ -1,6 +1,6 @@
 ---
 description: |
-  The attacker must setup a server to receive the backups, in the following example [rest-server](https://github.com/restic/rest-server/) is used but there are other options. To start a new instance and create a new repository:
+  The attacker must setup a server to receive the backups, in the following example [rest-server](https://github.com/restic/rest-server/index.html) is used but there are other options. To start a new instance and create a new repository:
 
   ```console
   RPORT=12345

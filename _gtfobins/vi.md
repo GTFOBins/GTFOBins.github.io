@@ -1,5 +1,5 @@
 ---
-description: Modern Unix systems run [`vim`](/gtfobins/vim/) binary when `vi` is called.
+description: Modern Unix systems run [`vim`](../vim/index.html) binary when `vi` is called.
 functions:
   shell:
     - code: vi -c ':!/bin/sh' /dev/null

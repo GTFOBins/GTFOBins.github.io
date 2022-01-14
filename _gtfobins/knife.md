@@ -1,5 +1,5 @@
 ---
-description: This is capable of running [`ruby`](/gtfobins/ruby/) code.
+description: This is capable of running [`ruby`](../ruby/index.html) code.
 functions:
   shell:
     - code: |

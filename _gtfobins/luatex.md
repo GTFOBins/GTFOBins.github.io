@@ -1,5 +1,5 @@
 ---
-description: This allows to execute [`lua`](/gtfobins/lua/) code.
+description: This allows to execute [`lua`](../lua/index.html) code.
 functions:
   shell:
     - code: luatex -shell-escape '\directlua{os.execute("/bin/sh")}\end'

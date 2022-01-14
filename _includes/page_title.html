@@ -1,6 +1,7 @@
 <h1>
+    {% include base.html %}
     {% if page.url != '/' %}
-    <a href="/">..</a> /
+        <a href="{{ base }}/index.html">..</a> /
     {% endif %}
     {{ include.title }}
     <div class="github-buttons">

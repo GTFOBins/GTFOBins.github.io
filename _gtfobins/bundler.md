@@ -1,7 +1,7 @@
 ---
 functions:
   shell:
-    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be  [`less`](../less/index.html), other functions may apply.
       code: |
         bundler help
         !/bin/sh
@@ -13,7 +13,7 @@ functions:
         touch $TF/Gemfile
         cd $TF
         bundler exec /bin/sh
-    - description: This spawns an interactive shell via [`irb`](/gtfobins/irb/).
+    - description: This spawns an interactive shell via [`irb`](../irb/index.html).
       code: |
         TF=$(mktemp -d)
         touch $TF/Gemfile
@@ -26,7 +26,7 @@ functions:
         cd $TF
         bundler install
   sudo:
-    - description: This invokes the default pager, which is likely to be  [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be  [`less`](../less/index.html), other functions may apply.
       code: |
         sudo bundler help
         !/bin/sh

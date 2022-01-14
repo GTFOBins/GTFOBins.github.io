@@ -1,12 +1,11 @@
 <div id="bin-search-wrapper">
     <ul id="bin-search-filters" class="function-list">
         {% for function_pair in site.data.functions %}
-        {% assign function_id = function_pair[0] %}
-        {% assign function = function_pair[1] %}
-        <li><a href="#+{{ function.label | downcase }}" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
+            {% assign function_id = function_pair[0] %}
+            {% assign function = function_pair[1] %}
+            <li><a href="#+{{ function.label | downcase }}" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
         {% endfor %}
     </ul>
-
     <input id="bin-search" type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: <binary> +<function> ..."/>
 </div>
 
@@ -19,9 +18,10 @@
             </tr>
         </thead>
         <tbody>
+            {% include base.html %}
             {% for file in site.gtfobins %}
             <tr>
-                <td><a href="{{ file.url }}" class="bin-name">{% include get_bin_name path=file.path %}</a></td>
+                <td><a href="{{ base }}{{ file.url }}index.html" class="bin-name">{% include get_bin_name path=file.path %}</a></td>
                 <td>{% include function_list.html bin=file %}</td>
             </tr>
             {% endfor %}

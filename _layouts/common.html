@@ -4,17 +4,18 @@
         <meta charset="utf-8">
         <title>
             {% if page.url != '/' %}
-            {% if page.layout == 'bin' %}
-            {{ page.title | downcase }}
-            {% else %}
-            {{ page.title }}
-            {% endif %}
+                {% if page.layout == 'bin' %}
+                    {{ page.title | downcase }}
+                {% else %}
+                    {{ page.title }}
+                {% endif %}
             |
             {% endif %}
             {{ site.title }}
         </title>
-        <link rel="icon" href="/assets/logo.png">
-        <link rel="stylesheet" href="/assets/style.css" type="text/css"/>
+        {% include base.html %}
+        <link rel="icon" href="{{ base }}/assets/logo.png">
+        <link rel="stylesheet" href="{{ base }}/assets/style.css" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     </head>

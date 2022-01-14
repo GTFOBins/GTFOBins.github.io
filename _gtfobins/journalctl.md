@@ -1,6 +1,6 @@
 ---
 description: |
-  This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+  This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
 
   This might not work if run by unprivileged users depending on the system configuration.
 functions:

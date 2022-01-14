@@ -2,11 +2,11 @@
 functions:
   shell:
     - code: PAGER='sh -c "exec sh 0<&1"' git -p help
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         git help config
         !/bin/sh
-    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         git branch --help config
         !/bin/sh
@@ -28,11 +28,11 @@ functions:
         git diff /dev/null $LFILE
   sudo:
     - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         sudo git -p help config
         !/bin/sh
-    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: The help system can also be reached from any `git` command, e.g., `git branch`. This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         sudo git branch --help config
         !/bin/sh

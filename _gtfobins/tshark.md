@@ -1,5 +1,5 @@
 ---
-description: This program is able to execute [`lua`](/gtfobins/less/) code.
+description: This program is able to execute [`lua`](../less/index.html) code.
 functions:
   shell:
     - code: |

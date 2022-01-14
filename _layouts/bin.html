@@ -11,34 +11,31 @@ layout: common
 {{ page.description | markdownify }}
 
 {% for function_pair in site.data.functions %}
-{% assign function_id = function_pair[0] %}
-{% assign function = function_pair[1] %}
-{% assign examples = page.functions[function_id] %}
-{% unless examples %}{% continue %}{% endunless %}
+    {% assign function_id = function_pair[0] %}
+    {% assign function = function_pair[1] %}
+    {% assign examples = page.functions[function_id] %}
+    {% unless examples %}{% continue %}{% endunless %}
 
-<h2 id="{{ function_id }}" class="function-name">{{- function.label -}}</h2>
-{{ function.description | markdownify }}
+    <h2 id="{{ function_id }}" class="function-name">{{- function.label -}}</h2>
+    {{ function.description | markdownify }}
 
-<ul class="examples">
-    {% for example in examples %}
+    <ul class="examples">
+        {% for example in examples %}
+            {% capture code %}
+            {%- if function_id == 'suid' or function_id == 'limited-suid' %}
+                sudo install -m =xs $(which {{ bin_name }}) .
+            {% endif %}
+            {%- if function_id == 'capabilities' %}
+                cp $(which {{ bin_name }}) .
+                sudo setcap cap_setuid+ep {{ bin_name }}
+            {% endif %}
+            {{ example.code | escape }}
+            {% endcapture %}
 
-{% capture code %}
-{%- if function_id == 'suid' or function_id == 'limited-suid' %}
-sudo install -m =xs $(which {{ bin_name }}) .
-{% endif %}
-{%- if function_id == 'capabilities' %}
-cp $(which {{ bin_name }}) .
-sudo setcap cap_setuid+ep {{ bin_name }}
-{% endif %}
-{{ example.code | escape }}
-{% endcapture %}
-
-    <li>
-        {{ example.description | markdownify }}
-        <pre><code>{{- code | strip -}}</code></pre>
-    </li>
-
-    {% endfor %}
-</ul>
-
+            <li>
+                {{ example.description | markdownify }}
+                <pre><code>{{- code | strip -}}</code></pre>
+            </li>
+        {% endfor %}
+    </ul>
 {% endfor %}

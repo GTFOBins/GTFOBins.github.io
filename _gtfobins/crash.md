@@ -1,7 +1,7 @@
 ---
 functions:
   shell:
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         crash -h
         !sh
@@ -10,7 +10,7 @@ functions:
         COMMAND='/usr/bin/id'
         CRASHPAGER="$COMMAND" crash -h
   sudo:
-    - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
+    - description: This invokes the default pager, which is likely to be [`less`](../less/index.html), other functions may apply.
       code: |
         sudo crash -h
         !sh

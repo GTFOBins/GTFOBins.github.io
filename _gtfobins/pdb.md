@@ -1,5 +1,5 @@
 ---
-description: This allows to execute [`python`](/gtfobins/python/) code, other functions may apply.
+description: This allows to execute [`python`](../python/index.html) code, other functions may apply.
 functions:
   shell:
     - code: |
