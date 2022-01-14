@@ -1,5 +1,5 @@
 ---
-description: It allows to execute [`perl`](../perl) code, other functions may apply.
+description: It allows to execute [`perl`](../perl/index.html) code, other functions may apply.
 functions:
   shell:
     - code: |
