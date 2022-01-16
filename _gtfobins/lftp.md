@@ -2,7 +2,7 @@
 functions:
   shell:
     - code: lftp -c '!/bin/sh'
-  suid-limited:
+  limited-suid:
     - code: ./lftp -c '!/bin/sh'
   sudo:
     - code: sudo lftp -c '!/bin/sh'
