@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: sshpass -- '/bin/sh'
+    - code: sshpass /bin/sh
   suid:
-    - code: ./sshpass -- '/bin/sh -p'
+    - code: ./sshpass /bin/sh -p
   sudo:
-    - code: sudo sshpass -- '/bin/sh'
+    - code: sudo sshpass /bin/sh
 ---
