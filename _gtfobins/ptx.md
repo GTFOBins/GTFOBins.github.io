@@ -1,4 +1,5 @@
 ---
+description: While the program is capable of reading the file, it outputs a "permuted index" of its content, thus altering it. Adjusting the options could yield more readable outputs.
 functions:
   file-read:
     - code: |
