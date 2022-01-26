@@ -1,9 +1,6 @@
 ---
+description: The textual file is dumped on the current TTY (neither to `stdout` nor to `stderr`).
 functions:
-  file-read:
-    - code: |
-        LFILE=file_to_read
-        wall --nobanner "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
