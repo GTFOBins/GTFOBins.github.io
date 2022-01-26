@@ -1,11 +1,9 @@
 ---
 functions:
   shell:
-    - code: sash -c '/bin/sh'
+    - code: sash
   suid:
-    - code: ./sash -c '/bin/sh -p'
-  limited-suid:
-    - code: ./sash -c '/bin/sh'
+    - code: ./sash
   sudo:
-    - code: sudo sash -c '/bin/sh'
+    - code: sudo sash
 ---
