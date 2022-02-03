@@ -8,7 +8,7 @@ functions:
   suid:
     - code: |
         LFILE=file_to_read
-        nm @$LFILE
+        ./nm @$LFILE
   sudo:
     - code: |
         LFILE=file_to_read
