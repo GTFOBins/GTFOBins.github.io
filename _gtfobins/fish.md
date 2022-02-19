@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: fish -c '/bin/sh'
+    - code: fish
   suid:
-    - code: ./fish -c '/bin/sh -p'
+    - code: ./fish
   sudo:
-    - code: sudo fish -c '/bin/sh'
+    - code: sudo fish
 ---
