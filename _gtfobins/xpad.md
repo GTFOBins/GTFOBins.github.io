@@ -1,4 +1,5 @@
 ---
+description: This is a GUI application. The file content is displayed in a sticky note.
 functions:
   file-read:
     - code: |
