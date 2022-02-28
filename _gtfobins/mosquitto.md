@@ -1,16 +1,16 @@
 ---
-description: The `-c` argument should be used. The first string of `LFILE` ending with '\0' or '\n' is returned as the output.
+description: The file is actually parsed and the first wrong line (ending with a newline or a null character) is returned in an error message, thus it may not be suitable for reading arbitrary files
 functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        /usr/sbin/mosquitto -c "/../../$LFILE"
+        mosquitto -c "$LFILE"
   suid:
     - code: |
         LFILE=file_to_read
-        ./mosquitto -c "/../../$LFILE"
+        ./mosquitto -c "$LFILE"
   sudo:
     - code: |
         LFILE=file_to_read
-        sudo mosquitto -c "/../../$LFILE"
+        sudo mosquitto -c "$LFILE"
 ---
