@@ -15,5 +15,5 @@ functions:
   directory-listing:
     - code: |
         LFOLDER=folder_to_list
-        diff --recursive /dev/null $LFOLDER | grep $LFOLDER
+        diff --recursive /any/folder $LFOLDER | grep $LFOLDER
 ---
