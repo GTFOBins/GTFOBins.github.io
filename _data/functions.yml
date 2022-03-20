@@ -21,10 +21,6 @@ bind-shell:
   label: Bind shell
   description: It can bind a shell to a local port to allow remote network access.
 
-directory-listing:
-  label: Directory listing
-  description: It lists files from folders, it may be used to do privileged listing or disclose folders outside a restricted file system.
-
 non-interactive-bind-shell:
   label: Non-interactive bind shell
   description: It can bind a non-interactive shell to a local port to allow remote network access.
