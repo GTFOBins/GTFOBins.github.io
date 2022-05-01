@@ -5,6 +5,8 @@ functions:
       code: ssh localhost $SHELL --noprofile --norc
     - description: Spawn interactive shell through ProxyCommand option.
       code: ssh -o ProxyCommand=';sh 0<&2 1>&2' x
+    - description: Spawn interactive shell on client, requires a successful connection towards `host`.
+      code: ssh -o PermitLocalCommand=yes -o LocalCommand=/bin/sh host
   file-upload:
     - description: Send local file to a SSH server.
       code: |
