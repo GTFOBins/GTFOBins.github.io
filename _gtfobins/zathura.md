@@ -1,10 +1,6 @@
 ---
 functions:
-  shell:
-    - code: |
-        zathura
-        :! id
-  suid:
+  command:
     - code: |
         zathura
         :! id
