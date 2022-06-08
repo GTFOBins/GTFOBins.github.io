@@ -1,11 +1,12 @@
 ---
+description: The interaction happens in a GUI window, while the shell is dropped in the terminal.
 functions:
-  command:
+  shell:
     - code: |
         zathura
-        :! id
+        :! /bin/sh -c 'exec /bin/sh 0<&1'
   sudo:
     - code: |
         sudo zathura
-        :! id
+        :! /bin/sh -c 'exec /bin/sh 0<&1'
 ---
