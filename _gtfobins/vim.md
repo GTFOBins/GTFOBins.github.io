@@ -2,6 +2,8 @@
 functions:
   shell:
     - code: vim -c ':!/bin/sh'
+    - description: This one liner will open a shell before opening vim.
+    - code: vim --cmd ':set shell=/bin/bash|:shell'
     - code: |
         vim
         :set shell=/bin/sh
