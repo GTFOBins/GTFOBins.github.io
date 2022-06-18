@@ -6,4 +6,4 @@ functions:
     - code: ./xdotool exec --sync /bin/sh -p
   sudo:
     - code: sudo xdotool exec --sync /bin/sh
----    
+---
