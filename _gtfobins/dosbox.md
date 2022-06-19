@@ -9,21 +9,21 @@ functions:
     - description: The file is copied to a readable location.
       code: |
         LFILE='\path\to\file_to_read'
-        dosbox -c 'mount c /' -c "copy c:$LFILE >c:\tmp\output" -c exit
+        dosbox -c 'mount c /' -c "type c:$LFILE >c:\tmp\output" -c exit
         cat '/tmp/OUTPUT'
   file-write:
-    - description: Note that the name of the written file in the following example will be `FILE_TO_`.
+    - description: Create a file with the content to be written
       code: |
-        LFILE='\path\to\file_to_write'
-        dosbox -c 'mount c /' -c "echo DATA >c:$LFILE" -c exit
+        echo DATA > /tmp/data.txt
+        dosbox -c 'mount c /' -c "type c:\tmp\data.txt >c:\path\to\file_to_write" -c exit
   suid:
-    - description: Note that the name of the written file in the following example will be `FILE_TO_`.
+    - description: Create a file with the content to be written.
       code: |
-        LFILE='\path\to\file_to_write'
-        ./dosbox -c 'mount c /' -c "echo DATA >c:$LFILE" -c exit
+        echo DATA > /tmp/data.txt
+        dosbox -c 'mount c /' -c "type c:\tmp\data.txt >c:\path\to\file_to_write" -c exit
   sudo:
-    - description: Note that the name of the written file in the following example will be `FILE_TO_`.
+    - description: Create a file with the content to be written.
       code: |
-        LFILE='\path\to\file_to_write'
-        sudo dosbox -c 'mount c /' -c "echo DATA >c:$LFILE" -c exit
+        echo DATA > /tmp/data.txt
+        sudo dosbox -c 'mount c /' -c "type c:\tmp\data.txt >c:\path\to\file_to_write" -c exit
 ---
