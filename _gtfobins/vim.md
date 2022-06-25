@@ -2,10 +2,7 @@
 functions:
   shell:
     - code: vim -c ':!/bin/sh'
-    - code: |
-        vim
-        :set shell=/bin/sh
-        :shell
+    - code: vim --cmd ':set shell=/bin/sh|:shell'
     - description: This requires that `vim` is compiled with Python support. Prepend `:py3` for Python 3.
       code: vim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
     - description: This requires that `vim` is compiled with Lua support.
