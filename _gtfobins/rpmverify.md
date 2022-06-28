@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: rpmverify --eval '%(bash 1>&2)'
+    - code: rpmverify --eval '%(/bin/sh 1>&2)'
   limited-suid:
-    - code: ./rpmverify --eval '%(bash 1>&2)'
+    - code: ./rpmverify --eval '%(/bin/sh 1>&2)'
   sudo:
-    - code: sudo rpmverify --eval '%(bash 1>&2)'
+    - code: sudo rpmverify --eval '%(/bin/sh 1>&2)'
 ---
