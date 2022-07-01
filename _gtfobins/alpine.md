@@ -1,4 +1,5 @@
 ---
+description: The file is displayed in the `alpine` curses terminal interface. Other options might be available, for example by pressing `S` is possible to save the file content elsewhere.
 functions:
   file-read:
     - code: |
