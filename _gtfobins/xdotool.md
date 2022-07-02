@@ -1,4 +1,5 @@
 ---
+description: This requires a running X server.
 functions:
   shell:
     - code: xdotool exec --sync /bin/sh
