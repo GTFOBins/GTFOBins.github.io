@@ -29,6 +29,10 @@ Where `<function>` and `<feature>` are defined in the [`_data/functions.yml`][] 
 
 The `features` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` feature. When a feature specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the feature specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each feature, either specialized or inherited.
 
+Some functions require additional fields:
+
+- `reverse-shell` and `bind-shell` require a `tty` flag that is `true` when the example is able to spawn a full TTY shell.;
+
 Some features require additional fields:
 
 - `suid` requires a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
