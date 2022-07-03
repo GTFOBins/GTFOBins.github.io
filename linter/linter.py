@@ -118,7 +118,7 @@ class Linter():
 
         # walk and lint all the gtfobins
         for name in sorted(os.listdir(root)):
-            if not name.endswith('.md'):
+            if name.startswith('.'):
                 continue
             path = os.path.join(root, name)
             for problem in self._lint_file(path):
