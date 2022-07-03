@@ -34,11 +34,31 @@ class Linter():
         functions = Linter._load_yaml_file('_data/functions.yml')
         features = Linter._load_yaml_file('_data/features.yml')
 
+        # gather functions and features that does not have special properties
+        simple_functions = set(functions.keys()) - {'reverse-shell', 'bind-shell'}
+        simple_features = set(features.keys()) - {'suid', 'capabilities'}
+
         # common schema parts
         non_empty_string = schema.And(str, len)
-        default_feature_fields = {
+        default_fields = {
             schema.Optional('description'): non_empty_string,
             schema.Optional('code'): non_empty_string
+        }
+        features = {
+            schema.Optional('features'): {
+                schema.Optional(schema.Or(*simple_features)): schema.Or(None, {
+                    **default_fields
+                }),
+                # per-feature properties...
+                schema.Optional('suid'): schema.Or(None, {
+                    **default_fields,
+                    schema.Optional('limited'): bool
+                }),
+                schema.Optional('capabilities'): schema.Or(None, {
+                    **default_fields,
+                    schema.Optional('list'): [non_empty_string]
+                }),
+            }
         }
 
         return schema.Schema(
@@ -47,23 +67,14 @@ class Linter():
             }, {
                 schema.Optional('description'): non_empty_string,
                 'functions': {
-                    schema.Or(*functions.keys()): [schema.And(len, {
-                        schema.Optional('description'): non_empty_string,
-                        schema.Optional('code'): non_empty_string,
-                        schema.Optional('features'): {
-                            schema.Optional(schema.Or(*features.keys())): schema.Or(None, {
-                                **default_feature_fields
-                            }),
-                            # per-feature properties...
-                            schema.Optional('suid'): schema.Or(None, {
-                                **default_feature_fields,
-                                schema.Optional('limited'): bool
-                            }),
-                            schema.Optional('capabilities'): schema.Or(None, {
-                                **default_feature_fields,
-                                schema.Optional('list'): [non_empty_string]
-                            }),
-                        }
+                    schema.Optional(schema.Or(*simple_functions)): [schema.And(len, {
+                        **default_fields,
+                        **features
+                    })],
+                    schema.Optional(schema.Or('reverse-shell', 'bind-shell')): [schema.And(len, {
+                        **default_fields,
+                        schema.Optional('tty'): bool,
+                        **features
                     })]
                 }
             })
