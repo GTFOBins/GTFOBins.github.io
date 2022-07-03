@@ -1,1 +1,1 @@
-(("_gtfobins" . ((markdown-mode . ((mode . yaml))))))
+(("_gtfobins" . ((fundamental-mode . ((mode . yaml))))))
