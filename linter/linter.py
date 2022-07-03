@@ -35,7 +35,7 @@ class Linter():
         features = Linter._load_yaml_file('_data/features.yml')
 
         # gather functions and features that does not have special properties
-        simple_functions = set(functions.keys()) - {'reverse-shell', 'bind-shell'}
+        simple_functions = set(functions.keys()) - {'inherit', 'reverse-shell', 'bind-shell'}
         simple_features = set(features.keys()) - {'suid', 'capabilities'}
 
         # common schema parts
@@ -74,6 +74,11 @@ class Linter():
                     schema.Optional(schema.Or('reverse-shell', 'bind-shell')): [schema.And(len, {
                         **default_fields,
                         schema.Optional('tty'): bool,
+                        **features
+                    })],
+                    schema.Optional('inherit'): [schema.And(len, {
+                        **default_fields,
+                        'from': non_empty_string,
                         **features
                     })]
                 }
