@@ -5,47 +5,39 @@ description: Get involved in GTFOBins.
 permalink: /contributing/
 ---
 
-## Structure
+Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder and named like the binary or script it refers, without an additional extension. The file contains a single document enclosed in delimiters: `---` and `...`. The general structure is the following:
 
-Each GTFO binary is defined in a file in the [`_gtfobins/`] folder named as `<binary name>.md`, such file consists only of a [YAML] front matter which describes the binary and its functions.
-
-The full syntax is the following:
-
-```
+```yaml
 ---
-description: Optional description of the binary
+description: …
 functions:
-  FUNCTION:
-    - description: Optional description of the example
-      code: Code of the example
-    - ....
-  FUNCTION:
-    - description: Optional description of the example
-      code: Code of the example
-    - ...
-  ...
----
+  <function>:
+    - description: …
+      code: …
+      features:
+        <feature>:
+          description: …
+          code: …
+          # …
+        # …
+    # …
+  # …
+...
 ```
 
-Where `FUNCTION` is one of the values described in the [`_data/functions.yml`] file.
+Where `<function>` and `<feature>` are defined in the [`_data/functions.yml`][] and [`_data/features.yml`][] files respectively.
+
+The `features` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` feature. When a feature specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the feature specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each feature, either specialized or inherited.
+
+Some features require additional fields:
+
+- `suid` requires a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
+
+- `capabilities` requires a `list` of Linux [capabilities](https://man8.org/linux/man-pages/man7/capabilities.7.html) in the format `CAP_*` that are needed in order to execute this function with bypassed permissions.
 
 Feel free to use any file in the [`_gtfobins/`] folder as an example.
-
-## Pull request process
-
-Vendor software is accepted as well as standard Unix binaries. Binaries and techniques that only works on certain operating systems and versions are accepted and such limitations shall be noted in the `description` field.
-
-Before sending a pull request of a new binary or function, ensure the following:
-
-1. Verify the function works on at least one type of modern Unix system.
-2. Classifying SUID-related functions is tricky because they depend on the default shell (i.e. Debian `/bin/sh` doesn't drop the privileges, other Linux default shells do it) and on how the external command is called (i.e. `exec()` family vs. `system()` calls). Here an helpful check:
-   - The function is `suid-enabled` if runs external commands on Ubuntu Linux maintaining the SUID privileges.
-   - The function is `suid-limited` if runs external commands on Debian maintaining the SUID privileges, but it drops them on Ubuntu Linux.
-   - The function is not `suid-*` flagged if drops the privileges in Debian Linux.
-3. Verify `sudo-enabled` function runs external commands under the `sudo` privileged context.
-
-Pull requests adding new functions in [`_data/functions.yml`] are allowed and subjected to project maintainers vetting.
 
 [YAML]: https://yaml.org/
 [`_gtfobins/`]: https://github.com/GTFOBins/GTFOBins.github.io/tree/master/_gtfobins
 [`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml
+[`_data/features.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/features.yml
