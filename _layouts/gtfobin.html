@@ -17,7 +17,7 @@ layout: common
     {% assign gtfobin = return_gtfobin %}
 
     {% comment %} render a message about being an alias {% endcomment %}
-    <p>(This is an alias of <a href="{{ gtfobin.url }}"><code>{{ return_gtfobin_name }}</code></a>.)</p>
+    <p>This is an alias of <a href="{{ gtfobin.url }}"><code>{{ return_gtfobin_name }}</code></a>.</p>
 {% else %}
     {% assign gtfobin = original_gtfobin %}
 {% endif %}
