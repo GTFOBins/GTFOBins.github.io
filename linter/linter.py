@@ -91,10 +91,14 @@ class Linter():
             for index, example in enumerate(function):
                 features = example.get('features')
                 code = example.get('code')
-                if features and not code:
-                    for feature_name, feature in features.items():
-                        message = "Missing 'code' for '{}' function at example {}".format(function_name, index)
-                        assert feature and feature.get('code'), message
+                if not code:
+                    message = "Missing 'code' for '{}' function at example {}".format(function_name, index)
+                    if features:
+                        for feature_name, feature in features.items():
+                            assert feature and feature.get('code'), message
+                    else:
+                        assert code, message
+
 
     def _lint_file(self, path):
         problems = []
