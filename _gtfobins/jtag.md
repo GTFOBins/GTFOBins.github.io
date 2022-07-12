@@ -5,7 +5,7 @@ functions:
        jtag --interactive
        shell /bin/sh
   sudo:
-    - code: | 
+    - code: |
        sudo jtag --interactive
        shell /bin/sh
 ---
