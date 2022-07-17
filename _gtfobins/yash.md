@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: yash -c /bin/sh
+    - code: yash
   suid:
-    - code: ./yash -c '/bin/sh -p'
+    - code: ./yash
   sudo:
-    - code: sudo yash -c /bin/sh
+    - code: sudo yash
 ---
