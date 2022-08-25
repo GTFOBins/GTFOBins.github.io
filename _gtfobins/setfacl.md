@@ -4,9 +4,11 @@ functions:
   suid:
     - code: |
         LFILE=file_to_change
-        ./setfacl -m u:$(id -un):rw $LFILE
+        USER=somebody
+        ./setfacl -m u:$USER:rwx $LFILE
   sudo:
     - code: |
         LFILE=file_to_change
-        sudo setfacl -m -u:$(id -un):rw $LFILE
+        USER=somebody
+        sudo setfacl -m -u:$USER:rwx $LFILE
 ---
