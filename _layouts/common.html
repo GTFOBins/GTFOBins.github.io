@@ -2,7 +2,7 @@
 {% if page.layout == 'gtfobin' %}
     {% capture gtfobin_name %}{% include get_gtfobin_name.html path=page.path %}{% endcapture %}
     {% capture title %}{{ gtfobin_name }} | {{ site.title }}{% endcapture %}
-    {% capture description %}Fooz and baz of "{{ gtfobin_name }}".{% endcapture %}
+    {% capture description %}Living off the land using "{{ gtfobin_name }}".{% endcapture %}
 {% else %}
     {% capture title %}{% if page.url != '/' %}{{ page.title }} | {% endif %}{{ site.title }}{% endcapture %}
     {% assign description = page.description %}
