@@ -4,6 +4,6 @@ functions:
     - code: tmate -c /bin/sh
   sudo:
     - code: sudo tmate -c /bin/sh
-  suid-limited:
+  limited-suid:
     - code: ./tmate -c /bin/sh
 ---
