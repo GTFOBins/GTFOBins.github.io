@@ -31,7 +31,7 @@ functions:
         chmod +x $TF
         wget -v --use-askpass=$TF 0
   suid:
-      code: |
+    - code: |
         TF1=$(mktemp --suffix .c)
         cat << EOI > $TF1
         #include <stdio.h>
