@@ -1,5 +1,4 @@
 ---
-description: backup application
 functions:
   shell:
     - description: The @exec function allows you to execute commands in the local tty
