@@ -12,7 +12,6 @@ functions:
         @exec /bin/sh    
   file-read:
     - description: The error message of the -c options displays the first line of a restricted file, when having sudo rights for the binary.
-      code: | 
-        sudo bconsole -c /etc/shadow
+      code: sudo bconsole -c /etc/shadow
 ---
 
