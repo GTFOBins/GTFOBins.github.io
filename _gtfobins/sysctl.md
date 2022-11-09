@@ -2,7 +2,7 @@
 functions:
   command:
     - description: The command is executed by root in the background when a core dump occurs.
-    - code: |
+      code: |
         COMMAND='/bin/bash -c id>/tmp/id'
         sysctl "kernel.core_pattern=|$COMMAND"
         sleep 9999 &
@@ -11,7 +11,7 @@ functions:
 
   file-read:
     - description: The `-p` argument can also be used in place of `-n`. In both cases though the output might get corrupted, so this might not be suitable to read binary files.
-    - code: |
+      code: |
         LFILE=file_to_read
         /usr/sbin/sysctl -n "/../../$LFILE"
   suid:
