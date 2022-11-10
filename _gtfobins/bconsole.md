@@ -8,7 +8,7 @@ functions:
   sudo:
     - description: The @exec function allows you to execute commands in the local tty
       code: |
-      sudo bconsole
+        sudo bconsole
         @exec /bin/sh
   file-read:
     - description: The error message of the -c options displays the first line of a restricted file, when having sudo rights for the binary.
