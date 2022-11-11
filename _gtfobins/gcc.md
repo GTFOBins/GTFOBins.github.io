@@ -4,6 +4,9 @@ functions:
     - code: |
         LFILE=file_to_read
         gcc -x c -E "$LFILE"
+    - code: |
+        LFILE=file_to_read
+        gcc @"$LFILE"
   file-write:  # XXX this should be file-delete
     - code: |
         LFILE=file_to_delete
