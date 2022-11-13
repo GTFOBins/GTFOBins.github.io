@@ -1,6 +1,6 @@
 ---
 description: |
-  The subprocess is immediately sent to the background, but `fail2ban-client` waits on a return code from the subprocess (it will hang the `banip` command until the subprocess returns.
+  The subprocess is immediately sent to the background, but `fail2ban-client` waits on a return code from the subprocess. The `banip` command will hang until the subprocess returns.
 functions:
   sudo:
     - code: |
