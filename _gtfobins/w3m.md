@@ -1,5 +1,4 @@
 ---
-description: a text based web browser and pager.
 functions:
   file-read:
     - code: |
