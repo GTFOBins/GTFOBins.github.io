@@ -7,6 +7,9 @@ functions:
     - code: |
         VISUAL="/bin/sh -c '/bin/sh'" less /etc/profile
         v
+    - code: |
+        less /etc/profile
+        v:shell
   file-read:
     - code: less file_to_read
     - description: This is useful when `less` is used as a pager by another binary to read a different file.
