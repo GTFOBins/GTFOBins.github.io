@@ -1,4 +1,5 @@
 ---
+description: `uname -m` can be used in place of `arch` to obtain the architecture.
 functions:
   shell:
     - code: setarch $(arch) /bin/sh
@@ -6,5 +7,4 @@ functions:
     - code: ./setarch $(arch) /bin/sh -p
   sudo:
     - code: sudo setarch $(arch) /bin/sh
-    - code: sudo setarch $(uname -m) /bin/sh
 ---
