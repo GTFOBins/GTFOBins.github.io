@@ -1,22 +1,20 @@
 ---
 
-description: Display all text data with length greater than one character. Does not display numeric data.
+description: The file content is actually parsed and appears as error messages, thus it might not be suitable to read arbitray binary files.
 functions:
   file-read:
     - code: |
         LFILE=file_to_read
-        echo quit | bc -s $LFILE 2>&1 | grep 'multiple letter name' | awk -F '-' '{ printf "%s\n", $2 }'
-
+        bc -s $LFILE
+        quit
   sudo:
     - code: |
         LFILE=file_to_read
-        echo quit | sudo bc -s $LFILE 2>&1 | grep 'multiple letter name' | awk -F '-' '{ printf "%s\n", $2 }'
-
+        sudo bc -s $LFILE
+        quit
   suid:
     - code: |
-        sudo install -m =xs $(which bc) .
-
         LFILE=file_to_read
-        echo quit | ./bc -s $LFILE 2>&1 | grep 'multiple letter name' | awk -F '-' '{ printf "%s\n", $2 }'
-
+        ./bc -s $LFILE
+        quit
 ---
