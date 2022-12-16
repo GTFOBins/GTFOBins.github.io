@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: posh -c /bin/sh
+    - code: posh
   limited-suid:
-    - code: ./posh -c '/bin/sh -p'
+    - code: ./posh
   sudo:
-    - code: sudo posh -c /bin/sh
+    - code: sudo posh
 ---
