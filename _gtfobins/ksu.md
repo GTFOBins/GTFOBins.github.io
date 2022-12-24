@@ -1,5 +1,5 @@
 ---
 functions:
   sudo:
-    - code: sudo ksu -q -a -c /bin/sh
+    - code: sudo ksu -q -e /bin/sh
 ---
