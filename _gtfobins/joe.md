@@ -3,11 +3,13 @@ functions:
   shell:
     - code: |
         joe
-        ^K!
-        sh
+        ^K!/bin/sh
+  limited-suid:
+    - code: |
+        ./joe
+        ^K!/bin/sh
   sudo:
     - code: |
         sudo joe
-        ^K!
-        sh
+        ^K!/bin/sh
 ---
