@@ -1,5 +1,5 @@
 ---
-description: BusyBox may contain many UNIX utilities, run `busybox --list-full` to check what GTFBins binaries are supported. Here some example.
+description: BusyBox may contain many UNIX utilities, run `busybox --list-full` to check what GTFOBins binaries are supported. Here some example.
 functions:
   shell:
     - code: busybox sh
