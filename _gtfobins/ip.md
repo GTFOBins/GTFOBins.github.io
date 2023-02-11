@@ -24,4 +24,12 @@ functions:
         sudo ip netns add foo
         sudo ip netns exec foo /bin/sh
         sudo ip netns delete foo
+    - description: This only works for Linux with CONFIG_NET_NS=y. This version also grants network access.
+      code: |
+        sudo ip netns add foo
+        sudo ip netns exec foo /bin/ln -s /proc/1/ns/net /var/run/netns/bar
+        sudo ip netns exec bar /bin/sh
+        sudo ip netns delete foo
+        sudo ip netns delete bar
+
 ---
