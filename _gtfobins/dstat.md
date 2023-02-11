@@ -1,6 +1,6 @@
 ---
 description: |
-  `dstat` allows you to run arbitrary Python scripts loaded as "external plugins" if they are located in one of the directories stated in the `dstat` man page under "FILES":
+  `dstat` allows you to run arbitrary [`python`](/gtfobins/python/) scripts loaded as "external plugins" if they are located in one of the directories stated in the `dstat` man page under "FILES":
 
   1. `~/.dstat/`
   2. `(path of binary)/plugins/`
