@@ -4,9 +4,9 @@ functions:
     - code: |
         ncftp
         !/bin/sh
-  limited-suid:
+  suid:
     - code: |
-        sudo ncftp
+        ./ncftp
         !/bin/sh -p
   sudo:
     - code: |
