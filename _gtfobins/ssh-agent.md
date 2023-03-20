@@ -1,13 +1,9 @@
 ---
 functions:
-  command:
-    - code: |
-        COMMAND=id
-        ssh-agent "$COMMAND"
   shell:
-    - code: ssh-agent sh
+    - code: ssh-agent /bin/sh
   suid:
-    - code: ssh-agent sh -p
+    - code: ./ssh-agent /bin/ -p
   sudo:
-    - code: sudo ssh-agent sh
+    - code: sudo ssh-agent /bin/
 ---
