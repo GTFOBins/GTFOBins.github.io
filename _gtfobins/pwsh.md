@@ -6,8 +6,6 @@ functions:
     - code: |
         export LFILE=file_to_write
         pwsh -c '"DATA" | Out-File $env:LFILE'
-  suid:
-    - code: ./pwsh
   sudo:
     - code: sudo pwsh
 ---
