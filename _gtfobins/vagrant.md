@@ -17,4 +17,3 @@ functions:
         echo 'exec "/bin/sh -p"' > Vagrantfile
         vagrant up
 ---
-
