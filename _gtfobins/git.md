@@ -27,8 +27,7 @@ functions:
         LFILE=file_to_read
         git diff /dev/null $LFILE
   file-write:
-    - description: Git apply writes to files specified in the patch when supplied with a directory and the flag `--unsafe-paths`. Patch file must be in the valid format. 
-    - description: This creates a new file with two lines.
+    - description: Git apply writes to files specified in the patch when supplied with a directory and the flag `--unsafe-paths`. Patch file must be in the valid format. This creates a new file with two lines.
       code: |
         TF=$(mktemp -d)
         LFILE=file_to_write
