@@ -13,6 +13,7 @@ def get_gtfobins(root):
         
 def build_policy(root):
     policy = {}
+    policy['id'] = "4eb78ffe-6a44-4eb0-9e64-f7e926806a96"
     policy['name'] = "GTFOBins component in image"
     policy['description'] = "Alert on deployments with GTFOBins components present"
     policy['rationale'] = "Leaving GTFOBins components inside container images makes it easier for attackers to 'live off the land' inside a container environment"
@@ -29,9 +30,9 @@ def build_policy(root):
     policy['SORTName'] = "GTFOBins component in image"
     policy['SORTLifecycleStage'] = "BUILD,DEPLOY"
     policy['SORTEnforcement'] = False
-    policy['policyVersion'] = "1.0"
+    policy['policyVersion'] = "1.1"
     section = {}
-    section['sectionName'] = ""
+    section['sectionName'] = "Policy Section 1"
     section['policyGroups'] = []
     section['policyGroups'].append({})
     section['policyGroups'][0]['fieldName'] = "Image Component"
@@ -43,10 +44,10 @@ def build_policy(root):
     for name in names:
         section['policyGroups'][0]['values'].append({"value": '%s' % "".join([name,"="])})
 
-    policy['policySections'] = section
+    policy['policySections'] = [section]
     policy['mitreAttackVectors'] = []
-    policy['criteriaLocked'] = True
-    policy['mitreVectorsLocked'] = True
+    policy['criteriaLocked'] = False
+    policy['mitreVectorsLocked'] = False
     policy['isDefault'] = False
     return policy
 
