@@ -13,4 +13,10 @@ functions:
         echo "Rule    Jordan  0     1     arg2              Jan     lastSun       2       1:00d   -" > zicfile
         echo "Zone    Test    2:00    Jordan  CE%sT" >> zicfile
         zic -d . -y "id" ./zicfile
+  shell:
+    - code: |
+        echo "Rule    Jordan  0     1     arg2              Jan     lastSun       2       1:00d   -" > zicfile
+        echo "Zone    Test    2:00    Jordan  CE%sT" >> zicfile
+        zic -d . -y "vi" ./zicfile
+        :!/bin/bash
 ---
