@@ -112,4 +112,4 @@ def build_policies(root):
 
 if __name__ == '__main__':
     policy = build_policies("_gtfobins/")
-    print(json.dumps({"policies": [ policy ]}))
+    print(json.dumps({"policies": policy }))
