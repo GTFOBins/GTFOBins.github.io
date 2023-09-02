@@ -6,6 +6,8 @@ description: |
   $ strings /proc/self/exe | head -1
   /lib64/ld-linux-x86-64.so.2
   ```
+
+  It's worth noting that the spawned process will be the loader, not the target executable, this might aid evasion. See https://shyft.us/posts/20230526_linux_command_proxy.html for more information.
 functions:
   shell:
     - code: /lib/ld.so /bin/sh
