@@ -1,6 +1,8 @@
 ---
 functions:
   shell:
+    - description: This requires that `rvim` version is `< 9.0.1440`.
+      code: rvim -c ':redir! > ~/.vimrc | echo "!python3 -c \'import pty; pty.spawn(\"/bin/bash\")\'" | redir END | set shell=/usr/bin/vim | diffpatch'
     - description: This requires that `rvim` is compiled with Python support. Prepend `:py3` for Python 3.
       code: rvim -c ':py import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
     - description: This requires that `rvim` is compiled with Lua support.
