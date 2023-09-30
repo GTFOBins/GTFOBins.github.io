@@ -1,6 +1,6 @@
 ---
 description: |
-  This is the `check_by_ssh` Nagios plugin, available e.g. in `/usr/lib/nagios/plugins/`.
+  This is the `check_ssl_cert` Nagios plugin, available e.g. in `/usr/lib/nagios/plugins/`.
 functions:
   command:
     - description: The host example.net must return a certificate via TLS
