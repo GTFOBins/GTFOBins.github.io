@@ -29,4 +29,7 @@ functions:
       code: |
         sudo systemctl
         !sh
+      code: |
+        sudo /usr/bin/systemctl status any.service
+        !sh
 ---
