@@ -11,6 +11,13 @@ functions:
         After the shell, exit with `Ctrl-A x`.
       code: |
         minicom -D /dev/null
+    - description: |
+        After the shell, exit with `Ctrl-A x`.
+      code: |
+        TF=$(mktemp)
+        echo "! exec /bin/sh <$(tty) 1>$(tty) 2>$(tty)" >$TF
+        minicom -D /dev/null -S $TF
+        reset^J
   sudo:
     - description: |
         Start the following command to open the TUI interface, then:
@@ -31,12 +38,4 @@ functions:
         After the shell, exit with `Ctrl-A x`.
       code: |
         ./minicom -D /dev/null
-  shell:
-    - description: |
-        After the shell, exit with `Ctrl-A x`.
-      code: |
-        TF=$(mktemp)
-        echo "! exec /bin/sh <$(tty) 1>$(tty) 2>$(tty)" >$TF
-        minicom -D /dev/null -S $TF
-        reset^J
 ---
