@@ -1,8 +1,13 @@
 ---
-description: Minicom must be open on a valid port, curses interface open
 functions:
   shell:
     - description: |
-        Press `Ctrl+A O`, select `Filenames and paths`, press `E`, and write the shell to execute (e.g. `/bin/sh`). Exit out of the menus.
-        Now press `Ctrl+A K` and your shell will start.
+        Start the following command to open the TUI interface, then:
+        1. press `Ctrl-A o` and select `Filenames and paths`;
+        2. press `E` and type `/bin/sh`;
+        3. Press `Esc` twice;
+        4. Press `Ctrl-A k` to drop the shell.
+        After the shell, exit with `Ctrl-A x`. Note that in some versions, `Meta-Z` is used in place of `Ctrl-A`.
+      code: |
+        minicom -D /dev/null
 ---
