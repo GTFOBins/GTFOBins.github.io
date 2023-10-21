@@ -1,5 +1,9 @@
 ---
 functions:
+  command:
+    - description: |
+        This requires GUI interaction. Start Wireshark, then from the main menu, select "Tools" -> "Lua" -> "Evaluate". A window opens that allows to execute [`lua`](/gtfobins/lua/) code.
+      code: wireshark
   sudo:
     - description: |
         This technique can be used to write arbitrary files, i.e., the dump of one UDP packet.
