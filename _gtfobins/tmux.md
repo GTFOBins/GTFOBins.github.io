@@ -7,6 +7,9 @@ functions:
         tmux -f $LFILE
   shell:
     - code: tmux
+    - description: Provided to have enough permissions to access the socket.
+      code: |
+        tmux -S /path/to/socket_name
   sudo:
     - code: sudo tmux
 ---
