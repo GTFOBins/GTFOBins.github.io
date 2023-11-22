@@ -9,7 +9,7 @@ functions:
     - code: tmux
   sudo:
     - code: sudo tmux
-  Socket:
+  socket:
     - description: If the tmux socket file has enough permission, a simple user can connect that socket via tmux itself and escalate privilege.
     - code: |
      LFILE=/path/to/socket_name
