@@ -7,11 +7,9 @@ functions:
         tmux -f $LFILE
   shell:
     - code: tmux
+    - description: Provided to have enough permissions to access the socket.
+      code: |
+        tmux -S /path/to/socket_name
   sudo:
     - code: sudo tmux
-  socket:
-    - description: If the tmux socket file has enough permission, a simple user can connect that socket via tmux itself and escalate privilege.
-    - code: |
-     LFILE=/path/to/socket_name
-     tmux -S $LFILE
 ---
