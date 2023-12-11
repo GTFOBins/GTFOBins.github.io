@@ -1,7 +1,5 @@
 ---
-description: 
 functions:
-  shell:
-    - description: 
+  shell: 
       code: sudo ranger --cmd=terminal
 ---
