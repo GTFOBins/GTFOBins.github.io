@@ -7,11 +7,11 @@ description: |
   ```
 functions:
   sudo:
-    code: |
-      LFILE=file_to_write
-      sudo varnishncsa -g request -q 'ReqURL ~ "/xxx"' -F '%{yyy}i' -w "$LFILE"
+    - code: |
+        LFILE=file_to_write
+        sudo varnishncsa -g request -q 'ReqURL ~ "/xxx"' -F '%{yyy}i' -w "$LFILE"
   suid:
-    code: |
-      LFILE=file_to_write
-      ./varnishncsa -g request -q 'ReqURL ~ "/xxx"' -F '%{yyy}i' -w "$LFILE"
+    - code: |
+        LFILE=file_to_write
+        ./varnishncsa -g request -q 'ReqURL ~ "/xxx"' -F '%{yyy}i' -w "$LFILE"
 ---
