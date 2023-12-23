@@ -1,5 +1,5 @@
 ---
 functions:
-    sudo:
+  sudo:
     - code: sudo sudo /bin/sh
 ---
