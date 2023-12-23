@@ -13,5 +13,3 @@ functions:
         ./ncdu
         b
 ---
-
-
