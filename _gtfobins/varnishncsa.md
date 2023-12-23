@@ -5,7 +5,6 @@ description: |
   ```
   curl -H 'yyy: DATA' http://localhost:6081/xxx
   ```
-description: 
 functions:
   sudo:
     code: |
