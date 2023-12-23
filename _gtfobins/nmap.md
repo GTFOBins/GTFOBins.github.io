@@ -96,6 +96,9 @@ functions:
         TF=$(mktemp)
         echo 'local f=io.open("file_to_read", "rb"); print(f:read("*a")); io.close(f);' > $TF
         nmap --script=$TF
+    - description: The file is actually parsed as a list of hosts/networks, lines are leaked through error messages.
+      code: |
+        nmap -iL file_to_read
   sudo:
     - description: Input echo is disabled.
       code: |
