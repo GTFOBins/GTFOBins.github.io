@@ -1,4 +1,5 @@
 ---
+description: The result is displayed in a TUI interface.
 functions:
   file-read:
     - code: |
