@@ -9,6 +9,6 @@ functions:
   file-write:
     - description: DATA is a format string, it supports some escape sequences.
       code: |
-        LFILE=file_to_write
+        FILE=file_to_write
         find / -fprintf "$FILE" DATA -quit
 ---
