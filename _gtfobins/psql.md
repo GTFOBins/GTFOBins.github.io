@@ -6,9 +6,15 @@ functions:
         psql
         \?
         !/bin/sh
+    - code: |
+        psql
+        \! /bin/sh
   sudo:
     - code: |
         psql
         \?
         !/bin/sh
+    - code: |
+        psql
+        \! /bin/sh
 ---
