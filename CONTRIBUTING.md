@@ -39,6 +39,16 @@ Some features require additional fields:
 
 - `capabilities` requires a `list` of Linux [capabilities](https://man8.org/linux/man-pages/man7/capabilities.7.html) in the format `CAP_*` that are needed in order to execute this function with bypassed permissions.
 
+Additionally, it is possible to add _aliases_ with:
+
+```yaml
+---
+alias: <gtfobin>
+...
+```
+
+In this case, this entry is an alias of an existing `<gtfobin>`.
+
 Feel free to use any file in the [`_gtfobins/`] folder as an example.
 
 [YAML]: https://yaml.org/
