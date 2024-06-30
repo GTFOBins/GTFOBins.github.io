@@ -12,4 +12,7 @@ serve:
 
 .PHONY: lint
 lint:
-	linter/linter.py
+	python3 -m venv ./linter/.venv/
+	PIP_USER= source ./linter/.venv/bin/activate \
+	    && pip install -r ./linter/requirements.txt \
+	    && ./linter/linter.py

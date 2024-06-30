@@ -2,3 +2,4 @@
 /.sass-cache/
 /_private/
 /_site/
+/linter/.venv/
