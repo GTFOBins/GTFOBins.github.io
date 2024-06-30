@@ -12,9 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          pip install jsonschema yamllint
-      - name: Run tests
+      - name: Run linter
         run: |
           make lint
