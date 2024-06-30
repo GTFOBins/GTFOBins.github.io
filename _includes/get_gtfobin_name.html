@@ -1,2 +1,2 @@
 {% comment %} get the name from the path {% endcomment %}
-{{- include.path | split: '/' | last | split: '.' | first -}}
+{{- include.path | split: '/' | last -}}
