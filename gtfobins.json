@@ -2,7 +2,7 @@
 ---
 {
     {% for file in site.gtfobins %}
-        {% capture gtfobin %}{% include get_bin_name path=file.path %}{% endcapture %}
+        {% capture gtfobin %}{% include get_gtfobin_name.html path=file.path %}{% endcapture %}
         {{ gtfobin | jsonify }}: {
             "description": {{ file.description | jsonify }},
             "functions": {{ file.functions | jsonify }}
