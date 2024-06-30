@@ -16,3 +16,8 @@ lint:
 	PIP_USER= source ./linter/.venv/bin/activate \
 	    && pip install -r ./linter/requirements.txt \
 	    && ./linter/linter.py
+
+.PHONY: clean
+clean:
+	docker rmi gtfobins
+	rm -fr ./linter/venv/
