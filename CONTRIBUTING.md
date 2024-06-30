@@ -31,13 +31,13 @@ The `features` object can be omitted altogether, in that case the `code` is assu
 
 Some functions require additional fields:
 
-- `reverse-shell` and `bind-shell` require a `tty` flag that is `true` when the example is able to spawn a full TTY shell.;
+- `reverse-shell` and `bind-shell` require a `tty` flag that is `true` when the example is able to spawn a full TTY shell.
 
 Some features require additional fields:
 
 - `suid` requires a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
 
-- `capabilities` requires a `list` of Linux [capabilities](https://man8.org/linux/man-pages/man7/capabilities.7.html) in the format `CAP_*` that are needed in order to execute this function with bypassed permissions.
+- `capabilities` requires a `list` of Linux [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) in the format `CAP_*` that are needed in order to execute this function with bypassed permissions.
 
 Additionally, it is possible to add _aliases_ with:
 
