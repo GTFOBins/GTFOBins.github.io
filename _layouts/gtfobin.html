@@ -56,6 +56,11 @@ layout: common
                     {% include function_list.html gtfobin=gtfobin functions=gtfobin.functions %}
                 {% endif %}
 
+                {% comment %} version {% endcomment %}
+                {% if example.version %}
+                    <p><b>Version:</b> {{ example.version }}</p>
+                {% endif %}
+
                 {% comment %} example description {% endcomment %}
                 {% if example.description %}
                     <div class="description">{{ example.description | markdownify }}</div>
