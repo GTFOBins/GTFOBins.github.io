@@ -383,7 +383,8 @@ h2, h3, h4, h5, h5 {
 }
 
 // differentiate custom descriptions from hardcoded ones
-.description p {
-    padding: 1rem;
+.description {
+    margin: 1rem 0;
+    padding: 0 1rem;
     border: 1px dashed $foreground;
 }
