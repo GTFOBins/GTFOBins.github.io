@@ -101,6 +101,16 @@ p {
     line-height: 1.25;
 }
 
+fieldset {
+    border: 1px solid $foreground;
+    margin: 1em 0;
+    padding: 0 1em;
+
+    legend {
+        padding: 0 0.5em;
+    }
+}
+
 // permalink on headings
 
 h2, h3, h4, h5, h5 {
@@ -300,6 +310,13 @@ h2, h3, h4, h5, h5 {
             counter-increment: item;
             content: "(" counter(item, lower-alpha) ")";
         }
+
+        fieldset {
+            legend {
+                color: $accent;
+                font-size: 14px;
+            }
+        }
     }
 }
 
@@ -380,11 +397,4 @@ h2, h3, h4, h5, h5 {
 
 .centered {
     text-align: center;
-}
-
-// differentiate custom descriptions from hardcoded ones
-.description {
-    margin: 1rem 0;
-    padding: 0 1rem;
-    border: 1px dashed $foreground;
 }

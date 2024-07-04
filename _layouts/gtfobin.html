@@ -27,7 +27,10 @@ layout: common
 
 {% comment %} global executable description {% endcomment %}
 {% if gtfobin.description %}
-    <div class="description">{{ gtfobin.description | markdownify }}</div>
+    <fieldset>
+        <legend>Comment</legend>
+        {{ gtfobin.description | markdownify }}
+    </fieldset>
 {% endif %}
 
 {% comment %} scan all the available functions in order to find those present {% endcomment %}
@@ -48,38 +51,49 @@ layout: common
                 {% comment %} build the identifier of this example {% endcomment %}
                 {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
 
-                {% comment %} add a link to the inheriting executable and display the functions {% endcomment %}
-                {% if function_name == "inherit" %}
-                    <p>Inherits from <a href="/gtfobins/{{ example.from }}/"><code>{{ example.from }}</code></a>, thus possibly granting the following functions:</p>
-                    {% include get_gtfobin.html name=example.from %}
-                    {% assign gtfobin = return_gtfobin %}
-                    {% include function_list.html gtfobin=gtfobin functions=gtfobin.functions %}
-                {% endif %}
-
                 {% comment %} version {% endcomment %}
                 {% if example.version %}
-                    <p><b>Version:</b> {{ example.version | escape }}</p>
+                    <fieldset>
+                        <legend>Version requirements</legend>
+                        {{ example.version | markdownify }}
+                    </fieldset>
+                {% endif %}
+
+                {% comment %} add a link to the inheriting executable and display the functions {% endcomment %}
+                {% if function_name == "inherit" %}
+                    <fieldset>
+                        <legend>Functions</legend>
+                        <p>
+                            Inherits from <a href="/gtfobins/{{ example.from }}/"><code>{{ example.from }}</code></a>, thus possibly granting the following functions:
+                        </p>
+                        <p>
+                            {% include get_gtfobin.html name=example.from %}
+                            {% assign gtfobin = return_gtfobin %}
+                            {% include function_list.html gtfobin=gtfobin functions=gtfobin.functions %}
+                        </p>
+                    </fieldset>
                 {% endif %}
 
                 {% comment %} additional per-function content {% endcomment %}
                 {% case function_name %}
                 {% when "reverse-shell", "bind-shell" %}
-                    {% if example.limited %}
-                        {{ function.extra.limited | markdownify }}
-                    {% else %}
-                        {{ function.extra.regular | markdownify }}
-                    {% endif %}
-                {% when "file-write", "file-read", "download", "upload" %}
-                    {% if example.limited %}
-                        {{ function.extra.limited | markdownify }}
-                    {% else %}
-                        {{ function.extra.regular | markdownify }}
-                    {% endif %}
+                {% when "reverse-shell", "bind-shell", "file-write", "file-read", "download", "upload" %}
+                    <fieldset>
+                        <legend>Remarks</legend>
+                        {% if example.limited %}
+                            {{ function.extra.limited | markdownify }}
+                        {% else %}
+                            {{ function.extra.regular | markdownify }}
+                        {% endif %}
+                    </fieldset>
                 {% endcase %}
 
                 {% comment %} example description {% endcomment %}
                 {% if example.description %}
-                    <div class="description">{{ example.description | markdownify }}</div>
+                    <fieldset>
+                        <legend>Comment</legend>
+                        {{ example.description | markdownify }}
+                    </fieldset>
                 {% endif %}
 
                 {% comment %} list of features for each example {% endcomment %}
@@ -104,11 +118,14 @@ layout: common
                             {% comment %} additional per-feature content {% endcomment %}
                             {% case feature_name %}
                             {% when "suid" %}
-                                {% if per_feature_info.limited %}
-                                    {{ feature.extra.limited | markdownify }}
-                                {% else %}
-                                    {{ feature.extra.regular | markdownify }}
-                                {% endif %}
+                                <fieldset>
+                                    <legend>Remarks</legend>
+                                    {% if per_feature_info.limited %}
+                                        {{ feature.extra.limited | markdownify }}
+                                    {% else %}
+                                        {{ feature.extra.regular | markdownify }}
+                                    {% endif %}
+                                </fieldset>
                             {% when "capabilities" %}
                                 {% if per_feature_info.list %}
                                     <p>The following capabilities are needed: <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
@@ -117,7 +134,10 @@ layout: common
 
                             {% comment %} optional local description {% endcomment %}
                             {% if per_feature_info.description %}
-                                <div class="description">{{ per_feature_info.description | markdownify }}</div>
+                                <fieldset>
+                                    <legend>Comment</legend>
+                                    {{ per_feature_info.description | markdownify }}
+                                </fieldset>
                             {% endif %}
 
                             {% comment %} use the common code or the specialized per-feature version {% endcomment %}
