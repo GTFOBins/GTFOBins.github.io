@@ -12,8 +12,8 @@ reverse-shell:
   label: Reverse shell
   description: This executable can send back a reverse system shell to a listening attacker.
   extra: &network-shell-extra
-    tty: The spawned shell is a full TTY shell that can run complex terminal programs like `sudo` password prompts.
-    repl: The spawned shell is just a dummy REPL loop that can only run simple terminal programs.
+    limited: The spawned shell is just a dummy REPL that can only run simple terminal commands.
+    regular: The spawned shell is a full TTY shell that can run complex terminal programs like `sudo` password prompts.
 
 bind-shell:
   label: Bind shell

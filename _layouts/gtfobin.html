@@ -64,10 +64,10 @@ layout: common
                 {% comment %} additional per-function content {% endcomment %}
                 {% case function_name %}
                 {% when "reverse-shell", "bind-shell" %}
-                    {% if example.tty %}
-                        {{ function.extra.tty | markdownify }}
+                    {% if example.limited %}
+                        {{ function.extra.limited | markdownify }}
                     {% else %}
-                        {{ function.extra.repl | markdownify }}
+                        {{ function.extra.regular | markdownify }}
                     {% endif %}
                 {% endcase %}
 
