@@ -61,11 +61,6 @@ layout: common
                     <p><b>Version:</b> {{ example.version }}</p>
                 {% endif %}
 
-                {% comment %} example description {% endcomment %}
-                {% if example.description %}
-                    <div class="description">{{ example.description | markdownify }}</div>
-                {% endif %}
-
                 {% comment %} additional per-function content {% endcomment %}
                 {% case function_name %}
                 {% when "reverse-shell", "bind-shell" %}
@@ -75,6 +70,11 @@ layout: common
                         {{ function.extra.repl | markdownify }}
                     {% endif %}
                 {% endcase %}
+
+                {% comment %} example description {% endcomment %}
+                {% if example.description %}
+                    <div class="description">{{ example.description | markdownify }}</div>
+                {% endif %}
 
                 {% comment %} list of features for each example {% endcomment %}
                 <div class="features">
