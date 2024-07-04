@@ -69,6 +69,12 @@ layout: common
                     {% else %}
                         {{ function.extra.regular | markdownify }}
                     {% endif %}
+                {% when "file-upload", "file-download", "file-write", "file-read" %}
+                    {% if example.limited %}
+                        {{ function.extra.limited | markdownify }}
+                    {% else %}
+                        {{ function.extra.regular | markdownify }}
+                    {% endif %}
                 {% endcase %}
 
                 {% comment %} example description {% endcomment %}

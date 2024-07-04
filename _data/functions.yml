@@ -23,18 +23,24 @@ bind-shell:
 file-upload:
   label: File upload
   description: This executable can upload local files to a remote location.
+  extra: &file-operations-extra
+    limited: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary files.
+    regular: The content is handled perfectly, including binary data.
 
 file-download:
   label: File download
   description: This executable can download remote files to a local location.
+  extra: *file-operations-extra
 
 file-write:
   label: File write
   description: This executable can write data to local files.
+  extra: *file-operations-extra
 
 file-read:
   label: File read
   description: This executable can read data from local files.
+  extra: *file-operations-extra
 
 library-load:
   label: Library load
