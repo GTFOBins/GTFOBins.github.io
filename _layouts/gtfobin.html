@@ -58,7 +58,7 @@ layout: common
 
                 {% comment %} version {% endcomment %}
                 {% if example.version %}
-                    <p><b>Version:</b> {{ example.version }}</p>
+                    <p><b>Version:</b> {{ example.version | escape }}</p>
                 {% endif %}
 
                 {% comment %} additional per-function content {% endcomment %}
