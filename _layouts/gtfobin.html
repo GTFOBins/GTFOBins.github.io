@@ -69,7 +69,7 @@ layout: common
                     {% else %}
                         {{ function.extra.regular | markdownify }}
                     {% endif %}
-                {% when "file-upload", "file-download", "file-write", "file-read" %}
+                {% when "file-write", "file-read", "download", "upload" %}
                     {% if example.limited %}
                         {{ function.extra.limited | markdownify }}
                     {% else %}
