@@ -5,7 +5,7 @@ description: Get involved in GTFOBins.
 permalink: /contributing/
 ---
 
-Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder and named like the binary or script it refers, without an additional extension. The file contains a single document enclosed in delimiters: `---` and `...`. The general structure is the following:
+Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder and named like the executable (binary or script) it refers, without any additional extension. The file contains a single document enclosed in delimiters: `---` and `...`. The general structure is the following:
 
 ```yaml
 ---

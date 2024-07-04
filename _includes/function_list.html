@@ -1,6 +1,6 @@
 {% comment %} build the list of functions along with the provided features {% endcomment %}
 <ul class="tag-list">
-    {% comment %} render the functions of this binary (not inherited) {% endcomment %}
+    {% comment %} render the functions of this executable (not inherited) {% endcomment %}
     {% for _function_item in site.data.functions %}
         {% assign _function_name = _function_item[0] %}
         {% assign _function = _function_item[1] %}
@@ -15,13 +15,13 @@
         </li>
     {% endfor %}
 
-    {% comment %} for each example that inherits another binary {% endcomment %}
+    {% comment %} for each example that inherits another executable {% endcomment %}
     {% assign _inherited_functions = '' | split: '' %}
     {% for _example in include.functions.inherit %}
         {% include get_gtfobin.html name=_example.from %}
         {% assign _gtfobin = return_gtfobin %}
 
-        {% comment %} for each function of the inherited binary {% endcomment %}
+        {% comment %} for each function of the inherited executable {% endcomment %}
         {% for _function_item in _gtfobin.functions %}
             {% assign _function_name = _function_item[0] %}
             {% assign _function = _function_item[1] %}
@@ -31,7 +31,7 @@
         {% endfor %}
     {% endfor %}
 
-    {% comment %} render the inherited functions of this binary {% endcomment %}
+    {% comment %} render the inherited functions of this executable {% endcomment %}
     {% for _function_item in site.data.functions %}
         {% assign _function_name = _function_item[0] %}
         {% assign _function = _function_item[1] %}

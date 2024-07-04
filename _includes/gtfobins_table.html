@@ -23,7 +23,7 @@
 
     <fieldset>
         <legend>Filter</legend>
-        <input type="text" placeholder="Search among {{ site.gtfobins | size }} binaries: [<name>]/[<function>]/[<feature>]"/>
+        <input type="text" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<feature>]"/>
     </fieldset>
 </div>
 
@@ -31,13 +31,13 @@
     <table id="gtfobin-table">
         <thead>
             <tr>
-                <th>Binary</th>
+                <th>Executable</th>
                 <th>Functions</th>
             </tr>
         </thead>
         <tbody>
             {% for original_gtfobin in site.gtfobins %}
-                {% comment %} the binary name is the one of the file anyways {% endcomment %}
+                {% comment %} fetch the name from the path {% endcomment %}
                 {% capture gtfobin_name %}{% include get_gtfobin_name.html path=original_gtfobin.path %}{% endcapture %}
 
                 {% comment %} resolve the alias, if provided {% endcomment %}
@@ -86,7 +86,7 @@
             // show the row by default
             let showRow = true;
 
-            // if the binary name does not match do not show the row
+            // if the executable name does not match do not show the row
             if (namePattern && !namePattern.test(row.dataset.gtfobinName)) {
                 showRow = false;
             }

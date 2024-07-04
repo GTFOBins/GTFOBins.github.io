@@ -7,7 +7,7 @@ layout: common
 {% comment %} get the default feature name to use it as default {% endcomment %}
 {% assign default_feature_name = site.data.features | first | first %}
 
-{% comment %} binary title {% endcomment %}
+{% comment %} executable title {% endcomment %}
 {% capture gtfobin_name %}{% include get_gtfobin_name.html path=original_gtfobin.path %}{% endcapture %}
 {% include page_title.html title=gtfobin_name %}
 
@@ -25,7 +25,7 @@ layout: common
 {% comment %} function list {% endcomment %}
 {% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}
 
-{% comment %} global binary description {% endcomment %}
+{% comment %} global executable description {% endcomment %}
 {% if gtfobin.description %}
     <div class="description">{{ gtfobin.description | markdownify }}</div>
 {% endif %}
@@ -48,7 +48,7 @@ layout: common
                 {% comment %} build the identifier of this example {% endcomment %}
                 {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
 
-                {% comment %} add a link to the inheriting binary and display the functions {% endcomment %}
+                {% comment %} add a link to the inheriting executable and display the functions {% endcomment %}
                 {% if function_name == "inherit" %}
                     <p>Inherits from <a href="/gtfobins/{{ example.from }}/"><code>{{ example.from }}</code></a>, thus possibly granting the following functions:</p>
                     {% include get_gtfobin.html name=example.from %}
@@ -128,7 +128,7 @@ layout: common
     </ul>
 {% endfor %}
 
-{% comment %} footer with some GitHub links about this binary {% endcomment %}
+{% comment %} footer with some GitHub links about this executable {% endcomment %}
 <p class="small centered">
   <a class="small-link" href="https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_gtfobins/{{ gtfobin_name }}">Source</a>
   |
