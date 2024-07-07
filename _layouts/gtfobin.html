@@ -64,7 +64,7 @@ layout: common
                     <fieldset>
                         <legend>Functions</legend>
                         <p>
-                            Inherits from <a href="/gtfobins/{{ example.from }}/"><code>{{ example.from }}</code></a>, thus possibly granting the following functions:
+                            Inherits from <a href="/gtfobins/{{ example.from | escape }}/"><code>{{ example.from | escape }}</code></a>, thus possibly granting the following functions:
                         </p>
                         <p>
                             {% include get_gtfobin.html name=example.from %}
