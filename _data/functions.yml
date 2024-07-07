@@ -32,14 +32,14 @@ file-read:
   description: This executable can read data from local files.
   extra: *data-operations-extra
 
-download:
-  label: Download
-  description: This executable can download remote data.
-  extra: *data-operations-extra
-
 upload:
   label: Upload
   description: This executable can upload local data.
+  extra: *data-operations-extra
+
+download:
+  label: Download
+  description: This executable can download remote data.
   extra: *data-operations-extra
 
 library-load:

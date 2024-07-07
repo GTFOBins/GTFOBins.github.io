@@ -86,6 +86,58 @@ layout: common
                             {{ function.extra.regular | markdownify }}
                         {% endif %}
                     </fieldset>
+                {% when "reverse-shell" %}
+                    {% if example.listener %}
+                        {% assign known = function.extra[example.listener] %}
+                        {% assign description = known.description | default: example.listener.description %}
+                        {% assign code = known.code | default: example.listener.code %}
+                        <fieldset>
+                            <legend>Listener</legend>
+                            {{ description | markdownify }}
+                            {% if code %}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {% endif %}
+                        </fieldset>
+                    {% endif %}
+                {% when "bind-shell" %}
+                    {% if example.connector %}
+                        {% assign known = function.extra[example.connector] %}
+                        {% assign description = known.description | default: example.connector.description %}
+                        {% assign code = known.code | default: example.connector.code %}
+                        <fieldset>
+                            <legend>Connector</legend>
+                            {{ description | markdownify }}
+                            {% if code %}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {% endif %}
+                        </fieldset>
+                    {% endif %}
+                {% when "upload" %}
+                    {% if example.receiver %}
+                        {% assign known = function.extra[example.receiver] %}
+                        {% assign description = known.description | default: example.receiver.description %}
+                        {% assign code = known.code | default: example.receiver.code %}
+                        <fieldset>
+                            <legend>Receiver</legend>
+                            {{ description | markdownify }}
+                            {% if code %}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {% endif %}
+                        </fieldset>
+                    {% endif %}
+                {% when "download" %}
+                    {% if example.sender %}
+                        {% assign known = function.extra[example.sender] %}
+                        {% assign description = known.description | default: example.sender.description %}
+                        {% assign code = known.code | default: example.sender.code %}
+                        <fieldset>
+                            <legend>Sender</legend>
+                            {{ description | markdownify }}
+                            {% if code %}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {% endif %}
+                        </fieldset>
+                    {% endif %}
                 {% endcase %}
 
                 {% comment %} example description {% endcomment %}

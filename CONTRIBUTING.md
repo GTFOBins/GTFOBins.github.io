@@ -32,13 +32,23 @@ The optional `version` field must outline any particular OS or executable requir
 
 The `features` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` feature. When a feature specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the feature specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each feature, either specialized or inherited.
 
-Some functions require additional fields:
+Some functions support additional fields:
 
-- `reverse-shell` and `bind-shell` require a `limited` flag that is `true` when the example is not able to spawn a full TTY shell.
+- `reverse-shell` allows a `listener` field that describes how to receive the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
 
-Some features require additional fields:
+- `bind-shell` allows a `connector` field that describes how to initiate the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
 
-- `suid` requires a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
+- `upload` allows a `receiver` field that describes how to receive data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+
+- `download` allows a `sender` field that describes how to send data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+
+- `reverse-shell` and `bind-shell` allows a `limited` flag that is `true` when the example is not able to spawn a full TTY shell.
+
+- `file-write`, `file-read`, `upload`, and `download` allows a `limited` flag that is `true` when the example is not able handle arbitrary binary data.
+
+Some features support additional fields:
+
+- `suid` allows a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
 
 - `capabilities` requires a `list` of Linux [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) in the format `CAP_*` that are needed in order to execute this function with bypassed permissions.
 
