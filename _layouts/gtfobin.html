@@ -180,8 +180,7 @@ layout: common
                                 </fieldset>
                             {% when "capabilities" %}
                                 <p>
-                                    {{ feature.extra.list | escape }}
-
+                                    The following capabilities are needed:
                                     {% for capability in per_feature_info.list %}
                                         <code>{{ capability | escape }}</code>
                                         {%- if forloop.last -%}.{%- else -%}, {%- endif -%}

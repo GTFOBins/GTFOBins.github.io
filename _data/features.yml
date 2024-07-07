@@ -18,5 +18,3 @@ suid:
 capabilities:
   label: Capabilities
   description: This function is performed bypassing the usual kernel permission checks if the executable has certain capabilities set.
-  extra:
-    list: 'The following capabilities are needed:'
