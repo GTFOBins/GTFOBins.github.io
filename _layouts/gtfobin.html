@@ -127,9 +127,7 @@ layout: common
                                     {% endif %}
                                 </fieldset>
                             {% when "capabilities" %}
-                                {% if per_feature_info.list %}
-                                    <p>{{ feature.extra.list }} <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
-                                {% endif %}
+                                <p>{{ feature.extra.list }} <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
                             {% endcase %}
 
                             {% comment %} optional local description {% endcomment %}
