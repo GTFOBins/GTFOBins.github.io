@@ -127,7 +127,14 @@ layout: common
                                     {% endif %}
                                 </fieldset>
                             {% when "capabilities" %}
-                                <p>{{ feature.extra.list }} <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
+                                <p>
+                                    {{ feature.extra.list | escape }}
+
+                                    {% for capability in per_feature_info.list %}
+                                        <code>{{ capability | escape }}</code>
+                                        {%- if forloop.last -%}.{%- else -%}, {%- endif -%}
+                                    {% endfor %}
+                                </p>
                             {% endcase %}
 
                             {% comment %} optional local description {% endcomment %}
