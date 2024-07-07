@@ -246,7 +246,7 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-// function and features buttons used in both the table and single pages
+// function and contexts buttons used in both the table and single pages
 
 .tag-list {
     display: flex;
@@ -277,8 +277,8 @@ h2, h3, h4, h5, h5 {
         &.match a {
             background: $marked;
 
-            &[data-matching-features]:after {
-                content: " (" attr(data-matching-features) ")";
+            &[data-matching-contexts]:after {
+                content: " (" attr(data-matching-contexts) ")";
             }
         }
 
@@ -320,9 +320,9 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-// feature tabs
+// context tabs
 
-.features {
+.contexts {
     display: flex;
     flex-wrap: wrap;
     margin: 1em 0;

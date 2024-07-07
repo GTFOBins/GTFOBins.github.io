@@ -32,11 +32,11 @@ class Linter():
     def _build_schema(self):
         # fetch external data files
         functions = Linter._load_yaml_file('_data/functions.yml')
-        features = Linter._load_yaml_file('_data/features.yml')
+        contexts = Linter._load_yaml_file('_data/contexts.yml')
 
-        # gather functions and features that does not have special properties
+        # gather functions and contexts that does not have special properties
         simple_functions = set(functions.keys()) - {'inherit', 'reverse-shell', 'bind-shell'}
-        simple_features = set(features.keys()) - {'suid', 'capabilities'}
+        simple_contexts = set(contexts.keys()) - {'suid', 'capabilities'}
 
         # common schema parts
         non_empty_string = schema.And(str, len)
@@ -44,12 +44,12 @@ class Linter():
             schema.Optional('description'): non_empty_string,
             schema.Optional('code'): non_empty_string
         }
-        features = {
-            schema.Optional('features'): {
-                schema.Optional(schema.Or(*simple_features)): schema.Or(None, {
+        contexts = {
+            schema.Optional('contexts'): {
+                schema.Optional(schema.Or(*simple_contexts)): schema.Or(None, {
                     **default_fields
                 }),
-                # per-feature properties...
+                # per-context properties...
                 schema.Optional('suid'): schema.Or(None, {
                     **default_fields,
                     schema.Optional('limited'): bool
@@ -69,17 +69,17 @@ class Linter():
                 'functions': {
                     schema.Optional(schema.Or(*simple_functions)): [schema.And(len, {
                         **default_fields,
-                        **features
+                        **contexts
                     })],
                     schema.Optional(schema.Or('reverse-shell', 'bind-shell')): [schema.And(len, {
                         **default_fields,
                         schema.Optional('tty'): bool,
-                        **features
+                        **contexts
                     })],
                     schema.Optional('inherit'): [schema.And(len, {
                         **default_fields,
                         'from': non_empty_string,
-                        **features
+                        **contexts
                     })]
                 }
             })
@@ -89,13 +89,13 @@ class Linter():
         # make sure that every example has a code element when there is no fallback
         for function_name, function in data.get('functions', {}).items():
             for index, example in enumerate(function):
-                features = example.get('features')
+                contexts = example.get('contexts')
                 code = example.get('code')
                 if not code:
                     message = "Missing 'code' for '{}' function at example {}".format(function_name, index)
-                    if features:
-                        for feature_name, feature in features.items():
-                            assert feature and feature.get('code'), message
+                    if contexts:
+                        for context_name, context in contexts.items():
+                            assert context and context.get('code'), message
                     else:
                         assert code, message
 

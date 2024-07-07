@@ -4,8 +4,8 @@ layout: common
 
 {% assign original_gtfobin = page %}
 
-{% comment %} get the default feature name to use it as default {% endcomment %}
-{% assign default_feature_name = site.data.features | first | first %}
+{% comment %} get the default context name to use it as default {% endcomment %}
+{% assign default_context_name = site.data.contexts | first | first %}
 
 {% comment %} executable title {% endcomment %}
 {% capture gtfobin_name %}{% include get_gtfobin_name.html path=original_gtfobin.path %}{% endcapture %}
@@ -148,40 +148,40 @@ layout: common
                     </fieldset>
                 {% endif %}
 
-                {% comment %} list of features for each example {% endcomment %}
-                <div class="features">
-                    {% comment %} scan all the available features in order to find those present falling back to the default {% endcomment %}
+                {% comment %} list of contexts for each example {% endcomment %}
+                <div class="contexts">
+                    {% comment %} scan all the available contexts in order to find those present falling back to the default {% endcomment %}
                     {% assign first = true %}
-                    {% for feature_item in site.data.features %}
-                        {% assign feature_name = feature_item[0] %}
-                        {% assign feature = feature_item[1] %}
+                    {% for context_item in site.data.contexts %}
+                        {% assign context_name = context_item[0] %}
+                        {% assign context = context_item[1] %}
 
-                        {% unless example.features contains feature_name or example.features == nil and feature_name == default_feature_name %}{% continue %}{% endunless %}
-                        {% assign per_feature_info = example.features[feature_name] %}
+                        {% unless example.contexts contains context_name or example.contexts == nil and context_name == default_context_name %}{% continue %}{% endunless %}
+                        {% assign per_context_info = example.contexts[context_name] %}
 
-                        {% comment %} feature information {% endcomment %}
-                        {% capture feature_id %}{{ example_id }}-{{ feature_name }}{% endcapture %}
-                        <input type="radio" id="{{ feature_id }}" name="{{ example_id }}" {% if first %}checked{% endif %} />
-                        <label for="{{ feature_id }}">{{ feature.label }}</label>
+                        {% comment %} context information {% endcomment %}
+                        {% capture context_id %}{{ example_id }}-{{ context_name }}{% endcapture %}
+                        <input type="radio" id="{{ context_id }}" name="{{ example_id }}" {% if first %}checked{% endif %} />
+                        <label for="{{ context_id }}">{{ context.label }}</label>
                         <div>
-                            {% comment %} global feature description {% endcomment %}
-                            {{ feature.description | markdownify }}
+                            {% comment %} global context description {% endcomment %}
+                            {{ context.description | markdownify }}
 
-                            {% comment %} additional per-feature content {% endcomment %}
-                            {% case feature_name %}
+                            {% comment %} additional per-context content {% endcomment %}
+                            {% case context_name %}
                             {% when "suid" %}
                                 <fieldset>
                                     <legend>Remarks</legend>
-                                    {% if per_feature_info.limited %}
-                                        {{ feature.extra.limited | markdownify }}
+                                    {% if per_context_info.limited %}
+                                        {{ context.extra.limited | markdownify }}
                                     {% else %}
-                                        {{ feature.extra.regular | markdownify }}
+                                        {{ context.extra.regular | markdownify }}
                                     {% endif %}
                                 </fieldset>
                             {% when "capabilities" %}
                                 <p>
                                     The following capabilities are needed:
-                                    {% for capability in per_feature_info.list %}
+                                    {% for capability in per_context_info.list %}
                                         <code>{{ capability | escape }}</code>
                                         {%- if forloop.last -%}.{%- else -%}, {%- endif -%}
                                     {% endfor %}
@@ -189,15 +189,15 @@ layout: common
                             {% endcase %}
 
                             {% comment %} optional local description {% endcomment %}
-                            {% if per_feature_info.description %}
+                            {% if per_context_info.description %}
                                 <fieldset>
                                     <legend>Comment</legend>
-                                    {{ per_feature_info.description | markdownify }}
+                                    {{ per_context_info.description | markdownify }}
                                 </fieldset>
                             {% endif %}
 
-                            {% comment %} use the common code or the specialized per-feature version {% endcomment %}
-                            {% capture code %}{% if per_feature_info.code %}{{ per_feature_info.code }}{% else %}{{ example.code }}{% endif %}
+                            {% comment %} use the common code or the specialized per-context version {% endcomment %}
+                            {% capture code %}{% if per_context_info.code %}{{ per_context_info.code }}{% else %}{{ example.code }}{% endif %}
                             {% endcapture %}
                             <pre><code>{{- code | escape | strip -}}</code></pre>
                         </div>

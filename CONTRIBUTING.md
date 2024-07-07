@@ -15,8 +15,8 @@ functions:
     - description: …
       version: …
       code: …
-      features:
-        <feature>:
+      contexts:
+        <context>:
           description: …
           code: …
           # …
@@ -26,11 +26,11 @@ functions:
 ...
 ```
 
-Where `<function>` and `<feature>` are defined in the [`_data/functions.yml`][] and [`_data/features.yml`][] files respectively.
+Where `<function>` and `<context>` are defined in the [`_data/functions.yml`][] and [`_data/contexts.yml`][] files respectively.
 
 The optional `version` field must outline any particular OS or executable requirements that enable the corresponding function.
 
-The `features` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` feature. When a feature specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the feature specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each feature, either specialized or inherited.
+The `contexts` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
 
 Some functions support additional fields:
 
@@ -46,7 +46,7 @@ Some functions support additional fields:
 
 - `file-write`, `file-read`, `upload`, and `download` allows a `limited` flag that is `true` when the example is not able handle arbitrary binary data.
 
-Some features support additional fields:
+Some contexts support additional fields:
 
 - `suid` allows a `limited` flag that is `true` when the example only works with distributions whose default shell does not drop SUID privileges;
 
@@ -67,4 +67,4 @@ Feel free to use any file in the [`_gtfobins/`] folder as an example.
 [YAML]: https://yaml.org/
 [`_gtfobins/`]: https://github.com/GTFOBins/GTFOBins.github.io/tree/master/_gtfobins
 [`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml
-[`_data/features.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/features.yml
+[`_data/contexts.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/contexts.yml

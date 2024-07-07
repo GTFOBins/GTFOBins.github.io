@@ -11,19 +11,19 @@
     </fieldset>
 
     <fieldset>
-        <legend>Features</legend>
+        <legend>Contexts</legend>
         <ul class="search-filters tag-list">
-            {% for feature_item in site.data.features %}
-                {% assign feature_name = feature_item[0] %}
-                {% assign feature = feature_item[1] %}
-                <li><a href="#//^{{ feature.label | downcase }}$" data-title="{{ feature.description | replace: '\n', ' ' }}">{{ feature.label }}</a></li>
+            {% for context_item in site.data.contexts %}
+                {% assign context_name = context_item[0] %}
+                {% assign context = context_item[1] %}
+                <li><a href="#//^{{ context.label | downcase }}$" data-title="{{ context.description | replace: '\n', ' ' }}">{{ context.label }}</a></li>
             {% endfor %}
         </ul>
     </fieldset>
 
     <fieldset>
         <legend>Filter</legend>
-        <input type="text" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<feature>]"/>
+        <input type="text" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<context>]"/>
     </fieldset>
 </div>
 
@@ -64,7 +64,7 @@
 <script>
     function filter(query) {
         // extract query components
-        const [namePattern, functionPattern, featurePattern] = query.toLowerCase().split('/', 3).map((pattern) => {
+        const [namePattern, functionPattern, contextPattern] = query.toLowerCase().split('/', 3).map((pattern) => {
             try {
                 if (pattern) {
                     return new RegExp(pattern, 'i');
@@ -98,11 +98,11 @@
                 // reset functions buttons visibility
                 for (const functionElem of functionElems) {
                     functionElem.classList.remove('match');
-                    delete functionElem.firstElementChild.dataset.matchingFeatures;
+                    delete functionElem.firstElementChild.dataset.matchingContexts;
                 }
 
                 // skip if empty filters
-                if (functionPattern || featurePattern) {
+                if (functionPattern || contextPattern) {
                     // test the individual functions
                     let noMatchingFunctions = true;
                     for (const functionElem of functionElems) {
@@ -112,17 +112,17 @@
                             continue;
                         }
 
-                        // test the features
-                        const featureList = functionElem.dataset.functionFeatures.split(',');
-                        const matchingFeatures = featurePattern
-                            ? featureList.filter((feature) => featurePattern.test(feature))
-                            : featureList;
-                        if (matchingFeatures.length === 0) {
+                        // test the contexts
+                        const contextList = functionElem.dataset.functionContexts.split(',');
+                        const matchingContexts = contextPattern
+                            ? contextList.filter((context) => contextPattern.test(context))
+                            : contextList;
+                        if (matchingContexts.length === 0) {
                             continue;
                         }
-                        // save the macthing features only if there is a pattern
-                        else if (featurePattern) {
-                            functionElem.firstElementChild.dataset.matchingFeatures = matchingFeatures.join(', ');
+                        // save the macthing contexts only if there is a pattern
+                        else if (contextPattern) {
+                            functionElem.firstElementChild.dataset.matchingContexts = matchingContexts.join(', ');
                         }
 
                         // match if both match
