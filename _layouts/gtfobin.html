@@ -128,7 +128,7 @@ layout: common
                                 </fieldset>
                             {% when "capabilities" %}
                                 {% if per_feature_info.list %}
-                                    <p>The following capabilities are needed: <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
+                                    <p>{{ feature.extra.list }} <code>{{ per_feature_info.list | join: "</code>, <code>"}}</code>.<p/>
                                 {% endif %}
                             {% endcase %}
 
