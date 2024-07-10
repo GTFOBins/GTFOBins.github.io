@@ -2,6 +2,7 @@
 title: GTFOBins
 
 exclude:
+  - /Dockerfile
   - /LICENSE
   - /Makefile
   - /README.md
