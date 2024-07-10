@@ -4,9 +4,9 @@ serve:
 	docker run \
 	    --rm \
 	    --name gtfobins \
-	    --user "${UID}" \
+	    --user "$$UID" \
 	    --publish 4000:4000 \
-	    --volume "${PWD}:/site/" \
+	    --volume "$$PWD:/GTFOBins/" \
 	    gtfobins \
 	    bundle exec jekyll serve --host 0.0.0.0
 
