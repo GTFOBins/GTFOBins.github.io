@@ -138,12 +138,16 @@ class Linter():
 
         # walk and lint all the gtfobins
         for name in sorted(os.listdir(root)):
-            if name.startswith('.'):
+            # skip old version files
+            if name.endswith('.md'):
                 continue
+
+            # lint and report errors
             path = os.path.join(root, name)
             for problem in self._lint_file(path):
                 success = False
                 print(problem)
+
         return success
 
 
