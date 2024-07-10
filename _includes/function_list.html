@@ -11,7 +11,7 @@
         {% include get_contexts_label.html examples=_examples %}
 
         <li data-function-name="{{ _function.label }}" data-function-contexts="{{ return_contexts }}">
-            <a href="{{ include.gtfobin.url }}#{{ _function_name }}">{{ _function.label }}</a>
+            <a href="{{ include.gtfobin.url | relative_url }}#{{ _function_name }}">{{ _function.label }}</a>
         </li>
     {% endfor %}
 
@@ -38,7 +38,7 @@
         {% unless _inherited_functions contains _function_name %}{% continue %}{% endunless %}
 
         <li class="inherit" title="This function is inherited" data-function-name="{{ _function.label }}" data-function-contexts="">
-            <a href="{{ include.gtfobin.url }}#inherit">{{ _function.label }}</a>
+            <a href="{{ include.gtfobin.url | relative_url }}#inherit">{{ _function.label }}</a>
         </li>
     {% endfor %}
 </ul>

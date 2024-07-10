@@ -12,8 +12,8 @@
         <meta charset="utf-8">
         <title>{{ title }}</title>
         <meta name="description" content="{{ description | escape }}">
-        <link rel="icon" href="/assets/logo.png">
-        <link rel="stylesheet" href="/assets/style.css" type="text/css"/>
+        <link rel="icon" href="{{ "/assets/logo.png" | relative_url }}">
+        <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     </head>

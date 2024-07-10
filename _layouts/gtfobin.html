@@ -17,7 +17,7 @@ layout: common
     {% assign gtfobin = return_gtfobin %}
 
     {% comment %} render a message about being an alias {% endcomment %}
-    <p>This is an alias of <a href="{{ gtfobin.url }}"><code>{{ return_gtfobin_name }}</code></a>.</p>
+    <p>This is an alias of <a href="{{ gtfobin.url | relative_url }}"><code>{{ return_gtfobin_name }}</code></a>.</p>
 {% else %}
     {% assign gtfobin = original_gtfobin %}
 {% endif %}
@@ -61,14 +61,15 @@ layout: common
 
                 {% comment %} add a link to the inheriting executable and display the functions {% endcomment %}
                 {% if function_name == "inherit" %}
+                    {% include get_gtfobin.html name=example.from %}
+                    {% assign gtfobin = return_gtfobin %}
+
                     <fieldset>
                         <legend>Functions</legend>
                         <p>
-                            Inherits from <a href="/gtfobins/{{ example.from | escape }}/"><code>{{ example.from | escape }}</code></a>, thus possibly granting the following functions:
+                            Inherits from <a href="{{ gtfobin.url | relative_url }}"><code>{{ example.from | escape }}</code></a>, thus possibly granting the following functions:
                         </p>
                         <p>
-                            {% include get_gtfobin.html name=example.from %}
-                            {% assign gtfobin = return_gtfobin %}
                             {% include function_list.html gtfobin=gtfobin functions=gtfobin.functions %}
                         </p>
                     </fieldset>

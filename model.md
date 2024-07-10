@@ -4,7 +4,7 @@ title: Data model
 description: Functions and contexts of the GTFOBins executables.
 ---
 
-An executable may support one or more [function](#functions) by providing a number of *examples* for their use, each example may support a number of [contexts](#contexts) that determine the ability of that example to work in that particular condition.
+An executable may support one or more _function_ by providing a number of *examples* for their use, each example may support a number of _contexts_ that determine the ability of that example to work in that particular condition.
 
 ## Functions
 
