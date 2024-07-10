@@ -8,7 +8,7 @@ serve:
 	    --publish 4000:4000 \
 	    --volume "$$PWD:/GTFOBins/" \
 	    gtfobins \
-	    bundle exec jekyll serve --host 0.0.0.0
+	    bundle exec jekyll serve --incremental --host 0.0.0.0
 
 .PHONY: lint
 lint:
