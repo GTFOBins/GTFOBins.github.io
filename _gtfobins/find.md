@@ -11,4 +11,6 @@ functions:
       code: |
         LFILE=file_to_write
         find / -fprintf "$FILE" DATA -quit
+  file-read:
+    - code: find /etc -name shadow -exec cat {} \;
 ---
