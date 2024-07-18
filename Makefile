@@ -19,5 +19,5 @@ lint:
 
 .PHONY: clean
 clean:
-	docker rmi gtfobins
-	rm -fr ./linter/venv/
+	-docker rmi gtfobins
+	-rm -fr ./linter/venv/
