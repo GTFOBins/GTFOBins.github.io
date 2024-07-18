@@ -14,6 +14,7 @@ serve:
 lint:
 	python3 -m venv ./linter/.venv/
 	PIP_USER= . ./linter/.venv/bin/activate \
+	    && pip install --upgrade pip \
 	    && pip install -r ./linter/requirements.txt \
 	    && ./linter/linter.py
 
