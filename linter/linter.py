@@ -16,140 +16,173 @@ rules:
     present: true
   document-end:
     present: true
+  indentation:
+    spaces: 2
+    check-multi-line-strings: true
 '''
 
 
 class Linter():
 
     def __init__(self):
-        self._yaml_lint_config = yamllint.config.YamlLintConfig(YAML_LINT_CONFIG)
+        self._config = yamllint.config.YamlLintConfig(YAML_LINT_CONFIG)
         self._schema = self._build_schema()
 
-    def _load_yaml_file(path):
-        with open(path) as fs:
-            return yaml.safe_load(fs)
-
     def _build_schema(self):
-        # fetch external data files
-        functions = Linter._load_yaml_file('_data/functions.yml')
-        contexts = Linter._load_yaml_file('_data/contexts.yml')
-
-        # gather functions and contexts that does not have special properties
-        simple_functions = set(functions.keys()) - {'inherit', 'reverse-shell', 'bind-shell'}
-        simple_contexts = set(contexts.keys()) - {'suid', 'capabilities'}
-
-        # common schema parts
         non_empty_string = schema.And(str, len)
-        default_fields = {
+
+        default_context_example_fields = {
             schema.Optional('description'): non_empty_string,
-            schema.Optional('code'): non_empty_string
+            schema.Optional('code'): non_empty_string,
         }
+
+        default_function_example_fields = {
+            **default_context_example_fields,
+            schema.Optional('version'): non_empty_string,
+        }
+
+        description_or_code = {
+            schema.Or('description', 'code'): non_empty_string,
+        }
+
+        network_shell_counterpart = schema.Or(
+            description_or_code,
+            # ...
+        )
+
+        network_file_counterpart = schema.Or(
+            description_or_code,
+            # ...
+        )
+
+        def contexts(names, context_schema):
+            return {
+                schema.Optional(schema.Or(*names)): schema.Or(None, {
+                    **default_context_example_fields,
+                    **context_schema,
+                })
+            }
+
         contexts = {
             schema.Optional('contexts'): {
-                schema.Optional(schema.Or(*simple_contexts)): schema.Or(None, {
-                    **default_fields
+                **contexts(['unprivileged', 'sudo'], {}),
+                **contexts(['suid'], {
+                    schema.Optional('limited'): bool,
                 }),
-                # per-context properties...
-                schema.Optional('suid'): schema.Or(None, {
-                    **default_fields,
-                    schema.Optional('limited'): bool
-                }),
-                schema.Optional('capabilities'): schema.Or(None, {
-                    **default_fields,
-                    schema.Optional('list'): [non_empty_string]
+                **contexts(['capabilities'], {
+                    schema.Optional('list'): schema.And(len, [
+                        schema.Regex(r'^CAP_[A-Z_]+'),
+                    ]),
                 }),
             }
         }
 
+        def functions(names, example_schema):
+            def check_code_coherence(example):
+                has_code = bool(example.get('code'))
+                has_contexts = bool(example.get('contexts'))
+                all_contexts_have_code = all(map(lambda x: x.get('code'), example.get('contexts', {}).values()))
+                return has_code != (has_contexts and all_contexts_have_code)
+
+            return {
+                schema.Optional(schema.Or(*names)): schema.And(len, [
+                    schema.And({
+                        **default_function_example_fields,
+                        **example_schema,
+                        **contexts,
+                    }, check_code_coherence),
+                ]),
+            }
+
+        functions = {
+            'functions': schema.And(len, {
+                **functions(['shell', 'command', 'library-load'], {}),
+                **functions(['reverse-shell'], {
+                    schema.Optional('limited'): bool,
+                    schema.Optional('listener'): network_shell_counterpart,
+                }),
+                **functions(['bind-shell'], {
+                    schema.Optional('limited'): bool,
+                    schema.Optional('connector'): network_shell_counterpart,
+                }),
+                **functions(['file-write'], {
+                    schema.Optional('limited'): bool,
+                }),
+                **functions(['file-read'], {
+                    schema.Optional('limited'): bool,
+                }),
+                **functions(['upload'], {
+                    schema.Optional('limited'): bool,
+                    schema.Optional('receiver'): network_file_counterpart,
+                }),
+                **functions(['download'], {
+                    schema.Optional('limited'): bool,
+                    schema.Optional('sender'): network_file_counterpart,
+                }),
+                **functions(['inherit'], {
+                    'from': non_empty_string,
+                }),
+            }),
+        }
+
         return schema.Schema(
             schema.Or({
-                'alias': non_empty_string
+                'alias': non_empty_string,
             }, {
                 schema.Optional('description'): non_empty_string,
-                'functions': {
-                    schema.Optional(schema.Or(*simple_functions)): [schema.And(len, {
-                        **default_fields,
-                        **contexts
-                    })],
-                    schema.Optional(schema.Or('reverse-shell', 'bind-shell')): [schema.And(len, {
-                        **default_fields,
-                        schema.Optional('tty'): bool,
-                        **contexts
-                    })],
-                    schema.Optional('inherit'): [schema.And(len, {
-                        **default_fields,
-                        'from': non_empty_string,
-                        **contexts
-                    })]
-                }
+                **functions,
             })
         )
 
-    def _check_coherence(self, data):
-        # make sure that every example has a code element when there is no fallback
-        for function_name, function in data.get('functions', {}).items():
-            for index, example in enumerate(function):
-                contexts = example.get('contexts')
-                code = example.get('code')
-                if not code:
-                    message = "Missing 'code' for '{}' function at example {}".format(function_name, index)
-                    if contexts:
-                        for context_name, context in contexts.items():
-                            assert context and context.get('code'), message
-                    else:
-                        assert code, message
-
-
-    def _lint_file(self, path):
-        problems = []
+    def lint(self, path):
         with open(path) as fs:
-            # prepare the name for ANSI printing
-            name = '\x1b[31;1m{}\x1b[0m'.format(os.path.basename(path))
-
             # attempt YAML parsing
             try:
                 text = fs.read()
                 data = yaml.safe_load(text)
             except yaml.YAMLError as e:
-                problems.append('{}: {}'.format(name, e))
-                return problems
+                return [f'{e.problem} at line {e.problem_mark.line}']
 
-            # check valid YAML syntax
-            for problem in yamllint.linter.run(text, self._yaml_lint_config):
-                problems.append('{}:{}: [{}] {}'.format(name, problem.line, problem.rule, problem.desc))
+            problems = []
+
+            # check YAML syntax
+            for problem in yamllint.linter.run(text, self._config):
+                problems.append(f'{problem.desc} at line {problem.line}')
 
             # check valid schema
             try:
                 self._schema.validate(data)
             except schema.SchemaError as e:
-                problems.append('{}: {}'.format(name, e))
+                problems.append(str(e.autos[-1]))
 
-            # check additional coherence
-            try:
-                self._check_coherence(data)
-            except AssertionError as e:
-                problems.append('{}: {}'.format(name, e))
+            return problems
 
-        return problems
 
-    def run(self):
-        root = '_gtfobins'
-        success = True
+def run():
+    success = True
 
-        # walk and lint all the gtfobins
-        for name in sorted(os.listdir(root)):
-            # skip old version files
-            if name.endswith('.md'):
-                continue
+    # move into the GTFOBins directory
+    os.chdir('_gtfobins')
 
-            # lint and report errors
-            path = os.path.join(root, name)
-            for problem in self._lint_file(path):
-                success = False
-                print(problem)
+    # lint all the entries
+    linter = Linter()
+    for name in sorted(os.listdir()):
+        # skip old-version files
+        if name.endswith('.md'):
+            continue
 
-        return success
+        # lint and report the outcome
+        problems = linter.lint(name)
+        if problems:
+            success = False
+            print(f'\x1b[31;1mFAIL\x1b[0m {name}')
+            for problem in problems:
+                print(f'     - {problem}')
+        else:
+            print(f'\x1b[32;1mPASS\x1b[0m {name}')
+
+    return success
 
 
 if __name__ == '__main__':
-    sys.exit(not Linter().run())
+    sys.exit(not run())

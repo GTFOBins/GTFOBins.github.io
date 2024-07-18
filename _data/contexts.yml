@@ -1,5 +1,3 @@
-# this is the rendering order of contexts
-
 unprivileged:
   label: Unprivileged
   description: This function can be performed by any unprivileged user.

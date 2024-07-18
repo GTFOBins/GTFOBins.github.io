@@ -1,5 +1,3 @@
-# this is the rendering order of functions
-
 shell:
   label: Shell
   description: This executable can spawn an interactive system shell.
@@ -44,7 +42,7 @@ download:
 
 library-load:
   label: Library load
-  description: This executable can load shared libraries that may be used to run arbitray code in the same execution context.
+  description: This executable can load shared libraries that may be used to run arbitrary code in the same execution context.
 
 inherit:
   label: Inherit
