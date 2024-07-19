@@ -107,6 +107,8 @@ fieldset {
     padding: 0 1em;
 
     legend {
+        color: $accent;
+        font-size: $small-font-size;
         padding: 0 0.5em;
     }
 }
@@ -150,6 +152,8 @@ h2, h3, h4, h5, h5 {
         padding-top: 0;
 
         legend {
+            color: $foreground;
+            font-size: initial;
             font-weight: bold;
             padding: 0.5em;
         }
@@ -309,13 +313,6 @@ h2, h3, h4, h5, h5 {
             text-align: center;
             counter-increment: item;
             content: "(" counter(item, lower-alpha) ")";
-        }
-
-        fieldset {
-            legend {
-                color: $accent;
-                font-size: 14px;
-            }
         }
     }
 }
