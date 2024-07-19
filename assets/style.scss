@@ -210,32 +210,32 @@ h2, h3, h4, h5, h5 {
         width: 100%;
         border-spacing: 0;
 
-        th {
-            text-align: left;
-            padding: 0.5em;
+        thead {
+            th {
+                padding: 1em;
+                text-align: left;
 
-            &:nth-child(2) {
-                width: 100%;
+                &:last-child {
+                    width: 100%;
+                }
             }
         }
 
         tbody {
+            th {
+                padding: 0 1em;
+                font-family: monospace;
+                white-space: nowrap;
+                font-weight: normal;
+                text-align: left;
+
+                a {
+                    text-decoration: none;
+                }
+            }
+
             td {
-                padding: 0;
-
-                &:nth-child(1) {
-                    font-family: monospace;
-                    white-space: nowrap;
-
-                    a {
-                        margin: 0 0.5em;
-                        text-decoration: none;
-                    }
-                }
-
-                &:nth-child(2) {
-                    padding: 0.2em;
-                }
+                padding: 0.5em 1em;
             }
 
             tr:hover {
@@ -257,6 +257,8 @@ h2, h3, h4, h5, h5 {
     flex-wrap: wrap;
     font-size: $small-font-size;
     list-style: none;
+    column-gap: 0.25em;
+    row-gap: 0.25em;
     padding: 0;
     margin: 0;
 
@@ -264,7 +266,6 @@ h2, h3, h4, h5, h5 {
         a {
             display: inline-block;
             padding: 0.25em 0.5em;
-            margin: 0.2em;
             border: 1px solid $accent;
         }
 

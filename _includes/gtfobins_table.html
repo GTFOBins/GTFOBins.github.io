@@ -50,7 +50,7 @@
 
                 {% comment %} render the row {% endcomment %}
                 <tr data-gtfobin-name="{{ gtfobin_name }}">
-                    <td><a href="{{ original_gtfobin.url | relative_url }}" class="bin-name">{{ gtfobin_name }}</a></td>
+                    <th><a href="{{ original_gtfobin.url | relative_url }}" class="bin-name">{{ gtfobin_name }}</a></th>
                     <td>{% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}</td>
                 </tr>
             {% endfor %}
