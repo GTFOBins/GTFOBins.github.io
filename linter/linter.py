@@ -19,6 +19,10 @@ rules:
   indentation:
     spaces: 2
     check-multi-line-strings: true
+  brackets:
+    forbid: true
+  braces:
+    forbid: true
 '''
 
 
