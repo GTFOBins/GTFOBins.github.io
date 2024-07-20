@@ -1,12 +1,23 @@
 ---
 ---
 {
-    {% for file in site.gtfobins %}
-        {% capture gtfobin %}{% include get_gtfobin_name.html path=file.path %}{% endcapture %}
-        {{ gtfobin | jsonify }}: {
-            "description": {{ file.description | jsonify }},
-            "functions": {{ file.functions | jsonify }}
-        }
-        {% unless forloop.last %},{% endunless %}
-    {% endfor %}
+    "functions": {{ site.data.functions | jsonify -}},
+    "contexts": {{ site.data.contexts | jsonify -}},
+    "executables": {
+        {% for file in site.gtfobins -%}
+            {%- capture gtfobin -%}{%- include get_gtfobin_name.html path=file.path -%}{%- endcapture -%}
+            {{ gtfobin | jsonify -}}: {
+                {%- assign root_fields = 'description,functions,alias' | split: ',' -%}
+                {%- assign comma = false -%}
+                {%- for field in root_fields -%}
+                    {%- if file[field] -%}
+                        {%- if comma -%},{%- endif -%}
+                        {%- assign comma = true -%}
+                        {{- field | jsonify -}}: {{- file[field] | jsonify -}}
+                    {%- endif -%}
+                {%- endfor -%}
+            }
+            {%- unless forloop.last -%},{%- endunless %}
+        {% endfor %}
+    }
 }
