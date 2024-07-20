@@ -1,5 +1,7 @@
 title: GTFOBins
 
+baseurl: /new # TODO temporary
+
 exclude:
   - /Dockerfile
   - /LICENSE
