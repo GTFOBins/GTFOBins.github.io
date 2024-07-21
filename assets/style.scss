@@ -377,6 +377,7 @@ h2, h3, h4, h5, h5 {
     height: 100px;
     margin-left: $margin;
     margin-bottom: $margin;
+    pointer-events: none;
 }
 
 .github-buttons {
