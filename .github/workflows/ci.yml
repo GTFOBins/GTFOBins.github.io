@@ -8,10 +8,11 @@ on:
       - master
   workflow_dispatch:
 jobs:
-  Tests:
+  Lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Run linter
         run: |
           make lint
