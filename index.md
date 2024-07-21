@@ -12,7 +12,7 @@ description: GTFOBins is a curated list of Unix-like executables that can be use
 
 The project [collects]({% link model.md %}) legitimate functions of Unix-like executables that can be abused to ~~get the f**k~~ break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate other post-exploitation tasks.
 
-GTFOBins is a joint effort by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and], and many other [contributors][]. Everyone con [get involved]({% link CONTRIBUTING.md %}) by providing additional entries and techniques!
+GTFOBins is a joint effort by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and], and many other [contributors][]. Everyone can [get involved]({% link CONTRIBUTING.md %}) by providing additional entries and techniques!
 
 If you are looking for Windows binaries you should visit [LOLBAS][].
 
