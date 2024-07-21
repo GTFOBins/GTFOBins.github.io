@@ -23,6 +23,8 @@ If you are looking for Windows binaries you should visit [LOLBAS][].
 [Get involved]({{ '/contributing/' | relative_url }})
 |
 [Contributors][contributors]
+|
+[JSON API]({{ '/gtfobins.json' | relative_url }})
 {:.centered}
 
 [contributors]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
