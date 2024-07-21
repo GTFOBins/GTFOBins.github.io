@@ -5,7 +5,7 @@ description: Get involved in GTFOBins.
 permalink: /contributing/
 ---
 
-Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder and named like the executable (binary or script) it refers, without any additional extension. The file contains a single document enclosed in delimiters: `---` and `...`. The general structure is the following:
+Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder and named like the executable (binary or script) it refers, without any extension. The file contains a single document enclosed in delimiters: `---` and `...`. The general structure is the following:
 
 ```yaml
 ---
@@ -30,7 +30,7 @@ Where `<function>` and `<context>` are defined in the [`_data/functions.yml`][] 
 
 The optional `version` field must outline any particular OS or executable requirements that enable the corresponding function.
 
-The `contexts` object can be omitted altogether, in that case the `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
+The `contexts` object can be omitted altogether, in that case `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
 
 Some functions support additional fields:
 
