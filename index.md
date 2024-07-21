@@ -6,13 +6,13 @@ description: GTFOBins is a curated list of Unix-like executables that can be use
 
 > **WARNING:** This is a work in progress, please refer to <https://gtfobins.github.io/>.
 
-![GTFOBins logo]({% link /assets/logo.png %}){:.logo}
+![GTFOBins logo]({{ '/assets/logo.png' | relative_url }}){:.logo}
 
 {{ page.description }}
 
-The project [collects]({% link model.md %}) legitimate functions of Unix-like executables that can be abused to ~~get the f**k~~ break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate other post-exploitation tasks.
+The project [collects]({{ '/model/' | relative_url }}) legitimate functions of Unix-like executables that can be abused to ~~get the f**k~~ break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate other post-exploitation tasks.
 
-GTFOBins is a joint effort by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and], and many other [contributors][]. Everyone can [get involved]({% link CONTRIBUTING.md %}) by providing additional entries and techniques!
+GTFOBins is a joint effort by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and], and many other [contributors][]. Everyone can [get involved]({{ '/contributing/' | relative_url }}) by providing additional entries and techniques!
 
 If you are looking for Windows binaries you should visit [LOLBAS][].
 
@@ -20,7 +20,7 @@ If you are looking for Windows binaries you should visit [LOLBAS][].
 
 [GitHub][]
 |
-[Get involved]({% link CONTRIBUTING.md %})
+[Get involved]({{ '/contributing/' | relative_url }})
 |
 [Contributors][contributors]
 {:.centered}
