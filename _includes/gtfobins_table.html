@@ -40,6 +40,12 @@
                 {% comment %} fetch the name from the path {% endcomment %}
                 {% capture gtfobin_name %}{% include get_gtfobin_name.html path=original_gtfobin.path %}{% endcapture %}
 
+                {% comment %}skip old-version files{% endcomment %}
+                {% assign extension = gtfobin_name | split: '.' | last %}
+                {% if extension == 'md' %}
+                    {% continue %}
+                {% endif %}
+
                 {% comment %} resolve the alias, if provided {% endcomment %}
                 {% if original_gtfobin.alias %}
                     {% include get_gtfobin.html name=original_gtfobin.alias %}

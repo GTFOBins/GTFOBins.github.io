@@ -173,6 +173,7 @@ def run():
     for name in sorted(os.listdir()):
         # skip old-version files
         if name.endswith('.md'):
+            print(f'\x1b[33;1mTODO\x1b[0m {name}')
             continue
 
         # lint and report the outcome
