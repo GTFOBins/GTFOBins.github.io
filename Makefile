@@ -1,7 +1,9 @@
 .PHONY: serve
 serve:
-	docker build ./ -t gtfobins
-	docker run \
+	@echo '# Building the docker image'
+	@docker build ./ -t gtfobins
+	@echo '# Building and serving the website'
+	@docker run \
 	    --rm \
 	    --name gtfobins \
 	    --user "$$UID" \
@@ -12,13 +14,20 @@ serve:
 
 .PHONY: lint
 lint:
+	@echo '# Setting up the virtual environment'
 	@python3 -m venv ./linter/.venv/
-	@PIP_USER= . ./linter/.venv/bin/activate \
-	    && pip install --quiet --upgrade pip \
-	    && pip install --quiet -r ./linter/requirements.txt \
-	    && ./linter/linter.py
+	@echo '# Installing dependencies'
+	@. ./linter/.venv/bin/activate && PIP_USER= pip install --quiet --upgrade pip -r ./linter/requirements.txt
+	@echo '# Running linter'
+	@. ./linter/.venv/bin/activate && ./linter/linter.py
+	@echo '# All good!'
 
 .PHONY: clean
 clean:
-	-docker rmi gtfobins
-	-rm -fr ./linter/venv/
+	@echo '# Cleaning up Docker'
+	@docker kill gtfobins &>/dev/null || true
+	@docker rmi gtfobins &>/dev/null || true
+	@echo '# Cleaning up filesystem'
+	@rm -fr ./linter/.venv/
+	@rm -fr ./_site/
+	@rm -fr ./.jekyll-cache/
