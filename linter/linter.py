@@ -36,7 +36,7 @@ class Linter():
         non_empty_string = schema.And(str, len)
 
         default_context_example_fields = {
-            schema.Optional('description'): non_empty_string,
+            schema.Optional('comment'): non_empty_string,
             schema.Optional('code'): non_empty_string,
         }
 
@@ -45,17 +45,17 @@ class Linter():
             schema.Optional('version'): non_empty_string,
         }
 
-        description_or_code = {
-            schema.Or('description', 'code'): non_empty_string,
+        comment_or_code = {
+            schema.Or('comment', 'code'): non_empty_string,
         }
 
         network_shell_counterpart = schema.Or(
-            description_or_code,
+            comment_or_code,
             # ...
         )
 
         network_file_counterpart = schema.Or(
-            description_or_code,
+            comment_or_code,
             # ...
         )
 
@@ -138,7 +138,7 @@ class Linter():
             schema.Or({
                 'alias': non_empty_string,
             }, {
-                schema.Optional('description'): non_empty_string,
+                schema.Optional('comment'): non_empty_string,
                 **functions,
             })
         )

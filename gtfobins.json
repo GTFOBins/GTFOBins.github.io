@@ -7,7 +7,7 @@
         {% for file in site.gtfobins -%}
             {%- capture gtfobin -%}{%- include get_gtfobin_name.html path=file.path -%}{%- endcapture -%}
             {{ gtfobin | jsonify -}}: {
-                {%- assign root_fields = 'description,functions,alias' | split: ',' -%}
+                {%- assign root_fields = 'comment,functions,alias' | split: ',' -%}
                 {%- assign comma = false -%}
                 {%- for field in root_fields -%}
                     {%- if file[field] -%}

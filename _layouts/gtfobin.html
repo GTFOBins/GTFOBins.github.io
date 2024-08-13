@@ -25,11 +25,11 @@ layout: common
 {% comment %} function list {% endcomment %}
 {% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}
 
-{% comment %} global executable description {% endcomment %}
-{% if gtfobin.description %}
+{% comment %} global executable comment {% endcomment %}
+{% if gtfobin.comment %}
     <fieldset>
         <legend>Comment</legend>
-        {{ gtfobin.description | markdownify }}
+        {{ gtfobin.comment | markdownify }}
     </fieldset>
 {% endif %}
 
@@ -94,11 +94,11 @@ layout: common
                 {% when "reverse-shell" %}
                     {% if example.listener %}
                         {% assign known = function.extra[example.listener] %}
-                        {% assign description = known.description | default: example.listener.description %}
+                        {% assign comment = known.comment | default: example.listener.comment %}
                         {% assign code = known.code | default: example.listener.code %}
                         <fieldset>
                             <legend>Listener</legend>
-                            {{ description | markdownify }}
+                            {{ comment | markdownify }}
                             {% if code %}
                                 <pre><code>{{- code | escape | strip -}}</code></pre>
                             {% endif %}
@@ -107,11 +107,11 @@ layout: common
                 {% when "bind-shell" %}
                     {% if example.connector %}
                         {% assign known = function.extra[example.connector] %}
-                        {% assign description = known.description | default: example.connector.description %}
+                        {% assign comment = known.comment | default: example.connector.comment %}
                         {% assign code = known.code | default: example.connector.code %}
                         <fieldset>
                             <legend>Connector</legend>
-                            {{ description | markdownify }}
+                            {{ comment | markdownify }}
                             {% if code %}
                                 <pre><code>{{- code | escape | strip -}}</code></pre>
                             {% endif %}
@@ -120,11 +120,11 @@ layout: common
                 {% when "upload" %}
                     {% if example.receiver %}
                         {% assign known = function.extra[example.receiver] %}
-                        {% assign description = known.description | default: example.receiver.description %}
+                        {% assign comment = known.comment | default: example.receiver.comment %}
                         {% assign code = known.code | default: example.receiver.code %}
                         <fieldset>
                             <legend>Receiver</legend>
-                            {{ description | markdownify }}
+                            {{ comment | markdownify }}
                             {% if code %}
                                 <pre><code>{{- code | escape | strip -}}</code></pre>
                             {% endif %}
@@ -133,11 +133,11 @@ layout: common
                 {% when "download" %}
                     {% if example.sender %}
                         {% assign known = function.extra[example.sender] %}
-                        {% assign description = known.description | default: example.sender.description %}
+                        {% assign comment = known.comment | default: example.sender.comment %}
                         {% assign code = known.code | default: example.sender.code %}
                         <fieldset>
                             <legend>Sender</legend>
-                            {{ description | markdownify }}
+                            {{ comment | markdownify }}
                             {% if code %}
                                 <pre><code>{{- code | escape | strip -}}</code></pre>
                             {% endif %}
@@ -145,11 +145,11 @@ layout: common
                     {% endif %}
                 {% endcase %}
 
-                {% comment %} example description {% endcomment %}
-                {% if example.description %}
+                {% comment %} example comment {% endcomment %}
+                {% if example.comment %}
                     <fieldset>
                         <legend>Comment</legend>
-                        {{ example.description | markdownify }}
+                        {{ example.comment | markdownify }}
                     </fieldset>
                 {% endif %}
 
@@ -193,11 +193,11 @@ layout: common
                                 </p>
                             {% endcase %}
 
-                            {% comment %} optional local description {% endcomment %}
-                            {% if per_context_info.description %}
+                            {% comment %} optional local comment {% endcomment %}
+                            {% if per_context_info.comment %}
                                 <fieldset>
                                     <legend>Comment</legend>
-                                    {{ per_context_info.description | markdownify }}
+                                    {{ per_context_info.comment | markdownify }}
                                 </fieldset>
                             {% endif %}
 

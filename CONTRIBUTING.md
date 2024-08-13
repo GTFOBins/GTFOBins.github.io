@@ -13,15 +13,15 @@ Each entry is defined in a [YAML][] file placed in the [`_gtfobins/`][] folder a
 
 ```yaml
 ---
-description: …
+comment: …
 functions:
   <function>:
-    - description: …
+    - comment: …
       version: …
       code: …
       contexts:
         <context>:
-          description: …
+          comment: …
           code: …
           # …
         # …
@@ -34,7 +34,7 @@ Where `<function>` and `<context>` are defined in the [`_data/functions.yml`][] 
 
 The optional `version` field must outline any particular OS or executable requirements that enable the corresponding function.
 
-The `contexts` object can be omitted altogether, in that case `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `description` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
+The `contexts` object can be omitted altogether, in that case `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `comment` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
 
 ### Functions
 
@@ -61,13 +61,13 @@ Where:
 
 - the optional `binary` field determines whether the example is able to handle arbitrary binary data or not (defaults to `true`);
 
-- the optional `listener` field describes how to receive the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+- the optional `listener` field describes how to receive the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`comment` and `code`);
 
-- the optional `connector` field describes how to initiate the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+- the optional `connector` field describes how to initiate the shell on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`comment` and `code`);
 
-- the optional `receiver` field describes how to receive data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+- the optional `receiver` field describes how to receive data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`comment` and `code`);
 
-- the optional `sender` field describes how to send data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`description` and `code`);
+- the optional `sender` field describes how to send data on the other side, it can be either a string (that must match the corresponding key in [`_data/functions.yml`][], e.g., `TCP`), or an object with two optional fields (`comment` and `code`);
 
 - the mandayory `from` field that is the name of another executable that the example enables.
 
