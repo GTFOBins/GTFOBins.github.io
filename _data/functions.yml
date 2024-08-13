@@ -1,44 +1,59 @@
 shell:
   label: Shell
   description: This executable can spawn an interactive system shell.
+  extra:
+    blind: &blind
+      true: The commands are executed but their output is hidden from the attacker.
 
 command:
   label: Command
   description: This executable can run non-interactive system commands.
+  extra:
+    blind: *blind
 
 reverse-shell:
   label: Reverse shell
   description: This executable can send back a reverse system shell to a listening attacker.
-  extra: &network-shell-extra
-    limited: The spawned shell is just a dummy REPL that can only run simple terminal commands.
-    regular: The spawned shell is a full TTY shell that can run complex terminal programs like `sudo` password prompts.
+  extra:
+    tty: &tty
+      false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
+    blind: *blind
+    listener:
 
 bind-shell:
   label: Bind shell
   description: This executable can bind a system shell to a local port waiting for an attacker to connect.
-  extra: *network-shell-extra
+  extra:
+    tty: *tty
+    blind: *blind
+    connector:
 
 file-write:
   label: File write
   description: This executable can write data to local files.
-  extra: &data-operations-extra
-    limited: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary data.
-    regular: The content is handled perfectly, including binary data.
+  extra:
+    binary: &binary
+      false: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary data.
 
 file-read:
   label: File read
   description: This executable can read data from local files.
-  extra: *data-operations-extra
+  extra:
+    binary: *binary
 
 upload:
   label: Upload
   description: This executable can upload local data.
-  extra: *data-operations-extra
+  extra:
+    binary: *binary
+    receiver:
 
 download:
   label: Download
   description: This executable can download remote data.
-  extra: *data-operations-extra
+  extra:
+    binary: *binary
+    sender:
 
 library-load:
   label: Library load

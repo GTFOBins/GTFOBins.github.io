@@ -71,7 +71,7 @@ class Linter():
             schema.Optional('contexts'): {
                 **contexts(['unprivileged', 'sudo'], {}),
                 **contexts(['suid'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('system'): bool,
                 }),
                 **contexts(['capabilities'], {
                     schema.Optional('list'): schema.And(len, [
@@ -100,29 +100,34 @@ class Linter():
 
         functions = {
             'functions': schema.And(len, {
-                **functions(['shell', 'command', 'library-load'], {}),
+                **functions(['shell', 'command'], {
+                    schema.Optional('blind'): bool,
+                }),
                 **functions(['reverse-shell'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('tty'): bool,
+                    schema.Optional('blind'): bool,
                     schema.Optional('listener'): network_shell_counterpart,
                 }),
                 **functions(['bind-shell'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('tty'): bool,
+                    schema.Optional('blind'): bool,
                     schema.Optional('connector'): network_shell_counterpart,
                 }),
                 **functions(['file-write'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('binary'): bool,
                 }),
                 **functions(['file-read'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('binary'): bool,
                 }),
                 **functions(['upload'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('binary'): bool,
                     schema.Optional('receiver'): network_file_counterpart,
                 }),
                 **functions(['download'], {
-                    schema.Optional('limited'): bool,
+                    schema.Optional('binary'): bool,
                     schema.Optional('sender'): network_file_counterpart,
                 }),
+                **functions(['library-load'], {}),
                 **functions(['inherit'], {
                     'from': non_empty_string,
                 }),

@@ -77,16 +77,20 @@ layout: common
 
                 {% comment %} additional per-function content {% endcomment %}
                 {% case function_name %}
+                {% when "shell", "command", "reverse-shell", "bind-shell" %}
+                    {% if example.blind %}
+                        <fieldset>
+                            <legend>Output</legend>
+                            {{ function.extra.blind[true] | markdownify }}
+                        </fieldset>
+                    {% endif %}
                 {% when "reverse-shell", "bind-shell" %}
-                {% when "reverse-shell", "bind-shell", "file-write", "file-read", "download", "upload" %}
-                    <fieldset>
-                        <legend>Remarks</legend>
-                        {% if example.limited %}
-                            {{ function.extra.limited | markdownify }}
-                        {% else %}
-                            {{ function.extra.regular | markdownify }}
-                        {% endif %}
-                    </fieldset>
+                    {% unless example.tty %}
+                        <fieldset>
+                            <legend>TTY</legend>
+                            {{ function.extra.tty[false] | markdownify }}
+                        </fieldset>
+                    {% endunless %}
                 {% when "reverse-shell" %}
                     {% if example.listener %}
                         {% assign known = function.extra[example.listener] %}
@@ -173,15 +177,15 @@ layout: common
                             {% when "suid" %}
                                 <fieldset>
                                     <legend>Remarks</legend>
-                                    {% if per_context_info.limited %}
-                                        {{ context.extra.limited | markdownify }}
+                                    {% if context.extra.system %}
+                                        {{ context.extra.system[true] | markdownify }}
                                     {% else %}
-                                        {{ context.extra.regular | markdownify }}
+                                        {{ context.extra.system[false] | markdownify }}
                                     {% endif %}
                                 </fieldset>
                             {% when "capabilities" %}
                                 <p>
-                                    The following capabilities are needed:
+                                    {{ context.extra.list }}
                                     {% for capability in per_context_info.list %}
                                         <code>{{ capability | escape }}</code>
                                         {%- if forloop.last -%}.{%- else -%}, {%- endif -%}
