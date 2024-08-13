@@ -119,11 +119,13 @@ Use the following placeholder values where appropriate:
 
 ### Multiline strings
 
-If a multiline string is needed, use the `-` YAML literal variant, i.e., `|-`, for example:
+If a multiline string is needed, use the `-` YAML literal variant to strip trailing newlines, i.e., `|-`, for example:
 
 ```
 some-field: |-
-  Lorem ipsum...
+  Some
+  multiline
+  value
 ```
 
 ### Links
@@ -146,7 +148,7 @@ Before submitting any pull request, make sure the linter completes successfully:
 make lint
 ```
 
-Then use `make clean` to clean everything up.
+Use `make clean` to clean everything up.
 
 [YAML]: https://yaml.org/
 [`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml
