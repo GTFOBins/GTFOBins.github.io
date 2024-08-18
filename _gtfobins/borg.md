@@ -1,7 +1,9 @@
 ---
 functions:
   shell:
-    - code: borg extract @:/:::  --rsh "sh -c 'sh </dev/tty >/dev/tty 2>/dev/tty'"
+    - code: aa-exec /bin/sh
+  suid:
+    - code: ./aa-exec /bin/sh -p
   sudo:
-    - code: sudo borg extract @:/:::  --rsh "sh -c 'sh </dev/tty >/dev/tty 2>/dev/tty'"
+    - code: sudo aa-exec /bin/sh
 ---
