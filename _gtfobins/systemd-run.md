@@ -23,7 +23,7 @@ functions:
     - description: Gain a root shell using `sudo` and `systemd-run` with a pseudo-terminal (PTY).
       code: sudo systemd-run --pty /bin/sh
   file-read:
-    - description: Read the contents of a file and redirect the output to another file. In this case, the contents of `/etc/passwd` are copied to `/tmp/passwd`.
+    - description: Read the contents of a file and redirect the output to another file. In this example, the contents of `/etc/passwd` are copied to `/tmp/passwd`.
       code: systemd-run /bin/sh -c "/bin/cat /etc/passwd > /tmp/passwd"
   file-write:
     - description: Write data to a specific file. The filename should be absolute. In this example, the string "DATA" is written to `/tmp/file`.
