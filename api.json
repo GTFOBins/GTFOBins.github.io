@@ -4,16 +4,16 @@
     "functions": {{ site.data.functions | jsonify -}},
     "contexts": {{ site.data.contexts | jsonify -}},
     "executables": {
-        {% for file in site.gtfobins -%}
-            {%- capture gtfobin -%}{%- include get_gtfobin_name.html path=file.path -%}{%- endcapture -%}
-            {{ gtfobin | jsonify -}}: {
+        {% for gtfobin in site.gtfobins -%}
+            {%- capture name -%}{%- include get_gtfobin_name.html path=gtfobin.path -%}{%- endcapture -%}
+            {{ name | jsonify -}}: {
                 {%- assign root_fields = 'comment,functions,alias' | split: ',' -%}
                 {%- assign comma = false -%}
                 {%- for field in root_fields -%}
-                    {%- if file[field] -%}
+                    {%- if gtfobin[field] -%}
                         {%- if comma -%},{%- endif -%}
                         {%- assign comma = true -%}
-                        {{- field | jsonify -}}: {{- file[field] | jsonify -}}
+                        {{- field | jsonify -}}: {{- gtfobin[field] | jsonify -}}
                     {%- endif -%}
                 {%- endfor -%}
             }
