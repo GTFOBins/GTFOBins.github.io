@@ -4,6 +4,12 @@ description: |
 
   In recent distributions (e.g., Debian 10 and Ubuntu 18) AppArmor limits the `postrotate-command` to a small subset of predefined commands thus preventing the execution of the following.
 functions:
+  file-write:
+    - description: It writes data to files, it may be used to do privileged writes or write files outside a restricted file system.
+      code: |
+        LFILE=file_to_write
+        USER=output_file_owner
+        tcpdump -ln -i lo -w $LFILE -c 1 -Z $USER
   command:
     - code: |
         COMMAND='id'
