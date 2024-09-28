@@ -113,16 +113,6 @@ fieldset {
     }
 }
 
-table {
-    &, th, td {
-        border: 1px solid $foreground;
-    }
-
-    th, td {
-        padding: 0.25em 0.5em;
-    }
-}
-
 // permalink on headings
 
 h2, h3, h4, h5, h5 {
