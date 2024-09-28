@@ -8,8 +8,8 @@ An executable may support one or more [function](#functions) by providing a numb
 
 ## Functions
 
-{% include description_list.html objects=site.data.functions %}
+{% include description_table.html label='Function' objects=site.data.functions %}
 
 ## Contexts
 
-{% include description_list.html objects=site.data.contexts %}
+{% include description_table.html label='Context' objects=site.data.contexts %}

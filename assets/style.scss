@@ -368,6 +368,24 @@ h2, h3, h4, h5, h5 {
     }
 }
 
+// description table
+
+.description-table {
+    border-collapse: collapse;
+
+    tbody {
+        th {
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        th, td {
+            border: 1px solid $foreground;
+            padding: 0 0.5em;
+        }
+    }
+}
+
 // other classes
 
 .hidden {
