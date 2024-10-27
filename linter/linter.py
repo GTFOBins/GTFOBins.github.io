@@ -43,6 +43,7 @@ class Linter():
         default_function_example_fields = {
             **default_context_example_fields,
             schema.Optional('version'): non_empty_string,
+            schema.Optional('mitre'): non_empty_string,
         }
 
         comment_or_code = {
