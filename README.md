@@ -5,4 +5,4 @@
 
 GTFOBins is a curated list of Unix-like executables that can be used to bypass local security restrictions in misconfigured systems.
 
-Find the project at https://gtfobins.github.io
+Find the project at <https://gtfobins.github.io>
