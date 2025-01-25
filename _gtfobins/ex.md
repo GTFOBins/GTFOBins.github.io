@@ -21,4 +21,5 @@ functions:
     - code: |
         sudo ex
         !/bin/sh
+    - code: sudo ex -c ':!/bin/sh'
 ---
