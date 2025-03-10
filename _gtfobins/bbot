@@ -1,0 +1,7 @@
+---
+functions:
+  sudo:
+    - code: |
+        LFILE=file_to_read
+        sudo /usr/local/bin/bbot -cy $FILE -d
+---
