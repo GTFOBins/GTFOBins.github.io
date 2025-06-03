@@ -9,5 +9,5 @@ functions:
         fpm -n x -s dir -t rpm -a all --before-install $TF/x.sh $TF
         ```
       code: |
-        sudo dnf install -y x-1.0-1.noarch.rpm
+        sudo dnf install -y x-1.0-1.noarch.rpm --disablerepo=*
 ---
