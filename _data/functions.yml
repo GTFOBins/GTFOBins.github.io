@@ -58,7 +58,7 @@ sudo:
 
 capabilities:
   label: Capabilities
-  description: If the binary has the Linux `CAP_SETUID` capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID.
+  description: If the binary has the Linux `CAP_SETUID` capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID. The `getcap -r / 2>/dev/null | grep cap_setuid` command will give the locations of the original binaries that have the `CAP_SETUID` capability set already, in case your user is too low-privileged to set the capability on the copied binary.
 
 limited-suid:
   label: Limited SUID
