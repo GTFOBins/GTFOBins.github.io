@@ -1,7 +1,7 @@
 ---
 description: Utility to Secure Delete A File in Unix
 functions:
-  file-delete:
+  file-write:
     - code: |
         LFILE=file_to_delete
         shred -u $LFILE
