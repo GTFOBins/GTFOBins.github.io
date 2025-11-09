@@ -8,7 +8,7 @@ functions:
   another-file-read:
     - code: |
         LFILE=file_to_read
-        aspell --config "$LFILE"
+        aspell --conf "$LFILE"
   suid:
     - code: |
         LFILE=file_to_read
