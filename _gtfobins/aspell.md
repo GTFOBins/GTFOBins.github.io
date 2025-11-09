@@ -5,6 +5,10 @@ functions:
     - code: |
         LFILE=file_to_read
         aspell -c "$LFILE"
+  another-file-read:
+    - code: |
+        LFILE=file_to_read
+        aspell --config "$LFILE"
   suid:
     - code: |
         LFILE=file_to_read
