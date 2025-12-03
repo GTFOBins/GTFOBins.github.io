@@ -60,5 +60,5 @@ functions:
         ```
         #whoami
         root
-        ``
+        ```
 ---
