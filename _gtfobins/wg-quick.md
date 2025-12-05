@@ -1,11 +1,12 @@
 ---
-description: If the `wg-quick` binary is allowed via `sudo`, it can be abused to create a fake configuration which allows executing commands with root privileges.
+description: |
+  If the `wg-quick` binary is allowed via `sudo`, it can be abused to create a fake configuration which allows executing commands with root privileges.
 
-This example creates a fake config parsed and loaded by `wg-quick`, allowing for obtaining a full reserve shell with root privileges. Note that here, `netcat` will be used, but of course, there are plenty of payloads you can replace to obtain the same.
+  This example creates a fake config parsed and loaded by `wg-quick`, allowing for obtaining a full reserve shell with root privileges. Note that here, `netcat` will be used, but of course, there are plenty of payloads you can replace to obtain the same.
 
 functions:
   sudo:
-    - description:
+    - description: |
         If the `sudo -l` shows such a binary in the output
 
         ```
@@ -14,7 +15,7 @@ functions:
 
         This feature can be abused.
 
-      code:
+      code: |
         Exploit,
 
         ```
