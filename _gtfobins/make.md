@@ -10,6 +10,11 @@ functions:
       code: |
         LFILE=file_to_write
         make -s --eval="\$(file >$LFILE,DATA)" .
+  file-read:
+    - description: Requires a newer GNU `make` version.
+      code: |
+        LFILE=file_to_read
+        make -s --eval="\$(file >/dev/stdout,\$(file <$LFILE))" .
   suid:
     - code: |
         COMMAND='/bin/sh -p'
