@@ -109,7 +109,7 @@ Use the following placeholder values where appropriate:
 | Type                 | Value                  |
 |----------------------|------------------------|
 | Shell executable     | `/bin/sh`              |
-| Command executable   | `/bin/id`              |
+| Command executable   | `/path/to/command`     |
 | Network port         | `12345`                |
 | Data to be written   | `DATA`                 |
 | Whatever value       | `x...x`                |
