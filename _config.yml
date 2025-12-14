@@ -9,6 +9,7 @@ exclude:
   - /Makefile
   - /README.md
   - /linter/
+  - /vendor/ # XXX this needs to be explicitly added
 
 permalink: pretty
 
