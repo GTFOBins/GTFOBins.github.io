@@ -1,18 +1,18 @@
-.PHONY: serve
+MAKEFLAGS += --always-make
+
 serve:
-	@echo '# Building the docker image'
+	@echo '# Building the Docker image'
 	@docker build ./ -t gtfobins
 	@echo '# Building and serving the website'
 	@docker run \
-	    --rm \
-	    --name gtfobins \
-	    --user "$$UID" \
-	    --publish 4000:4000 \
-	    --volume "$$PWD:/GTFOBins/" \
-	    gtfobins \
-	    bundle exec jekyll serve --host 0.0.0.0
+		--rm \
+		--name gtfobins \
+		--user "$$UID" \
+		--publish 4000:4000 \
+		--volume "$$PWD:/GTFOBins/" \
+		gtfobins \
+		bundle exec jekyll serve --host 0.0.0.0
 
-.PHONY: lint
 lint:
 	@echo '# Setting up the virtual environment'
 	@python3 -m venv ./linter/.venv/
@@ -22,7 +22,6 @@ lint:
 	@. ./linter/.venv/bin/activate && ./linter/linter.py
 	@echo '# All good!'
 
-.PHONY: clean
 clean:
 	@echo '# Cleaning up Docker'
 	@docker kill gtfobins &>/dev/null || true
