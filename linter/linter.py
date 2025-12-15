@@ -25,6 +25,8 @@ rules:
     forbid: true
 '''
 
+LAX = os.environ.get('MODE') == 'lax'
+
 
 class Linter():
 
@@ -180,7 +182,10 @@ def run():
         # skip old-version files
         if name.endswith('.md'):
             print(f'\x1b[33;1mTODO\x1b[0m {name}')
-            continue
+            if LAX:
+                continue
+            else:
+                return False
 
         # lint and report the outcome
         problems = linter.lint(name)
@@ -189,6 +194,8 @@ def run():
             print(f'\x1b[31;1mFAIL\x1b[0m {name}')
             for problem in problems:
                 print(f'     - {problem}')
+            if not LAX:
+                return False
         else:
             print(f'\x1b[32;1mPASS\x1b[0m {name}')
 
