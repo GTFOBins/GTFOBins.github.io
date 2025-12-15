@@ -36,20 +36,28 @@ class Linter():
 
     def _build_schema(self):
         non_empty_string = schema.And(str, len)
+        non_empty_one_line_string = schema.And(
+            non_empty_string,
+            schema.Use(lambda x: not x.endswith('\n'), error='should be one line string'),
+        )
+        non_empty_multi_line_string = schema.And(
+            non_empty_string,
+            schema.Use(lambda x: x.endswith('\n'), error='should multi line string'),
+        )
 
         default_context_example_fields = {
-            schema.Optional('comment'): non_empty_string,
-            schema.Optional('code'): non_empty_string,
+            schema.Optional('comment'): non_empty_multi_line_string,
+            schema.Optional('code'): non_empty_multi_line_string,
         }
 
         default_function_example_fields = {
             **default_context_example_fields,
-            schema.Optional('version'): non_empty_string,
-            schema.Optional('mitre'): non_empty_string,
+            schema.Optional('version'): non_empty_one_line_string,
+            schema.Optional('mitre'): non_empty_one_line_string,
         }
 
         comment_or_code = {
-            schema.Or('comment', 'code'): non_empty_string,
+            schema.Or('comment', 'code'): non_empty_multi_line_string,
         }
 
         network_shell_counterpart = schema.Or(
@@ -137,16 +145,16 @@ class Linter():
                 }),
                 **functions(['library-load'], {}),
                 **functions(['inherit'], {
-                    'from': non_empty_string,
+                    'from': non_empty_one_line_string,
                 }),
             }),
         }
 
         return schema.Schema(
             schema.Or({
-                'alias': non_empty_string,
+                'alias': non_empty_one_line_string,
             }, {
-                schema.Optional('comment'): non_empty_string,
+                schema.Optional('comment'): non_empty_multi_line_string,
                 **functions,
             })
         )
