@@ -88,7 +88,12 @@ class Linter():
             def check_code_coherence(example):
                 has_code = bool(example.get('code'))
                 has_contexts = bool(example.get('contexts'))
-                all_contexts_have_code = all(map(lambda x: x and x.get('code'), example.get('contexts', {}).values()))
+                all_contexts_have_code = all(
+                    map(
+                        lambda x: x and x.get('code'),
+                        example.get('contexts', {}).values()
+                    )
+                )
                 return has_code != (has_contexts and all_contexts_have_code)
 
             return {
