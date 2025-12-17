@@ -10,9 +10,9 @@ suid:
   label: SUID
   description: This function is performed by the privileged user if the executable has the SUID bit set and the right ownership because the *effective* privileges are not dropped.
   extra:
-    system:
-      true: This executable runs external commands via functions like `system`, so it only works for distributions where the default shell does not drop SUID privileges.
-      false: This executable runs external commands via functions like `exec`, remember to omit the `-p` argument of every `/bin/sh` invocation for distributions where the default shell does not drop SUID privileges.
+    shell:
+      true: This executable runs commands using the system shell, e.g., via functions like `system`, so it only works for distributions where the shell does not drop SUID privileges.
+      false: This executable runs commands directly, e.g., via functions like `exec`, remember to omit the `-p` argument of every `/bin/sh` invocation for distributions where the default shell does not drop SUID privileges.
 
 capabilities:
   label: Capabilities

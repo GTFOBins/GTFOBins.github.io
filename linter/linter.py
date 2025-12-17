@@ -84,7 +84,7 @@ class Linter():
             schema.Optional('contexts'): {
                 **contexts(['unprivileged', 'sudo'], {}),
                 **contexts(['suid'], {
-                    schema.Optional('system'): bool,
+                    schema.Optional('shell'): bool,
                 }),
                 **contexts(['capabilities'], {
                     schema.Optional('list'): schema.And(len, [

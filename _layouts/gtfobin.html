@@ -177,10 +177,10 @@ layout: common
                             {% when "suid" %}
                                 <fieldset>
                                     <legend>Remarks</legend>
-                                    {% if per_context_info.system %}
-                                        {{ context.extra.system[true] | markdownify }}
+                                    {% if per_context_info.shell %}
+                                        {{ context.extra.shell[true] | markdownify }}
                                     {% else %}
-                                        {{ context.extra.system[false] | markdownify }}
+                                        {{ context.extra.shell[false] | markdownify }}
                                     {% endif %}
                                 </fieldset>
                             {% when "capabilities" %}
