@@ -86,7 +86,7 @@ class Linter():
                 }),
                 **contexts(['capabilities'], {
                     schema.Optional('list'): schema.And(len, [
-                        schema.Regex(r'^CAP_[A-Z_]+'),
+                        schema.Regex(r'^CAP_[A-Z_]+$'),
                     ]),
                 }),
             }
