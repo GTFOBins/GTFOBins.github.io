@@ -175,14 +175,16 @@ layout: common
                             {% comment %} additional per-context content {% endcomment %}
                             {% case context_name %}
                             {% when "suid" %}
-                                <fieldset>
-                                    <legend>Remarks</legend>
-                                    {% if per_context_info.shell %}
-                                        {{ context.extra.shell[true] | markdownify }}
-                                    {% else %}
-                                        {{ context.extra.shell[false] | markdownify }}
-                                    {% endif %}
-                                </fieldset>
+                                {% if per_context_info.shell != nil %}
+                                    <fieldset>
+                                        <legend>Remarks</legend>
+                                        {% if per_context_info.shell %}
+                                            {{ context.extra.shell[true] | markdownify }}
+                                        {% else %}
+                                            {{ context.extra.shell[false] | markdownify }}
+                                        {% endif %}
+                                    </fieldset>
+                                {% endif %}
                             {% when "capabilities" %}
                                 <p>
                                     {{ context.extra.list }}
