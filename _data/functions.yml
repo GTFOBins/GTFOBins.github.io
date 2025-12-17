@@ -47,6 +47,8 @@ upload:
   extra:
     binary: *binary
     receiver:
+      HTTP:
+        comment: An HTTP server can be used to receive the data.
 
 download:
   label: Download
@@ -54,6 +56,8 @@ download:
   extra:
     binary: *binary
     sender:
+      HTTP:
+        comment: An HTTP server can be used to send the data.
 
 library-load:
   label: Library load
