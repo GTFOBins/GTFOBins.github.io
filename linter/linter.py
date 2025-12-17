@@ -38,11 +38,11 @@ class Linter():
         non_empty_string = schema.And(str, len)
         non_empty_one_line_string = schema.And(
             non_empty_string,
-            schema.Use(lambda x: not x.endswith('\n'), error='should be one line string'),
+            schema.Regex(r'[^\n]$', error='should be one line string'),
         )
         non_empty_multi_line_string = schema.And(
             non_empty_string,
-            schema.Use(lambda x: x.endswith('\n'), error='should multi line string'),
+            schema.Regex(r'\n$', error='should be multi line string'),
         )
 
         default_context_example_fields = {
