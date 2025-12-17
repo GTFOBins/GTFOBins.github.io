@@ -61,11 +61,13 @@ class Linter():
         }
 
         network_shell_counterpart = schema.Or(
+            non_empty_one_line_string,
             comment_or_code,
             # ...
         )
 
         network_file_counterpart = schema.Or(
+            non_empty_one_line_string,
             comment_or_code,
             # ...
         )

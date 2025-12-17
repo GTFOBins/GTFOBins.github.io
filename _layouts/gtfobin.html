@@ -93,7 +93,7 @@ layout: common
                     {% endunless %}
                 {% when "reverse-shell" %}
                     {% if example.listener %}
-                        {% assign known = function.extra[example.listener] %}
+                        {% assign known = function.extra.listener[example.listener] %}
                         {% assign comment = known.comment | default: example.listener.comment %}
                         {% assign code = known.code | default: example.listener.code %}
                         <fieldset>
@@ -106,7 +106,7 @@ layout: common
                     {% endif %}
                 {% when "bind-shell" %}
                     {% if example.connector %}
-                        {% assign known = function.extra[example.connector] %}
+                        {% assign known = function.extra.connector[example.connector] %}
                         {% assign comment = known.comment | default: example.connector.comment %}
                         {% assign code = known.code | default: example.connector.code %}
                         <fieldset>
@@ -119,7 +119,7 @@ layout: common
                     {% endif %}
                 {% when "upload" %}
                     {% if example.receiver %}
-                        {% assign known = function.extra[example.receiver] %}
+                        {% assign known = function.extra.receiver[example.receiver] %}
                         {% assign comment = known.comment | default: example.receiver.comment %}
                         {% assign code = known.code | default: example.receiver.code %}
                         <fieldset>
@@ -132,7 +132,7 @@ layout: common
                     {% endif %}
                 {% when "download" %}
                     {% if example.sender %}
-                        {% assign known = function.extra[example.sender] %}
+                        {% assign known = function.extra.sender[example.sender] %}
                         {% assign comment = known.comment | default: example.sender.comment %}
                         {% assign code = known.code | default: example.sender.code %}
                         <fieldset>
