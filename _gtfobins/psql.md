@@ -8,7 +8,7 @@ functions:
         !/bin/sh
   sudo:
     - code: |
-        psql
+        sudo psql
         \?
         !/bin/sh
 ---
