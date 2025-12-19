@@ -1,0 +1,38 @@
+---
+functions:
+  shell:
+    - code: |-
+        vi -c ':!/bin/sh' /dev/null
+      contexts:
+        unprivileged:
+        suid:
+          shell: true
+        sudo:
+    - code: |-
+        vi
+        :shell
+      contexts:
+        unprivileged:
+        suid:
+          shell: true
+        sudo:
+  file-write:
+    - comment: |-
+        Where `^[` is the escape key.
+      code: |
+        vi /path/to/output-file
+        iDATA
+        ^[
+        w
+      contexts:
+        unprivileged:
+        suid:
+        sudo:
+  file-read:
+    - code: |-
+        vi /path/to/input-file
+      contexts:
+        unprivileged:
+        suid:
+        sudo:
+...
