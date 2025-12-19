@@ -35,130 +35,125 @@ class Linter():
         self._schema = self._build_schema()
 
     def _build_schema(self):
-        non_empty_string = schema.And(str, len)
-        non_empty_one_line_string = schema.And(
-            non_empty_string,
-            schema.Regex(r'[^\n]$', error='should be one line string'),
-        )
-        non_empty_multi_line_string = schema.And(
-            non_empty_string,
-            schema.Regex(r'\n$', error='should be multi line string'),
-        )
+        def string(x):
+            if isinstance(x, str) and x == x.strip() and len(x) > 0:
+                return True
+            else:
+                raise schema.SchemaError(f'{x!r} should be a non-empty space-trimmed string')
 
-        default_context_example_fields = {
-            schema.Optional('comment'): non_empty_multi_line_string,
-            schema.Optional('code'): non_empty_multi_line_string,
-        }
+        def check_code_coherence(example):
+            has_code = bool(example.get('code'))
+            has_contexts = bool(example.get('contexts'))
+            all_contexts_have_code = all(
+                context and context.get('code')
+                for context in example.get('contexts', {}).values()
+            )
+            if has_code != (has_contexts and all_contexts_have_code):
+                return True
+            else:
+                raise schema.SchemaError(f'{example!r} should provide the code')
 
-        default_function_example_fields = {
-            **default_context_example_fields,
-            schema.Optional('version'): non_empty_one_line_string,
-            schema.Optional('mitre'): non_empty_one_line_string,
-        }
-
-        comment_or_code = {
-            schema.Or('comment', 'code'): non_empty_multi_line_string,
-        }
-
-        network_shell_counterpart = schema.Or(
-            non_empty_one_line_string,
-            comment_or_code,
-            # ...
-        )
-
-        network_file_counterpart = schema.Or(
-            non_empty_one_line_string,
-            comment_or_code,
-            # ...
-        )
-
-        def contexts(names, context_schema):
+        def context(name, per_context_schema):
             return {
-                schema.Optional(schema.Or(*names)): schema.Or(None, {
-                    **default_context_example_fields,
-                    **context_schema,
+                schema.Optional(name): schema.Or(None, {
+                    schema.Optional('code'): string,
+                    schema.Optional('comment'): string,
+                    **per_context_schema,
                 })
             }
 
-        contexts = {
-            schema.Optional('contexts'): {
-                **contexts(['unprivileged', 'sudo'], {}),
-                **contexts(['suid'], {
-                    schema.Optional('shell'): bool,
-                }),
-                **contexts(['capabilities'], {
-                    schema.Optional('list'): schema.And(len, [
-                        schema.Regex(r'^CAP_[A-Z_]+$'),
-                    ]),
-                }),
-            }
-        }
-
-        def functions(names, example_schema):
-            def check_code_coherence(example):
-                has_code = bool(example.get('code'))
-                has_contexts = bool(example.get('contexts'))
-                all_contexts_have_code = all(
-                    map(
-                        lambda x: x and x.get('code'),
-                        example.get('contexts', {}).values()
-                    )
-                )
-                return has_code != (has_contexts and all_contexts_have_code)
-
+        def function(name, per_function_schema):
             return {
-                schema.Optional(schema.Or(*names)): schema.And(len, [
+                schema.Optional(name): schema.And(len, [
                     schema.And({
-                        **default_function_example_fields,
-                        **example_schema,
-                        **contexts,
+                        schema.Optional('code'): string,
+                        schema.Optional('comment'): string,
+                        schema.Optional('version'): string,
+                        schema.Optional('mitre'): string,
+                        **per_function_schema,
+                        schema.Optional('contexts'): {
+                            **context('unprivileged', {
+                            }),
+                            **context('sudo', {
+                            }),
+                            **context('suid', {
+                                schema.Optional('shell'): bool,
+                            }),
+                            **context('capabilities', {
+                                schema.Optional('list'): schema.And(len, [
+                                    schema.Regex(r'^CAP_[A-Z_]+$'),
+                                ]),
+                            }),
+                        }
                     }, check_code_coherence),
                 ]),
             }
 
-        functions = {
-            'functions': schema.And(len, {
-                **functions(['shell', 'command'], {
-                    schema.Optional('blind'): bool,
-                }),
-                **functions(['reverse-shell'], {
-                    schema.Optional('tty'): bool,
-                    schema.Optional('blind'): bool,
-                    schema.Optional('listener'): network_shell_counterpart,
-                }),
-                **functions(['bind-shell'], {
-                    schema.Optional('tty'): bool,
-                    schema.Optional('blind'): bool,
-                    schema.Optional('connector'): network_shell_counterpart,
-                }),
-                **functions(['file-write'], {
-                    schema.Optional('binary'): bool,
-                }),
-                **functions(['file-read'], {
-                    schema.Optional('binary'): bool,
-                }),
-                **functions(['upload'], {
-                    schema.Optional('binary'): bool,
-                    schema.Optional('receiver'): network_file_counterpart,
-                }),
-                **functions(['download'], {
-                    schema.Optional('binary'): bool,
-                    schema.Optional('sender'): network_file_counterpart,
-                }),
-                **functions(['library-load'], {}),
-                **functions(['inherit'], {
-                    'from': non_empty_one_line_string,
-                }),
-            }),
+        network_protocols = schema.Or(
+            {
+                schema.Or('code', 'comment'): string,
+            },
+            # TODO actually fetch known protocols from data files?
+            'HTTP',
+            # ...
+        )
+
+        binary = {
+            schema.Optional('binary'): bool,
         }
 
-        return schema.Schema(
-            schema.Or({
-                'alias': non_empty_one_line_string,
-            }, {
-                schema.Optional('comment'): non_empty_multi_line_string,
-                **functions,
-            })
+        blind = {
+            schema.Optional('blind'): bool,
+        }
+
+        tty = {
+            schema.Optional('tty'): bool,
+        }
+
+        return schema.Or(
+            {
+                'alias': string,
+            },
+            {
+                schema.Optional('comment'): string,
+                'functions': schema.And(len, {
+                    **function('shell', {
+                        **blind,
+                    }),
+                    **function('command', {
+                        **blind,
+                    }),
+                    **function('reverse-shell', {
+                        **tty,
+                        **blind,
+                        schema.Optional('listener'): network_protocols,
+                    }),
+                    **function('bind-shell', {
+                        **tty,
+                        **blind,
+                        schema.Optional('connector'): network_protocols,
+                    }),
+                    **function('file-write', {
+                        **binary,
+                    }),
+                    **function('file-read', {
+                        **binary,
+                    }),
+                    **function('upload', {
+                        **binary,
+                        schema.Optional('receiver'): network_protocols,
+                    }),
+                    **function('download', {
+                        **binary,
+                        schema.Optional('sender'): network_protocols,
+                    }),
+                    **function('library-load', {
+                    }),
+                    **function('inherit', {
+                        'from': string,
+                    }),
+                }),
+            }
         )
 
     def lint(self, path):
