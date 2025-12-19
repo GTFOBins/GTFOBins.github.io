@@ -4,3 +4,4 @@
 /_private/
 /_site/
 /linter/.venv/
+/linter/__pycache__/

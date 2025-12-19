@@ -16,7 +16,7 @@ serve:
 .PHONY: lint
 lint: ./linter/.venv/
 	@echo '# Running linter'
-	@. ./linter/.venv/bin/activate && ./linter/linter.py
+	@. ./linter/.venv/bin/activate && python -m linter
 	@echo '# All good!'
 
 .PHONY: clean
