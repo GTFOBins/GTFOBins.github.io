@@ -117,17 +117,6 @@ Use the following placeholder values where appropriate:
 | Output file          | `/path/to/output-file` |
 | Attacker host domain | `attacker.com`         |
 
-### Multiline strings
-
-If a multiline string is needed, use the `-` YAML literal variant to strip trailing newlines, i.e., `|-`, for example:
-
-```
-some-field: |-
-  Some
-  multiline
-  value
-```
-
 ### Links
 
 If needed, link to other entries using relative URLs, e.g, `[gtfobin](../gtfobin)`.
@@ -145,10 +134,12 @@ This will spin a Docker container that builds the website, and serves it from <h
 Before submitting any pull request, make sure the linter completes successfully:
 
 ```
-make lint
+make vet
 ```
 
-Use `make clean` to clean everything up.
+This checks both the schema and the format of [YAML][] files, in case of issues in the latter `make format` can be used to enforce the proper style.
+
+Finally, use `make clean` to clean everything up.
 
 [YAML]: https://yaml.org/
 [`_data/functions.yml`]: https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_data/functions.yml

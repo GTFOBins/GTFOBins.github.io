@@ -1,3 +1,2 @@
 pyyaml ~= 6.0.3
 schema ~= 0.7.8
-yamllint ~= 1.37.1

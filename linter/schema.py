@@ -1,3 +1,5 @@
+from .error import LinterError
+
 import schema
 
 
@@ -130,4 +132,7 @@ _SCHEMA = schema.Or(
 )
 
 def validate(data):
-    return _SCHEMA.validate(data)
+    try:
+        _SCHEMA.validate(data)
+    except schema.SchemaError as e:
+        raise LinterError(str(e.autos[-1]))
