@@ -1,10 +1,10 @@
 ---
 functions:
   shell:
-    - code: |-
-        aa-exec /bin/sh
-      contexts:
-        unprivileged:
-        suid:
-        sudo:
+  - code: |-
+      aa-exec /bin/sh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...

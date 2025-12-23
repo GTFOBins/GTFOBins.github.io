@@ -1,10 +1,10 @@
 ---
 functions:
   shell:
-    - code: |-
-        echo '[{hosts: localhost, tasks: [shell: /bin/sh </dev/tty >/dev/tty 2>/dev/tty]}]' >x
-        ansible-playbook x
-      contexts:
-        unprivileged:
-        sudo:
+  - code: |-
+      echo '[{hosts: localhost, tasks: [shell: /bin/sh </dev/tty >/dev/tty 2>/dev/tty]}]' >x
+      ansible-playbook x
+    contexts:
+      sudo:
+      unprivileged:
 ...

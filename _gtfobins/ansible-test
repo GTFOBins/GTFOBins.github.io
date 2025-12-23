@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: |-
-        ansible-test shell
-      contexts:
-        unprivileged:
-        sudo:
+  - code: |-
+      ansible-test shell
+    contexts:
+      sudo:
+      unprivileged:
 ...

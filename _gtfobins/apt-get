@@ -1,28 +1,28 @@
 ---
 functions:
-  shell:
-    - comment: |-
-        For this to work the target package (i.e., `sl`) must not be already installed.
-      code: |-
-        echo 'Dpkg::Pre-Invoke {"/bin/sh;false"}' >x
-        apt-get -y install -c x sl
-      contexts:
-        suid:
-          shell: true
-        sudo:
-    - comment: |-
-        When the shell exits the `update` command is actually executed.
-      code: |-
-        apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
-      contexts:
-        suid:
-          shell: true
-        sudo:
   inherit:
-    - code: |-
-        apt-get changelog apt
-      from: less
-      contexts:
-        unprivileged:
-        sudo:
+  - code: |-
+      apt-get changelog apt
+    contexts:
+      sudo:
+      unprivileged:
+    from: less
+  shell:
+  - code: |-
+      echo 'Dpkg::Pre-Invoke {"/bin/sh;false"}' >x
+      apt-get -y install -c x sl
+    comment: |-
+      For this to work the target package (i.e., `sl`) must not be already installed.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+  - code: |-
+      apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
+    comment: |-
+      When the shell exits the `update` command is actually executed.
+    contexts:
+      sudo:
+      suid:
+        shell: true
 ...

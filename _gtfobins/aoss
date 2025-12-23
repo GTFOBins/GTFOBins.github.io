@@ -1,9 +1,9 @@
 ---
 functions:
   shell:
-    - code: |-
-        aoss /bin/sh
-      contexts:
-        unprivileged:
-        sudo:
+  - code: |-
+      aoss /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
 ...
