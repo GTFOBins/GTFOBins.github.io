@@ -15,4 +15,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Run linter
         run: |
-          make lint
+          make vet
