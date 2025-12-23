@@ -15,7 +15,10 @@ def run(check_only):
         # skip old-version files (TODO remove after migration)
         if name.endswith('.md'):
             print(f'\x1b[33;1mTODO\x1b[0m {name}')
-            continue
+            if os.environ.get('TODO') == 'fail':
+                return False
+            else:
+                continue
 
         # lint and report the outcome
         if error := linter.lint(name, check_only):
