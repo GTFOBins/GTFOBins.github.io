@@ -115,6 +115,7 @@ Use the following placeholder values where appropriate:
 | Whatever value       | `x...x`                |
 | Input file           | `/path/to/input-file`  |
 | Output file          | `/path/to/output-file` |
+| Shared library file  | `/path/to/lib.so`      |
 | Attacker host domain | `attacker.com`         |
 
 Some flexibility is expected.
