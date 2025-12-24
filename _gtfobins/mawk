@@ -4,16 +4,16 @@ functions:
   - code: |-
       awk '//' /path/to/input-file
     contexts:
-      unprivileged:
       sudo:
       suid:
+      unprivileged:
   file-write:
   - code: |-
       awk 'BEGIN { print "DATA" > /path/to/output-file }'
     contexts:
-      unprivileged:
       sudo:
       suid:
+      unprivileged:
   shell:
   - code: |-
       awk 'BEGIN {system("/bin/sh")}'
