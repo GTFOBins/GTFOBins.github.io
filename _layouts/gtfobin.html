@@ -84,6 +84,13 @@ layout: common
                             {{ function.extra.blind[true] | markdownify }}
                         </fieldset>
                     {% endif %}
+                {% when "file-write", "file-read", "upload", "download" %}
+                    {% if example.binary == false %}
+                        <fieldset>
+                            <legend>Remarks</legend>
+                            {{ function.extra.binary[false] | markdownify }}
+                        </fieldset>
+                    {% endif %}
                 {% when "reverse-shell", "bind-shell" %}
                     {% unless example.tty %}
                         <fieldset>
