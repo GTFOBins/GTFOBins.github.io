@@ -117,6 +117,8 @@ Use the following placeholder values where appropriate:
 | Output file          | `/path/to/output-file` |
 | Attacker host domain | `attacker.com`         |
 
+Some flexibility is expected.
+
 ### Links
 
 If needed, link to other entries using relative URLs, e.g, `[gtfobin](../gtfobin)`.
