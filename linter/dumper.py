@@ -60,7 +60,7 @@ def dump(data, path, check_only):
         # just check the existing file
         with open(path, 'r') as fs:
             if fs.read() != string:
-                raise LinterError('invalid format, please run the formatter')
+                raise LinterError('schema OK but invalid format, please run the formatter')
     else:
         # write the formatted file
         with open(path, 'w') as fs:
