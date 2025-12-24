@@ -1,0 +1,25 @@
+---
+functions:
+  file-read:
+  - code: |-
+      awk '//' /path/to/input-file
+    contexts:
+      unprivileged:
+      sudo:
+      suid:
+  file-write:
+  - code: |-
+      awk 'BEGIN { print "DATA" > /path/to/output-file }'
+    contexts:
+      unprivileged:
+      sudo:
+      suid:
+  shell:
+  - code: |-
+      awk 'BEGIN {system("/bin/sh")}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

