@@ -54,7 +54,10 @@ upload:
     binary: *binary
     receiver:
       HTTP:
-        comment: An HTTP server can be used to receive the data.
+        comment: An HTTP server can be used on the attacker box to receive the data.
+      TCP:
+        comment: Programs like `netcat` can be used on the attacker box to receive the data.
+        code: nc -l -p 12345 >/path/to/output-file
 
 download:
   label: Download
@@ -63,7 +66,10 @@ download:
     binary: *binary
     sender:
       HTTP:
-        comment: An HTTP server can be used to send the data.
+        comment: An HTTP server can be used on the attacker box to send the data.
+      TCP:
+        comment: Programs like `netcat` can be used on the attacker box to send the data.
+        code: nc -l -p 12345 </path/to/input-file
 
 library-load:
   label: Library load
