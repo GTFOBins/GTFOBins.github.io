@@ -67,6 +67,7 @@ _network_protocols = schema.Or(
     },
     # TODO actually fetch known protocols from data files?
     'HTTP',
+    'TCP',
     # ...
 )
 

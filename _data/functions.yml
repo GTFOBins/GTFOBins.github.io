@@ -19,6 +19,9 @@ reverse-shell:
       false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
     blind: *blind
     listener:
+      TCP:
+        comment: Programs like `netcat` can be used on the attacker box to receive the shell.
+        code: nc -l -p 12345
 
 bind-shell:
   label: Bind shell
@@ -27,6 +30,9 @@ bind-shell:
     tty: *tty
     blind: *blind
     connector:
+      TCP:
+        comment: Programs like `netcat` can be used on the attacker box to connect to the shell.
+        code: nc target.com 12345
 
 file-write:
   label: File write
