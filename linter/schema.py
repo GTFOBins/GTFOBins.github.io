@@ -1,6 +1,8 @@
 from .error import LinterError
 
+from pathlib import Path
 import schema
+import yaml
 
 
 def _string(x):
@@ -61,6 +63,10 @@ def _function(name, per_function_schema):
     }
 
 
+_data = Path(__file__).parent / '..' / '_data'
+_functions = yaml.safe_load((_data / 'functions.yml').read_text());
+
+
 _additional_example = {
     schema.Or('code', 'comment'): _string,
 }
@@ -84,7 +90,7 @@ _tty = {
 _listener = {
     schema.Optional('listener'): schema.Or(
         _additional_example,
-        'tcp',
+        *_functions['reverse-shell']['extra']['listener'].keys(),
     )
 }
 
@@ -92,7 +98,7 @@ _listener = {
 _connector = {
     schema.Optional('connector'): schema.Or(
         _additional_example,
-        'tcp',
+        *_functions['bind-shell']['extra']['connector'].keys(),
     )
 }
 
@@ -100,10 +106,7 @@ _connector = {
 _receiver = {
     schema.Optional('receiver'): schema.Or(
         _additional_example,
-        'tcp-client',
-        'tcp-server',
-        'http-client',
-        'http-server',
+        *_functions['upload']['extra']['receiver'].keys(),
     )
 }
 
@@ -111,10 +114,7 @@ _receiver = {
 _sender = {
     schema.Optional('sender'): schema.Or(
         _additional_example,
-        'tcp-client',
-        'tcp-server',
-        'http-client',
-        'http-server',
+        *_functions['download']['extra']['sender'].keys(),
     )
 }
 
