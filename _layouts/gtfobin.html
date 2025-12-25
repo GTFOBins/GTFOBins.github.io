@@ -150,6 +150,11 @@ layout: common
                             {% endif %}
                         </fieldset>
                     {% endif %}
+                {% when "library-load" %}
+                    <fieldset>
+                        <legend>Payload</legend>
+                        {{ function.extra.payload | markdownify }}
+                    </fieldset>
                 {% endcase %}
 
                 {% comment %} example comment {% endcomment %}

