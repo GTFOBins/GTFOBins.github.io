@@ -116,6 +116,7 @@ Use the following placeholder values where appropriate:
 | Input file           | `/path/to/input-file`  |
 | Output file          | `/path/to/output-file` |
 | Shared library file  | `/path/to/lib.so`      |
+| Victim host domain   | `victim.com`           |
 | Attacker host domain | `attacker.com`         |
 
 Some flexibility is expected.
