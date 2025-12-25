@@ -61,15 +61,9 @@ def _function(name, per_function_schema):
     }
 
 
-_network_protocols = schema.Or(
-    {
-        schema.Or('code', 'comment'): _string,
-    },
-    # TODO actually fetch known protocols from data files?
-    'HTTP',
-    'TCP',
-    # ...
-)
+_additional_example = {
+    schema.Or('code', 'comment'): _string,
+}
 
 
 _binary = {
@@ -85,6 +79,45 @@ _blind = {
 _tty = {
     schema.Optional('tty'): bool,
 }
+
+
+_listener = {
+    schema.Optional('listener'): schema.Or(
+        _additional_example,
+        'tcp',
+    )
+}
+
+
+_connector = {
+    schema.Optional('connector'): schema.Or(
+        _additional_example,
+        'tcp',
+    )
+}
+
+
+_receiver = {
+    schema.Optional('receiver'): schema.Or(
+        _additional_example,
+        'tcp-client',
+        'tcp-server',
+        'http-client',
+        'http-server',
+    )
+}
+
+
+_sender = {
+    schema.Optional('sender'): schema.Or(
+        _additional_example,
+        'tcp-client',
+        'tcp-server',
+        'http-client',
+        'http-server',
+    )
+}
+
 
 _SCHEMA = schema.Or(
     {
@@ -102,12 +135,12 @@ _SCHEMA = schema.Or(
             **_function('reverse-shell', {
                 **_tty,
                 **_blind,
-                schema.Optional('listener'): _network_protocols,
+                **_listener,
             }),
             **_function('bind-shell', {
                 **_tty,
                 **_blind,
-                schema.Optional('connector'): _network_protocols,
+                **_connector,
             }),
             **_function('file-write', {
                 **_binary,
@@ -117,11 +150,11 @@ _SCHEMA = schema.Or(
             }),
             **_function('upload', {
                 **_binary,
-                schema.Optional('receiver'): _network_protocols,
+                **_receiver,
             }),
             **_function('download', {
                 **_binary,
-                schema.Optional('sender'): _network_protocols,
+                **_sender,
             }),
             **_function('library-load', {
             }),

