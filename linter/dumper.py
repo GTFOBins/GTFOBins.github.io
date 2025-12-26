@@ -56,12 +56,16 @@ def dump(data, path, check_only):
     data = _ensure_block_style(data)
     string = yaml.dump(data, Dumper=_Dumper, explicit_start=True, explicit_end=True)
 
-    if check_only:
-        # just check the existing file
-        with open(path, 'r') as fs:
-            if fs.read() != string:
-                raise LinterError('schema OK but invalid format, please run the formatter')
-    else:
-        # write the formatted file
-        with open(path, 'w') as fs:
-            fs.write(string)
+    # load the existing file
+    with open(path, 'r') as fs:
+        existing = fs.read()
+
+    # if not properly formatted
+    if existing != string:
+        if check_only:
+            # report error
+            raise LinterError('schema OK but invalid format, please run the formatter')
+        else:
+            # write the formatted file
+            with open(path, 'w') as fs:
+                fs.write(string)
