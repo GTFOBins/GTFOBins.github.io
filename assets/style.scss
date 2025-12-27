@@ -107,6 +107,7 @@ fieldset {
     border: 1px solid $foreground;
     margin: 1em 0;
     padding: 0 1em;
+    min-width: 0;
 
     legend {
         color: $accent;
