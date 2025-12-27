@@ -7,6 +7,7 @@ $accent: #bf0707;
 $lighter: #fff4f4;
 $marked: #ffcccc;
 $hover: #ff0000;
+$default-font-size: 16px;
 $code-font-size: 13px;
 $small-font-size: 14px;
 
@@ -37,7 +38,7 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 
 body {
     font-family: sans, sans-serif;
-    font-size: 16px;
+    font-size: $default-font-size;
     color: $foreground;
     background: $background;
 }
