@@ -7,6 +7,7 @@ $accent: #bf0707;
 $lighter: #fff4f4;
 $marked: #ffcccc;
 $hover: #ff0000;
+$logo-backdrop: #ffffff;
 $default-font-size: 16px;
 $code-font-size: 13px;
 $small-font-size: 14px;
@@ -406,6 +407,8 @@ h2, h3, h4, h5, h5 {
     margin-left: $margin;
     margin-bottom: $margin;
     pointer-events: none;
+    background-color: $logo-backdrop;
+    border: 1px solid $logo-backdrop;
 }
 
 .github-buttons {
