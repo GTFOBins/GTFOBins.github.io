@@ -114,6 +114,11 @@ fieldset {
     }
 }
 
+::selection {
+    background-color: $foreground;
+    color: $background;
+}
+
 // permalink on headings
 
 h2, h3, h4, h5, h5 {
