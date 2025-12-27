@@ -203,6 +203,7 @@ h2, h3, h4, h5, h5 {
         // adjust the width due to negative padding
         width: calc(100% + 2rem);
 
+        color: $foreground;
         font-size: 1rem;
         box-sizing: border-box;
         outline: none;
