@@ -58,7 +58,7 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 // common tags
 
 body {
-    font-family: sans, sans-serif;
+    font-family: system-ui, sans-serif;
     font-size: $default-font-size;
     color: $foreground;
     background: $background;
