@@ -1,13 +1,33 @@
 ---
 ---
 
-$foreground: #000000;
-$background: #ffffff;
+:root {
+    --foreground: #e6e6e6;
+    --background: #0f0f0f;
+    --lighter: #2a1212;
+    --marked: #5a1a1a;
+    --hover: #ff4d4d;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --foreground: #000000;
+        --background: #ffffff;
+        --lighter: #fff4f4;
+        --marked: #ffcccc;
+        --hover: #ff0000;
+    }
+}
+
 $accent: #bf0707;
-$lighter: #fff4f4;
-$marked: #ffcccc;
-$hover: #ff0000;
 $logo-backdrop: #ffffff;
+
+$foreground: var(--foreground);
+$background: var(--background);
+$lighter: var(--lighter);
+$marked: var(--marked);
+$hover: var(--hover);
+
 $default-font-size: 16px;
 $code-font-size: 13px;
 $small-font-size: 14px;
