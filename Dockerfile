@@ -7,4 +7,4 @@ COPY ./Gemfile ./
 
 RUN bundle install
 
-ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "--host=0.0.0.0"]
+ENTRYPOINT ["bundle", "exec", "jekyll", "serve", "--host=0.0.0.0", "--incremental"]
