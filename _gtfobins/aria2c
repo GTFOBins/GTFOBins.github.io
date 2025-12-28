@@ -2,9 +2,9 @@
 functions:
   command:
   - code: |-
-      echo /path/to/command >x
-      chmod +x x
-      aria2c --on-download-error=./x http://some-invalid-domain
+      echo /path/to/command >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      aria2c --on-download-error=/path/to/temp-file http://some-invalid-domain
     comment: |-
       Note that the subprocess is immediately sent to the background.
     contexts:

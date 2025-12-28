@@ -4,9 +4,9 @@ comment: |-
 functions:
   shell:
   - code: |-
-      echo 'exec /bin/sh 0<&2 1>&2' >x
-      chmod +x x
-      check_ssl_cert --grep-bin ./x -H x
+      echo 'exec /bin/sh 0<&2 1>&2' >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      check_ssl_cert --grep-bin /path/to/temp-file -H x
     comment: |-
       The shell will be invoked multiple times.
     contexts:

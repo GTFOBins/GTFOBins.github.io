@@ -9,8 +9,8 @@ functions:
     from: less
   shell:
   - code: |-
-      echo 'Dpkg::Pre-Invoke {"/bin/sh;false"}' >x
-      apt-get -y install -c x sl
+      echo 'Dpkg::Pre-Invoke {"/bin/sh;false"}' >/path/to/temp-file
+      apt-get -y install -c /path/to/temp-file sl
     comment: |-
       For this to work the target package (i.e., `sl`) must not be already installed.
     contexts:

