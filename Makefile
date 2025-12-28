@@ -6,6 +6,7 @@ serve:
 	@echo '# Building the Docker image'
 	@docker build ./ -t "$(NAME)"
 	@echo '# Building and serving the website'
+	@rm -fr ./_site/
 	@docker run \
 		--rm \
 		--name "$(NAME)" \
