@@ -136,6 +136,11 @@ fieldset {
         font-size: $small-font-size;
         padding: 0 0.5em;
     }
+
+    // XXX ugly approximate hack
+    & > :not(legend):first-of-type {
+        margin-top: $small-font-size / 2;
+    }
 }
 
 ::selection {
