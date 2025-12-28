@@ -11,7 +11,8 @@ serve:
 		--name "$(NAME)" \
 		--publish "$(PORT):$(PORT)" \
 		--volume "$$PWD/:/GTFOBins/" \
-		"$(NAME)"
+		"$(NAME)" 2>&1 \
+		| grep -v "Error: could not read file /GTFOBins/_gtfobins/.*: undefined method \`split' for nil"
 
 .PHONY: vet
 vet: ./linter/.venv/
