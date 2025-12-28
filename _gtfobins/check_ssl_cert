@@ -1,0 +1,22 @@
+---
+comment: |-
+  This is the `check_by_ssh` Nagios plugin, available e.g. in `/usr/lib/nagios/plugins/`.
+functions:
+  command:
+  - code: |-
+      echo "/path/to/command >/path/to/output-file" >x
+      chmod +x x
+      check_ssl_cert --curl-bin ./x -H example.com
+      cat /path/to/output-file
+    comment: |-
+      The host example.com must return a certificate via TLS.
+    contexts:
+      sudo:
+        code: |-
+          echo "/path/to/command >/path/to/output-file" >x
+          chmod +x x
+          umask 022
+          check_ssl_cert --curl-bin ./x -H example.com
+          cat /path/to/output-file
+      unprivileged:
+...
