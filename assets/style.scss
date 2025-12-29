@@ -346,7 +346,7 @@ h2, h3, h4, h5, h5 {
         &.match a {
             background: $marked;
 
-            &[data-matching-contexts]:after {
+            &[data-matching-contexts]::after {
                 content: " (" attr(data-matching-contexts) ")";
             }
         }
