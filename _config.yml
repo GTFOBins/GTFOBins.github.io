@@ -9,6 +9,7 @@ exclude:
   - /LICENSE
   - /Makefile
   - /README.md
+  - /_private/
   - /linter/
   - /vendor/ # XXX this needs to be explicitly added
 
