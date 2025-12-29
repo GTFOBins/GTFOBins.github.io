@@ -146,6 +146,33 @@ fieldset {
     color: $background;
 }
 
+// page title
+
+h1 {
+    display: flex;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .github-buttons {
+        display: flex;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+        flex-wrap: wrap;
+
+        // XXX avoid displaying the link text during loading
+        a.github-button {
+            visibility: hidden;
+        }
+
+        span {
+            display: flex; // XXX get rid of sapce around
+        }
+    }
+}
+
 // permalink on headings
 
 h2, h3, h4, h5, h5 {
@@ -439,15 +466,6 @@ h2, h3, h4, h5, h5 {
     pointer-events: none;
     background-color: $logo-backdrop;
     border: 1px solid $logo-backdrop;
-}
-
-.github-buttons {
-    float: right;
-
-    // XXX avoid displaying the link text during loading
-    a.github-button {
-        visibility: hidden;
-    }
 }
 
 .small {
