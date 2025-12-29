@@ -77,13 +77,44 @@ code {
 pre {
     background: $lighter;
     font-size: $code-font-size;
-    padding: 1em;
     margin: 1rem 0; // to be coherent with the regular-sized text
-    overflow-x: auto;
+    position: relative;
+    overflow: hidden;
 
     code {
-        padding: 0;
+        display: block;
         border-radius: 0;
+        padding: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto;
+    }
+
+    button {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        outline: none;
+        padding: 0.25em 0.5em;
+        border: 5px solid $background;
+        border-top: none;
+        border-right: none;
+        color: $accent;
+        background-color: $lighter;
+
+        &:hover {
+            color: $hover;
+        }
+
+        &:active {
+            color: $lighter; // just to give some click feedback
+        }
+    }
+
+    &:hover button {
+        display: block;
     }
 }
 

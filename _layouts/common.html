@@ -29,6 +29,16 @@
                 link.href = `#${heading.id}`;
                 heading.appendChild(link);
             });
+
+            // add button to copy code blocks
+            document.querySelectorAll('pre').forEach((pre) => {
+                const button = document.createElement('button');
+                button.innerText = 'Copy';
+                button.addEventListener('click', () => {
+                    navigator.clipboard.writeText(pre.firstChild.innerText);
+                });
+                pre.appendChild(button);
+            });
         </script>
     </body>
 </html>
