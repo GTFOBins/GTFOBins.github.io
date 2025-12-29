@@ -127,19 +127,17 @@ p {
 
 fieldset {
     border: 1px solid $foreground;
+    position: relative;
     margin: 1em 0;
     padding: 0 1em;
-    min-width: 0;
 
     legend {
         color: $accent;
         font-size: $small-font-size;
         padding: 0 0.5em;
-    }
-
-    // XXX ugly approximate hack
-    & > :not(legend):first-of-type {
-        margin-top: $small-font-size / 2;
+        position: absolute;
+        background-color: $background;
+        top: -0.5lh;
     }
 }
 
@@ -181,21 +179,13 @@ h2, h3, h4, h5, h5 {
     position: relative; // XXX needed for tooltip sizing
 
     fieldset {
-        border: 1px solid $accent;
-        margin: 0;
-        padding: 1rem;
-        padding-top: 0;
+        padding: 1em;
+        border-color: $accent;
 
         legend {
             color: $foreground;
             font-size: initial;
             font-weight: bold;
-            padding: 0.5em;
-        }
-
-        // XXX ugly approximate hack (reset margin introduced by other hack)
-        & > :not(legend):first-of-type {
-            margin-top: 0;
         }
     }
 
@@ -223,6 +213,7 @@ h2, h3, h4, h5, h5 {
                 background: $foreground;
                 border-radius: 0.25em;
                 pointer-events: none;
+                z-index: 1;
             }
         }
     }
