@@ -5,6 +5,7 @@ baseurl: /new # TODO temporary
 
 exclude:
   - /Dockerfile
+  - /Gemfile*
   - /LICENSE
   - /Makefile
   - /README.md
