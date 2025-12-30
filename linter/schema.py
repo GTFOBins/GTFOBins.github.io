@@ -158,6 +158,8 @@ _SCHEMA = schema.Or(
             }),
             **_function('library-load', {
             }),
+            **_function('privilege-escalation', {
+            }),
             **_function('inherit', {
                 'from': _string,
             }),
