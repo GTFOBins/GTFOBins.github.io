@@ -8,4 +8,11 @@ functions:
     contexts:
       sudo:
       unprivileged:
+  inherit:
+  - code: |-
+      crontab -e
+    contexts:
+      sudo:
+      unprivileged:
+    from: vi
 ...
