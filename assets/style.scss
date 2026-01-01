@@ -4,6 +4,7 @@
 :root {
     --foreground: #e6e6e6;
     --background: #0f0f0f;
+    --faint: #666666;
     --lighter: #2a1212;
     --marked: #5a1a1a;
     --hover: #ff4d4d;
@@ -13,6 +14,7 @@
     :root {
         --foreground: #000000;
         --background: #ffffff;
+        --faint: #999999;
         --lighter: #fff4f4;
         --marked: #ffcccc;
         --hover: #ff0000;
@@ -24,6 +26,7 @@ $logo-backdrop: #ffffff;
 
 $foreground: var(--foreground);
 $background: var(--background);
+$faint: var(--faint);
 $lighter: var(--lighter);
 $marked: var(--marked);
 $hover: var(--hover);
@@ -157,7 +160,7 @@ p {
 }
 
 fieldset {
-    border: 1px solid $foreground;
+    border: 1px solid $faint;
     position: relative;
     margin: 1em 0;
     padding: 0 1em;
@@ -439,7 +442,7 @@ h2, h3, h4, h5, h5 {
         font-size: $small-font-size;
         margin-left: 0.5em;
         padding: 0.25em 0.5em;
-        border: 1px solid $foreground;
+        border: 1px solid $faint;
         border-bottom: none;
         cursor: pointer;
         position: relative;
@@ -456,7 +459,7 @@ h2, h3, h4, h5, h5 {
         width: 0px; // XXX avoid growing
         order: 999;
         padding: 0 1em;
-        border: 1px solid;
+        border: 1px solid $faint;
     }
 }
 
