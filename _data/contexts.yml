@@ -5,6 +5,8 @@ unprivileged:
 sudo:
   label: Sudo
   description: This function is performed by the privileged user if executed via `sudo` because the acquired privileges are not dropped.
+  extra:
+    environment: If there are environment variables involved, they must be passed via `sudo VAR=value ...` or exported then `sudo -E ...`.
 
 suid:
   label: SUID

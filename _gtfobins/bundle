@@ -19,8 +19,6 @@ functions:
       BUNDLE_GEMFILE=x bundle exec /bin/sh
     contexts:
       sudo:
-        code: |-
-          sudo BUNDLE_GEMFILE=x bundle exec /bin/sh
       unprivileged:
   - code: |-
       touch Gemfile

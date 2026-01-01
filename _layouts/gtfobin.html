@@ -186,6 +186,11 @@ layout: common
 
                             {% comment %} additional per-context content {% endcomment %}
                             {% case context_name %}
+                            {% when "sudo" %}
+                                <fieldset>
+                                    <legend>Remarks</legend>
+                                    {{ context.extra.environment | markdownify }}
+                                </fieldset>
                             {% when "suid" %}
                                 {% if per_context_info.shell != nil %}
                                     <fieldset>
