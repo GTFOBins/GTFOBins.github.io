@@ -1,0 +1,15 @@
+---
+functions:
+  file-write:
+  - code: |-
+      csh -c 'echo DATA > /path/to/output-file'
+  shell:
+  - code: |-
+      csh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          csh -b
+      unprivileged:
+...
