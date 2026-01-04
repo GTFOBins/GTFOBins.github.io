@@ -1,6 +1,8 @@
 shell:
   label: Shell
   description: This executable can spawn an interactive system shell.
+  mitre:
+  - T1059
   extra:
     blind: &blind
       true: The commands are executed but their output is hidden from the attacker.
@@ -8,12 +10,17 @@ shell:
 command:
   label: Command
   description: This executable can run non-interactive system commands.
+  mitre:
+  - T1059
   extra:
     blind: *blind
 
 reverse-shell:
   label: Reverse shell
   description: This executable can send back a reverse system shell to a listening attacker.
+  mitre:
+  - T1059
+  - T1071
   extra:
     tty: &tty
       false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
@@ -26,6 +33,9 @@ reverse-shell:
 bind-shell:
   label: Bind shell
   description: This executable can bind a system shell to a local port waiting for an attacker to connect.
+  mitre:
+  - T1059
+  - T1071
   extra:
     tty: *tty
     blind: *blind
@@ -37,6 +47,9 @@ bind-shell:
 file-write:
   label: File write
   description: This executable can write data to local files.
+  mitre:
+  - T1565
+  - T1105
   extra:
     binary: &binary
       false: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary data.
@@ -44,12 +57,16 @@ file-write:
 file-read:
   label: File read
   description: This executable can read data from local files.
+  mitre:
+  - T1005
   extra:
     binary: *binary
 
 upload:
   label: Upload
   description: This executable can upload local data.
+  mitre:
+  - T1041
   extra:
     binary: *binary
     receiver:
@@ -69,6 +86,8 @@ upload:
 download:
   label: Download
   description: This executable can download remote data.
+  mitre:
+  - T1105
   extra:
     binary: *binary
     sender:
@@ -88,6 +107,8 @@ download:
 library-load:
   label: Library load
   description: This executable can load shared libraries that may be used to run arbitrary code in the same execution context.
+  mitre:
+  - T1574
   extra:
     payload: |-
       As an example, the following can be used to create a minimal shared library (`lib.so`) that spawns a shell upon loading:
@@ -100,6 +121,8 @@ library-load:
 privilege-escalation:
   label: Privilege escalation
   description: This executable provides a mechanism for privilege escalation by indirectly enabling elevated privileges, such as setting the SUID bit or modifying the ownership of another executable.
+  mitre:
+  - T1068
 
 inherit:
   label: Inherit
