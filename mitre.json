@@ -23,12 +23,12 @@
         "navigator": "5.0.1",
         "layer": "4.5"
     },
-	"links": [
-		{
-			"label": "GTFOBins",
-			"url": {{ '/' | absolute_url | jsonify }}
-		}
-	],
+    "links": [
+        {
+            "label": "GTFOBins",
+            "url": {{ '/' | absolute_url | jsonify }}
+        }
+    ],
     "layout": {
         "expandedSubtechniques": "annotated"
     },
