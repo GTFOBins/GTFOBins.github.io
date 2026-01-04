@@ -19,8 +19,8 @@
 {
     "name": {{ site.title | jsonify }},
     "versions": {
-        "attack": "15",
-        "navigator": "5.0.1",
+        "attack": "18",
+        "navigator": "5.2.0",
         "layer": "4.5"
     },
     "links": [
