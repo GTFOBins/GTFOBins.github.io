@@ -40,6 +40,7 @@
             "macOS"
         ]
     },
+    "tacticRowBackground": "#bf0707",
     "techniques": [
         {%- assign techniques = techniques | group_by_exp: "item", "item[0]" -%}
         {%- for group in techniques -%}
