@@ -8,11 +8,12 @@
         {%- assign function_name = function_item[0] -%}
         {%- assign function = function_item[1] -%}
         {%- for example in function -%}
-            {%- if example.mitre -%}
-                {%- capture item -%}{{ example.mitre }},{{ name }},{{ function_name }},{{ gtfobin.url | absolute_url }}{%- endcapture -%}
+            {%- assign mitre = example.mitre | default: site.data.functions[function_name].mitre -%}
+            {%- for technique in mitre -%}
+                {%- capture item -%}{{ technique }},{{ name }},{{ function_name }},{{ gtfobin.url | absolute_url }}{%- endcapture -%}
                 {%- assign item = item | split: ',' -%}
                 {%- assign techniques = techniques | push: item -%}
-            {%- endif -%}
+            {%- endfor -%}
         {%- endfor -%}
     {%- endfor -%}
 {%- endfor -%}

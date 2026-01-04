@@ -42,7 +42,9 @@ def _function(name, per_function_schema):
                 schema.Optional('code'): _string,
                 schema.Optional('comment'): _string,
                 schema.Optional('version'): _string,
-                schema.Optional('mitre'): _string,
+                schema.Optional('mitre'): [
+                    schema.Regex(r'^T[0-9]+$'),
+                ],
                 **per_function_schema,
                 schema.Optional('contexts'): {
                     **_context('unprivileged', {
