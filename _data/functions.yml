@@ -49,7 +49,6 @@ file-write:
   description: This executable can write data to local files.
   mitre:
   - T1565
-  - T1105
   extra:
     binary: &binary
       false: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary data.
@@ -122,7 +121,7 @@ privilege-escalation:
   label: Privilege escalation
   description: This executable provides a mechanism for privilege escalation by indirectly enabling elevated privileges, such as setting the SUID bit or modifying the ownership of another executable.
   mitre:
-  - T1068
+  - T1548
 
 inherit:
   label: Inherit
