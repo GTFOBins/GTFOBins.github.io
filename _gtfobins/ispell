@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      ispell /etc/profile
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          ispell /etc/profile
+          !/bin/sh -p
+        shell: false
+      unprivileged:
+...

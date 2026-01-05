@@ -1,0 +1,20 @@
+---
+functions:
+  file-read:
+  - code: |-
+      elvish -c 'print (slurp < /path/to/input-file)'
+  file-write:
+  - code: |-
+      elvish -c 'print DATA > /path/to/output-file'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      elvish
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
