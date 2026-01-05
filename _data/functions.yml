@@ -81,6 +81,9 @@ upload:
       http-server:
         comment: An HTTP server can be used on the attacker box to receive the data.
         code: nc -l -p 80 | awk 'BEGIN {RS="\r\n\r\n";ORS=""} NR==2' >/path/to/output-file
+      ftp-server:
+        comment: An FTP server can be used on the attacker box to receive the data.
+        code: python -m pyftpdlib -w -p 21
 
 download:
   label: Download
@@ -102,6 +105,9 @@ download:
       http-server:
         comment: An HTTP server can be used on the attacker box to send the data.
         code: python -m http.server 80
+      ftp-server:
+        comment: An FTP server can be used on the attacker box to receive the data.
+        code: python -m pyftpdlib -w -p 21
 
 library-load:
   label: Library load
