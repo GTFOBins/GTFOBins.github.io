@@ -41,7 +41,7 @@ def _function(name, per_function_schema):
             schema.And({
                 schema.Optional('code'): _string,
                 schema.Optional('comment'): _string,
-                schema.Optional('version'): _string,
+                schema.Optional('version'): schema.Or(_string, int, float),
                 schema.Optional('mitre'): [
                     schema.Regex(r'^T[0-9]+$'),
                 ],
