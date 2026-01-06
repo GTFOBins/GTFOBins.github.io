@@ -5,5 +5,8 @@ functions:
       easy_install .
     comment: |-
       This executes a Python script named `setup.py` in the directory passed as argument (`.`).
+    contexts:
+      sudo:
+      unprivileged:
     from: python
 ...
