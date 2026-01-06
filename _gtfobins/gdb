@@ -9,9 +9,9 @@ functions:
       unprivileged:
   inherit:
   - code: |-
-      gdb -nx -ex 'python PYTHON_CODE' -ex quit
+      gdb -nx -ex 'python ... -ex quit
     comment: |-
-      This allows to run Python code (`PYTHON_CODE`).
+      This allows to run Python code (`...`).
     contexts:
       sudo:
       suid:

