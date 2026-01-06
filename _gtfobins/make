@@ -10,7 +10,7 @@ functions:
     version: GNU
   shell:
   - code: |-
-      make -s --eval=$'x:\n\t-/bin/sh'
+      make --eval='$(shell /bin/sh 1>&0)' .
     contexts:
       sudo:
       suid:
