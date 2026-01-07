@@ -9,7 +9,6 @@ functions:
       This allows to run Python code (`...`).
     contexts:
       sudo:
-      suid:
       unprivileged:
     from: python
 ...
