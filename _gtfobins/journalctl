@@ -2,11 +2,11 @@
 comment: |-
   This might not work if run by unprivileged users depending on the system configuration.
 functions:
-  shell:
+  inherit:
   - code: |-
       journalctl
-      !/bin/sh
     contexts:
       sudo:
       unprivileged:
+    from: less
 ...
