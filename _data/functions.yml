@@ -123,6 +123,8 @@ library-load:
           | gcc -w -fPIC -shared -o lib.so -x c -
       ```
 
+      Add the usual `-p` argument to the shell for SUID contexts.
+
 privilege-escalation:
   label: Privilege escalation
   description: This executable provides a mechanism for privilege escalation by indirectly enabling elevated privileges, such as setting the SUID bit or modifying the ownership of another executable.
