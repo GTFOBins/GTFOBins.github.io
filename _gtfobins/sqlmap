@@ -2,7 +2,7 @@
 functions:
   inherit:
   - code: |-
-      code: sqlmap -u 127.0.0.1 --eval='...'
+      sqlmap -u 127.0.0.1 --eval='...'
     comment: |-
       This allows to run Python code (`...`).
     contexts:
