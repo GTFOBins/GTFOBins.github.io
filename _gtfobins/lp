@@ -9,6 +9,10 @@ functions:
       1. `lpadmin -p printer -v socket://localhost -E` to create a virtual printer;
       2. `lpadmin -d printer` to set the new printer as default;
       3. `cupsctl --remote-any` to enable printing from the Internet.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
     receiver:
       code: |-
         nc -l -p 9100 >/path/to/output-file
