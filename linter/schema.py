@@ -35,6 +35,13 @@ def _context(name, per_context_schema):
     }
 
 
+def _gtfobin(name):
+    if name in _gtfobins:
+        return True
+    else:
+        raise schema.SchemaError(f'{name!r} does not exist')
+
+
 def _function(name, per_function_schema):
     return {
         schema.Optional(name): schema.And(len, [
@@ -65,8 +72,9 @@ def _function(name, per_function_schema):
     }
 
 
-_data = Path(__file__).parent / '..' / '_data'
-_functions = yaml.safe_load((_data / 'functions.yml').read_text());
+_root = Path(__file__).parent / '..'
+_functions = yaml.safe_load((_root / '_data' / 'functions.yml').read_text());
+_gtfobins = {file.name for file in (_root / '_gtfobins').iterdir()}
 
 
 _additional_example = {
@@ -163,7 +171,7 @@ _SCHEMA = schema.Or(
             **_function('privilege-escalation', {
             }),
             **_function('inherit', {
-                'from': _string,
+                'from': _gtfobin,
             }),
         }),
     }
