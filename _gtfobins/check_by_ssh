@@ -10,12 +10,8 @@ functions:
     contexts:
       sudo:
       unprivileged:
-    version: 'When `check_by_ssh` version `2.4.5` (2023-05-31) or later from the Nagios
+    version: |-
+      When `check_by_ssh` version `2.4.5` (2023-05-31) or later from the Nagios Plugins project in it's default configuration is used, it does not work anymore.
 
-      Plugins project in it''s default configuration is used, it does not work anymore.
-
-
-      It does still work on previous versions from the Nagios Plugins project or
-
-      all versions from the Monitoring Project (e.g. used by Ubuntu/Debian).'
+      It does still work on previous versions from the Nagios Plugins project or all versions from the Monitoring Project (e.g. used by Ubuntu/Debian).
 ...

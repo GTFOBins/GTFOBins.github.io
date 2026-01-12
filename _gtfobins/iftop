@@ -11,5 +11,6 @@ functions:
       suid:
         shell: true
       unprivileged:
-    version: 0.17
+    version: |-
+      0.17
 ...

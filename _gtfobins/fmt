@@ -8,7 +8,8 @@ functions:
       sudo:
       suid:
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
   - binary: false
     code: |-
       fmt -999 /path/to/input-file

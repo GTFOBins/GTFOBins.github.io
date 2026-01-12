@@ -7,7 +7,8 @@ functions:
       sudo:
       suid:
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
   shell:
   - code: |-
       make --eval='$(shell /bin/sh 1>&0)' .
@@ -16,5 +17,6 @@ functions:
       suid:
         shell: true
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
 ...

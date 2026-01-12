@@ -25,7 +25,7 @@ def _ensure_block_style(o):
     match o:
         case dict():
             return {
-                k: (_BlockString(v) if k in ('code', 'comment') else _ensure_block_style(v))
+                k: (_BlockString(v) if k in ('code', 'comment', 'version') else _ensure_block_style(v))
                 for k, v in o.items()
             }
 

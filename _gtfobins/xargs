@@ -8,7 +8,8 @@ functions:
       sudo:
       suid:
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
   shell:
   - code: |-
       xargs -a /dev/null /bin/sh
@@ -19,7 +20,8 @@ functions:
           xargs -a /dev/null /bin/sh -p
         shell: false
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
   - code: |-
       xargs -a /dev/null /bin/sh
     contexts:

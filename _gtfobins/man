@@ -27,5 +27,6 @@ functions:
       suid:
         shell: true
       unprivileged:
-    version: GNU
+    version: |-
+      GNU
 ...

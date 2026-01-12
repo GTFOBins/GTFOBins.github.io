@@ -11,7 +11,8 @@ functions:
       sudo:
       suid:
       unprivileged:
-    version: 5.5
+    version: |-
+      5.5
   shell:
   - code: |-
       mysql -e '\! /bin/sh'

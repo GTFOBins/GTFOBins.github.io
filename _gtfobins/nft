@@ -8,5 +8,6 @@ functions:
     contexts:
       sudo:
       unprivileged:
-    version: '`nftables` >= 0.9.0'
+    version: |-
+      `nftables` >= 0.9.0
 ...

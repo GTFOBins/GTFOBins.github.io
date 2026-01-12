@@ -6,7 +6,8 @@ functions:
     comment: |-
       This allows to run Lua code (`...`).
     from: lua
-    version: Some older version is required.
+    version: |-
+      Some older version is required.
   shell:
   - code: |-
       rpmquery --eval '%(/bin/sh 1>&2)'

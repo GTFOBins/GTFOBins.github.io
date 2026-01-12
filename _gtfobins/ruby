@@ -51,5 +51,6 @@ functions:
       sudo:
       unprivileged:
     receiver: http-client
-    version: '>= 1.9.2'
+    version: |-
+      >= 1.9.2
 ...

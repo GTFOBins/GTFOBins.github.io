@@ -26,5 +26,6 @@ functions:
       sudo:
       suid:
       unprivileged:
-    version: < 3.3
+    version: |-
+      < 3.3
 ...
