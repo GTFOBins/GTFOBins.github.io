@@ -1,10 +1,9 @@
 ---
 functions:
   command:
-  - code: |-
+  - blind: true
+    code: |-
       echo /path/to/command | at now
-    comment: |-
-      The invocation will be blind.
     contexts:
       sudo:
       unprivileged:
