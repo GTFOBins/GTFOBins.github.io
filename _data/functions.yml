@@ -106,7 +106,7 @@ download:
         comment: An HTTP server can be used on the attacker box to send the data.
         code: python -m http.server 80
       ftp-server:
-        comment: An FTP server can be used on the attacker box to receive the data.
+        comment: An FTP server can be used on the attacker box to send the data.
         code: python -m pyftpdlib -w -p 21
 
 library-load:
