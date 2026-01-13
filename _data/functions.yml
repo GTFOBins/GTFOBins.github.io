@@ -84,6 +84,8 @@ upload:
       ftp-server:
         comment: An FTP server can be used on the attacker box to receive the data.
         code: python -m pyftpdlib -w -p 21
+      ssh-server:
+        comment: An SSH server can be used on the attacker box to receive the data.
 
 download:
   label: Download
@@ -108,6 +110,8 @@ download:
       ftp-server:
         comment: An FTP server can be used on the attacker box to send the data.
         code: python -m pyftpdlib -w -p 21
+      ssh-server:
+        comment: An SSH server can be used on the attacker box to send the data.
 
 library-load:
   label: Library load
