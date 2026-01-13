@@ -10,7 +10,7 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      echo DATA > /path/to/temp-file
+      echo DATA >/path/to/temp-file
       csplit -z -b %doutput-file' /path/to/temp-file 1
     comment: |-
       Writes the data to `xx0output-file` in the current working directory. If needed, a different prefix can be specified with `-f` (instead of `xx`).

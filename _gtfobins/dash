@@ -2,7 +2,7 @@
 functions:
   file-write:
   - code: |-
-      dash -c 'echo DATA > /path/to/output-file'
+      dash -c 'echo DATA >/path/to/output-file'
     contexts:
       sudo:
       suid:

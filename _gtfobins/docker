@@ -15,7 +15,7 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      echo DATA > /path/to/temp-file
+      echo DATA >/path/to/temp-file
       docker cp /path/to/temp-file $CONTAINER_ID:temp-file
       docker cp $CONTAINER_ID /path/to/output-file
     comment: |-

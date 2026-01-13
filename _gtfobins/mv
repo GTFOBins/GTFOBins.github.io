@@ -2,7 +2,7 @@
 functions:
   file-write:
   - code: |-
-      echo DATA > /path/to/temp-file
+      echo DATA >/path/to/temp-file
       mv /path/to/temp-file /path/to/output-file
     contexts:
       sudo:

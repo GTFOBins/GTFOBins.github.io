@@ -17,7 +17,7 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      echo DATA > /path/to/temp-file
+      echo DATA >/path/to/temp-file
       curl file:///path/to/temp-file -o /path/to/output-file
     contexts:
       sudo:

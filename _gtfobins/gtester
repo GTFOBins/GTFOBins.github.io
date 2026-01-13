@@ -11,15 +11,15 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      echo 'exec /bin/sh 0<&1' > /path/to/temp-file
+      echo 'exec /bin/sh 0<&1' >/path/to/temp-file
       chmod +x /path/to/temp-file
       gtester -q /path/to/temp-file
     contexts:
       sudo:
       suid:
         code: |-
-          echo '#!/bin/sh -p' > /path/to/temp-file
-          echo 'exec /bin/sh -p 0<&1' >> /path/to/temp-file
+          echo '#!/bin/sh -p' >/path/to/temp-file
+          echo 'exec /bin/sh -p 0<&1' >>/path/to/temp-file
           chmod +x /path/to/temp-file
           gtester -q /path/to/temp-file
         shell: false
