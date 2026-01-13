@@ -137,6 +137,7 @@ _SCHEMA = schema.Or(
         schema.Optional('comment'): _string,
         'functions': schema.And(len, {
             **_function('shell', {
+                **_tty,
                 **_blind,
             }),
             **_function('command', {

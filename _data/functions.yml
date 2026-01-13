@@ -4,6 +4,8 @@ shell:
   mitre:
   - T1059
   extra:
+    tty: &tty
+      false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
     blind: &blind
       true: The commands are executed but their output is hidden from the attacker.
 
@@ -22,8 +24,7 @@ reverse-shell:
   - T1059
   - T1071
   extra:
-    tty: &tty
-      false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
+    tty: *tty
     blind: *blind
     listener:
       tcp-server:
