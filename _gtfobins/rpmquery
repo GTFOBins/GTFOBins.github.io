@@ -5,6 +5,10 @@ functions:
       rpmquery --eval '%{lua:...}'
     comment: |-
       This allows to run Lua code (`...`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
     from: lua
     version: |-
       Some older version is required.

@@ -4,6 +4,10 @@ functions:
   - binary: false
     code: |-
       dmesg -rF /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   inherit:
   - code: |-
       dmesg -H

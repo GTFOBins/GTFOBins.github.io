@@ -14,12 +14,11 @@ def _string(x):
 
 def _check_code_coherence(example):
     has_code = bool(example.get('code'))
-    has_contexts = bool(example.get('contexts'))
     all_contexts_have_code = all(
         context and context.get('code')
         for context in example.get('contexts', {}).values()
     )
-    if has_code != (has_contexts and all_contexts_have_code):
+    if has_code != all_contexts_have_code:
         return True
     else:
         raise schema.SchemaError(f'{example!r} should provide the code')
@@ -53,7 +52,7 @@ def _function(name, per_function_schema):
                     schema.Regex(r'^T[0-9]+$'),
                 ],
                 **per_function_schema,
-                schema.Optional('contexts'): {
+                'contexts': {
                     **_context('unprivileged', {
                     }),
                     **_context('sudo', {

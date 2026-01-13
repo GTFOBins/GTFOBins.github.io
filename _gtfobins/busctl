@@ -3,6 +3,10 @@ functions:
   inherit:
   - code: |-
       busctl --show-machine
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
     from: less
   shell:
   - code: |-

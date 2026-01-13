@@ -34,7 +34,7 @@ Where `<function>` and `<context>` are defined in the [`_data/functions.yml`][] 
 
 The optional `version` field must outline any particular OS or executable requirements that enable the corresponding function.
 
-The `contexts` object can be omitted altogether, in that case `code` is assumed to be about the `unprivileged` context. When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `comment` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
+When a context specifies a specialized `code` field, it is used in place of the global value, which can be omitted if all the context specifies a specialization. `comment` instances can always be omitted, while ultimately there must be one `code` example for each context, either specialized or inherited.
 
 ### Functions
 

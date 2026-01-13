@@ -16,9 +16,17 @@ functions:
       cat /path/to/OUTPUT
     comment: |-
       The file is copied to a readable location.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   file-write:
   - code: |-
       dosbox -c 'mount c /' -c "echo DATA >c:\path\to\output" -c exit
     comment: |-
       Note that `echo` terminates the string with a DOS-style line terminator (`\r\n`), if that's a problem and your scenario allows it, you can create the file outside `dosbox`, then use `copy` to do the actual write.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...

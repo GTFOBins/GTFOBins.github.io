@@ -13,6 +13,11 @@ functions:
     comment: |-
       This requires `lua-socket` to be available.
     connector: tcp-client
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
     tty: false
   download:
   - code: |-
