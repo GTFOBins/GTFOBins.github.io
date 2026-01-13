@@ -10,7 +10,10 @@ functions:
       sudo:
       suid:
       unprivileged:
-  - comment: |-
+  - code: |-
+      echo /path/to/input-file | cpio -dp .
+      cat path/to/input-file
+    comment: |-
       The whole directory structure is copied to `.`, hence this is also a file write.
     contexts:
       sudo:
@@ -22,11 +25,11 @@ functions:
           echo /path/to/input-file | cpio -R $UID -dp .
           cat path/to/input-file
       unprivileged:
-        code: |-
-          echo /path/to/input-file | cpio -dp .
-          cat path/to/input-file
   file-write:
-  - comment: |-
+  - code: |-
+      echo DATA >/path/to/temp-file
+      echo /path/to/temp-file | cpio -udp .
+    comment: |-
       The whole directory structure is copied to `.`, with the data written to `./path/to/temp-file`.
     contexts:
       sudo:
@@ -38,9 +41,6 @@ functions:
           echo DATA >/path/to/temp-file
           echo /path/to/temp-file | cpio -R 0:0 -udp .
       unprivileged:
-        code: |-
-          echo DATA >/path/to/temp-file
-          echo /path/to/temp-file | cpio -udp .
   shell:
   - code: |-
       echo '/bin/sh </dev/tty >/dev/tty' >localhost
