@@ -1,0 +1,8 @@
+---
+functions:
+  shell:
+  - code: |-
+      sudo su -c /bin/sh
+    contexts:
+      sudo:
+...
