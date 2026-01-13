@@ -6,8 +6,8 @@ functions:
       expand /path/to/input-file
     comment: |-
       The read file content is corrupted by replacing tabs with spaces.
-      contexts:
-        suid:
-        sudo:
-        unprivileged:
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...
