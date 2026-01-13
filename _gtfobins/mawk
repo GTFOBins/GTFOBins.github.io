@@ -9,7 +9,7 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      mawk 'BEGIN { print "DATA" > /path/to/output-file }'
+      mawk 'BEGIN { print "DATA" > "/path/to/output-file" }'
     contexts:
       sudo:
       suid:

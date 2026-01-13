@@ -22,7 +22,7 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      gawk 'BEGIN { print "DATA" > /path/to/output-file }'
+      gawk 'BEGIN { print "DATA" > "/path/to/output-file" }'
     contexts:
       sudo:
       suid:
