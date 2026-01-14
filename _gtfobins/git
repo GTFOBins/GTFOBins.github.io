@@ -49,7 +49,7 @@ functions:
       git init .
       echo 'exec /bin/sh 0<&2 1>&2' >.git/hooks/pre-commit
       chmod +x .git/hooks/pre-commit
-      git -C "$TF" commit --allow-empty -m x
+      git -C . commit --allow-empty -m x
     comment: |-
       Git hooks are merely shell scripts and in the following example the hook associated to the `pre-commit` action is used. Any other hook will work, just make sure to be able perform the proper action to trigger it. An existing repository can also be used, and moving into the directory works too.
     contexts:
