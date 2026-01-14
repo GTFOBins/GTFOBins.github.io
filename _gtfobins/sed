@@ -9,14 +9,14 @@ functions:
       unprivileged:
   file-write:
   - code: |-
-      sed -n '1s/.*/DATA/w /path/to/output-file' /etc/profile
+      sed -n '1s/.*/DATA/w /path/to/output-file' /etc/hosts
     contexts:
       sudo:
       suid:
       unprivileged:
   shell:
   - code: |-
-      sed -n '1e exec /bin/sh 1>&0' /etc/profile
+      sed -n '1e exec /bin/sh 1>&0' /etc/hosts
     contexts:
       sudo:
       suid:

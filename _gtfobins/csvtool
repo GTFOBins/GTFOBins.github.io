@@ -23,7 +23,7 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      csvtool call '/bin/sh;false' /etc/profile
+      csvtool call '/bin/sh;false' /etc/hosts
     contexts:
       sudo:
       suid:

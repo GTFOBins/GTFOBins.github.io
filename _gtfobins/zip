@@ -10,7 +10,7 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      zip /path/to/temp-file /etc/profile -T -TT '/bin/sh #'
+      zip /path/to/temp-file /etc/hosts -T -TT '/bin/sh #'
     contexts:
       sudo:
       suid:

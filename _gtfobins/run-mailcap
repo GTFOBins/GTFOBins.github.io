@@ -2,7 +2,7 @@
 functions:
   inherit:
   - code: |-
-      run-mailcap --action=view text/plain:/etc/profile
+      run-mailcap --action=view text/plain:/etc/hosts
     contexts:
       sudo:
       unprivileged:

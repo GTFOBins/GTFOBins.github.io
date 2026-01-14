@@ -9,7 +9,7 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      pg /etc/profile
+      pg /etc/hosts
       !/bin/sh
     contexts:
       sudo:

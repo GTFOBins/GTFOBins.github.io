@@ -11,7 +11,7 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      more /etc/profile
+      more /etc/hosts
       !/bin/sh
     contexts:
       sudo:

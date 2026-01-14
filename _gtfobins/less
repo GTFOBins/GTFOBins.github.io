@@ -27,7 +27,7 @@ functions:
       unprivileged:
   inherit:
   - code: |-
-      less /etc/profile
+      less /etc/hosts
       v
     contexts:
       sudo:

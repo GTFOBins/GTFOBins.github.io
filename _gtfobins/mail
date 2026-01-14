@@ -11,7 +11,7 @@ functions:
     version: |-
       GNU
   - code: |-
-      mail -f /etc/profile
+      mail -f /etc/hosts
       !/bin/sh
     contexts:
       sudo:
