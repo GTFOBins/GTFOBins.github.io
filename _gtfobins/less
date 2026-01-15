@@ -8,7 +8,7 @@ functions:
       suid:
       unprivileged:
   - code: |-
-      less /etc/passwd
+      less /etc/hosts
       :e /path/to/input-file
     comment: |-
       This can be used to read another file, e.g., when invoked as a pager with some fixed content.
@@ -36,7 +36,7 @@ functions:
     from: vi
   shell:
   - code: |-
-      less /etc/passwd
+      less /etc/hosts
       !/bin/sh
     contexts:
       sudo:
@@ -44,7 +44,7 @@ functions:
         shell: true
       unprivileged:
   - code: |-
-      VISUAL="/bin/sh -c '/bin/sh'" less /etc/passwd
+      VISUAL="/bin/sh -c '/bin/sh'" less /etc/hosts
       v
     contexts:
       sudo:
