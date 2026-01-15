@@ -29,7 +29,6 @@ functions:
     contexts:
       sudo:
       suid:
-        shell: true
       unprivileged:
     from: less
   shell:
