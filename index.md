@@ -4,8 +4,6 @@ title: GTFOBins
 description: GTFOBins is a curated list of Unix-like executables that can be used to bypass local security restrictions in misconfigured systems.
 ---
 
-> **WARNING:** This is a work in progress, please refer to <https://gtfobins.github.io/>.
-
 ![GTFOBins logo]({{ '/assets/logo.png' | relative_url }}){:.logo}
 
 {{ page.description }}
