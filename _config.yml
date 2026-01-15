@@ -1,7 +1,6 @@
 title: GTFOBins
 
 url: https://gtfobins.github.io
-baseurl: /new # TODO temporary
 
 exclude:
   - /Dockerfile
