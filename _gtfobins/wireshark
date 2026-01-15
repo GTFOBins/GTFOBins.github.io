@@ -2,7 +2,7 @@
 functions:
   file-write:
   - code: |-
-      sudo wireshark -c 1 -i lo -k -f 'udp port 12345' &
+      wireshark -c 1 -i lo -k -f 'udp port 12345' &
       echo DATA | nc -u 127.127.127.127 12345
     comment: |-
       This technique can be used to write arbitrary files, i.e., the dump of one UDP packet.

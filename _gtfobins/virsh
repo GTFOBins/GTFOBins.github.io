@@ -16,7 +16,7 @@ functions:
         </devices>
       </domain>
       EOF
-      sudo virsh -c qemu:///system create /path/to/temp-file.xml
+      virsh -c qemu:///system create /path/to/temp-file.xml
       virsh -c qemu:///system destroy x
     contexts:
       sudo:

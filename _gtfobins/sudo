@@ -2,7 +2,7 @@
 functions:
   shell:
   - code: |-
-      sudo sudo /bin/sh
+      sudo /bin/sh
     contexts:
       sudo:
 ...

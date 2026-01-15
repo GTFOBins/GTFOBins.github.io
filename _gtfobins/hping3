@@ -21,7 +21,7 @@ functions:
       sudo:
     receiver:
       code: |-
-        sudo hping3 --icmp --listen xxx --dump
+        hping3 --icmp --listen xxx --dump
       comment: |-
         The same program can be used on the attacker box to receive the data.
 ...
