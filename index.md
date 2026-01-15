@@ -28,8 +28,8 @@ If you are looking for Windows binaries you should visit [LOLBAS][].
 {:.centered}
 
 [contributors]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
-[norbemi]: https://twitter.com/norbemi
-[cyrus_and]: https://twitter.com/cyrus_and
+[norbemi]: https://x.com/norbemi
+[cyrus_and]: https://x.com/cyrus_and
 [LOLBAS]: https://lolbas-project.github.io/
 [GitHub]: https://github.com/GTFOBins/GTFOBins.github.io
 
