@@ -5,7 +5,7 @@ functions:
       echo 'execute = /bin/sh,-c,"/bin/sh </dev/tty >/dev/tty 2>/dev/tty' >~/.rtorrent.rc
       rtorrent
     comment: |-
-      After the shell, exit with `Ctrl-q`.
+      After the shell, exit with `Ctrl-Q`.
     contexts:
       sudo:
       suid:
