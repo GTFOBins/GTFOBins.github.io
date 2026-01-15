@@ -44,7 +44,7 @@ functions:
         shell: true
       unprivileged:
   - code: |-
-      VISUAL="/bin/sh -c '/bin/sh'" less /etc/hosts
+      VISUAL='/bin/sh -s --' less /etc/hosts
       v
     contexts:
       sudo:
