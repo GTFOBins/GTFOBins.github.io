@@ -1,0 +1,12 @@
+---
+comment: |-
+  This might not work if run by unprivileged users depending on the system configuration.
+functions:
+  inherit:
+  - code: |-
+      journalctl
+    contexts:
+      sudo:
+      unprivileged:
+    from: less
+...

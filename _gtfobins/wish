@@ -1,0 +1,11 @@
+---
+functions:
+  inherit:
+  - code: |-
+      wish
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: tclsh
+...
