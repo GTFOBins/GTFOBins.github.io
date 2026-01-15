@@ -1,4 +1,6 @@
 ---
+comment: |-
+  This tool is installed starting with Java SE 8.
 functions:
   download:
   - code: |-
