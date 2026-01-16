@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      nasm -@ /path/to/input-file
+    comment: |-
+      The file content is treated as command line options and disclosed throught error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
