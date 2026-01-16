@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      install -m 6777 /path/to/input-file /path/to/output-dir/
+    comment: |-
+      This can be run with elevated privileges to change permissions (`6` denotes the SUID bits) and then read, write, or execute a file.
+    contexts:
+      sudo:
+      suid:
+...

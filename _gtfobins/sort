@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      sort -m /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

