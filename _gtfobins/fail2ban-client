@@ -1,0 +1,16 @@
+---
+functions:
+  command:
+  - code: |-
+      fail2ban-client add x
+      fail2ban-client set x addaction x
+      fail2ban-client set x action x actionban /path/to/command
+      fail2ban-client start x
+      fail2ban-client set x banip 999.999.999.999
+      fail2ban-client set x unbanip 999.999.999.999
+      fail2ban-client stop x
+    comment: |-
+      The subprocess is immediately sent to the background, but `fail2ban-client` waits on a return code from the subprocess. The `banip` command will hang until the subprocess returns.
+    contexts:
+      sudo:
+...
