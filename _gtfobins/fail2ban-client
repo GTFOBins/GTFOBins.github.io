@@ -1,7 +1,8 @@
 ---
 functions:
   command:
-  - code: |-
+  - blind: true
+    code: |-
       fail2ban-client add x
       fail2ban-client set x addaction x
       fail2ban-client set x action x actionban /path/to/command
