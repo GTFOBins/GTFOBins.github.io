@@ -1,0 +1,14 @@
+---
+comment: |-
+  A valid PostgreSQL server must be available to connect to.
+functions:
+  inherit:
+  - code: |-
+      psql
+      \?
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: less
+...

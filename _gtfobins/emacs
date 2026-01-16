@@ -1,0 +1,27 @@
+---
+comment: |-
+  All the functions operate in the Emacs terminal interface.
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      emacs /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      emacs /path/to/output-file
+      DATA
+      C-x C-s
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      emacs -Q -nw --eval '(term "/bin/sh")'
+    contexts:
+      sudo:
+      unprivileged:
+...
