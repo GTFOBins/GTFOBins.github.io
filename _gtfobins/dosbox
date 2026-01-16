@@ -1,0 +1,32 @@
+---
+comment: |-
+  Basically `dosbox` allows to mount the local file system, so that it can be altered using DOS commands. Note that the DOS filename convention ([8.3](https://en.wikipedia.org/wiki/8.3_filename)) is used.
+functions:
+  file-read:
+  - code: |-
+      dosbox -c 'mount c /' -c 'type c:\path\to\input'
+    comment: |-
+      The file content will be displayed in the DOSBox graphical window.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  - code: |-
+      dosbox -c 'mount c /' -c 'copy c:\path\to\input c:\path\to\output' -c exit
+      cat /path/to/OUTPUT
+    comment: |-
+      The file is copied to a readable location.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      dosbox -c 'mount c /' -c "echo DATA >c:\path\to\output" -c exit
+    comment: |-
+      Note that `echo` terminates the string with a DOS-style line terminator (`\r\n`), if that's a problem and your scenario allows it, you can create the file outside `dosbox`, then use `copy` to do the actual write.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

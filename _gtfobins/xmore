@@ -1,0 +1,14 @@
+---
+comment: |-
+  This requires a running X server.
+functions:
+  file-read:
+  - code: |-
+      xmore /path/to/input-file
+    comment: |-
+      The file is displayed in a graphical window.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
