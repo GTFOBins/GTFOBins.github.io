@@ -1,0 +1,21 @@
+---
+functions:
+  shell:
+  - code: |-
+      npm exec /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      echo '{"scripts": {"preinstall": "/bin/sh"}}' >package.json
+      npm -C . i
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      echo '{"scripts": {"xxx": "/bin/sh"}}' >package.json
+      npm -C . run xxx
+    contexts:
+      sudo:
+      unprivileged:
+...
