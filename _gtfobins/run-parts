@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      run-parts --new-session --regex '^sh$' /bin
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          run-parts --new-session --regex '^sh$' /bin --arg='-p'
+        shell: false
+      unprivileged:
+...

