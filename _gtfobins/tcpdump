@@ -16,4 +16,19 @@ functions:
       unprivileged:
     version: |-
       In recent distributions (e.g., Debian 10 and Ubuntu 18) AppArmor limits the `postrotate-command` to a small subset of predefined commands thus preventing the execution of the following.
+  file-write:
+  - code: |-
+      tcpdump -ln -i lo -w /path/to/output-file -c 1 -Z user
+    comment: |-
+      This saves the packet dump (count is 1) from the loopback interface to a file. To trigger the capture use something like:
+
+      ```
+      nc -u localhost 1 <<<DATA
+      ```
+
+      While `user` is the owner of the packet dump file, the invoking user must be able to capture traffic on the device.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...
