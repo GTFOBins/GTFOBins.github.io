@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      strings /path/to/input-file
+    comment: |-
+      This only returns ASCII strings.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

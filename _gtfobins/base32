@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      base32 /path/to/input-file | base32 --decode
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

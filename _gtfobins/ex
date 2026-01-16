@@ -1,0 +1,11 @@
+---
+functions:
+  inherit:
+  - code: |-
+      ex
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: ed
+...
