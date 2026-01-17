@@ -1,5 +1,15 @@
 ---
 functions:
+  file-read:
+  - binary: false
+    code: |-
+      make -s --eval='$(file >/dev/stdout,$(file </path/to/input-file))' .
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    version: |-
+      GNU
   file-write:
   - code: |-
       make -s --eval='$(file >/path/to/output-file,DATA)' .
