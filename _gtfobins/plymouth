@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      plymouth ask-for-password --prompt=x --command=/bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          plymouth ask-for-password --prompt=x --command='/bin/sh -p'
+        shell: false
+      unprivileged:
+...

