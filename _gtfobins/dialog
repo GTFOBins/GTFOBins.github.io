@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      dialog --textbox /path/to/input-file 0 0
+    comment: |-
+      The file is shown in an interactive TUI dialog.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
