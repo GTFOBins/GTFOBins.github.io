@@ -1,7 +1,0 @@
-<dl>
-    {% for function_pair in site.data.functions %}
-    {% assign function = function_pair[1] %}
-    <dt class="function-name">{{ function.label }}</dt>
-    <dd>{{ function.description | markdownify }}</dd>
-    {% endfor %}
-</dl>
