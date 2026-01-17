@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      msgmerge -P /path/to/input-file /dev/null
+    comment: |-
+      The file is parsed and displayed as a Java `.properties` file.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      nm /path/to/input-file
+    comment: |-
+      The file content is treated as command line options and disclosed through error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
