@@ -1,0 +1,19 @@
+---
+functions:
+  file-read:
+  - code: |-
+      pg /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      pg /etc/hosts
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
