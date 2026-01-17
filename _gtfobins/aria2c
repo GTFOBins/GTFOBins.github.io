@@ -30,4 +30,14 @@ functions:
       sudo:
       suid:
       unprivileged:
+  file-read:
+  - binary: false
+    code: |-
+      aria2c -i /path/to/input-file
+    comment: |-
+      The file is leaked as error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...
