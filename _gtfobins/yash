@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      yash
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
