@@ -35,4 +35,13 @@ functions:
       suid:
         shell: true
       unprivileged:
+  - code: |-
+      vi -c :terminal /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          vi -c ':terminal /bin/sh -p'
+        shell: false
+      unprivileged:
 ...
