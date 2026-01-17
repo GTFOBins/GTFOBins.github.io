@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      stdbuf -i0 /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          stdbuf -i0 /bin/sh -p
+        shell: false
+      unprivileged:
+...

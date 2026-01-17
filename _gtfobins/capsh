@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      capsh --
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          capsh --gid=0 --uid=0 --
+      unprivileged:
+...
