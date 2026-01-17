@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      cupsfilter -i application/octet-stream -m application/octet-stream /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

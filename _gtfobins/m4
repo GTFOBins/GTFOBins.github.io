@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      m4 /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
