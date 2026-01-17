@@ -2,11 +2,11 @@
 functions:
   command:
   - code: |-
-      echo /path/to/command" >/path/to/temp-file
+      echo /path/to/command >/path/to/temp-file
       chmod +x /path/to/temp-file
       tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z /path/to/temp-file
     comment: |-
-      These require some traffic to be actually captured. Also note that the subprocess is immediately sent to the background.
+      This requires some traffic to be actually captured. Also note that the subprocess is immediately sent to the background.
     contexts:
       sudo:
         code: |-
