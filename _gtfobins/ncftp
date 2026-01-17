@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      ncftp
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          ncftp
+          !/bin/sh -p
+        shell: true
+      unprivileged:
+...

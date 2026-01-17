@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      psftp
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

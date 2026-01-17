@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      ghci
+      System.Process.callCommand "/bin/sh"
+    contexts:
+      sudo:
+      unprivileged:
+...
