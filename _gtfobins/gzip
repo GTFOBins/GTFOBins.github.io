@@ -6,6 +6,9 @@ functions:
   - code: |-
       gzip -c /path/to/input-file | gzip -d
     contexts:
+      capabilities:
+        list:
+        - CAP_DAC_OVERRIDE
       sudo:
       suid:
       unprivileged:
