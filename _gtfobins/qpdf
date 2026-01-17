@@ -2,10 +2,8 @@
 functions:
   file-read:
   - code: |-
-      qpdf --qdf --add-attachment /path/to/input-file --key=x -- /path/to/some.pdf /path/to/output-file
+      qpdf --empty --add-attachment /path/to/input-file --key=x -- /path/to/output-file
       qpdf --show-attachment=x /path/to/output-file
-    comment: |-
-      This needs an existing [valid PDF](https://pdfa.org/the-smallest-possible-valid-pdf/) , the file to be read is added as an attachment.
     contexts:
       sudo:
       suid:
