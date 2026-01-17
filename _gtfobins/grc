@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      grc --pty /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

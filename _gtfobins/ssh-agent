@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      ssh-agent /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          ssh-agent /bin/sh -p
+        shell: false
+      unprivileged:
+...

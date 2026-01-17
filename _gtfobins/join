@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      join -a 2 /dev/null /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
