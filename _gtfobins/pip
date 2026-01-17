@@ -18,4 +18,10 @@ functions:
       sudo:
       unprivileged:
     from: python
+  shell:
+  - code: |-
+      pip config --editor '/bin/sh -s' edit
+    contexts:
+      sudo:
+      unprivileged:
 ...
