@@ -149,7 +149,7 @@ library-load:
           | gcc -w -fPIC -shared -o lib.so -x c -
       ```
 
-      Add the usual `-p` argument to the shell for SUID contexts.
+      Add the usual `-p` argument to the shell for SUID contexts. Consider calling `setuid(0);` beforehand if the executable has the `CAP_SETUID` capability assigned.
 
 privilege-escalation:
   label: Privilege escalation

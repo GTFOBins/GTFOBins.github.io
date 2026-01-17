@@ -32,8 +32,6 @@ functions:
       python -c 'from ctypes import cdll; cdll.LoadLibrary("/path/to/lib.so")'
     contexts:
       capabilities:
-        code: |-
-          python -c 'from ctypes import cdll; import os; os.setuid(0); cdll.LoadLibrary("/path/to/lib.so")'
         list:
         - CAP_SETUID
       sudo:
