@@ -1,0 +1,20 @@
+---
+functions:
+  file-read:
+  - code: |-
+      exiftool -filename=/path/to/output-file /path/to/input-file
+      cat /path/to/output-file
+    comment: |-
+      If the permissions allow it, files are moved (instead of copied) to the destination.
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - code: |-
+      exiftool -filename=/path/to/output-file /path/to/input-file
+    comment: |-
+      If the permissions allow it, files are moved (instead of copied) to the destination.
+    contexts:
+      sudo:
+      unprivileged:
+...

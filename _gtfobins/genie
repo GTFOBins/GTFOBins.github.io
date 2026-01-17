@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      genie -c '/bin/sh'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
