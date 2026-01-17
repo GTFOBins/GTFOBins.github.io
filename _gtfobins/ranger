@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      ranger
+      S
+    contexts:
+      sudo:
+      unprivileged:
+...

