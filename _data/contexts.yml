@@ -1,0 +1,23 @@
+unprivileged:
+  label: Unprivileged
+  description: This function can be performed by any unprivileged user.
+
+sudo:
+  label: Sudo
+  description: This function is performed by the privileged user if executed via `sudo` because the acquired privileges are not dropped.
+  extra:
+    environment: If there are environment variables involved, they must be passed via `sudo VAR=value ...` or exported then `sudo -E ...`.
+
+suid:
+  label: SUID
+  description: This function is performed by the privileged user if the executable has the SUID bit set and the right ownership because the *effective* privileges are not dropped.
+  extra:
+    shell:
+      true: This executable runs commands using the system shell, e.g., via functions like `system`, so it only works for distributions where the shell does not drop SUID privileges.
+      false: This executable runs commands directly, e.g., via functions like `exec`, remember to omit the `-p` argument of every `/bin/sh` invocation for distributions where the default shell does not drop SUID privileges.
+
+capabilities:
+  label: Capabilities
+  description: This function is performed bypassing the usual kernel permission checks if the executable has certain capabilities set.
+  extra:
+    list: 'The following capabilities are needed:'

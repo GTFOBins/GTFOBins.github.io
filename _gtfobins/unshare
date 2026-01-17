@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      unshare /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          unshare -r /bin/sh
+      unprivileged:
+...
