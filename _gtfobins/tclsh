@@ -1,5 +1,14 @@
 ---
 functions:
+  library-load:
+  - code: |-
+      tclsh
+      load /path/to/lib.so x
+    contexts:
+      capabilities:
+      sudo:
+      suid:
+      unprivileged:
   reverse-shell:
   - code: |-
       tclsh
