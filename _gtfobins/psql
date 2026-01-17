@@ -11,4 +11,13 @@ functions:
       suid:
       unprivileged:
     from: less
+  shell:
+  - code: |-
+      psql
+      \! /bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
 ...
