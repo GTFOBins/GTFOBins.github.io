@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      zcat -f /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+...
