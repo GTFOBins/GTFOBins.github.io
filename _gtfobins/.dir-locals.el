@@ -1,1 +1,0 @@
-((markdown-mode . ((mode . yaml))))

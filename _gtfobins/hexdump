@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      hd /path/to/input-file
+    comment: |-
+      The output is actually an hex dump.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

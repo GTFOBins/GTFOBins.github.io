@@ -1,0 +1,13 @@
+---
+functions:
+  inherit:
+  - code: |-
+      luatex -shell-escape '\directlua{...}\end'
+    comment: |-
+      This allows to run Lua code (`...`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: lua
+...
