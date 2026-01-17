@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      mtr --raw -F /path/to/input-file
+    comment: |-
+      The file is actually parsed, thus the content is corrupted by error prints.
+    contexts:
+      sudo:
+      unprivileged:
+...

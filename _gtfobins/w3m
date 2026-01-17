@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      w3m -dump /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

