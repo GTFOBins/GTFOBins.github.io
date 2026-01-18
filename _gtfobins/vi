@@ -28,8 +28,7 @@ functions:
         shell: true
       unprivileged:
   - code: |-
-      vi
-      :shell
+      vi -c ':shell'
     contexts:
       sudo:
       suid:
