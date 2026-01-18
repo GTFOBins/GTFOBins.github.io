@@ -1,0 +1,12 @@
+---
+functions:
+  inherit:
+  - code: |-
+      knife exec -E '...'
+    comment: |-
+      This allows to run Ruby code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: ruby
+...

@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      doas -u root /bin/sh
+    comment: |-
+      The user must be allowed to use `doas`.
+    contexts:
+      sudo:
+      unprivileged:
+...

