@@ -1,0 +1,12 @@
+---
+functions:
+  file-write:
+  - code: |-
+      echo DATA >/path/to/temp-file
+      update-alternatives --force --install /path/to/output-file x /path/to/temp-file 0
+    comment: |-
+      Write in `/path/to/output-file` a symlink to `/path/to/temp-file`.
+    contexts:
+      sudo:
+      suid:
+...

