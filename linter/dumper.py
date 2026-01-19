@@ -51,21 +51,17 @@ _Dumper.add_representer(type(None), _none_representer)
 ###
 
 
-def dump(data, path, check_only):
+def dump(text, data, path, check_only):
     # serialize the data object
     data = _ensure_block_style(data)
-    string = yaml.dump(data, Dumper=_Dumper, explicit_start=True, explicit_end=True)
-
-    # load the existing file
-    with open(path, 'r') as fs:
-        existing = fs.read()
+    formatted = yaml.dump(data, Dumper=_Dumper, explicit_start=True, explicit_end=True)
 
     # if not properly formatted
-    if existing != string:
+    if formatted != text:
         if check_only:
             # report error
             raise LinterError('schema OK but invalid format, please run the formatter')
         else:
             # write the formatted file
             with open(path, 'w') as fs:
-                fs.write(string)
+                fs.write(formatted)

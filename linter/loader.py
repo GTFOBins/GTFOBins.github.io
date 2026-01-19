@@ -9,6 +9,6 @@ def load(path):
         with open(path, 'r') as fs:
             text = fs.read()
             data = yaml.safe_load(text)
-            return data
+            return text, data
     except yaml.YAMLError as e:
         raise LinterError(f'{e.problem} at line {e.problem_mark.line}')
