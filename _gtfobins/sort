@@ -1,7 +1,8 @@
 ---
 functions:
   file-read:
-  - code: |-
+  - binary: false
+    code: |-
       sort -m /path/to/input-file
     contexts:
       sudo:
