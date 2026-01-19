@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      unexpand -t999 /path/to/input-file
+    comment: |-
+      Convert sequences of (e.g., `999`) spaces to tab.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
