@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      cmp /path/to/input-file /dev/zero -b -l
+    comment: |-
+      Dump the bytes of the input file that are different from the NUL byte in a tabular format.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

