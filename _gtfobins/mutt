@@ -3,7 +3,7 @@ functions:
   file-read:
   - binary: false
     code: |-
-      sudo mutt -F /path/to/input-file
+      mutt -F /path/to/input-file
     comment: |-
       The file is leaked as error messages.
     contexts:

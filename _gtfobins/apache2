@@ -3,7 +3,7 @@ functions:
   file-read:
   - binary: false
     code: |-
-      sudo apache2 -f /path/to/input-file
+      apache2 -f /path/to/input-file
     comment: |-
       The first line may be leaked as an error message.
     contexts:
