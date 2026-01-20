@@ -1,8 +1,9 @@
 title: GTFOBins
 
-url: https://gtfobins.github.io
+url: https://gtfobins.org
 
 exclude:
+  - /CNAME
   - /Dockerfile
   - /Gemfile*
   - /LICENSE
