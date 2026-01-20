@@ -17,6 +17,8 @@ functions:
       WantedBy=multi-user.target' >/path/to/temp-file.service
       systemctl link /path/to/temp-file.service
       systemctl enable --now /path/to/temp-file.service
+    comment: |-
+      It might happen that the service is not started with `--now`, in such cases it might be necessary to manually start it.
     contexts:
       sudo:
       suid:
