@@ -10,4 +10,13 @@ functions:
       sudo:
       suid:
       unprivileged:
+  - binary: false
+    code: |-
+      aspell --conf /path/to/input-file
+    comment: |-
+      The first word is likely displayed as error messaged, and converted to lowercase.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...
