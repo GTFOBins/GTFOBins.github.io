@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      nsenter /bin/sh
+    comment: |-
+      The shell command can be omitted.
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          nsenter /bin/sh -p
+        shell: false
+      unprivileged:
+...

