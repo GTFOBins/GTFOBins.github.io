@@ -1,9 +1,15 @@
 <h1>
-    {% if page.url != '/' %}
-    <a href="/">..</a> /
-    {% endif %}
-    {{ include.title }}
+    <div>
+        {% if page.url != '/' %}
+            <a href="{{ "/" | relative_url }}">..</a> /
+            {{ include.title }}
+        {% else %}
+            <span class="accent">GTFO</span>Bins
+        {% endif %}
+    </div>
     <div class="github-buttons">
-        <a class="github-button" href="https://github.com/GTFOBins/GTFOBins.github.io" data-icon="octicon-star" data-show-count="true" aria-label="Star GTFOBins/GTFOBins.github.io on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/sponsors/GTFOBins" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @GTFOBins on GitHub">Sponsor</a>
+        <a class="github-button" href="https://github.com/GTFOBins/gtfobins.github.io/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork GTFOBins/gtfobins.github.io on GitHub">Fork</a>
+        <a class="github-button" href="https://github.com/GTFOBins/gtfobins.github.io" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star GTFOBins/gtfobins.github.io on GitHub">Star</a>
     </div>
 </h1>
