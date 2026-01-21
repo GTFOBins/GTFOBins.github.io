@@ -1,0 +1,15 @@
+---
+functions:
+  inherit:
+  - code: |-
+      bee eval '...'
+    comment: |-
+      This allows to run PHP code (`...`).
+
+      This must be excuted from the Backdrop CMS root directory (e.g. `/var/www/html`), alternatively use the `--root` option.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: php
+...
