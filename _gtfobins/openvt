@@ -1,0 +1,11 @@
+---
+functions:
+  command:
+  - blind: true
+    code: |-
+      openvt -- /path/to/command
+    comment: |-
+      The command execution is displayed on the virtual console.
+    contexts:
+      sudo:
+...
