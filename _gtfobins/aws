@@ -1,5 +1,13 @@
 ---
 functions:
+  file-read:
+  - binary: false
+    code: |-
+      aws ec2 describe-instances --filter file:///path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   inherit:
   - code: |-
       aws help
