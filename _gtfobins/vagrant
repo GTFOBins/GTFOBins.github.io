@@ -1,0 +1,13 @@
+---
+functions:
+  inherit:
+  - code: |-
+      echo '...' >Vagrantfile
+      vagrant up
+    comment: |-
+      This allows to run Ruby code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: ruby
+...

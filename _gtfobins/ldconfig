@@ -1,0 +1,23 @@
+---
+functions:
+  library-load:
+  - code: |-
+      echo /path/to/temp-dir/ >/path/to/temp-file
+      ldconfig -f /path/to/temp-file
+      ping
+    comment: |-
+      This allows to override one or more shared libraries (e.g., `libpcap`) globally, then triggers the execution by running a program that uses it, e.g., `ping`. This is particularly useful if the target binary is SUID. Beware though that it is easy to end up with a broken target system.
+
+      First identify the shared libraries used by the target program, for example:
+
+      ```
+      $ ldd /bin/ping | grep libcap
+              libcap.so.2 => /path/to/temp-dir/libcap.so.2 (0x00007f8417eef000)
+      ```
+
+      Then create the shared library override, named `libcap.so.2`, and put in in `/path/to/temp-dir/`. The program might require some exported symbols from the library override, in that case make sure to add them (e.g., `void cap_get_flag() {}`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

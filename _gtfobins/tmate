@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      tmate -c /bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
