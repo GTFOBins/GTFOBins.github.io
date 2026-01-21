@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      ul /path/to/input-file
+    comment: |-
+      The read file content is corrupted by replacing occurrences of `$'\b_'` to terminal sequences and by converting tabs to spaces.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
