@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      rpm opkg install x_1.0_all.deb
+    comment: |-
+      Generate the Debian package with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
+
+      ```
+      echo 'exec /bin/sh' >x.sh
+      fpm -n x -s dir -t deb -a all --before-install x.sh .
+      ```
+    contexts:
+      sudo:
+...
