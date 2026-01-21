@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      fping -f /path/to/input-file
+    comment: |-
+      Each line is treated as an hostname and it's leaked as an error message.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

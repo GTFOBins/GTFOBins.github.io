@@ -1,0 +1,17 @@
+---
+functions:
+  file-read:
+  - code: |-
+      dos2unix -f -O /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      dos2unix -f -n /path/to/input-file /path/to/output-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

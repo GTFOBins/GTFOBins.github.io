@@ -1,0 +1,32 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      gcc -x c -E /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+  - binary: false
+    code: |-
+      gcc @/path/to/input-file
+    comment: |-
+      The file is read and parsed as a list of files (one per line), the content is displayed as error messages.
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - code: |-
+      gcc -x c /dev/null -o /path/to/input-file
+    comment: |-
+      This actually deletes the file.
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      gcc -wrapper /bin/sh,-s .
+    contexts:
+      sudo:
+      unprivileged:
+...

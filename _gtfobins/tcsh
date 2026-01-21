@@ -1,0 +1,21 @@
+---
+functions:
+  file-write:
+  - code: |-
+      tcsh -c 'echo DATA >/path/to/output-file'
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          tcsh -bc 'echo DATA >/path/to/output-file'
+      unprivileged:
+  shell:
+  - code: |-
+      tcsh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          tcsh -b
+      unprivileged:
+...
