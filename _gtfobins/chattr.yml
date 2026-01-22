@@ -5,11 +5,9 @@ description: |
 
 functions:
   file-write:
-    - description: |
-        Set immutable attributes on sensitive files like /etc/sudoers.
-      code: "chattr +i /etc/sudoers"
+    - code: "chattr +i /etc/sudoers"
       contexts:
         sudo:
-          comment: "Abuse when chattr is allowed via sudo without restrictions."
+          comment: "Set immutable attributes on sensitive files like /etc/sudoers when allowed via sudo."
         suid:
-          comment: "Abuse when chattr binary has the SUID bit set."
+          comment: "Set immutable attributes on sensitive files like /etc/sudoers when chattr has the SUID bit set."
