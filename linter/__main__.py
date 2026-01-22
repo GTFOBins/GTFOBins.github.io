@@ -2,6 +2,7 @@ from . import linter
 
 import argparse
 import os
+import re
 import sys
 
 
@@ -21,7 +22,7 @@ def run(check_only, verbose):
     # process all the entries
     for name in sorted(os.listdir()):
         # check for old-version files
-        if name.endswith('.md'):
+        if re.search(r'\.(md|yaml|yml)$', name):
             report_fail(name, 'entries must have no extension')
             return False
 
