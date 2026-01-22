@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      wc --files0-from /path/to/input-file
+    comment: |-
+      The file content is parsed as a sequence of `\x00` separated paths. On error the file content appears in a message.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

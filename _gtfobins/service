@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      service ../../bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

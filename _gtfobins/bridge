@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      bridge -b /path/to/input-file
+    comment: |-
+      Outputs the first line of the file (until the first whitespace) inside an error message to stdandard error.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

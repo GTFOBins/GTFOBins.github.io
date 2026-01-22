@@ -1,0 +1,16 @@
+---
+functions:
+  file-read:
+  - code: |-
+      cmake -E cat /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      echo 'execute_process(COMMAND /bin/sh)' >/path/to/CMakeLists.txt
+      cmake /path/to/
+    contexts:
+      sudo:
+      unprivileged:
+...

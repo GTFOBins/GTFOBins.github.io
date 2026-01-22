@@ -1,0 +1,11 @@
+---
+functions:
+  command:
+  - code: |-
+      dnsmasq --conf-script='/path/to/command 1>&2'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
