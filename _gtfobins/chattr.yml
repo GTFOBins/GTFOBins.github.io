@@ -3,7 +3,6 @@ description: |
   chattr is a Linux utility to change file attributes. It can be abused
   when misconfigured (e.g., via sudo or SUID) to set immutable attributes
   on sensitive files.
-
 contexts:
   sudo:
     comment: |
