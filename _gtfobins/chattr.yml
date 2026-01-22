@@ -20,7 +20,6 @@ contexts:
     comment: |
       Abuse when chattr is allowed via sudo without restrictions.
     code: "sudo chattr +i /etc/passwd"
-
   suid:
     comment: |
       Abuse when chattr binary has the SUID bit set.
