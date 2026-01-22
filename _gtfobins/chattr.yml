@@ -5,7 +5,8 @@ description: |
 
 functions:
   file-write:
-    - description: "Set immutable attributes on sensitive files like /etc/sudoers."
+    - description: |
+        Set immutable attributes on sensitive files like /etc/sudoers.
       code: "chattr +i /etc/sudoers"
       contexts:
         sudo:
