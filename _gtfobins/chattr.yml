@@ -4,6 +4,16 @@ description: |
   when misconfigured (e.g., via sudo or SUID) to set immutable attributes
   on sensitive files.
 
+contexts:
+  sudo:
+    comment: |
+      Abuse when chattr is allowed via sudo without restrictions.
+    code: "sudo chattr +i /etc/passwd"
+  suid:
+    comment: |
+      Abuse when chattr binary has the SUID bit set.
+    code: "./chattr +i /etc/crontab"
+
 functions:
   file-write:
     - description: |
@@ -15,13 +25,4 @@ functions:
         to block root changes.
       code: "./chattr +i /etc/shadow"
 
-contexts:
-  sudo:
-    comment: |
-      Abuse when chattr is allowed via sudo without restrictions.
-    code: "sudo chattr +i /etc/passwd"
-  suid:
-    comment: |
-      Abuse when chattr binary has the SUID bit set.
-    code: "./chattr +i /etc/crontab"
 ...
