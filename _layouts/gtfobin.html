@@ -66,9 +66,11 @@ layout: common
     {% comment %} list of function examples {% endcomment %}
     <ul class="examples">
         {% for example in examples %}
-            <li{% if example_count > 1 %} class="has-pill"{% endif %}>
+            <li class="{% if example_count > 1 %}has-pill{% else %}single-pill{% endif %}">
                 {% if example_count > 1 %}
                     <span class="example-pill">Technique {{ forloop.index }}</span>
+                {% else %}
+                    <span class="example-pill">Technique</span>
                 {% endif %}
                 {% comment %} build the identifier of this example {% endcomment %}
                 {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
@@ -129,14 +131,14 @@ layout: common
                             {% comment %} additional per-context content {% endcomment %}
                             {% case context_name %}
                             {% when "sudo" %}
-                                <fieldset>
-                                    <legend>Remarks</legend>
+                                <fieldset class="note-block">
+                                    <legend>Note</legend>
                                     {{ context.extra.environment | markdownify }}
                                 </fieldset>
                             {% when "suid" %}
                                 {% if per_context_info.shell != nil %}
-                                    <fieldset>
-                                        <legend>Remarks</legend>
+                                    <fieldset class="note-block">
+                                        <legend>Note</legend>
                                         {% if per_context_info.shell %}
                                             {{ context.extra.shell[true] | markdownify }}
                                         {% else %}
@@ -183,8 +185,8 @@ layout: common
                     {% endif %}
                 {% when "file-write", "file-read", "upload", "download" %}
                     {% if example.binary == false %}
-                        <fieldset>
-                            <legend>Remarks</legend>
+                        <fieldset class="note-block">
+                            <legend>Note</legend>
                             {{ function.extra.binary[false] | markdownify }}
                         </fieldset>
                     {% endif %}

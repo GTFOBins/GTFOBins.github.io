@@ -239,7 +239,7 @@ h2, h3, h4, h5, h5 {
 h2.function-name {
     margin-top: 2em;
     padding-top: 1.5em;
-    border-top: 1px solid $faint;
+    border-top: 1px solid rgba($accent, 0.4);
     font-size: 1.25em;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -413,7 +413,7 @@ h2.function-name {
 
 .intro-sentence {
     font-size: $small-font-size;
-    color: $faint;
+    color: $foreground;
     margin: 1.5em 0 0.75em 0;
 }
 
@@ -448,13 +448,13 @@ h2.function-name {
 
 .context-lead {
     font-size: $small-font-size;
-    color: $faint;
+    color: $foreground;
     margin: 0.5em 0;
 }
 
 .examples-lead {
     font-size: $small-font-size;
-    color: $faint;
+    color: $foreground;
     margin: 0.5em 0 1em 0;
 }
 
@@ -479,12 +479,16 @@ h2.function-name {
         transition: border-left-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
         &.has-pill {
+            padding-top: 2.75em;
+        }
+
+        &.single-pill {
             padding-top: 2.25em;
         }
 
         .example-pill {
             position: absolute;
-            top: -0.85em;
+            top: -0.6em;
             left: 1.5em;
             display: inline-flex;
             align-items: center;
@@ -522,6 +526,20 @@ h2.function-name {
 
         fieldset:last-of-type {
             margin-bottom: 0.5em;
+        }
+
+        fieldset.note-block {
+            background: transparent;
+            border: 1px dashed rgba($accent, 0.45);
+            color: $faint;
+            padding: 0.85em 1em;
+
+            legend {
+                color: $accent;
+                font-size: 0.7em;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
         }
     }
 }
