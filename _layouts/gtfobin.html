@@ -33,7 +33,7 @@ layout: common
 
 {% comment %} intro sentence {% endcomment %}
 <p class="intro-sentence">
-    It can be used to {% if function_count == 1 %}perform the following function{% else %}perform <strong>{{ function_count }} functions</strong>{% endif %}:
+    This executable enables {% if function_count == 1 %}the following function{% else %}<strong>{{ function_count }} functions</strong>{% endif %}:
 </p>
 
 {% comment %} function list {% endcomment %}
@@ -66,7 +66,10 @@ layout: common
     {% comment %} list of function examples {% endcomment %}
     <ul class="examples">
         {% for example in examples %}
-            <li>
+            <li{% if example_count > 1 %} class="has-pill"{% endif %}>
+                {% if example_count > 1 %}
+                    <span class="example-pill">Technique {{ forloop.index }}</span>
+                {% endif %}
                 {% comment %} build the identifier of this example {% endcomment %}
                 {% capture example_id %}{{ function_name }}-{{ forloop.index }}{% endcapture %}
 

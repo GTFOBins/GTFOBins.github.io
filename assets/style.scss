@@ -464,7 +464,6 @@ h2.function-name {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
-    counter-reset: item;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -472,29 +471,33 @@ h2.function-name {
     & > li {
         display: block;
         position: relative;
-        padding: 1em 1em 1em 3.5em;
+        padding: 1.25em;
         background: $lighter;
         border-radius: 0.5em;
         border-left: 3px solid $faint;
         box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
         transition: border-left-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
-        &:before {
+        &.has-pill {
+            padding-top: 2.25em;
+        }
+
+        .example-pill {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 3em;
-            height: 100%;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 1em;
-            box-sizing: border-box;
-            font-size: $small-font-size;
-            font-weight: bold;
-            counter-increment: item;
-            content: "(" counter(item, lower-alpha) ")";
-            color: $faint;
+            top: -0.85em;
+            left: 1.5em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35em;
+            padding: 0.2em 0.85em;
+            border-radius: 999px;
+            border: 1px solid rgba($accent, 0.4);
+            background: $background;
+            color: $accent;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         &:hover {
