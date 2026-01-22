@@ -9,24 +9,20 @@ functions:
     - description: |
         If chattr is allowed via sudo, it can set immutable attributes
         on sensitive files like /etc/sudoers.
-      code: |
-        sudo chattr +i /etc/sudoers
+      code: "sudo chattr +i /etc/sudoers"
     - description: |
         If chattr has the SUID bit set, a user can lock critical files
         to block root changes.
-      code: |
-        ./chattr +i /etc/shadow
+      code: "./chattr +i /etc/shadow"
 
 contexts:
   sudo:
     comment: |
       Abuse when chattr is allowed via sudo without restrictions.
-    code: |
-      sudo chattr +i /etc/passwd
+    code: "sudo chattr +i /etc/passwd"
 
   suid:
     comment: |
       Abuse when chattr binary has the SUID bit set.
-    code: |
-      ./chattr +i /etc/crontab
+    code: "./chattr +i /etc/crontab"
 ...
