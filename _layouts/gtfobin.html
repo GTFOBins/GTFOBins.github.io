@@ -24,16 +24,34 @@ layout: common
 
 {% comment %} count functions for intro sentence {% endcomment %}
 {% assign function_count = 0 %}
+{% assign inherit_function_names = "" | split: "" %}
+{% if gtfobin.functions["inherit"] %}
+    {% for inherit_example in gtfobin.functions["inherit"] %}
+        {% include get_gtfobin.html name=inherit_example.from %}
+        {% assign inherited_gtfobin = return_gtfobin %}
+        {% for inherited_function_item in inherited_gtfobin.functions %}
+            {% assign inherited_function_name = inherited_function_item[0] %}
+            {% unless inherit_function_names contains inherited_function_name %}
+                {% assign inherit_function_names = inherit_function_names | push: inherited_function_name %}
+            {% endunless %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% assign inherit_count = inherit_function_names | size %}
 {% for function_item in site.data.functions %}
     {% assign function_name = function_item[0] %}
-    {% if gtfobin.functions contains function_name %}
+    {% if gtfobin.functions contains function_name and function_name != "inherit" %}
         {% assign function_count = function_count | plus: 1 %}
     {% endif %}
 {% endfor %}
 
 {% comment %} intro sentence {% endcomment %}
 <p class="intro-sentence">
-    This executable enables {% if function_count == 1 %}the following function{% else %}<strong>{{ function_count }} functions</strong>{% endif %}:
+    {% if function_count > 0 %}
+        This executable enables {% if function_count == 1 %}the following function{% else %}<strong>{{ function_count }} functions</strong>{% endif %}{% if inherit_count > 0 %} and inherits <strong>{{ inherit_count }} {% if inherit_count == 1 %}other function{% else %}other functions{% endif %}</strong> from other executables{% endif %}:
+    {% else %}
+        This executable inherits <strong>{{ inherit_count }} {% if inherit_count == 1 %}function{% else %}functions{% endif %}</strong> from other executables:
+    {% endif %}
 </p>
 
 {% comment %} function list {% endcomment %}
@@ -262,9 +280,8 @@ layout: common
                     {% assign gtfobin = return_gtfobin %}
 
                     <fieldset>
-                        <legend>Functions</legend>
                         <p>
-                            Inherits from <a href="{{ gtfobin.url | relative_url }}"><code>{{ example.from | escape }}</code></a>, thus possibly granting the following functions:
+                            This technique inherits from <a href="{{ gtfobin.url | relative_url }}"><code>{{ example.from | escape }}</code></a>, potentially unlocking the following functions:
                         </p>
                         <p>
                             {% include function_list.html gtfobin=gtfobin functions=gtfobin.functions %}
