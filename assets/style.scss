@@ -30,6 +30,7 @@ $faint: var(--faint);
 $lighter: var(--lighter);
 $marked: var(--marked);
 $hover: var(--hover);
+$panel-hover: #3a1a1a;
 
 $default-font-size: 16px;
 $code-font-size: 13px;
@@ -233,6 +234,22 @@ h2, h3, h4, h5, h5 {
     }
 }
 
+// function section headings
+
+h2.function-name {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 1px solid $faint;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $accent;
+
+    &:first-of-type {
+        margin-top: 1.5em;
+    }
+}
+
 // list and search
 
 #search-toolbox {
@@ -392,27 +409,116 @@ h2, h3, h4, h5, h5 {
     }
 }
 
+// intro and lead-in sentences
+
+.intro-sentence {
+    font-size: $small-font-size;
+    color: $faint;
+    margin: 1.5em 0 0.75em 0;
+}
+
+.intro-sentence + .tag-list {
+    margin-bottom: 1.5em;
+}
+
+.global-note {
+    background: $lighter;
+    border: 1px solid rgba($accent, 0.35);
+    border-left: 3px solid $accent;
+    padding: 0.75em 1em;
+    margin: 1em 0 1.5em 0;
+    font-size: $small-font-size;
+    border-radius: 0.5em;
+    line-height: 1.4;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+
+    strong {
+        color: $accent;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.85em;
+        margin-right: 0.5em;
+    }
+
+    p {
+        margin: 0;
+        display: inline;
+    }
+}
+
+.context-lead {
+    font-size: $small-font-size;
+    color: $faint;
+    margin: 0.5em 0;
+}
+
+.examples-lead {
+    font-size: $small-font-size;
+    color: $faint;
+    margin: 0.5em 0 1em 0;
+}
+
 // function examples
 
 .examples {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
     counter-reset: item;
     margin: 0;
     padding: 0;
+    list-style: none;
 
     & > li {
-        display: table-row;
+        display: block;
+        position: relative;
+        padding: 1em 1em 1em 3.5em;
+        background: $lighter;
+        border-radius: 0.5em;
+        border-left: 3px solid $faint;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+        transition: border-left-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
         &:before {
-            display: table-cell;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3em;
+            height: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 1em;
+            box-sizing: border-box;
             font-size: $small-font-size;
             font-weight: bold;
-            width: 3em;
-            text-align: center;
             counter-increment: item;
             content: "(" counter(item, lower-alpha) ")";
+            color: $faint;
+        }
+
+        &:hover {
+            border-left-color: $accent;
+            background: $panel-hover;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        // Nested elements need adjusted backgrounds
+        .contexts > div {
+            background: $background;
+        }
+
+        fieldset {
+            background: $background;
+            margin: 0.75em 0;
+        }
+
+        fieldset:first-of-type {
+            margin-top: 0.25em;
+        }
+
+        fieldset:last-of-type {
+            margin-bottom: 0.5em;
         }
     }
 }
@@ -422,15 +528,19 @@ h2, h3, h4, h5, h5 {
 .contexts {
     display: flex;
     flex-wrap: wrap;
-    margin: 1em 0;
+    margin: 1.5em 0;
+    background: $lighter;
+    border-radius: 0.5em;
+    overflow: hidden;
 
     input[type=radio] {
         display: none;
 
         &:checked + label {
-            color: $accent;
-            background: $background;
+            color: $background;
+            background: $accent;
             cursor: auto;
+            border-color: $accent;
         }
 
         &:checked + label + div {
@@ -440,15 +550,19 @@ h2, h3, h4, h5, h5 {
 
     & > label {
         font-size: $small-font-size;
-        margin-left: 0.5em;
-        padding: 0.25em 0.5em;
-        border: 1px solid $faint;
-        border-bottom: none;
+        padding: 0.5em 1em;
+        border: none;
+        border-right: 1px solid rgba(255,255,255,0.1);
         cursor: pointer;
-        position: relative;
-        top: 1px;
+        transition: background 0.15s ease, color 0.15s ease;
+        color: $foreground;
 
-        &:hover {
+        &:first-of-type {
+            border-radius: 0.5em 0 0 0;
+        }
+
+        &:hover:not(:has(+ div:empty)) {
+            background: $marked;
             color: $hover;
         }
     }
@@ -458,8 +572,9 @@ h2, h3, h4, h5, h5 {
         flex-basis: 100%;
         width: 0px; // XXX avoid growing
         order: 999;
-        padding: 0 1em;
-        border: 1px solid $faint;
+        padding: 1em 1.25em;
+        background: $background;
+        border-top: 2px solid $accent;
     }
 }
 

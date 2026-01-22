@@ -22,15 +22,28 @@ layout: common
     {% assign gtfobin = original_gtfobin %}
 {% endif %}
 
+{% comment %} count functions for intro sentence {% endcomment %}
+{% assign function_count = 0 %}
+{% for function_item in site.data.functions %}
+    {% assign function_name = function_item[0] %}
+    {% if gtfobin.functions contains function_name %}
+        {% assign function_count = function_count | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+{% comment %} intro sentence {% endcomment %}
+<p class="intro-sentence">
+    It can be used to {% if function_count == 1 %}perform the following function{% else %}perform <strong>{{ function_count }} functions</strong>{% endif %}:
+</p>
+
 {% comment %} function list {% endcomment %}
 {% include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions %}
 
 {% comment %} global executable comment {% endcomment %}
 {% if gtfobin.comment %}
-    <fieldset>
-        <legend>Comment</legend>
-        {{ gtfobin.comment | markdownify }}
-    </fieldset>
+    <div class="global-note">
+        <strong>Note:</strong> {{ gtfobin.comment | markdownify | remove: '<p>' | remove: '</p>' }}
+    </div>
 {% endif %}
 
 {% comment %} scan all the available functions in order to find those present {% endcomment %}
@@ -43,6 +56,12 @@ layout: common
     {% comment %} function title and global description {% endcomment %}
     <h2 id="{{ function_name }}" class="function-name">{{- function.label -}}</h2>
     {{ function.description | markdownify }}
+
+    {% comment %} examples lead-in {% endcomment %}
+    {% assign example_count = examples | size %}
+    {% if example_count > 1 %}
+        <p class="examples-lead">There are <strong>{{ example_count }} techniques</strong> to achieve this:</p>
+    {% endif %}
 
     {% comment %} list of function examples {% endcomment %}
     <ul class="examples">
@@ -66,6 +85,24 @@ layout: common
                         {{ example.comment | markdownify }}
                     </fieldset>
                 {% endif %}
+
+                {% comment %} count available contexts for this example {% endcomment %}
+                {% assign context_count = 0 %}
+                {% for context_item in site.data.contexts %}
+                    {% assign context_name = context_item[0] %}
+                    {% if example.contexts contains context_name or example.contexts == nil and context_name == default_context_name %}
+                        {% assign context_count = context_count | plus: 1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% comment %} lead-in sentence for contexts {% endcomment %}
+                <p class="context-lead">
+                    {% if context_count == 1 %}
+                        This works in the following context:
+                    {% else %}
+                        This works in <strong>{{ context_count }} contexts</strong>. Select one to see the details:
+                    {% endif %}
+                </p>
 
                 {% comment %} list of contexts for each example {% endcomment %}
                 <div class="contexts">
