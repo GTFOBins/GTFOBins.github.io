@@ -1,22 +1,19 @@
 ---
 description: |
-  chattr is a Linux utility to change file attributes on ext2/3/4 filesystems.
-  It can be abused in privilege escalation scenarios when misconfigured
-  (e.g., via sudo or SUID), allowing attackers to set immutable attributes
+  chattr is a Linux utility to change file attributes. It can be abused
+  when misconfigured (e.g., via sudo or SUID) to set immutable attributes
   on sensitive files.
 
 functions:
-  privesc:
+  file-write:
     - description: |
-        If chattr is allowed via sudo, it can be used to set the immutable
-        attribute on files like /etc/sudoers or /etc/passwd, preventing
-        administrators from modifying them and enabling persistence or
-        privilege escalation.
+        If chattr is allowed via sudo, it can set immutable attributes
+        on sensitive files like /etc/sudoers.
       code: |
         sudo chattr +i /etc/sudoers
     - description: |
-        If chattr is misconfigured with SUID, a user can lock critical files
-        to block root changes or enforce malicious configurations.
+        If chattr has the SUID bit set, a user can lock critical files
+        to block root changes.
       code: |
         ./chattr +i /etc/shadow
 
@@ -32,5 +29,4 @@ contexts:
       Abuse when chattr binary has the SUID bit set.
     code: |
       ./chattr +i /etc/crontab
-  
 ...
