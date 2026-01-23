@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      bashbug
+    contexts:
+      sudo:
+      unprivileged:
+    from: vi
+...
