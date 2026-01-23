@@ -1,0 +1,27 @@
+---
+comment: |-
+  rustc is the Rust compiler. It can be abused to compile and run arbitrary Rust programs that perform malicious actions such as spawning shells, reading or writing files, or escalating privileges.
+functions:
+  file-read:
+  - code: |-
+      rustc <FILE>
+    contexts:
+      sudo:
+        comment: |-
+          That is not suitable for large files, The compiler leak the file lines in the compiler error
+  file-write:
+  - code: |-
+      rustc main.c -o <FILE>
+    contexts:
+      sudo:
+        comment: |-
+          Compile and run a Rust program that writes arbitrary content to a file.
+  inherit:
+  - code: |-
+      rustc --explain E0382
+      comment: |-
+          The `--explain` flag uses the system pager (commonly `less`) to display long error explanations.
+    contexts:
+      unprivileged:
+    from: less
+...
