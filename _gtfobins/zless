@@ -1,0 +1,13 @@
+---
+comment: |-
+  zless is a wrapper around less for viewing compressed files. It inherits all the capabilities of less.
+functions:
+  inherit:
+  - code: |-
+      zless <FILE>
+    comment: |-
+      zless invokes less internally, so it inherits all of less's abuse primitives.
+    contexts:
+      unprivileged:
+    from: less
+...
