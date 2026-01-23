@@ -1,20 +1,22 @@
 ---
-comment: |-
-  rustdoc is the Rust documentation generator. It can be abused to leak file contents or write arbitrary files when invoked with crafted inputs.
 functions:
   file-read:
-  - code: |-
-      rustdoc /etc/passwd
+  - binary: false
+    code: |-
+      rustdoc /path/to/input-file
+    comment: |-
+      Partial content is displayed as error messages.
     contexts:
       sudo:
-        comment: |-
-          Running rustdoc on a non-Rust file leaks its contents in error output or generated docs.
+      unprivileged:
   file-write:
-  - code: |-
-      echo '//! malicious doc' > main.rs
-      rustdoc main.rs -o /tmp/pwn
+  - binary: false
+    code: |-
+      echo '//! DATA' >/path/to/temp-file
+      rustdoc /path/to/temp-file -o /path/to/output-dir/
+    comment: |-
+      This command creates a number of documentation files in the target directory, and the data is written in multiple locations, e.g., `src/temp_file/temp-file.html`, amidst other content.
     contexts:
       sudo:
-        comment: |-
-          Generate documentation into an arbitrary directory, writing attacker-controlled files.
+      unprivileged:
 ...
