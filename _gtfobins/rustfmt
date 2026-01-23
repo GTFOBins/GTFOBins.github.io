@@ -1,12 +1,12 @@
 ---
-comment: |-
-  rustfmt is the Rust code formatter. It can be abused to leak the first line of arbitrary files when invoked on non-Rust input, though it does not reliably print full contents.
 functions:
   file-read:
-  - code: |-
-      rustfmt /etc/passwd
+  - binary: false
+    code: |-
+      rustfmt /path/to/input-file
+    comment: |-
+      Partial content is displayed as error messages.
     contexts:
       sudo:
-        comment: |-
-          Invoking rustfmt on a non-Rust file leaks its first line in error output.
+      unprivileged:
 ...
