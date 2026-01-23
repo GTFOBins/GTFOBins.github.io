@@ -1,0 +1,13 @@
+---
+comment: |-
+  bashbug is a bug-reporting tool shipped with Bash. It opens a template in the user's default text editor, so it inherits all the capabilities of that editor.
+functions:
+  inherit:
+  - code: |-
+      bashbug
+    comment: |-
+      bashbug invokes the system's default editor (commonly vi or nano), inheriting its abuse primitives.
+    contexts:
+      unprivileged:
+    from: vi
+...
