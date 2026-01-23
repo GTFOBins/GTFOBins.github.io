@@ -4,7 +4,7 @@
     "functions": {{ site.data.functions | jsonify -}},
     "contexts": {{ site.data.contexts | jsonify -}},
     "executables": {
-        {% for gtfobin in site.gtfobins -%}
+        {%- for gtfobin in site.gtfobins -%}
             {%- capture name -%}{%- include get_gtfobin_name.html path=gtfobin.path -%}{%- endcapture -%}
             {{ name | jsonify -}}: {
                 {%- assign root_fields = 'comment,functions,alias' | split: ',' -%}
@@ -17,7 +17,7 @@
                     {%- endif -%}
                 {%- endfor -%}
             }
-            {%- unless forloop.last -%},{%- endunless %}
-        {% endfor %}
+            {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
     }
 }

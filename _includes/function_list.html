@@ -1,44 +1,44 @@
-{% comment %} build the list of functions along with the provided contexts {% endcomment %}
+{%- comment -%} build the list of functions along with the provided contexts {%- endcomment -%}
 <ul class="tag-list">
-    {% comment %} render the functions of this executable (not inherited) {% endcomment %}
-    {% for _function_item in site.data.functions %}
-        {% assign _function_name = _function_item[0] %}
-        {% assign _function = _function_item[1] %}
-        {% unless include.functions contains _function_name %}{% continue %}{% endunless %}
+    {%- comment -%} render the functions of this executable (not inherited) {%- endcomment -%}
+    {%- for _function_item in site.data.functions -%}
+        {%- assign _function_name = _function_item[0] -%}
+        {%- assign _function = _function_item[1] -%}
+        {%- unless include.functions contains _function_name -%}{%- continue -%}{%- endunless -%}
 
-        {% comment %} for each function extract the contexts of its examples {% endcomment %}
-        {% assign _examples = include.functions[_function_name] %}
-        {% include get_contexts_label.html examples=_examples %}
+        {%- comment -%} for each function extract the contexts of its examples {%- endcomment -%}
+        {%- assign _examples = include.functions[_function_name] -%}
+        {%- include get_contexts_label.html examples=_examples -%}
 
         <li data-function-name="{{ _function.label }}" data-function-contexts="{{ return_contexts }}">
             <a href="{{ include.gtfobin.url | relative_url }}#{{ _function_name }}">{{ _function.label }}</a>
         </li>
-    {% endfor %}
+    {%- endfor -%}
 
-    {% comment %} for each example that inherits another executable {% endcomment %}
-    {% assign _inherited_functions = '' | split: '' %}
-    {% for _example in include.functions.inherit %}
-        {% include get_gtfobin.html name=_example.from %}
-        {% assign _gtfobin = return_gtfobin %}
+    {%- comment -%} for each example that inherits another executable {%- endcomment -%}
+    {%- assign _inherited_functions = '' | split: '' -%}
+    {%- for _example in include.functions.inherit -%}
+        {%- include get_gtfobin.html name=_example.from -%}
+        {%- assign _gtfobin = return_gtfobin -%}
 
-        {% comment %} for each function of the inherited executable {% endcomment %}
-        {% for _function_item in _gtfobin.functions %}
-            {% assign _function_name = _function_item[0] %}
-            {% assign _function = _function_item[1] %}
+        {%- comment -%} for each function of the inherited executable {%- endcomment -%}
+        {%- for _function_item in _gtfobin.functions -%}
+            {%- assign _function_name = _function_item[0] -%}
+            {%- assign _function = _function_item[1] -%}
 
-            {% comment %} take note of the function name {% endcomment %}
-            {% assign _inherited_functions = _inherited_functions | push: _function_name %}
-        {% endfor %}
-    {% endfor %}
+            {%- comment -%} take note of the function name {%- endcomment -%}
+            {%- assign _inherited_functions = _inherited_functions | push: _function_name -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
-    {% comment %} render the inherited functions of this executable {% endcomment %}
-    {% for _function_item in site.data.functions %}
-        {% assign _function_name = _function_item[0] %}
-        {% assign _function = _function_item[1] %}
-        {% unless _inherited_functions contains _function_name %}{% continue %}{% endunless %}
+    {%- comment -%} render the inherited functions of this executable {%- endcomment -%}
+    {%- for _function_item in site.data.functions -%}
+        {%- assign _function_name = _function_item[0] -%}
+        {%- assign _function = _function_item[1] -%}
+        {%- unless _inherited_functions contains _function_name -%}{%- continue -%}{%- endunless -%}
 
         <li class="inherit" title="This function is inherited" data-function-name="{{ _function.label }}" data-function-contexts="">
             <a href="{{ include.gtfobin.url | relative_url }}#inherit">{{ _function.label }}</a>
         </li>
-    {% endfor %}
+    {%- endfor -%}
 </ul>

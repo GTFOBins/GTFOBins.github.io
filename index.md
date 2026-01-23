@@ -33,4 +33,4 @@ If you are looking for Windows binaries you should visit [LOLBAS][].
 [LOLBAS]: https://lolbas-project.github.io/
 [GitHub]: https://github.com/GTFOBins/GTFOBins.github.io
 
-<div>{% include gtfobins_table.html %}</div>
+<div>{%- include gtfobins_table.html -%}</div>
