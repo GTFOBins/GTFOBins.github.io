@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      rustfmt /path/to/input-file
+    comment: |-
+      Partial content is displayed as error messages.
+    contexts:
+      sudo:
+      unprivileged:
+...
