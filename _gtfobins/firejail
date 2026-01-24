@@ -2,14 +2,14 @@
 functions:
   file-read:
   - code: |-
-      firejail --noprofile cat /path/to/file
+      firejail --noprofile cat /path/to/input-file
     contexts:
       unprivileged:
         comment: |-
           Reads arbitrary files by bypassing sandbox profiles.
   file-write:
   - code: |-
-      firejail --noprofile sh -c 'echo data > /path/to/output'
+      firejail --noprofile sh -c 'echo data > /path/to/output-file'
     contexts:
       unprivileged:
         comment: |-
