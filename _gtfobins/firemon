@@ -1,0 +1,21 @@
+---
+comment: |-
+  firemon is a monitoring tool bundled with firejail. It can be abused via its pager
+  to read files and spawn shells, escalating privileges if run under sudo.
+functions:
+  file-read:
+  - code: |-
+      firemon /path/to/file
+    contexts:
+      unprivileged:
+        comment: |-
+          Displays the contents of arbitrary files through its pager.
+  inherit:
+  - code: |-
+      firemon /path/to/file
+    comment: |-
+      firemon inherits pager abuse patterns similar to man, less, and git.
+    contexts:
+      unprivileged:
+    from: less
+...
