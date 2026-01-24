@@ -1,0 +1,12 @@
+---
+comment: |-
+  pygmentize is a syntax highlighter. It can be abused to read and print arbitrary files, leaking sensitive information.
+functions:
+  file-read:
+  - code: |-
+      pygmentize -v -g secret.txt
+    contexts:
+      unprivileged:
+        comment: |-
+          Reads and prints the contents of arbitrary files by guessing a lexer, exposing sensitive data.
+...
