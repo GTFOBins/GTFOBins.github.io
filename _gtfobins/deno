@@ -1,0 +1,27 @@
+---
+comment: |-
+  deno is a modern JavaScript/TypeScript runtime. It can be abused to run arbitrary scripts, fetch remote code, and escalate privileges via permission flags.
+functions:
+  file-read:
+  - code: |-
+      deno run --allow-read=/etc/shadow read.js
+    contexts:
+      unprivileged:
+        comment: |-
+          Reads sensitive files if permission flags are enabled.
+  file-write:
+  - code: |-
+      deno run --allow-write=/tmp/write.js
+    contexts:
+      unprivileged:
+        comment: |-
+          Writes arbitrary content to files when allowed.
+  inherit:
+  - code: |-
+      deno run --allow-run=less pager.js
+    comment: |-
+      The `--allow-run` flag permits spawning external programs. This can be abused to inherit execution from system binaries like `less`.
+    contexts:
+      unprivileged:
+    from: less
+...
