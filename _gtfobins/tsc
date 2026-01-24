@@ -1,0 +1,19 @@
+---
+comment: |-
+  tsc is the TypeScript compiler. It can be abused to read arbitrary files via error messages and to write controlled output files using the --outFile option.
+functions:
+  file-read:
+  - code: |-
+      tsc secret.txt
+    contexts:
+      unprivileged:
+        comment: |-
+          Attempts to compile arbitrary files and leaks information through error messages, exposing file existence and sometimes content.
+  file-write:
+  - code: |-
+      tsc valid.ts --outFile filetest.js
+    contexts:
+      unprivileged:
+        comment: |-
+          Compiles a TypeScript file and writes output to an arbitrary file, enabling controlled file creation or overwrite.
+...
