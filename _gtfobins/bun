@@ -1,0 +1,23 @@
+---
+comment: |-
+  bun is a modern JavaScript/TypeScript runtime and package manager. It can be abused to run arbitrary scripts or install malicious packages, enabling code execution and persistence without requiring elevated privileges.
+functions:
+  file-write:
+  - code: |-
+      bun add malware
+    contexts:
+      sudo:
+        comment: |-
+          If run with elevated privileges, Bun can install packages system-wide, dropping malicious files globally.
+      unprivileged:
+        comment: |-
+          Installs a malicious package into the project, enabling persistence and arbitrary file writes.
+  inherit:
+  - code: |-
+      bun run --watch
+    comment: |-
+      The `--watch` flag spawns file watchers and external processes, which can be leveraged to execute arbitrary commands via inheritance.
+    contexts:
+      unprivileged:
+    from: node
+...
