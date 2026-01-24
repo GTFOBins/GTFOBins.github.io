@@ -1,7 +1,4 @@
 ---
-comment: |-
-  firejail is a sandboxing tool for Linux. It can be abused to spawn shells,
-  read and write files outside the sandbox, and escalate privileges when misconfigured.
 functions:
   file-read:
   - code: |-
