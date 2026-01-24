@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      pygmentize -l text /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+...
