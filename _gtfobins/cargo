@@ -1,0 +1,23 @@
+---
+comment: |-
+  cargo is the Rust package manager. It can be abused to fetch, build, and install arbitrary crates, allowing execution of malicious build scripts or dropping binaries into ~/.cargo/bin without requiring root.
+functions:
+  file-write:
+  - code: |-
+      cargo install malware
+    contexts:
+      sudo:
+        comment: |-
+          Installs a malicious crate system-wide if run with elevated privileges.
+      unprivileged:
+        comment: |-
+          Installs a malicious crate into ~/.cargo/bin, enabling persistence and execution without root.
+  inherit:
+  - code: |-
+      cargo doc --open
+    comment: |-
+      The `doc --open` flag spawns a browser to view documentation, which can be leveraged to execute arbitrary commands via pager/browser inheritance.
+    contexts:
+      unprivileged:
+    from: less
+...
