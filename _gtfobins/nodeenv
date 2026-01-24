@@ -1,0 +1,23 @@
+---
+comment: |-
+  nodeenv creates isolated Node.js environments. It can be abused to install and run malicious packages or hijack paths, enabling code execution and persistence without requiring elevated privileges.
+functions:
+  file-write:
+  - code: |-
+      nodeenv ./malicious_env && ./malicious_env/bin/npm install malware
+    contexts:
+      sudo:
+        comment: |-
+          If run with elevated privileges, nodeenv can install environments system-wide, dropping malicious files globally.
+      unprivileged:
+        comment: |-
+          Installs malicious packages into the environment, enabling persistence and arbitrary file writes.
+  inherit:
+  - code: |-
+      nodeenv -p ./env && ./env/bin/less
+    comment: |-
+      The `-p` option prepends paths, allowing hijacking of binaries like `less` for command inheritance.
+    contexts:
+      unprivileged:
+    from: less
+...
