@@ -1,19 +1,21 @@
 ---
-comment: |-
-  mypy is a static type checker for Python. It can be abused to read arbitrary files via error messages and to write controlled output files using reporting options.
 functions:
   file-read:
-  - code: |-
-      mypy secret.txt
+  - binary: false
+    code: |-
+      mypy /path/to/input-file
+    comment: |-
+      Partial content is leaked as error messages.
     contexts:
+      sudo:
       unprivileged:
-        comment: |-
-          Parses arbitrary files and leaks content through error messages, exposing sensitive data.
   file-write:
-  - code: |-
-      mypy secret.txt --junit-xml filetest.txt
+  - binary: false
+    code: |-
+      mypy /path/to/input-file --junit-xml /path/to/output-file
+    comment: |-
+      Partial content is leaked as error messages inside some XML tags.
     contexts:
+      sudo:
       unprivileged:
-        comment: |-
-          Writes error reports in XML format to arbitrary files, enabling controlled file creation or overwrite.
 ...
