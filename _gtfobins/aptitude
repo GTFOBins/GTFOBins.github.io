@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      aptitude changelog aptitude
+    contexts:
+      sudo:
+      unprivileged:
+    from: less
+...

@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      getent shadow
+    comment: |-
+      This allows to dump password hashes from the `/etc/shadow` file.
+    contexts:
+      sudo:
+      suid:
+...
