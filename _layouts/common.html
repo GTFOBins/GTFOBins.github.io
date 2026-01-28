@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {%- if page.layout == 'gtfobin' -%}
     {%- capture gtfobin_name -%}{%- include get_gtfobin_name.html path=page.path -%}{%- endcapture -%}
     {%- capture title -%}{{ gtfobin_name }} | {{ site.title }}{%- endcapture -%}
@@ -7,6 +6,7 @@
     {%- capture title -%}{%- if page.url != '/' -%}{{ page.title }} | {%- endif -%}{{ site.title }}{%- endcapture -%}
     {%- assign description = page.description -%}
 {%- endif -%}
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
