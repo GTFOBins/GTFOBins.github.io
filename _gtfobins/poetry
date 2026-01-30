@@ -1,0 +1,31 @@
+---
+comment: |-
+  Poetry can run Python code from a project using `poetry run`.
+functions:
+  inherit:
+  - code: |-
+      mkdir /path/to/project
+      cd /path/to/project
+      poetry init -n
+      echo 'import os; os.system("/bin/sh -ip")' >file.py
+      poetry run python ./file.py
+    comment: |-
+      This runs Python code (`import os; os.system("/bin/sh -ip")`) from the specified file.
+    contexts:
+      unprivileged:
+      sudo:
+    from: python
+
+  shell:
+  - code: |-
+      mkdir /path/to/project
+      cd /path/to/project
+      poetry init -n
+      echo 'import os; os.system("/bin/sh -ip")' >file.py
+      poetry run python file.py
+    comment: |-
+      If the script launches a shell, it is executed in the current context.
+    contexts:
+      unprivileged:
+      sudo:
+...
