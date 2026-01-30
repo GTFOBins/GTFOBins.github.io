@@ -11,15 +11,19 @@
     <head>
         <meta charset="utf-8">
         <title>{{ title }}</title>
+        <link rel="canonical" href="{{ page.url | absolute_url }}">
         <meta name="description" content="{{ description | escape }}">
         <link rel="icon" href="{{ "/assets/logo.png" | relative_url }}">
-        <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
         <meta property="og:title" content="{{ title }}">
         <meta property="og:description" content="{{ description | escape }}">
         <meta property="og:image" content="{{ "/assets/logo.png" | absolute_url }}">
         <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ title }}">
+        <meta name="twitter:description" content="{{ description | escape }}">
+        <meta name="twitter:image" content="{{ "/assets/logo.png" | absolute_url }}">
+        <link rel="stylesheet" href="{{ "/assets/style.css" | relative_url }}" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
     </head>
     <body>
         <!-- adapted from https://tholman.com/github-corners/ -->
