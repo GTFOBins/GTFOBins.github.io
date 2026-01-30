@@ -1,22 +1,13 @@
 ---
-comment: |-
-  pipx can run Python code provided in a local script.
 functions:
   inherit:
   - code: |-
-      echo 'import os; os.system("/bin/sh -ip")' >/path/to/file.py
+      echo '...' >/path/to/file.py
       pipx run /path/to/file.py
     comment: |-
-      This runs Python code (`import os; os.system("/bin/sh -ip")`) from the specified file.
+      This allows to run Python code (`...`).
     contexts:
       sudo:
       unprivileged:
     from: python
-
-  shell:
-  - code: |-
-      pipx run /path/to/file.py
-    contexts:
-      sudo:
-      unprivileged:
 ...

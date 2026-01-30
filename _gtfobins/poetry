@@ -1,31 +1,15 @@
 ---
-comment: |-
-  Poetry can run Python code from a project using `poetry run`.
 functions:
   inherit:
   - code: |-
-      mkdir /path/to/project
-      cd /path/to/project
-      poetry init -n
-      echo 'import os; os.system("/bin/sh -ip")' >file.py
-      poetry run python ./file.py
+      echo '...' >/path/to/temp-file
+      poetry run python /path/to/temp-file
     comment: |-
-      This runs Python code (`import os; os.system("/bin/sh -ip")`) from the specified file.
-    contexts:
-      unprivileged:
-      sudo:
-    from: python
+      This allows to run Python code (`...`).
 
-  shell:
-  - code: |-
-      mkdir /path/to/project
-      cd /path/to/project
-      poetry init -n
-      echo 'import os; os.system("/bin/sh -ip")' >file.py
-      poetry run python file.py
-    comment: |-
-      If the script launches a shell, it is executed in the current context.
+      A valid `pyproject.toml` file must be present in the current working directory, you can create one with `poetry init -n`.
     contexts:
-      unprivileged:
       sudo:
+      unprivileged:
+    from: python
 ...

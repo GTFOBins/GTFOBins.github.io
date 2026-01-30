@@ -1,19 +1,11 @@
 ---
-comment: |-
-  yt-dlp can execute a command via the --exec option. yt-dlp appends the downloaded filepath as an extra argument.
 functions:
-  command:
-  - code: |-
-      yt-dlp 'video url' --exec '/path/to/command #'
-    contexts:
-      unprivileged:
-      sudo:
   shell:
-  - comment: |-
-      The executed command may receive the downloaded filepath as an extra trailing argument, commenting it out prevents it from breaking the command.
-    code: |-
-      yt-dlp 'video url' --exec '/bin/sh -ip #'
+  - code: |-
+      yt-dlp 'https://www.youtube.com/watch?v=xxxxxxxxxxx' --exec '/bin/sh #'
+    comment: |-
+      The URL must point to a valid YouTube video which will be actually downloaded.
     contexts:
-      unprivileged:
       sudo:
+      unprivileged:
 ...
