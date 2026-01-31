@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      sg $(id -ng)
+    comment: |-
+      Commands can be run if the current user's group is specified, therefore no additional permissions are needed.
+    contexts:
+      sudo:
+        code: |-
+          sg root
+      unprivileged:
+...

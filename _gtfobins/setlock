@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      setlock - /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          setlock - /bin/sh -p
+        shell: true
+      unprivileged:
+...

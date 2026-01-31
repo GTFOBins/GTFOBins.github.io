@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      basez /path/to/input-file | basez --decode
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

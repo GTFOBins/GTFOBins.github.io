@@ -1,0 +1,13 @@
+---
+functions:
+  command:
+  - blind: false
+    code: |-
+      echo -e ':0\n| /path/to/command >/path/to/temp-file
+      procmail -m /path/to/temp-file
+    comment: |-
+      The program is picky about the file ownership, and waits for some input.
+    contexts:
+      sudo:
+      unprivileged:
+...
