@@ -1,10 +1,39 @@
 ---
 ---
 
+:root {
+    --foreground: #e6e6e6;
+    --background: #0f0f0f;
+    --faint: #666666;
+    --lighter: #2a1212;
+    --marked: #5a1a1a;
+    --hover: #ff4d4d;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --foreground: #000000;
+        --background: #ffffff;
+        --faint: #999999;
+        --lighter: #fff4f4;
+        --marked: #ffcccc;
+        --hover: #ff0000;
+    }
+}
+
 $accent: #bf0707;
-$lighter: #fff4f4;
-$marked: #ffcccc;
-$hover: #ff0000;
+$logo-backdrop: #ffffff;
+
+$foreground: var(--foreground);
+$background: var(--background);
+$faint: var(--faint);
+$lighter: var(--lighter);
+$marked: var(--marked);
+$hover: var(--hover);
+
+$default-font-size: 16px;
+$code-font-size: 13px;
+$small-font-size: 14px;
 
 // layout
 
@@ -15,7 +44,9 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 @media #{$layout-break} {
     body {
         width: $column-width;
-        margin: 40px auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px;
     }
 
     p {
@@ -32,10 +63,14 @@ $layout-break: "(min-width: #{$column-width + $grace-space})";
 // common tags
 
 body {
-    font-family: sans, sans-serif;
+    font-family: system-ui, sans-serif;
+    font-size: $default-font-size;
+    color: $foreground;
+    background: $background;
 }
 
 code {
+    font-size: $code-font-size;
     padding: 0.15em 0.25em;
     border-radius: 0.25em;
     color: $accent;
@@ -44,21 +79,133 @@ code {
 
 pre {
     background: $lighter;
-    padding: 1em;
-    overflow-x: auto;
+    font-size: $code-font-size;
+    margin: 1rem 0; // to be coherent with the regular-sized text
+    position: relative;
+    overflow: hidden;
 
     code {
-        padding: 0;
+        display: block;
         border-radius: 0;
+        padding: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto;
+    }
+
+    button {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        outline: none;
+        padding: 0.25em 0.5em;
+        border: 5px solid $background;
+        border-top: none;
+        border-right: none;
+        color: $accent;
+        background-color: $lighter;
+
+        &:hover {
+            color: $hover;
+        }
+
+        &:active {
+            color: $lighter; // just to give some click feedback
+        }
+    }
+
+    &:hover button {
+        display: block;
     }
 }
 
-a:link, a:visited {
-    color: $accent;
+dt {
+    font-weight: bold;
 }
 
-a:hover {
-    color: $hover;
+blockquote {
+    margin: 1em 0;
+
+    p {
+        padding: 1em;
+        margin: 0;
+        background: $lighter;
+    }
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: $foreground;
+}
+
+a {
+    &:link, &:visited {
+        color: $accent;
+    }
+
+    &:hover {
+        color: $hover;
+
+        & > *:not(svg) { // XXX not for the GitHub corner
+            color: $hover;
+        }
+    }
+}
+
+p {
+    line-height: 1.25;
+}
+
+fieldset {
+    border: 1px solid $faint;
+    position: relative;
+    margin: 1em 0;
+    padding: 0 1em;
+    min-width: 0; // XXX needed to avoid outgrow with code blocks
+
+    legend {
+        color: $accent;
+        font-size: $small-font-size;
+        padding: 0 0.5em;
+        position: absolute;
+        background-color: $background;
+        top: -0.5lh;
+    }
+}
+
+::selection {
+    background-color: $foreground;
+    color: $background;
+}
+
+// page title
+
+h1 {
+    display: flex;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .github-buttons {
+        display: flex;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+        flex-wrap: wrap;
+
+        // XXX avoid displaying the link text during loading
+        a.github-button {
+            visibility: hidden;
+        }
+
+        span {
+            display: flex; // XXX get rid of sapce around
+        }
+    }
 }
 
 // permalink on headings
@@ -86,15 +233,29 @@ h2, h3, h4, h5, h5 {
     }
 }
 
-// binary list and search
+// list and search
 
-#bin-search-wrapper {
-    margin: 50px 0;
-    padding: 10px 0;
+#search-toolbox {
+    padding-top: 1px; // XXX needed for scrollIntoView
+    margin-top: 80px;
+    margin-bottom: 20px;
     position: relative; // XXX needed for tooltip sizing
 
-    #bin-search-filters {
-        text-align: center;
+    fieldset {
+        padding: 1em;
+        border-color: $accent;
+
+        legend {
+            color: $foreground;
+            font-size: initial;
+            font-weight: bold;
+        }
+    }
+
+    .search-filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         a {
             background: $lighter;
@@ -103,72 +264,107 @@ h2, h3, h4, h5, h5 {
 
             &:hover:before {
                 content: attr(data-title);
-                font-size: 0.8rem;
+                font-size: $small-font-size;
+                text-align: center;
                 display: block;
                 position: absolute;
-                left: 0;
-                right: 0;
+                left: 10%;
+                right: 10%;
                 margin-top: 1.75rem; // XXX below the button
-                margin-left: 10%;
-                margin-right: 10%;
                 padding: 1em;
-                border-radius: 1em;
-                color: $lighter;
-                background: rgba(0, 0, 0, 0.75);
-                z-index: 1;
+                color: $background;
+                background: $foreground;
+                border-radius: 0.25em;
                 pointer-events: none;
+                z-index: 1;
             }
         }
     }
 
-    #bin-search {
-        margin-top: 25px;
-        padding: 1em;
+    input {
+        // enlarge the click area
+        margin: -1rem;
+        padding: 1rem;
+        background: transparent;
+
+        // adjust the width due to negative padding
+        width: calc(100% + 2rem);
+
+        color: $foreground;
         font-size: 1rem;
-        width: 100%;
         box-sizing: border-box;
-        border: 1px solid $accent;
-        outline-color: $accent;
+        outline: none;
+        border: none;
     }
 }
 
-#bin-table {
-    width: 100%;
+#gtfobin-table-wrapper {
+    min-height: 100vh;
 
-    th, td {
-        padding: 0.2em 1em;
-    }
+    #gtfobin-table {
+        width: 100%;
+        border-spacing: 0;
 
-    th {
-        text-align: left;
-    }
+        &, th, td {
+            border: none;
+        }
 
-    tbody tr:hover {
-        background: $lighter;
-    }
+        thead {
+            th {
+                padding: 1em;
+                text-align: left;
 
-    #search-message {
-        display: none;
-        text-align: center;
-        padding: 1em;
+                &:last-child {
+                    width: 100%;
+                }
+            }
+        }
+
+        tbody {
+            th {
+                padding: 0 1em;
+                font-family: monospace;
+                white-space: nowrap;
+                font-weight: normal;
+                text-align: left;
+
+                a {
+                    text-decoration: none;
+                }
+            }
+
+            td {
+                padding: 0.5em 1em;
+            }
+
+            tr:hover {
+                background: $lighter;
+            }
+        }
+
+        tfoot {
+            text-align: center;
+            padding: 1em;
+        }
     }
 }
 
-// function description
+// function and contexts buttons used in both the table and single pages
 
-.function-list {
-    font-size: 0.8rem;
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $small-font-size;
     list-style: none;
+    column-gap: 0.25em;
+    row-gap: 0.25em;
     padding: 0;
     margin: 0;
 
     li {
-        display: inline-block;
-
         a {
             display: inline-block;
             padding: 0.25em 0.5em;
-            margin: 0.2em 0;
             border: 1px solid $accent;
         }
 
@@ -184,11 +380,19 @@ h2, h3, h4, h5, h5 {
 
         &.match a {
             background: $marked;
+
+            &[data-matching-contexts]::after {
+                content: " (" attr(data-matching-contexts) ")";
+            }
+        }
+
+        &.inherit a {
+            border-style: dashed;
         }
     }
 }
 
-// bin examples
+// function examples
 
 .examples {
     display: table;
@@ -201,9 +405,9 @@ h2, h3, h4, h5, h5 {
     & > li {
         display: table-row;
 
-        &:not(:only-child):before {
+        &:before {
             display: table-cell;
-            font-size: 0.8rem;
+            font-size: $small-font-size;
             font-weight: bold;
             width: 3em;
             text-align: center;
@@ -213,7 +417,79 @@ h2, h3, h4, h5, h5 {
     }
 }
 
+// context tabs
+
+.contexts {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em 0;
+
+    input[type=radio] {
+        display: none;
+
+        &:checked + label {
+            color: $accent;
+            background: $background;
+            cursor: auto;
+        }
+
+        &:checked + label + div {
+            display: block;
+        }
+    }
+
+    & > label {
+        font-size: $small-font-size;
+        margin-left: 0.5em;
+        padding: 0.25em 0.5em;
+        border: 1px solid $faint;
+        border-bottom: none;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+
+        &:hover {
+            color: $hover;
+        }
+    }
+
+    & > div {
+        display: none;
+        flex-basis: 100%;
+        width: 0px; // XXX avoid growing
+        order: 999;
+        padding: 0 1em;
+        border: 1px solid $faint;
+    }
+}
+
+// description table
+
+.description-table {
+    border-collapse: collapse;
+
+    tbody {
+        th {
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        th, td {
+            border: 1px solid $foreground;
+            padding: 0 0.5em;
+        }
+    }
+}
+
 // other classes
+
+.accent {
+    color: $accent;
+}
+
+.hidden {
+    display: none;
+}
 
 .logo {
     $margin: 20px;
@@ -222,24 +498,20 @@ h2, h3, h4, h5, h5 {
     height: 100px;
     margin-left: $margin;
     margin-bottom: $margin;
+    pointer-events: none;
+    background-color: $logo-backdrop;
+    border: 1px solid $logo-backdrop;
 }
 
-.bin-name {
-    font-family: monospace;
-    font-size: 1.2rem;
+.small {
+    font-size: $small-font-size;
 }
 
-.function-name {
-    font-size: 1.4rem;
-    font-weight: bold;
+.centered {
+    text-align: center;
 }
 
-.github-buttons {
-    display: inline-block;
-    margin-left: 10px;
-
-    // avoid displaying the link text during loading
-    a.github-button {
-        visibility: hidden;
-    }
+svg.github-corner {
+    fill: $foreground;
+    color: $background;
 }

@@ -1,0 +1,53 @@
+---
+functions:
+  file-read:
+  - code: |-
+      exiftool -filename=/path/to/output-file /path/to/input-file
+      cat /path/to/output-file
+    comment: |-
+      If the permissions allow it, files are moved (instead of copied) to the destination.
+    contexts:
+      sudo:
+      unprivileged:
+  file-write:
+  - code: |-
+      exiftool -filename=/path/to/output-file /path/to/input-file
+    comment: |-
+      If the permissions allow it, files are moved (instead of copied) to the destination.
+    contexts:
+      sudo:
+      unprivileged:
+  - binary: false
+    code: |-
+      exiftool "-description<=/path/to/input-file --filename /path/to/output-file
+    comment: |-
+      The output file must exists, either empty or be a supported image file. The content is written amidst other content.
+    contexts:
+      sudo:
+      unprivileged:
+  - binary: false
+    code: |-
+      exiftool "-description=DATA --filename /path/to/output-file
+    comment: |-
+      The output file must exists, either empty or be a supported image file. The content is written amidst other content.
+    contexts:
+      sudo:
+      unprivileged:
+  - binary: false
+    code: |-
+      exiftool -description -W /path/to/output-file --filename /path/to/input-file
+    comment: |-
+      Writes the metadata tags of the input file in textual format to the output.
+    contexts:
+      sudo:
+      unprivileged:
+  inherit:
+  - code: |-
+      exiftool -if '...' /etc/passwd
+    comment: |-
+      This allows to run Perl code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: perl
+...

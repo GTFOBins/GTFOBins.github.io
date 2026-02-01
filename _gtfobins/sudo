@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      sudo /bin/sh
+    contexts:
+      sudo:
+        comment: |-
+          The invocation is actually `sudo sudo ...`.
+...

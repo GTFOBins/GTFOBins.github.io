@@ -1,0 +1,13 @@
+{%- comment -%} return all the contexts of the given examples {%- endcomment -%}
+{%- assign _default_context_label = site.data.contexts | first | last | map: 'label'%}
+{%- assign return_contexts = '' | split: '' -%}
+{%- for _example in include.examples -%}
+    {%- for _context_item in _example.contexts -%}
+        {%- assign _context_name = _context_item[0] -%}
+        {%- assign _context = _context_item[1] -%}
+        {%- assign return_contexts = return_contexts | push: site.data.contexts[_context_name].label -%}
+    {%- else -%}
+        {%- assign return_contexts = return_contexts | push: _default_context_label -%}
+    {%- endfor -%}
+{%- endfor -%}
+{%- assign return_contexts = return_contexts | uniq | join: "," -%}

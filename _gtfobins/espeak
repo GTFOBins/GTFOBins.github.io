@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      espeak -qXf /path/to/input-file
+    comment: |-
+      The file content appears in the middle of other textual information as phonemes.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

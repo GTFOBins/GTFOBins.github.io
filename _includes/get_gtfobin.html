@@ -1,0 +1,9 @@
+{%- comment -%} lookup a gtfobin by name and return it via the return_gtfobin and return_gtfobin_name variables {%- endcomment -%}
+{%- for _gtfobin in site.gtfobins -%}
+    {%- capture _gtfobin_name -%}{%- include get_gtfobin_name.html path=_gtfobin.path -%}{%- endcapture -%}
+    {%- if _gtfobin_name == include.name -%}
+        {%- assign return_gtfobin_name = _gtfobin_name -%}
+        {%- assign return_gtfobin = _gtfobin -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}

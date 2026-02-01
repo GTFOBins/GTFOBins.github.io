@@ -1,0 +1,13 @@
+{%- comment -%} creates a table for functions or contexts {%- endcomment -%}
+<table class="description-table">
+  <tbody>
+    {%- for _object_item in include.objects -%}
+        {%- assign _object_name = _object_item[0] -%}
+        {%- assign _object = _object_item[1] -%}
+        <tr>
+            <th>{{ _object.label }}</th>
+            <td>{{ _object.description | markdownify }}</td>
+        </tr>
+    {%- endfor -%}
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+---
+functions:
+  command:
+  - code: |-
+      echo 'esyscmd(/path/to/command)' | m4
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  file-read:
+  - binary: false
+    code: |-
+      m4 /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      echo 'esyscmd(/bin/sh 0<&2 1>&2)' | m4
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
