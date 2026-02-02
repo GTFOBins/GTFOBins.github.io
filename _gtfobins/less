@@ -48,7 +48,5 @@ functions:
       v
     contexts:
       sudo:
-      suid:
-        shell: true
       unprivileged:
 ...
