@@ -1,0 +1,15 @@
+---
+comment: |-
+  This requires a running X server.
+functions:
+  shell:
+  - code: |-
+      xdotool exec --sync /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          xdotool exec --sync /bin/sh -p
+        shell: false
+      unprivileged:
+...

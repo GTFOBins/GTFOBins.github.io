@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      last -a -f /path/to/input-file
+    comment: |-
+      The output might be corrupted or incomplete if the file does not follow the expected database format.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

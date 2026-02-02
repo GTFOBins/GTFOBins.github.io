@@ -1,0 +1,23 @@
+---
+---
+{
+    "functions": {{ site.data.functions | jsonify -}},
+    "contexts": {{ site.data.contexts | jsonify -}},
+    "executables": {
+        {%- for gtfobin in site.gtfobins -%}
+            {%- capture name -%}{%- include get_gtfobin_name.html path=gtfobin.path -%}{%- endcapture -%}
+            {{ name | jsonify -}}: {
+                {%- assign root_fields = 'comment,functions,alias' | split: ',' -%}
+                {%- assign comma = false -%}
+                {%- for field in root_fields -%}
+                    {%- if gtfobin[field] -%}
+                        {%- if comma -%},{%- endif -%}
+                        {%- assign comma = true -%}
+                        {{- field | jsonify -}}: {{- gtfobin[field] | jsonify -}}
+                    {%- endif -%}
+                {%- endfor -%}
+            }
+            {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+    }
+}

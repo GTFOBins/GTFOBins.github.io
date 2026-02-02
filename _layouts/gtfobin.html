@@ -1,0 +1,242 @@
+---
+layout: common
+---
+
+{%- assign original_gtfobin = page -%}
+
+{%- comment -%} get the default context name to use it as default {%- endcomment -%}
+{%- assign default_context_name = site.data.contexts | first | first -%}
+
+{%- comment -%} executable title {%- endcomment -%}
+{%- capture gtfobin_name -%}{%- include get_gtfobin_name.html path=original_gtfobin.path -%}{%- endcapture -%}
+{%- include page_title.html title=gtfobin_name -%}
+
+{%- comment -%} resolve the alias {%- endcomment -%}
+{%- if original_gtfobin.alias -%}
+    {%- include get_gtfobin.html name=original_gtfobin.alias -%}
+    {%- assign gtfobin = return_gtfobin -%}
+
+    {%- comment -%} render a message about being an alias {%- endcomment -%}
+    <p>This is an alias of <a href="{{ gtfobin.url | relative_url }}"><code>{{ return_gtfobin_name }}</code></a>.</p>
+{%- else -%}
+    {%- assign gtfobin = original_gtfobin -%}
+{%- endif -%}
+
+{%- comment -%} function list {%- endcomment -%}
+{%- include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions -%}
+
+{%- comment -%} global executable comment {%- endcomment -%}
+{%- if gtfobin.comment -%}
+    <fieldset>
+        <legend>Comment</legend>
+        {{ gtfobin.comment | markdownify }}
+    </fieldset>
+{%- endif -%}
+
+{%- comment -%} scan all the available functions in order to find those present {%- endcomment -%}
+{%- for function_item in site.data.functions -%}
+    {%- assign function_name = function_item[0] -%}
+    {%- assign function = function_item[1] -%}
+    {%- unless gtfobin.functions contains function_name -%}{%- continue -%}{%- endunless -%}
+    {%- assign examples = gtfobin.functions[function_name] -%}
+
+    {%- comment -%} function title and global description {%- endcomment -%}
+    <h2 id="{{ function_name }}" class="function-name">{{- function.label -}}</h2>
+    {{ function.description | markdownify }}
+
+    {%- comment -%} list of function examples {%- endcomment -%}
+    <ul class="examples">
+        {%- for example in examples -%}
+            <li>
+                {%- comment -%} build the identifier of this example {%- endcomment -%}
+                {%- capture example_id -%}{{ function_name }}-{{ forloop.index }}{%- endcapture -%}
+
+                {%- comment -%} version {%- endcomment -%}
+                {%- if example.version -%}
+                    <fieldset>
+                        <legend>Version requirements</legend>
+                        {{ example.version | markdownify }}
+                    </fieldset>
+                {%- endif -%}
+
+                {%- comment -%} example comment {%- endcomment -%}
+                {%- if example.comment -%}
+                    <fieldset>
+                        <legend>Comment</legend>
+                        {{ example.comment | markdownify }}
+                    </fieldset>
+                {%- endif -%}
+
+                {%- comment -%} list of contexts for each example {%- endcomment -%}
+                <div class="contexts">
+                    {%- comment -%} scan all the available contexts in order to find those present falling back to the default {%- endcomment -%}
+                    {%- assign first = true -%}
+                    {%- for context_item in site.data.contexts -%}
+                        {%- assign context_name = context_item[0] -%}
+                        {%- assign context = context_item[1] -%}
+
+                        {%- unless example.contexts contains context_name or example.contexts == nil and context_name == default_context_name -%}{%- continue -%}{%- endunless -%}
+                        {%- assign per_context_info = example.contexts[context_name] -%}
+
+                        {%- comment -%} context information {%- endcomment -%}
+                        {%- capture context_id -%}{{ example_id }}-{{ context_name }}{%- endcapture -%}
+                        <input type="radio" id="{{ context_id }}" name="{{ example_id }}" {%- if first -%}checked{%- endif -%} />
+                        <label for="{{ context_id }}">{{ context.label }}</label>
+                        <div>
+                            {%- comment -%} global context description {%- endcomment -%}
+                            {{ context.description | markdownify }}
+
+                            {%- comment -%} additional per-context content {%- endcomment -%}
+                            {%- case context_name -%}
+                            {%- when "sudo" -%}
+                                <fieldset>
+                                    <legend>Remarks</legend>
+                                    {{ context.extra.environment | markdownify }}
+                                </fieldset>
+                            {%- when "suid" -%}
+                                {%- if per_context_info.shell != nil -%}
+                                    <fieldset>
+                                        <legend>Remarks</legend>
+                                        {%- if per_context_info.shell -%}
+                                            {{ context.extra.shell[true] | markdownify }}
+                                        {%- else -%}
+                                            {{ context.extra.shell[false] | markdownify }}
+                                        {%- endif -%}
+                                    </fieldset>
+                                {%- endif -%}
+                            {%- when "capabilities" -%}
+                                <p>
+                                    {{ context.extra.list }}
+                                    {%- for capability in per_context_info.list -%}
+                                        <code>{{ capability | escape }}</code>
+                                        {%- if forloop.last -%}.{%- else -%}, {%- endif -%}
+                                    {%- endfor -%}
+                                </p>
+                            {%- endcase -%}
+
+                            {%- comment -%} optional local comment {%- endcomment -%}
+                            {%- if per_context_info.comment -%}
+                                <fieldset>
+                                    <legend>Comment</legend>
+                                    {{ per_context_info.comment | markdownify }}
+                                </fieldset>
+                            {%- endif -%}
+
+                            {%- comment -%} use the common code or the specialized per-context version {%- endcomment -%}
+                            {%- capture code -%}{%- if per_context_info.code -%}{{ per_context_info.code }}{%- else -%}{{ example.code }}{%- endif -%}
+                            {%- endcapture -%}
+                            <pre><code>{{- code | escape | strip -}}</code></pre>
+                        </div>
+
+                        {%- assign first = false -%}
+                    {%- endfor -%}
+                </div>
+
+                {%- comment -%} additional per-function content {%- endcomment -%}
+                {%- case function_name -%}
+                {%- when "shell", "command", "reverse-shell", "bind-shell" -%}
+                    {%- if example.blind -%}
+                        <fieldset>
+                            <legend>Output</legend>
+                            {{ function.extra.blind[true] | markdownify }}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "file-write", "file-read", "upload", "download" -%}
+                    {%- if example.binary == false -%}
+                        <fieldset>
+                            <legend>Remarks</legend>
+                            {{ function.extra.binary[false] | markdownify }}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "reverse-shell", "bind-shell" -%}
+                    {%- unless example.tty -%}
+                        <fieldset>
+                            <legend>TTY</legend>
+                            {{ function.extra.tty[false] | markdownify }}
+                        </fieldset>
+                    {%- endunless -%}
+                {%- when "reverse-shell" -%}
+                    {%- if example.listener -%}
+                        {%- assign known = function.extra.listener[example.listener] -%}
+                        {%- assign comment = known.comment | default: example.listener.comment -%}
+                        {%- assign code = known.code | default: example.listener.code -%}
+                        <fieldset>
+                            <legend>Listener</legend>
+                            {{ comment | markdownify }}
+                            {%- if code -%}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {%- endif -%}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "bind-shell" -%}
+                    {%- if example.connector -%}
+                        {%- assign known = function.extra.connector[example.connector] -%}
+                        {%- assign comment = known.comment | default: example.connector.comment -%}
+                        {%- assign code = known.code | default: example.connector.code -%}
+                        <fieldset>
+                            <legend>Connector</legend>
+                            {{ comment | markdownify }}
+                            {%- if code -%}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {%- endif -%}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "upload" -%}
+                    {%- if example.receiver -%}
+                        {%- assign known = function.extra.receiver[example.receiver] -%}
+                        {%- assign comment = known.comment | default: example.receiver.comment -%}
+                        {%- assign code = known.code | default: example.receiver.code -%}
+                        <fieldset>
+                            <legend>Receiver</legend>
+                            {{ comment | markdownify }}
+                            {%- if code -%}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {%- endif -%}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "download" -%}
+                    {%- if example.sender -%}
+                        {%- assign known = function.extra.sender[example.sender] -%}
+                        {%- assign comment = known.comment | default: example.sender.comment -%}
+                        {%- assign code = known.code | default: example.sender.code -%}
+                        <fieldset>
+                            <legend>Sender</legend>
+                            {{ comment | markdownify }}
+                            {%- if code -%}
+                                <pre><code>{{- code | escape | strip -}}</code></pre>
+                            {%- endif -%}
+                        </fieldset>
+                    {%- endif -%}
+                {%- when "library-load" -%}
+                    <fieldset>
+                        <legend>Payload</legend>
+                        {{ function.extra.payload | markdownify }}
+                    </fieldset>
+                {%- endcase -%}
+
+                {%- comment -%} add a link to the inheriting executable and display the functions {%- endcomment -%}
+                {%- if function_name == "inherit" -%}
+                    {%- include get_gtfobin.html name=example.from -%}
+                    {%- assign gtfobin = return_gtfobin -%}
+
+                    <fieldset>
+                        <legend>Functions</legend>
+                        <p>
+                            Inherits from <a href="{{ gtfobin.url | relative_url }}"><code>{{ example.from | escape }}</code></a>, thus possibly granting the following functions:
+                        </p>
+                        <p>
+                            {%- include function_list.html gtfobin=gtfobin functions=gtfobin.functions -%}
+                        </p>
+                    </fieldset>
+                {%- endif -%}
+            </li>
+        {%- endfor -%}
+    </ul>
+{%- endfor -%}
+
+{%- comment -%} footer with some GitHub links about this executable {%- endcomment -%}
+<p class="small centered">
+  <a class="small-link" href="https://github.com/GTFOBins/GTFOBins.github.io/blob/master/_gtfobins/{{ gtfobin_name }}">Source</a>
+  |
+  <a class="small-link" href="https://github.com/GTFOBins/GTFOBins.github.io/commits/master/_gtfobins/{{ gtfobin_name }}">History</a>
+</p>
