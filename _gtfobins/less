@@ -1,5 +1,16 @@
 ---
 functions:
+  command:
+  - code: |-
+      cp /path/to/command ~/.lessfilter
+      less /etc/hosts
+    contexts:
+      unprivileged:
+  - code: |-
+      LESSOPEN='/path/to/command # %s' less /etc/hosts
+    contexts:
+      sudo:
+      unprivileged:
   file-read:
   - code: |-
       less /path/to/input-file
@@ -15,6 +26,13 @@ functions:
     contexts:
       sudo:
       suid:
+      unprivileged:
+  - code: |-
+      LESSOPEN='echo /path/to/input-file # %s' less /etc/hosts
+    comment: |-
+      This can be used to read another file.
+    contexts:
+      sudo:
       unprivileged:
   file-write:
   - code: |-
@@ -42,6 +60,14 @@ functions:
       sudo:
       suid:
         shell: true
+      unprivileged:
+  - code: |-
+      LESSOPEN="/bin/sh -s 1>&0 2>&0 # %s" less /etc/hosts
+      reset
+    comment: |-
+      The optional `reset` command is needed to receive the echo back of the typed keystrokes.
+    contexts:
+      sudo:
       unprivileged:
   - code: |-
       VISUAL='/bin/sh -s --' less /etc/hosts
