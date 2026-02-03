@@ -1,7 +1,7 @@
 ---
 ---
 
-:root {
+:root[data-theme=dark] {
     --foreground: #e6e6e6;
     --background: #0f0f0f;
     --faint: #666666;
@@ -10,14 +10,24 @@
     --hover: #ff4d4d;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --foreground: #000000;
-        --background: #ffffff;
-        --faint: #999999;
-        --lighter: #fff4f4;
-        --marked: #ffcccc;
-        --hover: #ff0000;
+:root[data-theme=light] {
+    --foreground: #000000;
+    --background: #ffffff;
+    --faint: #999999;
+    --lighter: #fff4f4;
+    --marked: #ffcccc;
+    --hover: #ff0000;
+}
+
+:root[data-theme=dark] {
+    .light-theme {
+        display: none;
+    }
+}
+
+:root[data-theme=light] {
+    .dark-theme {
+        display: none;
     }
 }
 
@@ -191,19 +201,29 @@ h1 {
     align-items: center;
     justify-content: space-between;
 
-    .github-buttons {
+    .buttons {
         display: flex;
         column-gap: 0.5rem;
         row-gap: 0.5rem;
         flex-wrap: wrap;
 
-        // XXX avoid displaying the link text during loading
         a.github-button {
-            visibility: hidden;
+            visibility: hidden; // XXX avoid displaying the link text during loading
         }
 
         span {
             display: flex; // XXX get rid of sapce around
+        }
+
+        #theme-switcher {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover {
+                color: $hover;
+            }
         }
     }
 }
