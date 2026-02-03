@@ -43,7 +43,6 @@ functions:
       sudo:
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       jrunscript -e 'exec("/bin/sh -c $@|sh _ echo sh </dev/tty >/dev/tty 2>/dev/tty")'

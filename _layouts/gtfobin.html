@@ -148,13 +148,13 @@ layout: common
                             {{ function.extra.binary[false] | markdownify }}
                         </fieldset>
                     {%- endif -%}
-                {%- when "reverse-shell", "bind-shell" -%}
-                    {%- unless example.tty -%}
+                {%- when "shell", "reverse-shell", "bind-shell" -%}
+                    {%- if example.tty == false -%}
                         <fieldset>
                             <legend>TTY</legend>
                             {{ function.extra.tty[false] | markdownify }}
                         </fieldset>
-                    {%- endunless -%}
+                    {%- endif -%}
                 {%- when "reverse-shell" -%}
                     {%- if example.listener -%}
                         {%- assign known = function.extra.listener[example.listener] -%}

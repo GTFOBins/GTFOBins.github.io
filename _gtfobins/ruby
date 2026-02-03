@@ -32,7 +32,6 @@ functions:
       sudo:
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       ruby -e 'exec "/bin/sh"'

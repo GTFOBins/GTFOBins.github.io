@@ -18,7 +18,6 @@ functions:
       suid:
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       tclsh

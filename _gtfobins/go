@@ -8,7 +8,6 @@ functions:
     contexts:
       sudo:
       unprivileged:
-    tty: false
   file-read:
   - code: |-
       echo -e 'package main\nimport (\n\t"fmt"\n\t"os"\n)\n\nfunc main(){\n\tb, _ := os.ReadFile("/path/to/input-file")\n\tfmt.Print(string(b))\n}' >/path/to/temp-file.go
@@ -31,7 +30,6 @@ functions:
       sudo:
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       echo -e 'package main\nimport "syscall"\nfunc main(){\n\tsyscall.Exec("/bin/sh", []string{"/bin/sh", "-i"}, []string{})\n}' >/path/to/temp-file.go

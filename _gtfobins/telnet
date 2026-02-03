@@ -10,7 +10,6 @@ functions:
       sudo:
       suid:
       unprivileged:
-    tty: false
   shell:
   - code: |-
       telnet

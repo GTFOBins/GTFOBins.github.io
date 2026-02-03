@@ -18,7 +18,6 @@ functions:
       suid:
         shell: true
       unprivileged:
-    tty: false
   download:
   - code: |-
       lua -e '
@@ -70,7 +69,6 @@ functions:
         shell: true
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       lua -e 'os.execute("/bin/sh")'

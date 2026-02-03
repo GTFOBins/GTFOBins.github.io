@@ -12,7 +12,6 @@ functions:
       suid:
         shell: true
       unprivileged:
-    tty: false
   file-read:
   - code: |-
       gawk '//' /path/to/input-file
@@ -39,7 +38,6 @@ functions:
         shell: true
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       gawk 'BEGIN {system("/bin/sh")}'

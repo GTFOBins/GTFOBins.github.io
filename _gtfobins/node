@@ -62,7 +62,6 @@ functions:
           })'
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       node -e 'require("child_process").spawn("/bin/sh", {stdio: [0, 1, 2]})'

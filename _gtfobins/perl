@@ -21,7 +21,6 @@ functions:
       sudo:
       unprivileged:
     listener: tcp-server
-    tty: false
   shell:
   - code: |-
       perl -e 'exec "/bin/sh"'

