@@ -1,0 +1,41 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      zsh -c 'echo "$(</path/to/input-file)"'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  - code: |-
+      zsh -c '</path/to/input-file'
+    comment: |-
+      This spawns a pager if run in a TTY.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - code: |-
+      zsh -c 'echo DATA >/path/to/output-file'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  inherit:
+  - code: |-
+      zsh -c '</etc/hosts'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: less
+  shell:
+  - code: |-
+      zsh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

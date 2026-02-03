@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      jtag --interactive
+      shell /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

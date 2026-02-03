@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      grep '' /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+...

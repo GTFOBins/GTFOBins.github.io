@@ -1,0 +1,27 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      pyright /path/to/input-file
+    comment: |-
+      Content is leaked as error messages.
+    contexts:
+      sudo:
+      unprivileged:
+  - binary: false
+    code: |-
+      pyright --outputjson /path/to/input-file
+    comment: |-
+      Content is leaked as error messages in JSON format.
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      pyright -w /path/to/input-dir/
+    comment: |-
+      Recursively walks directories, parsing all Python files and leaking some contents through diagnostics.
+    contexts:
+      sudo:
+      unprivileged:
+...

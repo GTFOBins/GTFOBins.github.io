@@ -1,25 +1,36 @@
 ---
 layout: page
 title: GTFOBins
+description: GTFOBins is a curated list of Unix-like executables that can be used to bypass local security restrictions in misconfigured systems.
 ---
 
-![logo](/assets/logo.png){:.logo}
+![GTFOBins logo]({{ '/assets/logo.png' | relative_url }}){:.logo}
 
-GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
+{{ page.description }}
 
-The project collects legitimate [functions](/functions/) of Unix binaries that can be abused to ~~get the f**k~~ break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate the other post-exploitation tasks.
+The project [collects]({{ '/scope/' | relative_url }}) legitimate functions of Unix-like executables that can be abused to ~~get the f**k~~ break out restricted shells, escalate or maintain elevated privileges, transfer files, spawn bind and reverse shells, and facilitate other post-exploitation tasks.
 
-It is important to note that this is **not** a list of exploits, and the programs listed here are not vulnerable per se, rather, GTFOBins is a compendium about how to live off the land when you only have certain binaries available.
-
-GTFOBins is a [collaborative][] project created by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and] where everyone can [contribute][] with additional binaries and techniques.
+GTFOBins is a joint effort by [Emilio Pinna][norbemi] and [Andrea Cardaci][cyrus_and], and many other [contributors][]. Everyone can [get involved]({{ '/contributing/' | relative_url }}) by providing additional entries and techniques!
 
 If you are looking for Windows binaries you should visit [LOLBAS][].
 
-[functions]: /functions/
-[LOLBAS]: https://lolbas-project.github.io/
-[collaborative]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
-[contribute]: /contribute/
-[norbemi]: https://twitter.com/norbemi
-[cyrus_and]: https://twitter.com/cyrus_and
+> Please note that this is **not** a list of exploits, and the programs listed here are not vulnerable per se, rather, GTFOBins is a compendium about how to live off the land when you only have certain executables available.
 
-{% include bin_table.html %}
+[GitHub][]
+|
+[Get involved]({{ '/contributing/' | relative_url }})
+|
+[Contributors][contributors]
+|
+[JSON API]({{ '/api.json' | relative_url }})
+|
+[MITRE ATT&CK® Navigator](https://mitre-attack.github.io/attack-navigator/#layerURL={{ '/mitre.json' | absolute_url }})
+{:.centered}
+
+[contributors]: https://github.com/GTFOBins/GTFOBins.github.io/graphs/contributors
+[norbemi]: https://x.com/norbemi
+[cyrus_and]: https://x.com/cyrus_and
+[LOLBAS]: https://lolbas-project.github.io/
+[GitHub]: https://github.com/GTFOBins/GTFOBins.github.io
+
+<div>{%- include gtfobins_table.html -%}</div>

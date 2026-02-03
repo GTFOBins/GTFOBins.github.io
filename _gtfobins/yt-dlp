@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      yt-dlp 'https://www.youtube.com/watch?v=xxxxxxxxxxx' --exec '/bin/sh #'
+    comment: |-
+      The URL must point to a valid YouTube video which will be actually downloaded.
+    contexts:
+      sudo:
+      unprivileged:
+...

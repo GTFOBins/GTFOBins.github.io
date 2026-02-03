@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      soelim /path/to/input-file
+    comment: |-
+      The content is actually parsed and corrupted by the command.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

