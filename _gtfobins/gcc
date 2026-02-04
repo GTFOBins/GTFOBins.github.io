@@ -25,7 +25,7 @@ functions:
       unprivileged:
   shell:
   - code: |-
-      gcc -wrapper /bin/sh,-s .
+      gcc -wrapper /bin/sh,-s x
     contexts:
       sudo:
       unprivileged:

@@ -2,12 +2,12 @@
 functions:
   shell:
   - code: |-
-      rsync -e '/bin/sh -c "/bin/sh 0<&2 1>&2"' 127.0.0.1:/dev/null
+      rsync -e '/bin/sh -c "/bin/sh 0<&2 1>&2"' x:x
     contexts:
       sudo:
       suid:
         code: |-
-          rsync -e '/bin/sh -p -c "/bin/sh -p 0<&2 1>&2"' 127.0.0.1:/dev/null
+          rsync -e '/bin/sh -p -c "/bin/sh -p 0<&2 1>&2"' x:x
         shell: false
       unprivileged:
 ...

