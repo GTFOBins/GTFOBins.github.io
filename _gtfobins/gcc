@@ -26,6 +26,8 @@ functions:
   shell:
   - code: |-
       gcc -wrapper /bin/sh,-s x
+    comment: |-
+      In some older versions, the `x` argument must instead reference any existing file.
     contexts:
       sudo:
       unprivileged:
