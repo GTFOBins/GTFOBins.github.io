@@ -9,7 +9,7 @@ functions:
       unprivileged:
   inherit:
   - code: |-
-      gdb -nx -ex 'python ... -ex quit
+      gdb -nx -ex 'python ...' -ex quit
     comment: |-
       This allows to run Python code (`...`).
     contexts:
