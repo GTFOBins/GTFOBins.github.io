@@ -106,10 +106,10 @@ layout: common
                                 {%- endif -%}
                             {%- when "capabilities" -%}
                                 <p>
-                                    {{ context.extra.list }}
+                                    {{ context.extra.list }}{{ ' ' }}
                                     {%- for capability in per_context_info.list -%}
                                         <code>{{ capability | escape }}</code>
-                                        {%- if forloop.last -%}.{%- else -%}, {%- endif -%}
+                                        {%- if forloop.last -%}.{%- else -%}{{ ', ' }}{%- endif -%}
                                     {%- endfor -%}
                                 </p>
                             {%- endcase -%}
