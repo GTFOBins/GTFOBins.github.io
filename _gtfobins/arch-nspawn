@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      temp_dir=/path/to/temp-dir
+      mkdir -p "$temp_dir/etc/pacman.d"
+      grep -oP "^CHROOT_VERSION='\K[^']+" /usr/share/devtools/lib/archroot.sh > "$temp_dir/.arch-chroot"
+      touch "$temp_dir/etc/pacman.conf" "$temp_dir/etc/pacman.d/mirrorlist"
+      echo 'CARCH=true;/bin/sh;exit' > "$temp_dir/etc/makepkg.conf"
+      arch-nspawn $temp_dir
+    contexts:
+      sudo:
+      suid:
+...
