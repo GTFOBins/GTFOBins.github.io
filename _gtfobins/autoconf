@@ -2,9 +2,11 @@
 functions:
   shell:
   - code: |-
-      cd /path/to/temp-dir
+      echo /bin/sh >/path/to/temp-file
+      chmod +x /path/to/temp-file
       touch configure.ac
-      AUTOM4TE='/bin/sh -c /bin/sh #' autoconf
+      AUTOM4TE=/path/to/temp-file autoconf
     contexts:
       sudo:
+      unprivileged:
 ...
