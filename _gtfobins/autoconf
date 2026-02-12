@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      cd /path/to/temp-dir
+      touch configure.ac
+      AUTOM4TE='/bin/sh -c /bin/sh #' autoconf
+    contexts:
+      sudo:
+...
