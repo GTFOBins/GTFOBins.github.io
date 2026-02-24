@@ -1,0 +1,22 @@
+---
+functions:
+  file-read:
+  - code: |-
+      LFILE=/path/to/file
+      fastfetch --file $LFILE
+    comment: |-
+      The `--file` option sets the logo source to a file and prints its content.
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      TF=$(mktemp).jsonc
+      echo '{"modules":[{"type":"command","key":"x","text":"bash"}]}' > $TF
+      fastfetch -c $TF
+    comment: |-
+      The `Command` module in a fastfetch JSON config file executes arbitrary shell commands. The config file must have a `.jsonc` extension.
+    contexts:
+      sudo:
+      unprivileged:
+...
