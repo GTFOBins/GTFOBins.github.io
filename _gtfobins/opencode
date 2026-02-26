@@ -1,0 +1,18 @@
+---
+functions:
+  inherit:
+  - code: |-
+      opencode db
+    contexts:
+      sudo:
+      unprivileged:
+    from: sqlite3
+  shell:
+  - code: |-
+      opencode
+      !
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
