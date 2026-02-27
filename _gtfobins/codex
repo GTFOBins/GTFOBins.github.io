@@ -1,11 +1,9 @@
 ---
 functions:
-  file-read:
-  - binary: true
-    code: |-
-      codex sandbox linux cat /path/to/input-file
+  shell:
+  - code: |-
+      codex sandbox linux /bin/sh
     contexts:
       sudo:
-      suid:
       unprivileged:
 ...
