@@ -1,0 +1,12 @@
+---
+functions:
+  command:
+  - code: |-
+      opencode
+      ! /path/to/command
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
