@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      bbot -d -cy /path/to/input-file
+    comment: |-
+      The file is displayed in the debug log.
+    contexts:
+      sudo:
+      unprivileged:
+...
