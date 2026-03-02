@@ -1,0 +1,12 @@
+---
+functions:
+  file-write:
+  - code: |-
+      shred -u /path/to/output-file
+    comment: |-
+      This actually deletes the chosen file.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

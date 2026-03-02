@@ -1,0 +1,11 @@
+---
+functions:
+  inherit:
+  - code: |-
+      gcloud help
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: less
+...

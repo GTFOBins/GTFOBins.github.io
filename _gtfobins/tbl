@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      tbl /path/to/input-file
+    comment: |-
+      The read file content is corrupted by additional text at the beginning.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

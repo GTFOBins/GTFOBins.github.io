@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      sshpass /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          sshpass /bin/sh -p
+        shell: false
+      unprivileged:
+...

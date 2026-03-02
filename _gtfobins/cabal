@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      cabal exec --project-file=/dev/null -- /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          cabal exec --project-file=/dev/null -- /bin/sh -p
+        shell: false
+      unprivileged:
+...

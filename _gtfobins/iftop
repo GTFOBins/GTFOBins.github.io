@@ -1,0 +1,16 @@
+---
+functions:
+  shell:
+  - code: |-
+      iftop
+      !/bin/sh
+    comment: |-
+      This requires the privilege to capture on some device (specify with `-i` if needed).
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    version: |-
+      0.17
+...

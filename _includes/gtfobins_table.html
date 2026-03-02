@@ -1,0 +1,230 @@
+<div id="search-toolbox">
+    <fieldset>
+        <legend>Functions</legend>
+        <ul class="search-filters tag-list">
+            {%- for function_item in site.data.functions -%}
+                {%- assign function_name = function_item[0] -%}
+                {%- assign function = function_item[1] -%}
+                <li><a href="#/^{{ function.label | downcase }}$/" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
+            {%- endfor -%}
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Contexts</legend>
+        <ul class="search-filters tag-list">
+            {%- for context_item in site.data.contexts -%}
+                {%- assign context_name = context_item[0] -%}
+                {%- assign context = context_item[1] -%}
+                <li><a href="#//^{{ context.label | downcase }}$" data-title="{{ context.description | replace: '\n', ' ' }}">{{ context.label }}</a></li>
+            {%- endfor -%}
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Filter</legend>
+        <input type="text" spellcheck="false" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<context>]"/>
+    </fieldset>
+</div>
+
+<div id="gtfobin-table-wrapper">
+    <table id="gtfobin-table">
+        <thead>
+            <tr>
+                <th>Executable</th>
+                <th>Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for original_gtfobin in site.gtfobins -%}
+                {%- comment -%} fetch the name from the path {%- endcomment -%}
+                {%- capture gtfobin_name -%}{%- include get_gtfobin_name.html path=original_gtfobin.path -%}{%- endcapture -%}
+
+                {%- comment -%}skip old-version files{%- endcomment -%}
+                {%- assign extension = gtfobin_name | split: '.' | last -%}
+                {%- if extension == 'md' -%}
+                    {%- continue -%}
+                {%- endif -%}
+
+                {%- comment -%} resolve the alias, if provided {%- endcomment -%}
+                {%- if original_gtfobin.alias -%}
+                    {%- include get_gtfobin.html name=original_gtfobin.alias -%}
+                    {%- assign gtfobin = return_gtfobin -%}
+                {%- else -%}
+                    {%- assign gtfobin = original_gtfobin -%}
+                {%- endif -%}
+
+                {%- comment -%} render the row {%- endcomment -%}
+                <tr data-gtfobin-name="{{ gtfobin_name }}">
+                    <th><a href="{{ original_gtfobin.url | relative_url }}" class="bin-name">{{ gtfobin_name }}</a></th>
+                    <td>{%- include function_list.html gtfobin=original_gtfobin functions=gtfobin.functions -%}</td>
+                </tr>
+            {%- endfor -%}
+        </tbody>
+        <tfoot>
+            <tr><td colspan="2">No matches!</td></tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    function filter(query) {
+        // extract query components
+        const [namePattern, functionPattern, contextPattern] = query.toLowerCase().split('/', 3).map((pattern) => {
+            try {
+                if (pattern) {
+                    return new RegExp(pattern, 'i');
+                } else {
+                    return undefined;
+                }
+            } catch {
+                return undefined;
+            }
+        });
+
+        // hide the table during the filtering to avoid unnecessary layout reflows
+        const table = document.querySelector('#gtfobin-table');
+        table.classList.add('hidden');
+
+        // filter rows
+        let nResults = 0;
+        for (const row of table.querySelectorAll('tbody tr')) {
+            // show the row by default
+            let showRow = true;
+
+            // if the executable name does not match do not show the row
+            if (namePattern && !namePattern.test(row.dataset.gtfobinName)) {
+                showRow = false;
+            }
+            // if there are function filters at least one mush match
+            else {
+                // fetch the functions buttons
+                const functionElems = row.children[1].firstElementChild.children;
+
+                // reset functions buttons visibility
+                for (const functionElem of functionElems) {
+                    functionElem.classList.remove('match');
+                    delete functionElem.firstElementChild.dataset.matchingContexts;
+                }
+
+                // skip if empty filters
+                if (functionPattern || contextPattern) {
+                    // test the individual functions
+                    let noMatchingFunctions = true;
+                    for (const functionElem of functionElems) {
+                        // test the function name
+                        const functionMatches = !functionPattern || functionPattern.test(functionElem.dataset.functionName)
+                        if (!functionMatches) {
+                            continue;
+                        }
+
+                        // test the contexts
+                        const contextList = functionElem.dataset.functionContexts.split(',');
+                        const matchingContexts = contextPattern
+                            ? contextList.filter((context) => contextPattern.test(context))
+                            : contextList;
+                        if (matchingContexts.length === 0) {
+                            continue;
+                        }
+                        // save the macthing contexts only if there is a pattern
+                        else if (contextPattern) {
+                            functionElem.firstElementChild.dataset.matchingContexts = matchingContexts.join(', ');
+                        }
+
+                        // match if both match
+                        noMatchingFunctions = false;
+                        functionElem.classList.add('match');
+                    }
+
+                    // no function satisfies the patterns
+                    if (noMatchingFunctions) {
+                        showRow = false;
+                    }
+                }
+            }
+
+            // hide or show the row
+            if (showRow) {
+                row.classList.remove('hidden');
+                nResults++;
+            } else {
+                row.classList.add('hidden');
+            }
+        }
+
+        // update the message visibility
+        const header = table.querySelector('thead');
+        const footer = table.querySelector('tfoot');
+        if (nResults === 0) {
+            header.classList.add('hidden');
+            footer.classList.remove('hidden');
+        } else {
+            header.classList.remove('hidden');
+            footer.classList.add('hidden');
+        }
+
+        // restore the table visibility
+        table.classList.remove('hidden');
+    }
+
+    function applyFilter() {
+        // filter on load according to the URL
+        const searchToolbox = document.querySelector('#search-toolbox');
+        const searchField = searchToolbox.querySelector('input');
+        const query = decodeURIComponent(location.hash.slice(1));
+        filter(query);
+
+        // if there is a filter fill the box and enter search mode
+        if (query) {
+            searchField.value = query;
+            searchField.focus();
+            searchToolbox.scrollIntoView();
+        }
+    }
+
+    function setup() {
+        const searchToolbox = document.querySelector('#search-toolbox');
+        const searchField = searchToolbox.querySelector('input');
+
+        // handle user input
+        searchField.addEventListener('input', () => {
+            const query = searchField.value;
+            history.replaceState(null, null, encodeURI(`#${query}`));
+            applyFilter();
+        });
+
+        // handle shortcuts
+        addEventListener('keydown', (event) => {
+            // focus search box on valid keydown (search as you type)
+            if (event.key.toLowerCase().match(/^[-_0-9a-z\/^$]$/) && !(event.ctrlKey || event.altKey || event.metaKey)) {
+                searchField.focus();
+            } else if (event.key === 'Escape') {
+                // if the search box is already focused and empty scroll to top
+                if (document.activeElement === searchField && searchField.value === '') {
+                    window.scrollTo(0, 0);
+                    searchField.blur();
+                }
+                // clear filter and enter search mode
+                else {
+                    searchField.focus();
+                    location.hash = searchField.value = '';
+                    searchToolbox.scrollIntoView();
+                }
+            } else if (event.key === 'Enter') {
+                // navigate to the first match
+                const firstMatch = document.querySelector('#gtfobin-table tbody tr:not(.hidden) th a');
+                if (firstMatch) {
+                    firstMatch.click();
+                }
+            }
+        });
+
+        // handle URL changes
+        window.onhashchange = applyFilter;
+
+        // trigger filter on page load
+        applyFilter();
+    }
+
+    setup();
+</script>

@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      basenc --base64 /path/to/input-file | basenc -d --base64
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

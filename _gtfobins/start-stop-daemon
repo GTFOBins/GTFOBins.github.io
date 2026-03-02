@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      start-stop-daemon -S -x /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          start-stop-daemon -S -x /bin/sh -- -p
+        shell: false
+      unprivileged:
+...

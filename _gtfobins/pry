@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      pry
+    contexts:
+      sudo:
+      unprivileged:
+    from: irb
+...

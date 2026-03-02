@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      debugfs
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

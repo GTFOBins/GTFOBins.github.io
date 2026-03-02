@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      clisp -x '(ext:run-shell-command "/bin/sh")(ext:exit)'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      as @/path/to/input-file
+    comment: |-
+      Lines are likely leaked as error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

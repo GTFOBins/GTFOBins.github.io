@@ -1,0 +1,18 @@
+---
+functions:
+  inherit:
+  - code: |-
+      run-mailcap --action=view text/plain:/etc/hosts
+    contexts:
+      sudo:
+      unprivileged:
+    from: less
+  - code: |-
+      run-mailcap --action=edit text/plain:/path/to/output-file
+    comment: |-
+      The file must exist and be not empty.
+    contexts:
+      sudo:
+      unprivileged:
+    from: vi
+...

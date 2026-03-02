@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      wall --nobanner /path/to/input-file
+    comment: |-
+      The textual file is dumped on the current TTY (neither to `stdout` nor to `stderr`).
+    contexts:
+      sudo:
+...

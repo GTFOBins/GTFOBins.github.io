@@ -1,0 +1,13 @@
+---
+functions:
+  inherit:
+  - code: |-
+      cpan
+      ! ...
+    comment: |-
+      Perl code can be executed with the `!` command.
+    contexts:
+      sudo:
+      unprivileged:
+    from: perl
+...

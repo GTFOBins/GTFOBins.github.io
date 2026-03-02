@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      ispell /etc/hosts
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          ispell /etc/hosts
+          !/bin/sh -p
+        shell: false
+      unprivileged:
+...

@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      byebug --no-stop /path/to/script.rb
+    contexts:
+      sudo:
+      unprivileged:
+    from: ruby
+...

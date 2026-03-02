@@ -8,13 +8,11 @@ on:
       - master
   workflow_dispatch:
 jobs:
-  Tests:
-    runs-on: ubuntu-latest
+  Lint:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run linter
         run: |
-          pip install jsonschema yamllint
-      - name: Run tests
-        run: |
-          make lint
+          make vet

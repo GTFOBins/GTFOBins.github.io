@@ -1,0 +1,24 @@
+---
+functions:
+  command:
+  - code: |-
+      mkdir /path/to/temp-dir/bin/
+      mkdir /path/to/temp-dir/lib/
+      echo '/path/to/command' >/path/to/temp-dir/bin/rustc
+      chmod +x /path/to/temp-dir/bin/rustc
+      rustup toolchain link x /path/to/temp-dir/
+      rustup run x rustc
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      mkdir /path/to/temp-dir/bin/
+      mkdir /path/to/temp-dir/lib/
+      cp /bin/sh /path/to/temp-dir/bin/rustc
+      rustup toolchain link x /path/to/temp-dir/
+      rustup run x rustc
+    contexts:
+      sudo:
+      unprivileged:
+...

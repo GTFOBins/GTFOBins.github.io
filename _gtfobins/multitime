@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      multitime /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          multitime /bin/sh -p
+      unprivileged:
+...

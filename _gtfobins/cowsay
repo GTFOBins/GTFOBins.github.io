@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      cowsay -f /path/to/script.pl x
+    contexts:
+      sudo:
+      unprivileged:
+    from: perl
+...

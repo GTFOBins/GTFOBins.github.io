@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      joe
+      ^K!/bin/sh
+    comment: |-
+      The terminal is spawn int the terminal interface.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

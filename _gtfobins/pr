@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      pr -T /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

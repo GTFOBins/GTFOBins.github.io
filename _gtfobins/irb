@@ -1,0 +1,13 @@
+---
+functions:
+  inherit:
+  - code: |-
+      irb
+      ...
+    comment: |-
+      This allows to run Ruby code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: ruby
+...

@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - code: |-
+      yelp man:/path/to/input-file
+    comment: |-
+      This spawns a graphical window containing the file content somehow corrupted by word wrapping.
+    contexts:
+      sudo:
+      unprivileged:
+...

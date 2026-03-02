@@ -1,0 +1,12 @@
+---
+functions:
+  inherit:
+  - code: |-
+      sqlmap -u 127.0.0.1 --eval='...'
+    comment: |-
+      This allows to run Python code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: python
+...

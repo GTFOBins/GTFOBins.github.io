@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      pidstat -e /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          pidstat -e /bin/sh -p
+        shell: false
+      unprivileged:
+...

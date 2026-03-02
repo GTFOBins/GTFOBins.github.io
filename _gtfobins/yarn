@@ -1,0 +1,21 @@
+---
+functions:
+  shell:
+  - code: |-
+      yarn exec /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      echo '{"scripts": {"preinstall": "/bin/sh"}}' >package.json
+      yarn --cwd .
+    contexts:
+      sudo:
+      unprivileged:
+  - code: |-
+      echo '{"scripts": {"xxx": "/bin/sh"}}' >package.json
+      yarn --cwd . xxx
+    contexts:
+      sudo:
+      unprivileged:
+...

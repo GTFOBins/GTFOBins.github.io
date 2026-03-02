@@ -1,7 +1,17 @@
----
 title: GTFOBins
 
-exclude: ['/scripts', '/Gemfile', '/Makefile', '/README.md', '/CONTRIBUTING.md']
+url: https://gtfobins.org
+
+exclude:
+  - /CNAME
+  - /Dockerfile
+  - /Gemfile*
+  - /LICENSE
+  - /Makefile
+  - /README.md
+  - /_private/
+  - /linter/
+  - /vendor/ # XXX this needs to be explicitly added
 
 permalink: pretty
 
@@ -11,6 +21,6 @@ collections:
 
 defaults:
   - scope:
-      path: '_gtfobins'
+      path: _gtfobins
     values:
-      layout: bin
+      layout: gtfobin

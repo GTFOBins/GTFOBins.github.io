@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      fish
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

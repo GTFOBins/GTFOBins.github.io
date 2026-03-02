@@ -1,0 +1,13 @@
+---
+functions:
+  inherit:
+  - code: |-
+      echo '...' >/path/to/temp-file
+      tshark -Xlua_script:/path/to/temp-file
+    comment: |-
+      This allows to run Lua code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: lua
+...

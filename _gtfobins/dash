@@ -1,0 +1,17 @@
+---
+functions:
+  file-write:
+  - code: |-
+      dash -c 'echo DATA >/path/to/output-file'
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      dash
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      ncdu
+      b
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

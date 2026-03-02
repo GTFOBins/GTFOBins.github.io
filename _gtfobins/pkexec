@@ -1,0 +1,8 @@
+---
+functions:
+  shell:
+  - code: |-
+      pkexec /bin/sh
+    contexts:
+      sudo:
+...

@@ -1,0 +1,19 @@
+---
+functions:
+  inherit:
+  - code: |-
+      ex
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: ed
+  shell:
+  - code: |-
+      ex -c ':!/bin/sh'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

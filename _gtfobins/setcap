@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      setcap cap_setuid+ep /path/to/command
+    comment: |-
+      This can be used to assign capabilities to executable files.
+    contexts:
+      sudo:
+      suid:
+...

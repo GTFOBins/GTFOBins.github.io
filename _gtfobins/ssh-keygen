@@ -1,0 +1,12 @@
+---
+functions:
+  library-load:
+  - code: |-
+      ssh-keygen -D /path/to/lib.so
+    comment: |-
+      The shared library must contain the `void C_GetFunctionList() {}` function.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

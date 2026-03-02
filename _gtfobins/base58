@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      base58 /path/to/input-file | base58 --decode
+    contexts:
+      sudo:
+      unprivileged:
+...

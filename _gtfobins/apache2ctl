@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      apache2ctl -c 'Include /path/to/input-file'
+    comment: |-
+      The first line only is likely leaked as an error message.
+    contexts:
+      sudo:
+      unprivileged:
+...

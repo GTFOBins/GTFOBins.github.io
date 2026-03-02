@@ -1,0 +1,20 @@
+---
+functions:
+  file-read:
+  - code: |-
+      rake -f /path/to/input-file
+    comment: |-
+      The file is actually parsed and the first wrong line is returned in an error message.
+    contexts:
+      sudo:
+      unprivileged:
+  inherit:
+  - code: |-
+      rake -p '...'
+    comment: |-
+      This allows to run Ruby code (`...`).
+    contexts:
+      sudo:
+      unprivileged:
+    from: ruby
+...

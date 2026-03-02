@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      scanmem
+      shell /bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

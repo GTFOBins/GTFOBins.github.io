@@ -1,0 +1,17 @@
+---
+functions:
+  file-read:
+  - code: |-
+      dotnet fsi
+      System.IO.File.ReadAllText("/path/to/input-file");;
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      dotnet fsi
+      System.Diagnostics.Process.Start("/bin/sh").WaitForExit();;
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      7z a -ttar -an -so /path/to/input-file | 7z e -ttar -si -so
+    contexts:
+      sudo:
+      unprivileged:
+...

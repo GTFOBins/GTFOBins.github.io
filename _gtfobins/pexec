@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      pexec /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          pexec /bin/sh -p
+        shell: false
+      unprivileged:
+...

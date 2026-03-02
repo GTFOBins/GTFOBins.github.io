@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      arp -v -f /path/to/input-file
+    comment: |-
+      Lines are likely leaked as error messages.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

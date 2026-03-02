@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      mosh --server=mosh-server localhost /bin/sh
+    comment: |-
+      This requires a valid SSH access.
+    contexts:
+      sudo:
+        comment: |-
+          The `mosh-server` is executed via `sudo`.
+...

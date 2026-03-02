@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      fold -w999 /path/to/input-file
+    comment: |-
+      This corrupts the output by wrapping very long lines at the given width (`999`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      column /path/to/input-file
+    comment: |-
+      This program expects textual data.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

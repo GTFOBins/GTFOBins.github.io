@@ -1,0 +1,32 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      csvtool trim t /path/to/input-file
+    comment: |-
+      The file is actually parsed and manipulated as CSV.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      echo DATA >/path/to/temp-file
+      csvtool trim t /path/to/temp-file -o /path/to/output-file
+    comment: |-
+      The file is actually parsed and manipulated as CSV.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      csvtool call '/bin/sh;false' /etc/hosts
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

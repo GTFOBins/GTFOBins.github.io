@@ -1,0 +1,21 @@
+---
+comment: |-
+  `ld.so` is the Linux dynamic linker/loader, its filename and location might change across distributions (e.g., `/lib64/ld-linux-x86-64.so.2`). The actual path is can be obtained with:
+
+  ```
+  strings /proc/self/exe | head -1
+  ```
+functions:
+  shell:
+  - code: |-
+      /path/to/ld.so /bin/sh
+    comment: |-
+      The spawned process will be the loader, not the target executable, this might aid evasion. See <https://shyft.us/posts/20230526_linux_command_proxy.html> for more information.
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          /path/to/ld.so /bin/sh -p
+        shell: false
+      unprivileged:
+...

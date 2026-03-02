@@ -1,0 +1,17 @@
+---
+functions:
+  command:
+  - code: |-
+      CRASHPAGER=/path/to/command crash -h
+    contexts:
+      sudo:
+      unprivileged:
+  inherit:
+  - code: |-
+      crash -h
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    from: less
+...

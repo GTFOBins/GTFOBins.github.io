@@ -1,0 +1,10 @@
+---
+functions:
+  inherit:
+  - code: |-
+      cargo help doc
+    contexts:
+      sudo:
+      unprivileged:
+    from: less
+...

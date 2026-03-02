@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      urlget - /path/to/input-file
+    comment: |-
+      This is part of `gettext` and usually not in `PATH`, e.g., on Arch it can be found at `/usr/lib/gettext/urlget`.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

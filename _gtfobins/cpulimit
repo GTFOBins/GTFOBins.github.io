@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      cpulimit -l 100 -f /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          cpulimit -l 100 -f /bin/sh -p
+      unprivileged:
+...

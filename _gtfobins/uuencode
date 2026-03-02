@@ -1,0 +1,11 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      uuencode /path/to/input-file /dev/stdout | uudecode
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

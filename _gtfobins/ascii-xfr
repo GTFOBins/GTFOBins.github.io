@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      ascii-xfr -ns /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

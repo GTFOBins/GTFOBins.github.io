@@ -1,0 +1,31 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      tmux -f /path/to/input-file
+    comment: |-
+      The file is read and parsed as a `tmux` configuration file, part of the first invalid line is returned in an error message.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      tmux -c /bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  - code: |-
+      tmux -S /path/to/socket
+    comment: |-
+      Provided to have enough permissions to access the socket (e.g., `/tmp/tmux-xxx/default`).
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    version: |-
+      < 3.3
+...

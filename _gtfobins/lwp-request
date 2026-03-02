@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      lwp-request file:///path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+...

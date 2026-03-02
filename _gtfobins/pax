@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      pax -w /path/to/input-file | tar -xO
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

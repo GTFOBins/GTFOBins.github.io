@@ -1,0 +1,12 @@
+---
+comment: |-
+  For this to work the target must be connected to an AWS instance via EB CLI.
+functions:
+  inherit:
+  - code: |-
+      eb logs
+    contexts:
+      sudo:
+      unprivileged:
+    from: journalctl
+...

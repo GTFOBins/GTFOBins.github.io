@@ -1,0 +1,19 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      sort -m /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      echo DATA | sort -m -o /path/to/output-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

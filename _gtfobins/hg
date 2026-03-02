@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      hg --config alias.x='!/bin/sh' x
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

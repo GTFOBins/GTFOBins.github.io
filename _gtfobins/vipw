@@ -1,0 +1,12 @@
+---
+functions:
+  inherit:
+  - code: |-
+      vipw
+    comment: |-
+      Despite requiring superuser privileges to run, the editor is executed as the unprivileged user.
+    contexts:
+      sudo:
+      suid:
+    from: vi
+...

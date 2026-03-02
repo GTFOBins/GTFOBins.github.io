@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      dc -e '!/bin/sh'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

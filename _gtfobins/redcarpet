@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      redcarpet /path/to/input-file
+    comment: |-
+      The file is actually parsed as a Markdown file.
+    contexts:
+      sudo:
+      unprivileged:
+...

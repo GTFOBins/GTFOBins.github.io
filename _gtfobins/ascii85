@@ -1,0 +1,9 @@
+---
+functions:
+  file-read:
+  - code: |-
+      ascii85 /path/to/input-file | ascii85 --decode
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      dhclient -sf /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

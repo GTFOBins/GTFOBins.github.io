@@ -1,0 +1,18 @@
+---
+functions:
+  command:
+  - blind: true
+    code: |-
+      systemd-run /path/to/command
+    contexts:
+      sudo:
+  shell:
+  - code: |-
+      systemd-run -S
+    contexts:
+      sudo:
+  - code: |-
+      systemd-run -t /bin/sh
+    contexts:
+      sudo:
+...

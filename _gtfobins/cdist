@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      cdist shell -s /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      links /path/to/input-file
+    comment: |-
+      The result is displayed in a TUI interface.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

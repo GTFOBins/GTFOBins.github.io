@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      msguniq -P /path/to/input-file
+    comment: |-
+      The file is parsed and displayed as a Java `.properties` file.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

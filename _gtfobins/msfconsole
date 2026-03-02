@@ -1,0 +1,11 @@
+---
+functions:
+  inherit:
+  - code: |-
+      msfconsole
+      irb
+    contexts:
+      sudo:
+      unprivileged:
+    from: irb
+...

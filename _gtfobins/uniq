@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      uniq /path/to/input-file
+    comment: |-
+      The read file content is corrupted by squashing multiple adjacent lines.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

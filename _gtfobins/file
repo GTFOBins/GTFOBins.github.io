@@ -1,0 +1,26 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      file -f /path/to/input-file
+    comment: |-
+      Each input line is treated as a filename for the `file` command and the output is corrupted by a suffix `:` followed by the result or the error of the operation.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  - binary: false
+    code: |-
+      file -m /path/to/input-file
+    comment: |-
+      Each line is corrupted by a prefix string and wrapped inside quotes.
+
+      If a line in the target file begins with a `#`, it will not be printed as these lines are parsed as comments.
+
+      It can also be provided with a directory and will read each file in the directory.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

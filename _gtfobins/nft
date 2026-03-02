@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - code: |-
+      nft -f /path/to/input-file
+    comment: |-
+      The content is actually parsed and corrupted by the command.
+    contexts:
+      sudo:
+      unprivileged:
+    version: |-
+      `nftables` >= 0.9.0
+...

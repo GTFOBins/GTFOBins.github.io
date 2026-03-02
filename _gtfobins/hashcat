@@ -1,0 +1,12 @@
+---
+functions:
+  file-write:
+  - code: |-
+      echo -n DATA | tee /path/to/wordlist | md5sum | awk '{print $1}' >/path/to/hash
+      hashcat -m 0 --quiet --potfile-disable -o /path/to/output-file --outfile-format=2 --outfile-autohex-disable /path/to/hash /path/to/wordlist
+    comment: |-
+      Append data to the end of the output file, creating if does not exist.
+    contexts:
+      sudo:
+      unprivileged:
+...

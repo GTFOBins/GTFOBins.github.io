@@ -1,4 +1,7 @@
 /.jekyll-cache/
+/.jekyll-metadata
 /.sass-cache/
+/_private/
 /_site/
-/_tmp/
+/linter/.venv/
+/linter/__pycache__/

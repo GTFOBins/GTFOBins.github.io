@@ -1,0 +1,23 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      pic /path/to/input-file
+    comment: |-
+      The output is prefixed with some content.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      pic -U
+      .PS
+      sh X sh X
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

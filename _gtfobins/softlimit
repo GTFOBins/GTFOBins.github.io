@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      softlimit /bin/sh
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          softlimit /bin/sh -p
+        shell: false
+      unprivileged:
+...

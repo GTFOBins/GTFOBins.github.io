@@ -1,0 +1,15 @@
+---
+functions:
+  file-write:
+  - code: |-
+      pwsh -c '"DATA" | Out-File /path/to/output-file'
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      pwsh
+    contexts:
+      sudo:
+      unprivileged:
+...

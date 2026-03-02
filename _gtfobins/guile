@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      guile -c '(system "/bin/sh")'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

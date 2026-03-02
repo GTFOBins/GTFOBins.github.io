@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      tac -s 'RANDOM' /path/to/input-file
+    comment: |-
+      Make sure that `RANDOM` does not appear into the file to read otherwise the content of the file is corrupted by reversing the order of `RANDOM`-separated chunks.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

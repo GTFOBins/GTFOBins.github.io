@@ -1,0 +1,11 @@
+---
+functions:
+  privilege-escalation:
+  - code: |-
+      chattr +i /path/to/input-file
+    comment: |-
+      Make the target file immutable.
+    contexts:
+      sudo:
+      suid:
+...

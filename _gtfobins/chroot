@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+  - code: |-
+      chroot /
+    contexts:
+      sudo:
+      suid:
+        code: |-
+          chroot / /bin/sh -p
+        shell: false
+...

@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      aa-exec /bin/sh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
