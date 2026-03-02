@@ -1,7 +1,12 @@
 ---
 functions:
-  sudo:
-    - code: |
-        LFILE=file_to_read
-        sudo /usr/local/bin/bbot -cy $FILE -d
----
+  file-read:
+  - binary: false
+    code: |-
+      bbot -d -cy /path/to/input-file
+    comment: |-
+      The file is displayed in the debug log.
+    contexts:
+      sudo:
+      unprivileged:
+...
