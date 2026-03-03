@@ -9,4 +9,13 @@ functions:
       suid:
         shell: true
       unprivileged:
+  inherit:
+  - code: |-
+      opencode db '...'
+    comment: |-
+      This allows to run SQLite queries (`...`) provided that `sqlite3` is installed.
+    contexts:
+      sudo:
+      unprivileged:
+    from: sqlite3
 ...
