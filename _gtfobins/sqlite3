@@ -15,7 +15,7 @@ functions:
   file-write:
   - binary: false
     code: |-
-      sqlite3 /dev/null -cmd ".output /path/to/output-file" 'select "DATA";'
+      sqlite3 /dev/null -cmd '.output /path/to/output-file' 'select "DATA";'
     contexts:
       sudo:
       suid:
