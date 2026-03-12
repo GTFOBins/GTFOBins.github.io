@@ -29,4 +29,12 @@ functions:
       suid:
       unprivileged:
     receiver: ssh-server
+  command:
+  - code: |-
+      sftp -D /usr/bin/nautilus localhost
+    comment: |-
+      Executes the command provided you don't need to provide the whole path. 
+    contexts:
+      sudo:
+      unprivileged:        
 ...
