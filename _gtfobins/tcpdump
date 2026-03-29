@@ -10,7 +10,7 @@ functions:
     contexts:
       sudo:
         code: |-
-          echo /path/to/command" >/path/to/temp-file
+          echo /path/to/command >/path/to/temp-file
           chmod +x /path/to/temp-file
           tcpdump -ln -i lo -w /dev/null -W 1 -G 1 -z /path/to/temp-file -Z root
       unprivileged:
