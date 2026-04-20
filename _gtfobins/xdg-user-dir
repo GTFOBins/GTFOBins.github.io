@@ -8,4 +8,6 @@ functions:
     contexts:
       sudo:
       unprivileged:
+    version: |-
+      < 0.20
 ...
