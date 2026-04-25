@@ -1,0 +1,16 @@
+---
+description: >
+  Examine and modify GDBM databases. It provides a built-in `shell`
+  command that executes system commands.
+functions:
+  shell:
+    - description: >
+        The interactive `shell` command executes arbitrary system commands.
+      code: |
+        gdbmtool /dev/null
+        shell /bin/sh
+  sudo:
+    - code: |
+        sudo gdbmtool /dev/null
+        shell /bin/sh
+---

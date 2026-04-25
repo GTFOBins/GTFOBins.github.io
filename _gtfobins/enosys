@@ -1,0 +1,13 @@
+---
+description: >
+  Execute a command with certain syscalls blocked. Part of util-linux,
+  available since version 2.39.
+functions:
+  shell:
+    - description: Spawn an interactive shell.
+      code: |
+        enosys -- /bin/sh
+  sudo:
+    - code: |
+        sudo enosys -- /bin/sh
+---

