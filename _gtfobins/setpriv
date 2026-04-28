@@ -1,0 +1,12 @@
+---
+description: >
+  Run a program with different privilege settings. Part of util-linux.
+functions:
+  shell:
+    - description: Spawn an interactive shell.
+      code: |
+        setpriv -- /bin/sh
+  sudo:
+    - code: |
+        sudo setpriv -- /bin/sh
+---

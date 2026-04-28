@@ -1,0 +1,19 @@
+---
+description: >
+  Convert between sudoers file formats. It is shipped as part of the sudo
+  package, installed by default on virtually every Linux distribution.
+functions:
+  file-read:
+    - description: >
+        When given a non-sudoers file as input, `cvtsudoers` attempts to
+        parse it and prints each line as part of a syntax error message,
+        effectively disclosing the full file contents.
+      code: |
+        LFILE=/path/to/file
+        cvtsudoers "$LFILE" 2>&1
+  sudo:
+    - description: Read files with elevated privileges.
+      code: |
+        LFILE=/path/to/file
+        sudo cvtsudoers "$LFILE" 2>&1
+---
