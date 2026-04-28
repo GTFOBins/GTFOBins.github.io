@@ -1,13 +1,15 @@
 ---
 description: >
-  Execute a command with certain syscalls blocked. Part of util-linux,
-  available since version 2.39.
+  Utility from `util-linux` that uses `seccomp` to selectively block
+  system calls, then executes a command. New in Ubuntu 26.04+ (util-linux 2.40+).
 functions:
+  command:
+    - description: Execute a command.
+      code: enosys -- COMMAND
   shell:
-    - description: Spawn an interactive shell.
-      code: |
-        enosys -- /bin/sh
+    - description: Spawn a shell.
+      code: enosys -- /bin/sh
   sudo:
-    - code: |
-        sudo enosys -- /bin/sh
+    - description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+      code: sudo enosys -- /bin/sh
 ---
