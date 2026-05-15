@@ -26,7 +26,7 @@ functions:
   library-load:
   - code: |-
       cat >/path/to/temp-file <<EOF
-      load_module /path/to/lib.so
+      load_module /path/to/lib.so;
       EOF
 
       nginx -t -c /path/to/temp-file
