@@ -2,11 +2,13 @@
 functions:
   shell:
   - code: |-
-      mosh --server=mosh-server localhost /bin/sh
+      sudo mosh-server
+      export MOSH_KEY=key
+      mosh-client 127.0.0.1 60001
     comment: |-
       This requires a valid SSH access.
     contexts:
       sudo:
         comment: |-
-          The `mosh-server` is executed via `sudo`.
+          Mosh key is obtained from mosh-server output.
 ...
