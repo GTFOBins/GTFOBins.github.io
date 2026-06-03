@@ -1,0 +1,12 @@
+---
+functions:
+  shell:
+    - description: |
+        `newgrp` changes the current group ID and then executes the user's shell (taken from the `$SHELL` variable). While often SUID root, it explicitly calls `setuid(getuid())` before spawning the shell, so the resulting shell runs as the invoking user. This can be used to break out from restricted environments.
+      code: |
+        SHELL=/bin/sh newgrp
+    - description: |
+        The `sg` command (a symlink to `newgrp`) can be used to break out from restricted environments by running system commands under a specified group without an interactive shell. The user must already be a member of the specified group (or the group must have no password set).
+      code: |
+        sg users -c '/bin/sh -c id'
+...

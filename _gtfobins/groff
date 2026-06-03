@@ -1,0 +1,25 @@
+---
+description: >
+  Front-end for the groff document formatting system. The `-U` flag
+  enables unsafe mode, which allows the `.sy` (system), `.pi` (pipe),
+  and `.open`/`.write` (file write) requests that are blocked by default.
+functions:
+  shell:
+    - description: >
+        Execute commands via the `.sy` request. The `-U` flag is required
+        to disable safer mode.
+      code: |
+        echo '.sy ip a > /tmp/groff_executed' | groff -U -Z >/dev/null && cat /tmp/groff_executed
+  file-write:
+    - description: >
+        Write arbitrary content to a file using `.open` and `.write`
+        requests in unsafe mode.
+      code: |
+        LFILE=/path/to/file
+        echo ".open fd $LFILE
+        .write fd DATA
+        .close fd" | groff -U -T utf8
+  sudo:
+    - code: |
+        echo '.sy ip a > /tmp/groff_executed' | groff -U -Z >/dev/null && cat /tmp/groff_executed
+---

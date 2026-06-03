@@ -1,0 +1,22 @@
+---
+description: >
+  Wrapper that disables `fsync` and related calls by setting `LD_PRELOAD`
+  before executing a given command. Installed by default on Ubuntu 26.04+
+  (package `eatmydata`).
+functions:
+  command:
+    - description: Execute a command. The `LD_PRELOAD` environment variable is set to load `libeatmydata.so`.
+      code: eatmydata COMMAND
+  shell:
+    - description: Spawn a shell.
+      code: eatmydata /bin/sh
+  sudo:
+    - description: If the binary is allowed to run as superuser by `sudo`, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access.
+      code: sudo eatmydata /bin/sh
+  library-load:
+    - description: >
+        The tool sets `LD_PRELOAD=libeatmydata.so` before executing the
+        command. A custom library can be injected by replacing
+        `libeatmydata.so` on the library path.
+      code: eatmydata COMMAND
+---
