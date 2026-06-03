@@ -1,0 +1,14 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      du --files0-from=/path/to/input-file
+    comment: |-
+      du will open and parse the file as a NUL-delimited list of paths.
+      File contents are leaked as error messages in stderr `du: cannot access '<file contents>': File name too long`
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
