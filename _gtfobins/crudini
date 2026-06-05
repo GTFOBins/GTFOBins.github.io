@@ -1,0 +1,17 @@
+---
+comment: A utility for manipulating ini files https://github.com/pixelb/crudini
+functions:
+  file-read:
+  - code: |-
+      crudini --get --format=lines /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+
+  file-write:
+  - code: |-
+      crudini --set /path/to/input-file DEFAULT DATA 'DATA'
+    contexts:
+      sudo:
+      suid:
+...
