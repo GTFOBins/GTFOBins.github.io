@@ -1,0 +1,12 @@
+---
+functions:
+  inherit:
+  - code: |-
+      EDITOR=vi nmtui
+    comment: |-
+      Navigate to "Edit a connection", select "Add", choose "Team", then select "Edit" under JSON configuration to invoke the editor. `VISUAL` takes precedence over `EDITOR` when both are set and can be used instead.
+    contexts:
+      sudo:
+      suid:
+    from: vi
+...
