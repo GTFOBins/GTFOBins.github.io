@@ -1,0 +1,10 @@
+---
+functions:
+  file-read:
+  - code: |-
+      tree --fromfile /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...
