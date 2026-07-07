@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      groovy -e 'new ProcessBuilder(["/bin/sh"]).inheritIO().start().waitFor();'
+    contexts:
+      sudo:
+      unprivileged:
+...
