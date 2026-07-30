@@ -1,0 +1,23 @@
+---
+description: |
+  rclone is a command-line program to manage files on cloud storage.
+functions:
+  file-read:
+    - code: |
+        rclone cat "/etc/shadow"
+  file-write:
+    - code: |
+        LFILE="file_to_write"
+        TF=$(mktemp)
+        echo "DATA" > "$TF"
+        rclone copyto "$TF" "$LFILE"
+contexts:
+  sudo:
+    - code: |
+        sudo rclone cat "/etc/shadow"
+    - code: |
+        LFILE="file_to_write"
+        TF=$(mktemp)
+        echo "DATA" > "$TF"
+        sudo rclone copyto "$TF" "$LFILE"
+---
