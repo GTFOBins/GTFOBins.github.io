@@ -1,0 +1,12 @@
+---
+functions:
+  file-write:
+  - code: |-
+      echo DATA > /path/to/temp-dir/tz
+      tzupdate -t tz -z /path/to/temp-dir/ -l /path/to/output-file
+    comment: |-
+      The output file must already exist and is replaced by a symlink to `/path/to/temp-dir/tz`. Use `-d /path/to/temp-file` to avoid also overwriting `/etc/timezone` on Debian-based systems.
+    contexts:
+      sudo:
+      unprivileged:
+...
