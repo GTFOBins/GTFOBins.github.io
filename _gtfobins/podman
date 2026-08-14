@@ -7,5 +7,4 @@ functions:
       This requires an actual image to be available (e.g., `alpine`) downloading it if not present.
     contexts:
       sudo:
-      unprivileged:
 ...
