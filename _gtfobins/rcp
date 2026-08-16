@@ -1,0 +1,9 @@
+---
+functions:
+  file-write:
+  - code: |-
+      rcp /path/to/input-file /path/to/output-file
+    contexts:
+      sudo:
+      unprivileged:
+...

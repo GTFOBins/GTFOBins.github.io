@@ -1,0 +1,11 @@
+---
+functions:
+  command:
+  - code: |-
+      scriptlive -I $IN -T $TIME
+    comment: |-
+      Reruns files generated via "script -I $IN -T $TIME".
+    contexts:
+      sudo:
+      unprivileged:
+...

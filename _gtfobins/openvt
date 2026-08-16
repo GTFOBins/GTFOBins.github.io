@@ -8,4 +8,11 @@ functions:
       The command execution is displayed on the virtual console.
     contexts:
       sudo:
+  shell:
+  - code: |-
+      sudo openvt -s /bin/sh
+    comment: |-
+      Opens a shell on a new virtual console.
+    contexts:
+      sudo:
 ...

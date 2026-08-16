@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      tc -batch /path/to/input-file
+    comment: |-
+      Outputs the first line of the file (until the first whitespace) inside an error message to stderr.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

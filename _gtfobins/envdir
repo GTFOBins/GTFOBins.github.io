@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      envdir $(mktemp -d) /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,12 @@
+---
+functions:
+  file-read:
+  - code: |-
+      CONTENT_TYPE="application/vnd.hp-pcl" ippevepcl /path/to/input-file
+    comment: |-
+      Prepends ATTR line before output.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

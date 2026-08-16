@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      setsid -w /bin/sh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

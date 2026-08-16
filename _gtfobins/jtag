@@ -1,5 +1,15 @@
 ---
 functions:
+  file-read:
+  - binary: false
+    code: |-
+      jtag /path/to/input-file
+    comment: |-
+      Prints single words inside error messages. Use "quit" to exit the console.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   shell:
   - code: |-
       jtag --interactive

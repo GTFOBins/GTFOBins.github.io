@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      pgrphack /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

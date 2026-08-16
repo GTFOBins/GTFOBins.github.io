@@ -1,0 +1,15 @@
+---
+functions:
+  shell:
+  - code: |-
+      slattach -c /bin/sh -h <tty>
+    comment: |-
+      Requires root rights. Can be used via suid, but only to get a user shell. "tty" should be a different terminal, e.g. `/dev/pts/0`.
+    contexts:
+      sudo:
+        comment: |-
+          Opens a root shell.
+      suid:
+        comment: |-
+          Opens a user shell.
+...

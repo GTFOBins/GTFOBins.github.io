@@ -1,0 +1,14 @@
+---
+functions:
+  library-load:
+  - code: |-
+      mosquitto_ctrl libname x...x
+    comment: |-
+      To pass validation prior to loading, the name of the library must follow the pattern `mosquitto_ctrl_libname.so`,
+      where only `libname` is included as an argument in the command.
+      The last argument can be an arbitrary string.
+      To make the lib available for the linker you can use `LD_LIBRARY_PATH=$(pwd)`.
+    contexts:
+      sudo:
+      unprivileged:
+...
