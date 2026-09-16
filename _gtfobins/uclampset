@@ -1,0 +1,10 @@
+---
+functions:
+  shell:
+  - code: |-
+      uclampset -m 256 -M 512 /bin/sh
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

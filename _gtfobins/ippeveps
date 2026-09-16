@@ -1,0 +1,13 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      CONTENT_TYPE="application/postscript" ippeveps /path/to/input-file
+    comment: |-
+      Prefixes output with multiple "%" lines.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+...

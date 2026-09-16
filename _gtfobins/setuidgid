@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      setuidgid <user/root> /bin/sh
+    contexts:
+      sudo:
+      suid:
+...

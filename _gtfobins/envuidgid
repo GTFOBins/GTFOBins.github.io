@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      envuidgid $(whoami) /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

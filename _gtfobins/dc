@@ -1,5 +1,16 @@
 ---
 functions:
+  file-read:
+  - binary: false
+    code: |-
+      dc /path/to/input-file
+    comment: |-
+      The file content is interpreted as dc program commands - if a character is not a valid command,
+      it is printed as an error.
+    contexts:
+      sudo:
+      suid:
+      unprivileged:
   shell:
   - code: |-
       dc -e '!/bin/sh'

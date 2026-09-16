@@ -1,0 +1,9 @@
+---
+functions:
+  shell:
+  - code: |-
+      fghack /bin/sh
+    contexts:
+      sudo:
+      unprivileged:
+...

@@ -1,0 +1,11 @@
+---
+functions:
+  library-load:
+  - code: |-
+      cobcrun -M /path/to/lib.so x...x
+    comment: |-
+      The last argument can be an arbitrary string.
+    contexts:
+      sudo:
+      unprivileged:
+...
