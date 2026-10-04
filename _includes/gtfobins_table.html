@@ -5,7 +5,7 @@
             {%- for function_item in site.data.functions -%}
                 {%- assign function_name = function_item[0] -%}
                 {%- assign function = function_item[1] -%}
-                <li><a href="#/^{{ function.label | downcase }}$/" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
+                <li><a href="#/^{{ function.label | downcase }}$/" data-filter-group="function" data-filter-label="{{ function.label | downcase }}" data-title="{{ function.description | replace: '\n', ' ' }}">{{ function.label }}</a></li>
             {%- endfor -%}
         </ul>
     </fieldset>
@@ -16,15 +16,28 @@
             {%- for context_item in site.data.contexts -%}
                 {%- assign context_name = context_item[0] -%}
                 {%- assign context = context_item[1] -%}
-                <li><a href="#//^{{ context.label | downcase }}$" data-title="{{ context.description | replace: '\n', ' ' }}">{{ context.label }}</a></li>
+                <li><a href="#//^{{ context.label | downcase }}$" data-filter-group="context" data-filter-label="{{ context.label | downcase }}" data-title="{{ context.description | replace: '\n', ' ' }}">{{ context.label }}</a></li>
+            {%- endfor -%}
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>Techniques</legend>
+        <ul class="search-filters tag-list">
+            {%- for technique_item in site.data.techniques -%}
+                {%- assign technique_id = technique_item[0] -%}
+                {%- assign technique = technique_item[1] -%}
+                <li><a href="#///^{{ technique_id | downcase }}$" data-filter-group="technique" data-filter-label="{{ technique_id | downcase }}" data-title="{{ technique_id }}: {{ technique.name }}">{{ technique_id }}</a></li>
             {%- endfor -%}
         </ul>
     </fieldset>
 
     <fieldset>
         <legend>Filter</legend>
-        <input type="text" spellcheck="false" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<context>]"/>
+        <input type="text" spellcheck="false" placeholder="Search among {{ site.gtfobins | size }} executables: [<name>]/[<function>]/[<context>]/[<technique>]"/>
     </fieldset>
+
+    <p id="result-count" aria-live="polite"></p>
 </div>
 
 <div id="gtfobin-table-wrapper">
@@ -68,9 +81,51 @@
 </div>
 
 <script>
+    // split a query into its name/function/context/technique components
+    function parseQuery(query) {
+        const parts = query.split('/');
+        return { name: parts[0] || '', func: parts[1] || '', ctx: parts[2] || '', tech: parts[3] || '' };
+    }
+
+    // rebuild a query string from its components, dropping trailing empty slots
+    function buildQuery({ name, func, ctx, tech }) {
+        const slots = [name || '', func || '', ctx || '', tech || ''];
+        let last = slots.length - 1;
+        while (last > 0 && slots[last] === '') {
+            last--;
+        }
+        return slots.slice(0, last + 1).join('/');
+    }
+
+    // the set of labels explicitly selected in a slot (i.e. `^label$` terms)
+    function slotToLabels(slot) {
+        const labels = new Set();
+        for (const term of (slot || '').split('|')) {
+            const match = term.match(/^\^(.+)\$$/);
+            if (match) {
+                labels.add(match[1].toLowerCase());
+            }
+        }
+        return labels;
+    }
+
+    // reflect the active filter tags based on the current query
+    function updateActiveTags(query) {
+        const { func, ctx, tech } = parseQuery(query.toLowerCase());
+        const selected = {
+            function: slotToLabels(func),
+            context: slotToLabels(ctx),
+            technique: slotToLabels(tech),
+        };
+        for (const anchor of document.querySelectorAll('#search-toolbox [data-filter-group]')) {
+            const active = selected[anchor.dataset.filterGroup].has(anchor.dataset.filterLabel);
+            anchor.parentElement.classList.toggle('active', active);
+        }
+    }
+
     function filter(query) {
         // extract query components
-        const [namePattern, functionPattern, contextPattern] = query.toLowerCase().split('/', 3).map((pattern) => {
+        const [namePattern, functionPattern, contextPattern, techniquePattern] = query.toLowerCase().split('/', 4).map((pattern) => {
             try {
                 if (pattern) {
                     return new RegExp(pattern, 'i');
@@ -108,13 +163,20 @@
                 }
 
                 // skip if empty filters
-                if (functionPattern || contextPattern) {
+                if (functionPattern || contextPattern || techniquePattern) {
                     // test the individual functions
                     let noMatchingFunctions = true;
                     for (const functionElem of functionElems) {
                         // test the function name
                         const functionMatches = !functionPattern || functionPattern.test(functionElem.dataset.functionName)
                         if (!functionMatches) {
+                            continue;
+                        }
+
+                        // test the MITRE techniques
+                        const techniqueList = (functionElem.dataset.functionTechniques || '').split(',').filter(Boolean);
+                        const techniqueMatches = !techniquePattern || techniqueList.some((technique) => techniquePattern.test(technique));
+                        if (!techniqueMatches) {
                             continue;
                         }
 
@@ -165,6 +227,15 @@
 
         // restore the table visibility
         table.classList.remove('hidden');
+
+        // update the live result count
+        const resultCount = document.querySelector('#result-count');
+        if (resultCount) {
+            const total = table.querySelectorAll('tbody tr').length;
+            resultCount.textContent = query.trim()
+                ? `${nResults} of ${total} matches`
+                : `${total} executables`;
+        }
     }
 
     function applyFilter() {
@@ -173,6 +244,7 @@
         const searchField = searchToolbox.querySelector('input');
         const query = decodeURIComponent(location.hash.slice(1));
         filter(query);
+        updateActiveTags(query);
 
         // if there is a filter fill the box and enter search mode
         if (query) {
@@ -192,6 +264,34 @@
             history.replaceState(null, null, encodeURI(`#${query}`));
             applyFilter();
         });
+
+        // make the function/context tags toggle and combine instead of
+        // replacing the whole query (falls back to plain links without JS)
+        for (const anchor of searchToolbox.querySelectorAll('[data-filter-group]')) {
+            anchor.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const query = parseQuery(searchField.value);
+                const slot = { function: 'func', context: 'ctx', technique: 'tech' }[anchor.dataset.filterGroup];
+                const term = `^${anchor.dataset.filterLabel}$`;
+
+                // toggle this tag's term, preserving any other (freeform) terms
+                const terms = query[slot].split('|').filter(Boolean);
+                const index = terms.indexOf(term);
+                if (index >= 0) {
+                    terms.splice(index, 1);
+                } else {
+                    terms.push(term);
+                }
+                query[slot] = terms.join('|');
+
+                const newQuery = buildQuery(query);
+                searchField.value = newQuery;
+                history.replaceState(null, null, encodeURI(`#${newQuery}`));
+                filter(newQuery);
+                updateActiveTags(newQuery);
+            });
+        }
 
         // handle shortcuts
         addEventListener('keydown', (event) => {

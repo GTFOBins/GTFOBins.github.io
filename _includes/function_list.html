@@ -10,7 +10,17 @@
         {%- assign _examples = include.functions[_function_name] -%}
         {%- include get_contexts_label.html examples=_examples -%}
 
-        <li data-function-name="{{ _function.label }}" data-function-contexts="{{ return_contexts }}">
+        {%- comment -%} collect the MITRE techniques of its examples {%- endcomment -%}
+        {%- assign _techniques = '' | split: '' -%}
+        {%- for _example in _examples -%}
+            {%- assign _mitre = _example.mitre | default: _function.mitre -%}
+            {%- for _technique in _mitre -%}
+                {%- assign _techniques = _techniques | push: _technique -%}
+            {%- endfor -%}
+        {%- endfor -%}
+        {%- assign _techniques = _techniques | uniq | join: ',' -%}
+
+        <li data-function-name="{{ _function.label }}" data-function-contexts="{{ return_contexts }}" data-function-techniques="{{ _techniques }}">
             <a href="{{ include.gtfobin.url | relative_url }}#{{ _function_name }}">{{ _function.label }}</a>
         </li>
     {%- endfor -%}
@@ -37,7 +47,7 @@
         {%- assign _function = _function_item[1] -%}
         {%- unless _inherited_functions contains _function_name -%}{%- continue -%}{%- endunless -%}
 
-        <li class="inherit" title="This function is inherited" data-function-name="{{ _function.label }}" data-function-contexts="">
+        <li class="inherit" title="This function is inherited" data-function-name="{{ _function.label }}" data-function-contexts="" data-function-techniques="{{ _function.mitre | join: ',' }}">
             <a href="{{ include.gtfobin.url | relative_url }}#inherit">{{ _function.label }}</a>
         </li>
     {%- endfor -%}

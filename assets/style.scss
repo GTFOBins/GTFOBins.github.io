@@ -299,6 +299,20 @@ h2, h3, h4, h5, h5 {
                 z-index: 1;
             }
         }
+
+        // selected (toggled) filter tags
+        li.active a {
+            color: $background;
+            background: $accent;
+            border-color: $accent;
+        }
+    }
+
+    #result-count {
+        margin: 0.5em 0 0;
+        text-align: right;
+        font-size: $small-font-size;
+        color: $faint;
     }
 
     input {

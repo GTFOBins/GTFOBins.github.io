@@ -1,0 +1,16 @@
+T1005:
+  name: Data from Local System
+T1041:
+  name: Exfiltration Over C2 Channel
+T1059:
+  name: Command and Scripting Interpreter
+T1071:
+  name: Application Layer Protocol
+T1105:
+  name: Ingress Tool Transfer
+T1548:
+  name: Abuse Elevation Control Mechanism
+T1565:
+  name: Data Manipulation
+T1574:
+  name: Hijack Execution Flow
