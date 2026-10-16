@@ -1,6 +1,6 @@
 ---
 functions:
-  file-read:
+  file-write:
   - binary: false
     code: |-
       vim -c ':redir! >/path/to/output-file | echo "DATA" | redir END | q'
