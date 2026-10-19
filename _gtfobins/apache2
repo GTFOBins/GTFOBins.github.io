@@ -19,4 +19,9 @@ functions:
       sudo:
       suid:
       unprivileged:
+  library-load:
+  - code: |-
+      /usr/sbin/apache2 -C 'Define APACHE_RUN_DIR /' -C 'LoadModule shell /path/to/lib.so'
+    contexts:
+      sudo:
 ...
