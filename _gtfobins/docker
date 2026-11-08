@@ -1,6 +1,10 @@
 ---
 comment: |-
-  This requires the user to be privileged enough to run `docker`, e.g., being in the `docker` group or being `root`.
+  This requires access to the Docker daemon. On a local rootful installation, access to its Unix socket (commonly through the `docker` group or an equivalent ACL) is effectively root-equivalent on the daemon's host. Rootless Docker is different: its daemon runs without root, so these examples do not provide the same host-root access.
+  
+  Do not confuse rootless Docker with `userns-remap`: the latter remaps container UIDs/GIDs but leaves the daemon running as root, so access to its socket remains highly privileged. Also check the active Docker context (`docker context show`): if it points to a remote daemon, commands affect the remote host, not the local target.
+  
+  For a broader pentest checklist covering Docker and other privilege-relevant Linux groups, see [Linux Groups for Privilege Escalation](https://en.hackita.it/articoli/group-linux-privilege-escalation/).
 functions:
   file-read:
   - code: |-
